@@ -12,3 +12,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+ul {
+  list-style: none;
+  display: flex;
+  width: 100%;
+
+};
+
+li {
+  text-decoration: none;
+};
+
