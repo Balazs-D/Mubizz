@@ -2,10 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 // Styled Components
-
-
 
 const InputField = styled.input`
   padding: 5px;
@@ -13,6 +10,7 @@ const InputField = styled.input`
   width: 20vw;
   outline: none;
   border: 1px solid ${props => props.theme.colors.mainBlue};
+  margin: 5px;
 
   &:focus {
     box-shadow: 0px 0px 6px ${props => props.theme.colors.mainBlue};
@@ -20,11 +18,8 @@ const InputField = styled.input`
   }
 `;
 
-const Input =()=> {
-    return (
-     
-            <InputField placeholder='Search...'></InputField>
-    )
+const Input = () => {
+  return <InputField placeholder='Search...'></InputField>;
 };
 
-export default Input
+export default Input;

@@ -13,10 +13,13 @@ import NavSettings from './NavSettings';
 const HeaderCont = styled.div`
   display: flex;
   justify-content: space-between;
-  background: ${props => props.theme.colors.mainRed};
+  /* background: ${props => props.theme.colors.mainRed}; */
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
   padding: 0.5vw 1vw;
+  border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
   @media (min-width: 500px) {
-    padding: 0.5vw 0.5vw;
+    position: sticky;
+    top: 0;
   }
 `;
 
@@ -33,9 +36,7 @@ const InputCont = styled.div`
   flex-direction: row;
 `;
 
-const InputRightCut = styled(Input)`
-  border-radius: 0px;
-`;
+
 
 const Header = () => {
   return (
@@ -44,7 +45,7 @@ const Header = () => {
       <ControlContainer>
         <InputCont>
           <Input />
-          <Button />
+          <Button text='Go' />
         </InputCont>
         <InputCont>
          <NavSettings />

@@ -1,5 +1,6 @@
 // Libraries
 import React from 'react';
+import styled from 'styled-components';
 import '../assets/css/style.css';
 import {
   BrowserRouter as Router,
@@ -10,8 +11,15 @@ import {
 // Components
 import Header from './Pages/Header/Header';
 import Theme from './Style/Theme';
-import Login from './Pages/Login';
+import Welcome from './Pages/Welcome';
 
+// Styled Components
+
+const MainContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden ;
+`;
 // =========================================================== //
 
 
@@ -20,14 +28,15 @@ export default function App() {
   return (
     <Router>
       <Theme>
-        <div>
+        <MainContainer>
           <Header />
-        </div>
+          <Welcome />
+        </MainContainer>
       </Theme>
     
     
     <Switch>
-        <Route path='/login'><Login /></Route>
+        <Route path='/login'></Route>
     </Switch>
     </Router>
 
