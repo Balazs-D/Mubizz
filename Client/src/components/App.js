@@ -12,6 +12,7 @@ import {
 import Header from './Pages/Header/Header';
 import Theme from './Style/Theme';
 import Welcome from './Pages/Welcome';
+import Settings from './Pages/Settings/Settings';
 
 // Styled Components
 
@@ -28,18 +29,20 @@ export default function App() {
   return (
     <Router>
       <Theme>
-        <MainContainer>
+        {/* <MainContainer> */}
           <Header />
-          <Welcome />
-        </MainContainer>
+          {/* <Welcome /> */}
+        {/* </MainContainer> */}
+
+        <Switch>
+          <Route exact path='/login' component={Welcome}>
+            <Welcome />
+          </Route>
+          <Route exact path='/settings' component={Settings}>
+            <Settings />
+          </Route>
+        </Switch>
       </Theme>
-    
-    
-    <Switch>
-        <Route path='/login'></Route>
-    </Switch>
     </Router>
-
-
   );
 }

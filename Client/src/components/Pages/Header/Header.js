@@ -7,19 +7,21 @@ import Logo from './Logo';
 import Input from '../../Utilities/Input';
 import Button from '../../Utilities/Button';
 import NavSettings from './NavSettings';
+import Intro from '../Header/Intro';
 
 // Styled Components
 
 const HeaderCont = styled.div`
   display: flex;
   justify-content: space-between;
-  /* background: ${props => props.theme.colors.mainRed}; */
   background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
   padding: 0.5vw 1vw;
   border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
-  @media (min-width: 500px) {
+  position: relative;
+  @media (min-width: 320px) {
     position: sticky;
-    top: 0;
+    top: -23.5vw;
+    height: 70vh;
   }
 `;
 
@@ -42,15 +44,17 @@ const Header = () => {
   return (
     <HeaderCont>
       <Logo />
-      <ControlContainer>
+
+      <Intro />
+      {/* <ControlContainer>
         <InputCont>
-          <Input />
+          <Input placeholder='Search...'/>
           <Button text='Go' />
         </InputCont>
         <InputCont>
          <NavSettings />
         </InputCont>
-      </ControlContainer>
+      </ControlContainer> */}
     </HeaderCont>
   );
 };

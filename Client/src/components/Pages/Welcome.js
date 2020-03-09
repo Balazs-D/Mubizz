@@ -15,10 +15,8 @@ height: 85vh;
 display: flex;
 align-items: center;
 justify-content: center;
-/* background-image: url(${Bg1}); */
 background-size: cover;
 background-position-y: bottom;
-/* overflow-x: scroll; */
 `
 
 const Welcome = () => {

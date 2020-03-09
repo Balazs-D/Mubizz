@@ -23,7 +23,7 @@ const NavSettings =()=> {
     return (
       <List>
         <li>
-          <Link style={StyledLink}>
+          <Link to='/settings' style={StyledLink}>
             <Button iconClass='fas fa-sliders-h' text='Settings' />
           </Link>
         </li>

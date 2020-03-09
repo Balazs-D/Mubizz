@@ -17,8 +17,14 @@ const LogoCont = styled.div`
   background: ${props => props.theme.colors.mainLightBlue};
   padding: 4px;
   margin: 5px;
-  @media (min-width: 500px) {
+  @media (min-width: 320px) {
     background: ${props => props.theme.colors.mainLightBlue};
+    height: 15vh;
+    width: 15vw;
+    position: sticky;
+    top: 1vw;
+
+
   }
 `;
 
@@ -32,7 +38,7 @@ const LogoTextMobile = styled.h3`
   margin-block-start: 0px;
   margin-block-end: 0px;
   display: flex;
-  @media (min-width: 500px) {
+  @media (min-width: 320px) {
     justify-content: flex-start;
     color: ${props => props.theme.colors.mainPurple};
     margin-top: -5px;
