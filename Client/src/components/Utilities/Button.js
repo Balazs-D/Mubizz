@@ -31,10 +31,10 @@ const ButtonBasic = styled.button`
     }
   }
 `;
-const Button = ({ className, iconClass, text }) => {
+const Button = ({ className, iconClass, text, onClick }) => {
   return (
     <div>
-      <ButtonBasic className={className}>
+      <ButtonBasic className={className} onClick={onClick} >
         <span>
           <span>{text}</span>
         </span>

@@ -1,4 +1,6 @@
-import { LOGIN } from '../../context/user/types';
+import { 
+LOGIN,
+SIGNIN } from '../../context/user/types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -7,6 +9,12 @@ export default (state, action) => {
         ...state,
         loggedIn: true
       };
+
+      case SIGNIN: 
+      return {
+        ...state,
+        newSignin: !state.newSignin,
+      }
 
     default:
       return state;

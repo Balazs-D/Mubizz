@@ -15,10 +15,11 @@ const IntroCont = styled.h3`
   right: 50%;
   transform: translateX(50%);
   font-family: 'Noto Serif';
-  font-size: ${props => props.theme.fontSizes.large};
+  font-size: ${props => props.theme.fontSizes.huge};
   color: ${props => props.theme.colors.mainBlue};
   @media (min-width: 500px) {
     margin-top: -50px;
+    font-size: ${props => props.theme.fontSizes.large};
   }
 `;
 
@@ -31,10 +32,7 @@ const StyledSpan = styled.span`
 const Intro = () => {
   return (
     <IntroCont>
-      
-        Find and offer your services in the <StyledSpan>music</StyledSpan>{' '}
-        industry...
-    
+      Find and offer your services in the music industry... 
     </IntroCont>
   );
 };

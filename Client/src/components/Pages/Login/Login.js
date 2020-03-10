@@ -1,15 +1,16 @@
 // Utilities
-import React, {useContext} from 'react';
+import React, { useContext, useState, Fragment } from 'react';
 import styled from 'styled-components';
 import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
 import UserContext from '../../../context/user/userContext';
+
 // Components
 import Input from '../../Utilities/Input';
 import Button from '../../Utilities/Button';
 
 // Styled Components
 
-const LoginCont = styled.form`
+const LoginCont = styled.div`
   /* border: 1px solid ${props => props.theme.colors.mainPurple}; */
   display: flex;
   flex-direction: column;
@@ -47,6 +48,10 @@ const RowCont = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   margin: 10px 0px;
+  @media (min-width: 800px) {
+    
+   
+  }
 `;
 
 const ButtonInPlace = styled(Button)`
@@ -63,19 +68,33 @@ const InputInPlace = styled(Input)`
 `;
 
 const Login = props => {
-
   const userCont = useContext(UserContext);
-
+console.log(userCont)
   return (
-    <LoginCont>
+    <LoginCont onSubmit={userCont.handleSubmit}>
       <RowCont>
-        <Input placeholder='Your e-mail...' />
-        <InputInPlace placeholder='Your password...' />
+        {/* <label for='email'>E-Mail</label> */}
+        <Input placeholder='Your e-mail...' value={userCont.email} />
+        <InputInPlace
+          placeholder='Your password...'
+          value={userCont.password}
+        />
       </RowCont>
-      <RowCont>
-        <ButtonInPlace text='Signin' />
 
-        <ButtonLogin text='Login' onClick={userCont.handleLogin}/>
+      {userCont.newSignin && (
+        <RowCont>
+          <Input placeholder='Your name...' value={userCont.email} />
+          <InputInPlace
+            placeholder='Repeat your password...'
+            value={userCont.password}
+          />
+        </RowCont>
+      )}
+
+      <RowCont>
+        <ButtonInPlace text='Signin' onClick={userCont.newUser} />
+
+        <ButtonLogin text='Login' />
       </RowCont>
     </LoginCont>
   );
