@@ -1,8 +1,8 @@
 // Utilities
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
-
+import UserContext from '../../../context/user/userContext';
 // Components
 import Input from '../../Utilities/Input';
 import Button from '../../Utilities/Button';
@@ -63,6 +63,9 @@ const InputInPlace = styled(Input)`
 `;
 
 const Login = props => {
+
+  const userCont = useContext(UserContext);
+
   return (
     <LoginCont>
       <RowCont>
@@ -72,7 +75,7 @@ const Login = props => {
       <RowCont>
         <ButtonInPlace text='Signin' />
 
-        <ButtonLogin text='Login' />
+        <ButtonLogin text='Login' onClick={userCont.handleLogin}/>
       </RowCont>
     </LoginCont>
   );

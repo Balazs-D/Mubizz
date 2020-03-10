@@ -31,10 +31,10 @@ const StyledSpan = styled.span`
 const Intro = () => {
   return (
     <IntroCont>
-      <h3>
+      
         Find and offer your services in the <StyledSpan>music</StyledSpan>{' '}
         industry...
-      </h3>
+    
     </IntroCont>
   );
 };

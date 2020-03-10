@@ -7,6 +7,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import UserState from '../context/user/UserState';
 
 // Components
 import Header from './Pages/Header/Header';
@@ -27,22 +28,24 @@ const MainContainer = styled.div`
 
 export default function App() {
   return (
-    <Router>
-      <Theme>
-        {/* <MainContainer> */}
+    <UserState>
+      <Router>
+        <Theme>
+          {/* <MainContainer> */}
           <Header />
           {/* <Welcome /> */}
-        {/* </MainContainer> */}
+          {/* </MainContainer> */}
 
-        <Switch>
-          <Route exact path='/login' component={Welcome}>
-            <Welcome />
-          </Route>
-          <Route exact path='/settings' component={Settings}>
-            <Settings />
-          </Route>
-        </Switch>
-      </Theme>
-    </Router>
+          <Switch>
+            <Route exact path='/login' component={Welcome}>
+              <Welcome />
+            </Route>
+            <Route exact path='/settings' component={Settings}>
+              <Settings />
+            </Route>
+          </Switch>
+        </Theme>
+      </Router>
+    </UserState>
   );
 }
