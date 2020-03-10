@@ -1,23 +1,23 @@
 // Utilities
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 
 // Styled Components
 
 const InputField = styled.input`
-  padding: 5px;
+  padding: 10px;
   border-radius: 4px;
   width: 70%;
   outline: none;
   border: 1px solid ${props => props.theme.colors.mainBlue};
-  margin: 5px;
-  @media (min-width: 500px) {
-    padding: 5px;
+  margin: 0px;
+  @media (min-width: 800px) {
+    padding: 10px;
     border-radius: 4px;
     width: 20vw;
     outline: none;
     border: 1px solid ${props => props.theme.colors.mainBlue};
-    margin: 5px;
+    margin: 0px;
   }
 
   &:focus {
@@ -26,8 +26,12 @@ const InputField = styled.input`
   }
 `;
 
-const Input = ({placeholder}) => {
-  return <InputField placeholder={placeholder}></InputField>;
+const Input = ({ placeholder, className }) => {
+  return (
+    <Fragment>
+      <InputField placeholder={placeholder} className={className}></InputField>
+    </Fragment>
+  );
 };
 
 export default Input;

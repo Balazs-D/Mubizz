@@ -14,17 +14,15 @@ const Image = styled.img`
 
 const LogoCont = styled.div`
   padding-top: -5px;
-  background: ${props => props.theme.colors.mainLightBlue};
+  /* background: ${props => props.theme.colors.mainLightBlue}; */
   padding: 4px;
   margin: 5px;
-  @media (min-width: 320px) {
-    background: ${props => props.theme.colors.mainLightBlue};
+  @media (min-width: 800px) {
+    /* background: ${props => props.theme.colors.mainLightBlue}; */
     height: 15vh;
     width: 15vw;
     position: sticky;
     top: 1vw;
-
-
   }
 `;
 

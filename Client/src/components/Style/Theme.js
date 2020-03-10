@@ -17,7 +17,8 @@ const theme = {
     xs: '0.5em',
     small: '1vw',
     medium: '2vw',
-    large: '3vw'
+    large: '3vw',
+    huge: '5vw'
   },
   mediaQueries: {
     mobile: {

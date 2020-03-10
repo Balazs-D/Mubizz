@@ -9,7 +9,9 @@ const ButtonBasic = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  display: flex;
+  justify-content: space-between;
+  background: transparent;
   border-radius: 4px;
   outline: none;
   border: 1px solid ${props => props.theme.colors.mainBlue};
@@ -17,18 +19,6 @@ const ButtonBasic = styled.button`
   font-size: ${props => props.theme.fontSizes.large};
   @media (min-width: 500px) {
     font-size: ${props => props.theme.fontSizes.small};
-    transition: all 0.3s ease-in-out;
-
-    &:hover {
-      background-color: ${props => props.theme.colors.gradientYellow};
-      box-shadow: 0px 0px 20px ${props => props.theme.colors.gradientPink
-      };
-    }
-
-    &:active {
-      background-color: ${props => props.theme.colors.mainRed};
-      box-shadow: 0px 0px 40px ${props => props.theme.colors.gradientPink};
-    }
   }
 `;
 const Button = ({ className, iconClass, text }) => {
@@ -36,6 +26,7 @@ const Button = ({ className, iconClass, text }) => {
     <div>
       <ButtonBasic className={className}>
         <span>
+          <i style={{ margin: '0px 4px' }} className={iconClass}></i>
           <span>{text}</span>
         </span>
       </ButtonBasic>

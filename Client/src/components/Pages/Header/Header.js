@@ -16,11 +16,13 @@ const HeaderCont = styled.div`
   justify-content: space-between;
   background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
   padding: 0.5vw 1vw;
-  border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
   position: relative;
-  @media (min-width: 320px) {
-    position: sticky;
-    top: -23.5vw;
+  height: 20vw;
+  @media (min-width: 500px) {
+    border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
+
+    /* position: sticky;
+    top: -23.5vw; */
     height: 70vh;
   }
 `;

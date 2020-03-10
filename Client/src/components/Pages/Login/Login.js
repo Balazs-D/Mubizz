@@ -9,15 +9,15 @@ import Button from '../../Utilities/Button';
 
 // Styled Components
 
-const LoginCont = styled.div`
-  border: 1px solid ${props => props.theme.colors.mainPurple};
+const LoginCont = styled.form`
+  /* border: 1px solid ${props => props.theme.colors.mainPurple}; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70vw;
-  height: 60%;
-  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  /* border-radius: 4px; */
   background-image: url(${Bg1});
   background-size: cover;
   background-position-y: bottom;
@@ -30,7 +30,8 @@ const LoginCont = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30vw;
+    width: 50vw;
+    height: 30vh;
     padding: 5%;
     border-radius: 4px;
     background-image: url(${Bg1});
@@ -40,26 +41,38 @@ const LoginCont = styled.div`
   }
 `;
 
-const RowCont = styled.form`
-  width: 20vw;
+const RowCont = styled.div`
+  width: 70%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  margin: 10px;
+  margin: 10px 0px;
 `;
 
-const ButtonNew = styled(Button)`
-  background: red;
+const ButtonInPlace = styled(Button)`
+  margin-left: 5px;
 `;
 
-const Login = (props) => {
+const ButtonLogin = styled(Button)`
+  background: white;
+  margin-left: 5px;
+`;
+
+const InputInPlace = styled(Input)`
+  margin-left: 5px;
+`;
+
+const Login = props => {
   return (
     <LoginCont>
-      <Input placeholder='Your e-mail...' />
-      <Input placeholder='Your password...' />
       <RowCont>
-        <ButtonNew text='Login' />
-        <Button text='Sign In' />
+        <Input placeholder='Your e-mail...' />
+        <InputInPlace placeholder='Your password...' />
+      </RowCont>
+      <RowCont>
+        <ButtonInPlace text='Signin' />
+
+        <ButtonLogin text='Login' />
       </RowCont>
     </LoginCont>
   );
