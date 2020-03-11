@@ -22,6 +22,7 @@ const LoginCont = styled.form`
   align-items: flex-start;
   height: 100%;
   width: 100%;
+  position: relative;
 
   background-image: url(${Bg1});
   background-size: cover;
@@ -95,7 +96,6 @@ const ButtonThis = styled(Button)`
 `;
 
 const ButtonSwap = styled(Button)`
-  border: none;
   background: ${props => props.theme.colors.gradientPink};
 `;
 
@@ -103,6 +103,19 @@ const InputStyleForm = styled(Input)`
   margin-bottom: 15px;
   width: 95%;
 `;
+
+const TitleCont = styled.h2`
+padding: 5px 10px;
+background: ${props => props.theme.colors.gradientPink};
+border: 1px solid ${props => props.theme.colors.mainPurple};
+border-radius: 4px;
+font-size: ${props => props.theme.fontSizes.medium};
+position: absolute;
+top: -26px;
+right: 56px;
+text-transform: uppercase;
+font-family: ${props => props.theme.fontFamily[4]}
+`
 
 const Register = props => {
   const userCont = useContext(UserContext);
@@ -148,6 +161,7 @@ const Register = props => {
 
   return (
     <LoginCont onSubmit={onSubmit}>
+<TitleCont>Registration</TitleCont>
       <FormDiv>
         <ColLeft>
           <InputStyleForm

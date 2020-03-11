@@ -30,10 +30,15 @@ const ButtonBasic = styled.button`
     }
   }
 `;
-const Button = ({ className, iconClass, text, onClick, type }) => {
+const Button = ({ className, iconClass, text, onClick, type, component }) => {
   return (
     <div>
-      <ButtonBasic className={className} onClick={onClick} type={type}>
+      <ButtonBasic
+        className={className}
+        component={component}
+        onClick={onClick}
+        type={type}
+      >
         <span>
           <span>{text}</span>
         </span>
