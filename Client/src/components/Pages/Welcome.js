@@ -1,5 +1,5 @@
 // Utilities
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 // Components
@@ -18,7 +18,7 @@ const WelcomeCont = styled.div`
   justify-content: center;
   background-size: cover;
   background-position-y: bottom;
-  @media (min-width: 500px) {
+  @media (min-width: 800px) {
     margin-top: -60px;
     position: relative;
     height: 30vh;
@@ -26,16 +26,11 @@ const WelcomeCont = styled.div`
 `;
 
 const Welcome = () => {
-
   const userCont = useContext(UserContext);
 
   return (
     <div>
-      <WelcomeCont>
-        {userCont.newSignin ? 
-        <Register /> 
-        : <Login />}
-      </WelcomeCont>
+      <WelcomeCont>{userCont.newSignin ? <Register /> : <Login />}</WelcomeCont>
     </div>
   );
 };

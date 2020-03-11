@@ -18,7 +18,7 @@ const HeaderCont = styled.div`
   padding: 0.5vw 1vw;
   position: relative;
   height: 20vw;
-  @media (min-width: 500px) {
+  @media (min-width: 800px) {
     border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
 
     /* position: sticky;
@@ -39,8 +39,6 @@ const InputCont = styled.div`
   justify-content: space-between;
   flex-direction: row;
 `;
-
-
 
 const Header = () => {
   return (

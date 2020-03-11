@@ -15,7 +15,7 @@ const ButtonBasic = styled.button`
   border: 1px solid ${props => props.theme.colors.mainBlue};
   font-family: ${props => props.theme.fontFamily[0]};
   font-size: ${props => props.theme.fontSizes.large};
-  @media (min-width: 500px) {
+  @media (min-width: 800px) {
     font-size: ${props => props.theme.fontSizes.small};
     transition: all 0.3s ease-in-out;
 

@@ -17,7 +17,7 @@ const IntroCont = styled.h3`
   font-family: 'Noto Serif';
   font-size: ${props => props.theme.fontSizes.huge};
   color: ${props => props.theme.colors.mainBlue};
-  @media (min-width: 500px) {
+  @media (min-width: 800px) {
     margin-top: -50px;
     font-size: ${props => props.theme.fontSizes.large};
   }
@@ -31,9 +31,7 @@ const StyledSpan = styled.span`
 
 const Intro = () => {
   return (
-    <IntroCont>
-      Find and offer your services in the music industry... 
-    </IntroCont>
+    <IntroCont>Find and offer your services in the music industry...</IntroCont>
   );
 };
 

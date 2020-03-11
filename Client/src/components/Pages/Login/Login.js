@@ -11,29 +11,25 @@ import Button from '../../Utilities/Button';
 // Styled Components
 
 const LoginCont = styled.form`
-  /* border: 1px solid ${props => props.theme.colors.mainPurple}; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 100%;
+  align-items: flex-start;
   height: 100%;
-  /* border-radius: 4px; */
+  width: 100%;
+
   background-image: url(${Bg1});
   background-size: cover;
   background-position-y: bottom;
   background-repeat: no-repeat;
   background-position-x: center;
 
-  @media (min-width: 500px) {
+  @media (min-width: 800px) {
+    margin-top: 20px;
+    padding: 50px;
+    width: 50%;
+
     border: 1px solid ${props => props.theme.colors.mainPurple};
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50vw;
-    /* height: 30vh; */
-    padding: 5%;
     border-radius: 4px;
     background-image: url(${Bg1});
     background-size: cover;
@@ -42,51 +38,80 @@ const LoginCont = styled.form`
   }
 `;
 
-const RowCont = styled.div`
-  width: 70%;
+const FormDiv = styled.div`
+  padding: 250px 100px 0px 100px;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
-  justify-content: flex-end;
-  margin: 10px 0px;
   @media (min-width: 800px) {
-    
-   
+    padding: 20px 0px 0px 0px;
+
+    width: 100%;
+    display: flex;
+  align-items: space-between; 
+    flex-direction: row;
   }
 `;
 
-const ButtonInPlace = styled(Button)`
-  margin-left: 5px;
+const ColLeft = styled.div`
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+width: 50%;`
+
+const ColRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 50%;
 `;
 
-const ButtonLogin = styled(Button)`
-  background: white;
-  margin-left: 5px;
+const ButtonDiv = styled.div`
+  padding: 0px 100px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  margin-top: 10px;
+  @media (min-width: 800px) {
+    padding: 0px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin-top: 10px;
+  }
 `;
 
-const InputInPlace = styled(Input)`
-  margin-left: 5px;
-`;
+const ButtonThis = styled(Button)`
+margin-left: 10px;`;
+
+const ButtonSwap = styled(Button)`
+border: none;
+background: ${props => props.theme.colors.gradientPink};
+
+`
+
+
 
 const Login = props => {
   const userCont = useContext(UserContext);
-console.log(userCont)
   return (
     <LoginCont onSubmit={userCont.handleSubmit}>
-      <RowCont>
-        {/* <label for='email'>E-Mail</label> */}
-        <Input placeholder='Your e-mail...' value={userCont.email} />
-        <InputInPlace
-          placeholder='Your password...'
-          value={userCont.password}
-        />
-      </RowCont>
+      <FormDiv>
+        <ColLeft>
+          <Input placeholder='Your e-mail...' value={userCont.email} />
+        </ColLeft>
+        <ColRight>
+          <Input placeholder='Your password...' value={userCont.password} />
+        </ColRight>
+      </FormDiv>
 
-
-      <RowCont>
-        <ButtonInPlace text='Signin' type='button' onClick={userCont.newUser} />
-
-        <ButtonLogin text='Login' />
-      </RowCont>
+      <ButtonDiv>
+        <ButtonSwap text='I want to Signin' onClick={userCont.newUser}/>
+        <ButtonThis text='Login' />
+      </ButtonDiv>
     </LoginCont>
   );
 };

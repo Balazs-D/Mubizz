@@ -1,4 +1,4 @@
-    // Utilities
+// Utilities
 import React, { useContext, useState, Fragment } from 'react';
 import styled from 'styled-components';
 import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
@@ -11,29 +11,25 @@ import Button from '../../Utilities/Button';
 // Styled Components
 
 const LoginCont = styled.form`
-  /* border: 1px solid ${props => props.theme.colors.mainPurple}; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 100%;
+  align-items: flex-start;
   height: 100%;
-  /* border-radius: 4px; */
+  width: 100%;
+
   background-image: url(${Bg1});
   background-size: cover;
   background-position-y: bottom;
   background-repeat: no-repeat;
   background-position-x: center;
 
-  @media (min-width: 500px) {
+  @media (min-width: 800px) {
+    margin-top: 20px;
+    padding: 50px;
+    width: 50%;
+
     border: 1px solid ${props => props.theme.colors.mainPurple};
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 40vw;
-    /* height: 30vh; */
-    padding: 1%;
     border-radius: 4px;
     background-image: url(${Bg1});
     background-size: cover;
@@ -42,99 +38,88 @@ const LoginCont = styled.form`
   }
 `;
 
-const RowCont = styled.div`
+const FormDiv = styled.div`
+  padding: 250px 100px 0px 100px;
   width: 100%;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
-  justify-content: flex-start;
-  margin: 10px 0px;
   @media (min-width: 800px) {
-    
-   
+    padding: 20px 0px 0px 0px;
+
+    width: 100%;
+    display: flex;
+    align-items: space-between;
+    flex-direction: row;
   }
+`;
+
+const ColLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+`;
+
+const ColRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 50%;
 `;
 
 const ButtonDiv = styled.div`
-/* width: 50%; */
-height: 100%;
-padding-top: 5px;
-display: flex;
-flex-direction: column;
-justify-content: flex-end;
-align-content: center;
-/* background: red; */
-`; 
-
-const InputCont = styled.div`
-display: flex;
-flex-direction: column;
-align-items:flex-start;
-width: 80%;`
-
-const ButtonInPlace = styled(Button)`
-  margin-right: 5px;
-  background: transparent;
-  border: none;
-  color: white;
+  padding: 0px 100px;
   width: 100%;
-  &:hover{
-      color:black;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  margin-top: 10px;
+  @media (min-width: 800px) {
+    padding: 0px 0px 10px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin-top: 10px;
   }
 `;
 
-const ButtonAction = styled(Button)`
-  background: white;
-  margin-right: 5px;
-  width: 100%;
-  margin-top: 5px;
+const ButtonThis = styled(Button)`
+  margin-left: 10px;
 `;
 
-const InputInPlace = styled(Input)`
-  margin-left: 5px;
+const ButtonSwap = styled(Button)`
+  border: none;
+  background: ${props => props.theme.colors.gradientPink};
 `;
 
-const InputMail = styled(Input)`
-width: 100%`
+const InputStyleForm = styled(Input)`
+margin-bottom: 5px`
 
 const Register = props => {
   const userCont = useContext(UserContext);
-console.log(userCont)
   return (
     <LoginCont onSubmit={userCont.handleSubmit}>
-      <InputCont>
-        <RowCont>
-          <Input placeholder='First name... ' />
-          <InputInPlace placeholder='Last name...' />
-        </RowCont>
+      <FormDiv>
+        <ColLeft>
+          <InputStyleForm placeholder='Your first name...' value={userCont.email} />
+          <InputStyleForm placeholder='Your e-mail...' value={userCont.email} />
+          <InputStyleForm placeholder='Select a password...' value={userCont.email} />
+        </ColLeft>
+        <ColRight>
+          <InputStyleForm placeholder='Your last name...' value={userCont.email} />
+          <InputStyleForm placeholder='Repeat your e-mail...' value={userCont.email} />
+          <InputStyleForm placeholder='Repeat your password...' value={userCont.password} />
+        </ColRight>
+      </FormDiv>
 
-        <RowCont>
-          {/* <label for='email'>E-Mail</label> */}
-          <Input placeholder='Your password...' value={userCont.email} />
-          <InputInPlace
-            placeholder='Repeat your password...'
-            value={userCont.password}
-          />
-        </RowCont>
-
-        <RowCont>
-          <InputMail placeholder='Your e-mail...' value={userCont.email} />
-        </RowCont>
-      </InputCont>
       <ButtonDiv>
-        <ButtonInPlace text='Login' />
-
-        <ButtonAction text='Signin' />
+        <ButtonSwap text='Back to Login' />
+        <ButtonThis text='Sigin' />
       </ButtonDiv>
     </LoginCont>
   );
 };
 
 export default Register;
-
-
-
-
-
-
-
-
