@@ -14,8 +14,10 @@ const LoginCont = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  height: 100%;
   width: 100%;
+  position: relative;
 
   background-image: url(${Bg1});
   background-size: cover;
@@ -24,10 +26,10 @@ const LoginCont = styled.form`
   background-position-x: center;
 
   @media (min-width: 800px) {
-    margin-top: 20px;
+    margin: 80px;
     padding: 50px;
     width: 50%;
-    margin: 80px;
+    display: flex;
 
     border: 1px solid ${props => props.theme.colors.mainPurple};
     border-radius: 4px;
@@ -46,10 +48,9 @@ const FormDiv = styled.div`
   flex-direction: row;
   @media (min-width: 800px) {
     padding: 20px 0px 0px 0px;
-    height: 100%;
     width: 100%;
     display: flex;
-    align-items: space-between;
+    justify-content: center;
     flex-direction: row;
   }
 `;
@@ -57,14 +58,14 @@ const FormDiv = styled.div`
 const ColLeft = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 50%;
 `;
 
 const ColRight = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   width: 50%;
 `;
 
@@ -76,12 +77,12 @@ const ButtonDiv = styled.div`
   flex-direction: row;
   margin-top: 10px;
   @media (min-width: 800px) {
-    padding: 0px 0px;
+    padding: 10px 10px 10px 10px;
     width: 100%;
     display: flex;
     justify-content: flex-end;
     flex-direction: row;
-    margin-top: 10px;
+    margin-top: 25px;
   }
 `;
 
@@ -90,8 +91,20 @@ const ButtonThis = styled(Button)`
 `;
 
 const ButtonSwap = styled(Button)`
-  border: none;
   background: ${props => props.theme.colors.gradientPink};
+`;
+
+const TitleCont = styled.h2`
+  padding: 5px 10px;
+  background: ${props => props.theme.colors.gradientPink};
+  border: 1px solid ${props => props.theme.colors.mainPurple};
+  border-radius: 4px;
+  font-size: ${props => props.theme.fontSizes.medium};
+  position: absolute;
+  top: -26px;
+  right: 56px;
+  text-transform: uppercase;
+  font-family: ${props => props.theme.fontFamily[4]};
 `;
 
 const Login = props => {
@@ -116,6 +129,7 @@ const Login = props => {
 
   return (
     <LoginCont onSubmit={userCont.handleSubmit}>
+      <TitleCont>Login</TitleCont>
       <FormDiv>
         <ColLeft>
           <Input
@@ -123,6 +137,7 @@ const Login = props => {
             name='email'
             value={email}
             onChange={onChange}
+            label='E-Mail'
           />
         </ColLeft>
         <ColRight>
@@ -131,6 +146,7 @@ const Login = props => {
             name='password'
             value={password}
             onChange={onChange}
+            label='Password'
           />
         </ColRight>
       </FormDiv>
