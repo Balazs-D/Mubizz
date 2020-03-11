@@ -1,15 +1,17 @@
 // Utilities
 import React, { useContext, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+
 import styled from 'styled-components';
 import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
 import UserContext from '../../../context/user/userContext';
 import AuthContext from '../../../context/auth/authContext';
 import AlertContext from '../../../context/alert/alertContext';
 
-
 // Components
 import Input from '../../Utilities/Input';
 import Button from '../../Utilities/Button';
+import Login from '../Auth/Login';
 
 // Styled Components
 
@@ -28,9 +30,10 @@ const LoginCont = styled.form`
   background-position-x: center;
 
   @media (min-width: 800px) {
-    margin-top: 20px;
+    margin: 80px;
     padding: 50px;
     width: 50%;
+    display: flex;
 
     border: 1px solid ${props => props.theme.colors.mainPurple};
     border-radius: 4px;
@@ -49,10 +52,9 @@ const FormDiv = styled.div`
   flex-direction: row;
   @media (min-width: 800px) {
     padding: 20px 0px 0px 0px;
-
     width: 100%;
     display: flex;
-    align-items: space-between;
+    justify-content: center;
     flex-direction: row;
   }
 `;
@@ -60,14 +62,14 @@ const FormDiv = styled.div`
 const ColLeft = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 50%;
 `;
 
 const ColRight = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   width: 50%;
 `;
 
@@ -79,7 +81,7 @@ const ButtonDiv = styled.div`
   flex-direction: row;
   margin-top: 10px;
   @media (min-width: 800px) {
-    padding: 0px 0px 10px 0px;
+    padding: 10px 10px 10px 10px;
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -98,11 +100,11 @@ const ButtonSwap = styled(Button)`
 `;
 
 const InputStyleForm = styled(Input)`
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+  width: 95%;
 `;
 
 const Register = props => {
-
   const userCont = useContext(UserContext);
   const authCont = useContext(AuthContext);
   const alertCont = useContext(AlertContext);
@@ -124,18 +126,23 @@ const Register = props => {
   };
   const onSubmit = e => {
     e.preventDefault();
-    console.log('on submit')
-    if(firstName === '' || lastName === '' || email === '' || password === ''){
+    console.log('on submit');
+    if (
+      firstName === '' ||
+      lastName === '' ||
+      email === '' ||
+      password === ''
+    ) {
       setAlert('Please enter all fields');
-    } else if(password !== password2){
-      setAlert('Password do have to match!')
+    } else if (password !== password2) {
+      setAlert('Password do have to match!');
     } else {
       register({
         firstName,
         lastName,
         email,
         password
-      })
+      });
     }
   };
 
@@ -148,18 +155,21 @@ const Register = props => {
             name='firstName'
             value={firstName}
             onChange={onChange}
+            label='NAME'
           />
           <InputStyleForm
             placeholder='Your e-mail...'
             name='email'
             value={email}
             onChange={onChange}
+            label='E-MAIL'
           />
           <InputStyleForm
             placeholder='Select a password...'
             name='password'
             value={password}
             onChange={onChange}
+            label='PASSWORD'
           />
         </ColLeft>
         <ColRight>
@@ -168,24 +178,27 @@ const Register = props => {
             value={lastName}
             name='lastName'
             onChange={onChange}
+            label='*'
           />
           <InputStyleForm
             placeholder='Repeat your e-mail...'
             value={email2}
             name='email2'
             onChange={onChange}
+            label='*'
           />
           <InputStyleForm
             placeholder='Repeat your password...'
             name='password2'
             value={password2}
             onChange={onChange}
+            label='*'
           />
         </ColRight>
       </FormDiv>
 
       <ButtonDiv>
-        <ButtonSwap text='Back to Login' onClick={userCont.newUser} />
+        <ButtonSwap text='Back to Login' component={Link} to='/login' />
         <ButtonThis text='Signin' value='Register' onClick={onSubmit} />
       </ButtonDiv>
     </LoginCont>

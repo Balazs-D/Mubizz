@@ -14,8 +14,7 @@ const LoginCont = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  height: 100%;
+  align-items: center;
   width: 100%;
 
   background-image: url(${Bg1});
@@ -28,6 +27,7 @@ const LoginCont = styled.form`
     margin-top: 20px;
     padding: 50px;
     width: 50%;
+    margin: 80px;
 
     border: 1px solid ${props => props.theme.colors.mainPurple};
     border-radius: 4px;
@@ -46,7 +46,7 @@ const FormDiv = styled.div`
   flex-direction: row;
   @media (min-width: 800px) {
     padding: 20px 0px 0px 0px;
-
+    height: 100%;
     width: 100%;
     display: flex;
     align-items: space-between;
@@ -103,29 +103,35 @@ const Login = props => {
   });
   const { email, password } = user;
 
-  
-
   const onChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(e.target
-      )
+    console.log(e.target);
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    
   };
 
-console.log('Re-rendering', {email, password})
+  console.log('Re-rendering', { email, password });
 
   return (
     <LoginCont onSubmit={userCont.handleSubmit}>
       <FormDiv>
         <ColLeft>
-          <Input placeholder='Your e-mail...' name='email' value={email} onChange={onChange}/>
+          <Input
+            placeholder='Your e-mail...'
+            name='email'
+            value={email}
+            onChange={onChange}
+          />
         </ColLeft>
         <ColRight>
-          <Input placeholder='Your password...' name='password' value={password} onChange={onChange} />
+          <Input
+            placeholder='Your password...'
+            name='password'
+            value={password}
+            onChange={onChange}
+          />
         </ColRight>
       </FormDiv>
 

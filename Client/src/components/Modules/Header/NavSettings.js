@@ -11,11 +11,17 @@ import Button from '../../Utilities/Button';
 const List = styled.ul`
 display: flex;
 justify-content: space-between;
+align-items: center;
+
 margin: 0;
 padding: 0;`;
 
+const ButtonNav = styled(Button)`
+border: none;
+background: transparent;`
+
 const StyledLink = {
-textDecoration: 'none',
+textDecoration: 'none'
 
 };
 
@@ -23,25 +29,16 @@ const NavSettings =()=> {
     return (
       <List>
         <li>
-          <Link to='/settings' style={StyledLink}>
-            <Button iconClass='fas fa-sliders-h' text='Settings' />
+          <Link to='/login' style={StyledLink}>
+            <ButtonNav iconClass='fas fa-sliders-h' text='Login' />
           </Link>
         </li>
         <li>
-          <Link style={StyledLink}>
-            <Button iconClass='far fa-envelope' text='Messages' />
+          <Link to='/register' style={StyledLink}>
+            <ButtonNav iconClass='far fa-envelope' text='Register' />
           </Link>
         </li>
-        <li>
-          <Link style={StyledLink}>
-            <Button iconClass='fas fa-sign-out-alt' text='Logout' />
-          </Link>
-        </li>
-        <li>
-          <Link style={StyledLink}>
-            <Button text='Profile' />
-          </Link>
-        </li>
+       
       </List>
     );
 };

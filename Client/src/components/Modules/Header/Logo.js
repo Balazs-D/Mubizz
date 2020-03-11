@@ -18,16 +18,14 @@ const LogoCont = styled.div`
   padding: 4px;
   margin: 5px;
   @media (min-width: 800px) {
-    /* background: ${props => props.theme.colors.mainLightBlue}; */
-    height: 15vh;
-    width: 15vw;
-    position: sticky;
-    top: 1vw;
+   
+    display: flex;
+    
   }
 `;
 
 const LogoTextMobile = styled.h3`
-  font-family: 'Rock Salt';
+  font-family: 'Baloo Bhaijaan';
   color: ${props => props.theme.colors.mainPurple};
   font-weight: 300;
   letter-spacing: 0.5px;
@@ -39,19 +37,16 @@ const LogoTextMobile = styled.h3`
   @media (min-width: 320px) {
     justify-content: flex-start;
     color: ${props => props.theme.colors.mainPurple};
-    margin-top: -5px;
-
-    padding-bottom: 20px;
-    padding-right: 28px;
-    padding-left: 5px;
-    font-size: ${props => props.theme.fontSizes.medium};
+    display: flex;
+    align-items: center;
+    font-size: ${props => props.theme.fontSizes.huge};
   }
 `;
 
 const Logo = () => {
   return (
     <LogoCont>
-      <LogoTextMobile>MubizZ</LogoTextMobile>
+      <LogoTextMobile>MUBIZZ</LogoTextMobile>
       {/* <Image src={LogoVect} alt='' /> */}
     </LogoCont>
   );

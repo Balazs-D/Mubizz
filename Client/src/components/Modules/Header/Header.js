@@ -20,10 +20,11 @@ const HeaderCont = styled.div`
   height: 20vw;
   @media (min-width: 800px) {
     border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
+    align-items: center;
 
     /* position: sticky;
     top: -23.5vw; */
-    height: 70vh;
+    height: 15vh;
   }
 `;
 
@@ -31,6 +32,7 @@ const ControlContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   padding: 0.4vw;
 `;
 
@@ -45,16 +47,16 @@ const Header = () => {
     <HeaderCont>
       <Logo />
 
-      <Intro />
-      {/* <ControlContainer>
-        <InputCont>
+      <ControlContainer>
+        <NavSettings />
+        {/* <InputCont>
           <Input placeholder='Search...'/>
           <Button text='Go' />
         </InputCont>
         <InputCont>
          <NavSettings />
-        </InputCont>
-      </ControlContainer> */}
+        </InputCont> */}
+      </ControlContainer>
     </HeaderCont>
   );
 };
