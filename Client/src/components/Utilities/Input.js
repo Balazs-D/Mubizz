@@ -29,10 +29,16 @@ const InputField = styled.input`
   }
 `;
 
-const Input = ({ placeholder, className, onChange, value }) => {
+const Input = ({ placeholder, className, onChange, value, name }) => {
   return (
     <Fragment>
-      <InputField placeholder={placeholder} onChange={onChange} value={value} className={className}></InputField>
+      <InputField
+        placeholder={placeholder}
+        name={name}
+        onChange={onChange}
+        value={value}
+        className={className}
+      ></InputField>
     </Fragment>
   );
 };

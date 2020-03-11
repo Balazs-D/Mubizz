@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
 import UserContext from '../../context/user/userContext';
+import AlertContext from '../../context/alert/alertContext';
+import Alerts from '../Modules/Alerts';
 
 // Styled Components
 
@@ -27,10 +29,14 @@ const WelcomeCont = styled.div`
 
 const Welcome = () => {
   const userCont = useContext(UserContext);
+  const alertCont = useContext(AlertContext);
 
   return (
     <div>
-      <WelcomeCont>{userCont.newSignin ? <Register /> : <Login />}</WelcomeCont>
+      <WelcomeCont>
+        <Alerts />
+        {userCont.newSignin ? <Register /> : <Login />}
+      </WelcomeCont>
     </div>
   );
 };

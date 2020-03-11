@@ -103,28 +103,35 @@ const Login = props => {
   });
   const { email, password } = user;
 
+  
+
   const onChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
+    console.log(e.target
+      )
   };
 
   const onSubmit = e => {
     e.preventDefault();
+    
   };
+
+console.log('Re-rendering', {email, password})
 
   return (
     <LoginCont onSubmit={userCont.handleSubmit}>
       <FormDiv>
         <ColLeft>
-          <Input placeholder='Your e-mail...' value={email} onChange={onChange}/>
+          <Input placeholder='Your e-mail...' name='email' value={email} onChange={onChange}/>
         </ColLeft>
         <ColRight>
-          <Input placeholder='Your password...' value={password} onChange={onChange} />
+          <Input placeholder='Your password...' name='password' value={password} onChange={onChange} />
         </ColRight>
       </FormDiv>
 
       <ButtonDiv>
         <ButtonSwap text='I want to Signin' onClick={userCont.newUser} />
-        <ButtonThis text='Login' />
+        <ButtonThis text='Login' onClick={onSubmit} />
       </ButtonDiv>
     </LoginCont>
   );

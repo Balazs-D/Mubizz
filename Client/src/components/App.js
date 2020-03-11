@@ -8,10 +8,10 @@ import AuthState from '../context/auth/AuthState';
 import AlertState from '../context/alert/AlertState';
 
 // Components
-import Header from './Pages/Header/Header';
+import Header from './Modules/Header/Header';
 import Theme from './StyledComp/Theme';
-import Welcome from './Pages/Welcome';
-import Settings from './Pages/Settings/Settings';
+import Welcome from './Modules/Welcome';
+import Settings from './Modules/Menü/Settings';
 
 // Styled Components
 
