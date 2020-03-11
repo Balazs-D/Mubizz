@@ -3,6 +3,9 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
 import UserContext from '../../../context/user/userContext';
+import AuthContext from '../../../context/auth/authContext';
+import AlertContext from '../../../context/alert/alertContext';
+
 
 // Components
 import Input from '../../Utilities/Input';
@@ -101,6 +104,8 @@ const InputStyleForm = styled(Input)`
 const Register = props => {
 
   const userCont = useContext(UserContext);
+  const authCont = useContext(AuthContext);
+  const alertCont = useContext(AlertContext);
 
   const [user, setUser] = useState({
     firstName: '',
@@ -111,12 +116,27 @@ const Register = props => {
     email2: ''
   });
   const { firstName, lastName, email, email2, password, password2 } = user;
+  const { setAlert } = alertCont;
+  const { register } = authCont;
 
   const onChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const onSubmit = e => {
     e.preventDefault();
+    console.log('on submit')
+    if(firstName === '' || lastName === '' || email === '' || password === ''){
+      setAlert('Please enter all fields');
+    } else if(password !== password2){
+      setAlert('Password do have to match!')
+    } else {
+      register({
+        firstName,
+        lastName,
+        email,
+        password
+      })
+    }
   };
 
   return (
@@ -125,16 +145,19 @@ const Register = props => {
         <ColLeft>
           <InputStyleForm
             placeholder='Your first name...'
+            name='firstName'
             value={firstName}
             onChange={onChange}
           />
           <InputStyleForm
             placeholder='Your e-mail...'
+            name='email'
             value={email}
             onChange={onChange}
           />
           <InputStyleForm
             placeholder='Select a password...'
+            name='password'
             value={password}
             onChange={onChange}
           />
@@ -143,16 +166,18 @@ const Register = props => {
           <InputStyleForm
             placeholder='Your last name...'
             value={lastName}
+            name='lastName'
             onChange={onChange}
           />
           <InputStyleForm
             placeholder='Repeat your e-mail...'
             value={email2}
+            name='email2'
             onChange={onChange}
           />
           <InputStyleForm
             placeholder='Repeat your password...'
-           
+            name='password2'
             value={password2}
             onChange={onChange}
           />
@@ -161,7 +186,7 @@ const Register = props => {
 
       <ButtonDiv>
         <ButtonSwap text='Back to Login' onClick={userCont.newUser} />
-        <ButtonThis text='Signin' value='Register' />
+        <ButtonThis text='Signin' value='Register' onClick={onSubmit} />
       </ButtonDiv>
     </LoginCont>
   );
