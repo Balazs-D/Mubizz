@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import UserContext from './userContext';
 import UserReducer from './userReducer';
-import { LOGIN, SIGNIN } from './types';
+import { LOGIN, SIGNIN } from '../types';
 
 const UserState = props => {
   const initialState = {

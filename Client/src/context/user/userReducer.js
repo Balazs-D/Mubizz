@@ -1,6 +1,6 @@
 import { 
 LOGIN,
-SIGNIN } from '../../context/user/types';
+SIGNIN } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
