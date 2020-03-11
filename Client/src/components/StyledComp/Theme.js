@@ -12,7 +12,7 @@ const theme = {
     gradientPink: '#fa709a',
     gradientYellow: '#fee140'
   },
-  fontFamily: ['sans-serif', 'Jockey One', 'Rocky Salt'],
+  fontFamily: ['sans-serif', 'Jockey One', 'Rocky Salt', 'Baloo Da'],
   fontSizes: {
     xs: '0.5em',
     small: '1vw',

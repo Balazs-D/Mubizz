@@ -10,15 +10,19 @@ import AlertState from '../context/alert/AlertState';
 // Components
 import Header from './Modules/Header/Header';
 import Theme from './StyledComp/Theme';
-import Welcome from './Modules/Welcome';
+import Login from './Modules/Auth/Login';
+import Register from './Modules/Auth/Register';
 import Settings from './Modules/Menü/Settings';
+import Footer from '../components/Modules/Footer/Footer';
 
 // Styled Components
 
 const MainContainer = styled.div`
   width: 100vw;
-  height: 100vh;
   overflow-x: hidden;
+  background: lightblue;
+  display: flex;
+  justify-content: center;
 `;
 // =========================================================== //
 
@@ -29,19 +33,18 @@ export default function App() {
         <AlertState>
           <Router>
             <Theme>
-              {/* <MainContainer> */}
               <Header />
-              {/* <Welcome /> */}
-              {/* </MainContainer> */}
-
-              <Switch>
-                <Route exact path='/welcome' component={Welcome}>
-                  <Welcome />
-                </Route>
-                <Route exact path='/settings' component={Settings}>
-                  <Settings />
-                </Route>
-              </Switch>
+              <MainContainer>
+                <Switch>
+                  <Route exact path='/login' component={Login}>
+                    <Login />
+                  </Route>
+                  <Route exact path='/register' component={Register}>
+                    <Register />
+                  </Route>
+                </Switch>
+              </MainContainer>
+              <Footer />
             </Theme>
           </Router>
         </AlertState>
