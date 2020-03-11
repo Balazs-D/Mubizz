@@ -21,8 +21,7 @@ const ButtonBasic = styled.button`
 
     &:hover {
       background-color: ${props => props.theme.colors.gradientYellow};
-      box-shadow: 0px 0px 20px ${props => props.theme.colors.gradientPink
-      };
+      box-shadow: 0px 0px 20px ${props => props.theme.colors.gradientPink};
     }
 
     &:active {
@@ -31,10 +30,10 @@ const ButtonBasic = styled.button`
     }
   }
 `;
-const Button = ({ className, iconClass, text, onClick }) => {
+const Button = ({ className, iconClass, text, onClick, type }) => {
   return (
     <div>
-      <ButtonBasic className={className} onClick={onClick} >
+      <ButtonBasic className={className} onClick={onClick} type={type}>
         <span>
           <span>{text}</span>
         </span>

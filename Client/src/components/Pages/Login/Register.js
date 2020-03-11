@@ -1,4 +1,4 @@
-// Utilities
+    // Utilities
 import React, { useContext, useState, Fragment } from 'react';
 import styled from 'styled-components';
 import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
@@ -28,12 +28,12 @@ const LoginCont = styled.form`
   @media (min-width: 500px) {
     border: 1px solid ${props => props.theme.colors.mainPurple};
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50vw;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 40vw;
     /* height: 30vh; */
-    padding: 5%;
+    padding: 1%;
     border-radius: 4px;
     background-image: url(${Bg1});
     background-size: cover;
@@ -43,10 +43,10 @@ const LoginCont = styled.form`
 `;
 
 const RowCont = styled.div`
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin: 10px 0px;
   @media (min-width: 800px) {
     
@@ -54,41 +54,87 @@ const RowCont = styled.div`
   }
 `;
 
+const ButtonDiv = styled.div`
+/* width: 50%; */
+height: 100%;
+padding-top: 5px;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-content: center;
+/* background: red; */
+`; 
+
+const InputCont = styled.div`
+display: flex;
+flex-direction: column;
+align-items:flex-start;
+width: 80%;`
+
 const ButtonInPlace = styled(Button)`
-  margin-left: 5px;
+  margin-right: 5px;
+  background: transparent;
+  border: none;
+  color: white;
+  width: 100%;
+  &:hover{
+      color:black;
+  }
 `;
 
-const ButtonLogin = styled(Button)`
+const ButtonAction = styled(Button)`
   background: white;
-  margin-left: 5px;
+  margin-right: 5px;
+  width: 100%;
+  margin-top: 5px;
 `;
 
 const InputInPlace = styled(Input)`
   margin-left: 5px;
 `;
 
-const Login = props => {
+const InputMail = styled(Input)`
+width: 100%`
+
+const Register = props => {
   const userCont = useContext(UserContext);
 console.log(userCont)
   return (
     <LoginCont onSubmit={userCont.handleSubmit}>
-      <RowCont>
-        {/* <label for='email'>E-Mail</label> */}
-        <Input placeholder='Your e-mail...' value={userCont.email} />
-        <InputInPlace
-          placeholder='Your password...'
-          value={userCont.password}
-        />
-      </RowCont>
+      <InputCont>
+        <RowCont>
+          <Input placeholder='First name... ' />
+          <InputInPlace placeholder='Last name...' />
+        </RowCont>
 
+        <RowCont>
+          {/* <label for='email'>E-Mail</label> */}
+          <Input placeholder='Your password...' value={userCont.email} />
+          <InputInPlace
+            placeholder='Repeat your password...'
+            value={userCont.password}
+          />
+        </RowCont>
 
-      <RowCont>
-        <ButtonInPlace text='Signin' type='button' onClick={userCont.newUser} />
+        <RowCont>
+          <InputMail placeholder='Your e-mail...' value={userCont.email} />
+        </RowCont>
+      </InputCont>
+      <ButtonDiv>
+        <ButtonInPlace text='Login' />
 
-        <ButtonLogin text='Login' />
-      </RowCont>
+        <ButtonAction text='Signin' />
+      </ButtonDiv>
     </LoginCont>
   );
 };
 
-export default Login;
+export default Register;
+
+
+
+
+
+
+
+

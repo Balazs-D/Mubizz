@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const InputField = styled.input`
   padding: 10px;
   border-radius: 4px;
-  width: 70%;
+  width: 100%;
   outline: none;
   border: 1px solid ${props => props.theme.colors.mainBlue};
   margin: 0px;

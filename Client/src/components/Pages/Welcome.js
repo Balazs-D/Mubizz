@@ -1,10 +1,11 @@
 // Utilities
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
-import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
 
 // Components
 import Login from './Login/Login';
+import Register from './Login/Register';
+import UserContext from '../../context/user/userContext';
 
 // Styled Components
 
@@ -25,10 +26,15 @@ const WelcomeCont = styled.div`
 `;
 
 const Welcome = () => {
+
+  const userCont = useContext(UserContext);
+
   return (
     <div>
       <WelcomeCont>
-        <Login />
+        {userCont.newSignin ? 
+        <Register /> 
+        : <Login />}
       </WelcomeCont>
     </div>
   );
