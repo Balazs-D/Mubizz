@@ -31,8 +31,8 @@ export default function App() {
     <AuthState>
       <UserState>
         <AlertState>
-          <Router>
-            <Theme>
+          <Theme>
+            <Router>
               <Header />
               <MainContainer>
                 <Switch>
@@ -45,8 +45,8 @@ export default function App() {
                 </Switch>
               </MainContainer>
               <Footer />
-            </Theme>
-          </Router>
+            </Router>
+          </Theme>
         </AlertState>
       </UserState>
     </AuthState>
