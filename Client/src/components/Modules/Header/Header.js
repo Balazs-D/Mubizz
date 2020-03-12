@@ -21,9 +21,11 @@ const HeaderCont = styled.div`
   @media (min-width: 800px) {
     border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
     align-items: center;
+    box-shadow: 0px 0px 70px ${props => props.theme.colors.gradientPink};
 
-    /* position: sticky;
-    top: -23.5vw; */
+    position: sticky;
+    top: 0;
+   
     height: 15vh;
   }
 `;

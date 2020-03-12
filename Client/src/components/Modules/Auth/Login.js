@@ -7,6 +7,8 @@ import UserContext from '../../../context/user/userContext';
 // Components
 import Input from '../../Utilities/Input';
 import Button from '../../Utilities/Button';
+import RollButton from '../../Utilities/RollButton';
+
 
 // Styled Components
 
@@ -153,7 +155,7 @@ const Login = props => {
 
       <ButtonDiv>
         <ButtonSwap text='I want to Signin' onClick={userCont.newUser} />
-        <ButtonThis text='Login' onClick={onSubmit} />
+        <RollButton text='Login' onClick={onSubmit} />
       </ButtonDiv>
     </LoginCont>
   );
