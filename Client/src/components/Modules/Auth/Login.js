@@ -3,12 +3,12 @@ import React, { useContext, useState, Fragment } from 'react';
 import styled from 'styled-components';
 import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
 import UserContext from '../../../context/user/userContext';
+import axios from 'axios';
 
 // Components
 import Input from '../../Utilities/Input';
 import Button from '../../Utilities/Button';
 import RollButton from '../../Utilities/RollButton';
-
 
 // Styled Components
 
@@ -123,14 +123,26 @@ const Login = props => {
     console.log(e.target);
   };
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
+
+    let res = null;
+
+    try {   
+      res = await axios.post('http://localhost:5000/api/auth', {
+        email,
+        password
+      });
+      console.log(res.data);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   console.log('Re-rendering', { email, password });
 
   return (
-    <LoginCont onSubmit={userCont.handleSubmit}>
+    <LoginCont onSubmit={onSubmit}>
       <TitleCont>Login</TitleCont>
       <FormDiv>
         <ColLeft>
