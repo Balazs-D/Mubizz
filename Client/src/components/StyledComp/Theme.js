@@ -10,9 +10,20 @@ const theme = {
     mainPurple: '#6047A8',
     mainBlue: '#1C377B',
     gradientPink: '#fa709a',
-    gradientYellow: '#fee140'
+    gradientYellow: '#fee140',
+    lightGrey: '#B3A878',
+    darkGrey: '#403642',
+    basicBlue: '#0077B3',
+    basicYellow: '#FFC700',
+    basicGrey: '#E0E0E0'
   },
-  fontFamily: ['sans-serif', 'Jockey One', 'Rocky Salt', 'Baloo Da', 'Baloo Bhaijaan'],
+  fontFamily: [
+    'sans-serif',
+    'Jockey One',
+    'Rocky Salt',
+    'Baloo Da',
+    'Baloo Bhaijaan'
+  ],
   fontSizes: {
     xs: '0.5em',
     small: '1vw',

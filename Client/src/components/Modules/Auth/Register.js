@@ -13,7 +13,9 @@ import Input from '../../Utilities/Input';
 import Button from '../../Utilities/Button';
 import RollButton from '../../Utilities/RollButton';
 import Login from '../Auth/Login';
-import Alerts from '../Alerts'
+import Alerts from '../Alerts';
+import WinTitle from '../../Utilities/WinTitle';
+import WinTitleOff from '../../Utilities/WinTitleOff';
 
 // Styled Components
 
@@ -106,18 +108,8 @@ const InputStyleForm = styled(Input)`
   width: 95%;
 `;
 
-const TitleCont = styled.h2`
-padding: 5px 10px;
-background: ${props => props.theme.colors.gradientPink};
-border: 1px solid ${props => props.theme.colors.mainPurple};
-border-radius: 4px;
-font-size: ${props => props.theme.fontSizes.medium};
-position: absolute;
-top: -26px;
-right: 56px;
-text-transform: uppercase;
-font-family: ${props => props.theme.fontFamily[4]}
-`;
+
+
 
 
 
@@ -169,7 +161,12 @@ const Register = props => {
 
   return (
     <LoginCont onSubmit={onSubmit}>
-      <TitleCont>Registration</TitleCont>
+      <WinTitle text='registration'></WinTitle>
+      <Link to='/login'>
+        <WinTitleOff text='to login' component={Link} to='/login'>
+          To Login
+        </WinTitleOff>
+      </Link>
       <FormDiv>
         <Alerts />
         <ColLeft>
@@ -221,9 +218,7 @@ const Register = props => {
       </FormDiv>
 
       <ButtonDiv>
-        <Link to='/login'>
-          <RollButton text='Login' component={Link} to='/login' />
-        </Link>
+       
         <RollButton text='Signin' value='Register' onClick={onSubmit} />
       </ButtonDiv>
     </LoginCont>

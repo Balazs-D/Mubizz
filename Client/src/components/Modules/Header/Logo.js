@@ -1,14 +1,15 @@
 // Libraries
-import React, { Fragment } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Content
-import LogoVect from '../../../graphics/Logo.svg';
+import LogoVect from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/SVG/Asset12.svg';
 
 // Styled Components
 
 const Image = styled.img`
-  width: 40vw;
+  width: 15vw;
   height: auto;
 `;
 
@@ -46,8 +47,11 @@ const LogoTextMobile = styled.h3`
 const Logo = () => {
   return (
     <LogoCont>
-      <LogoTextMobile>MUBIZZ</LogoTextMobile>
-      {/* <Image src={LogoVect} alt='' /> */}
+      <Link to='/dashboard'>
+        <LogoTextMobile>
+          <Image src={LogoVect} alt='' />
+        </LogoTextMobile>
+      </Link>
     </LogoCont>
   );
 };

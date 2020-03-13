@@ -1,27 +1,31 @@
 // Utilities
 import React from 'react';
 import styled from 'styled-components';
+
+// Components
 import MainSection from './MainSection';
+import DashboardSettings from '../Sidebars/DashboardSettings';
+
 
 // Components
 
 // Styled Components
 const DashCont = styled.div`
   width: 100vw;
-  background: lightblue;
   display: flex;
+  background: white;
   justify-content: space-between;
-  background: lightgreen;
+  padding: 20px;
 `;
 
 const Dashboard = () => {
-    return (
-        <DashCont>
-        <h2>D A S H B O A R D</h2>
-        <MainSection />
-            
-        </DashCont>
-    )
+  return (
+    <DashCont>
+      <DashboardSettings />
+
+      <MainSection />
+    </DashCont>
+  );
 };
 
-export default Dashboard
+export default Dashboard;

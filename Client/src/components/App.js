@@ -14,8 +14,8 @@ import Login from './Modules/Auth/Login';
 import Register from './Modules/Auth/Register';
 import Settings from './Modules/Menü/Settings';
 import Footer from '../components/Modules/Footer/Footer';
-import Dashboard from '../components/Modules/Dashboard/Dashboard';
-import FilterBar from './Modules/FilterBar';
+import Dashboard from './Modules/MainView/Dashboard';
+import TagBar from './Modules/TagBar';
 import userContext from '../context/user/userContext';
 
 // Styled Components
@@ -40,7 +40,7 @@ export default function App() {
           <Theme>
             <Router>
               <Header />
-              <FilterBar />
+              <TagBar />
 
               <MainContainer>
                 <Switch>
@@ -50,7 +50,7 @@ export default function App() {
                   <Route exact path='/register' component={Register}>
                     <Register />
                   </Route>
-                  <Route path='/dashboard' component={Dashboard}>
+                  <Route path='/' component={Dashboard}>
                      {<Dashboard />}
                   </Route>
                 </Switch>

@@ -10,6 +10,8 @@ import axios from 'axios';
 import Input from '../../Utilities/Input';
 import Button from '../../Utilities/Button';
 import RollButton from '../../Utilities/RollButton';
+import WinTitle from '../../Utilities/WinTitle';
+import WinTitleOff from '../../Utilities/WinTitleOff';
 
 // Styled Components
 
@@ -97,18 +99,7 @@ const ButtonSwap = styled(Button)`
   background: ${props => props.theme.colors.gradientPink};
 `;
 
-const TitleCont = styled.h2`
-  padding: 5px 10px;
-  background: ${props => props.theme.colors.gradientPink};
-  border: 1px solid ${props => props.theme.colors.mainPurple};
-  border-radius: 4px;
-  font-size: ${props => props.theme.fontSizes.medium};
-  position: absolute;
-  top: -26px;
-  right: 56px;
-  text-transform: uppercase;
-  font-family: ${props => props.theme.fontFamily[4]};
-`;
+
 
 const Login = props => {
   const userCont = useContext(UserContext);
@@ -144,7 +135,13 @@ const Login = props => {
 
   return (
     <LoginCont onSubmit={onSubmit}>
-      <TitleCont>Login</TitleCont>
+      <WinTitle text='Login'>Login</WinTitle>
+      
+      <Link to='/register'>
+        <WinTitleOff text='to registration' component={Link} to='/register'>
+          To Registration
+        </WinTitleOff></Link>
+
       <FormDiv>
         <ColLeft>
           <Input
@@ -166,9 +163,7 @@ const Login = props => {
         </ColRight>
       </FormDiv>
       <ButtonDiv>
-        <Link to='/register'>
-          <RollButton text='Signin' onClick={userCont.newUser} />
-        </Link>
+       
 
         <RollButton text='Login' onClick={onSubmit} />
       </ButtonDiv>

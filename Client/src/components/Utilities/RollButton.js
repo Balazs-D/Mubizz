@@ -8,17 +8,18 @@ const ButtonRoll = styled.button`
   display: block;
 
   width: 90px;
-  height: 40px;
-  line-height: 40px;
+  height: 20px;
+  /* line-height: 40px; */
   font-size: 10px;
   font-family: sans-serif;
   text-decoration: none;
-  border-radius: 25px;
+  border-radius: 0vh;
   background: transparent;
   border: 1px solid ${props => props.theme.colors.mainPurple};
   color: ${props => props.theme.colors.mainBlue};
   letter-spacing: 2px;
   text-align: center;
+
   position: relative;
   transition: all 0.35s;
   margin: 0vh;
@@ -32,6 +33,10 @@ const ButtonRoll = styled.button`
 
 const SpanButton = styled.div`
   font-family: sans-serif;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 3px;
 `;
 
 const RollButton = ({ className, text, onClick, type, component, value }) => {

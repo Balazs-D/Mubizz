@@ -5,7 +5,7 @@ import styled from 'styled-components';
 // Styled Components
 
 const InputField = styled.input`
-  padding: 20px;
+  padding: 10px;
   font-size: ${props => props.theme.fontSizes.large};
   border-radius: 4px;
   width: 100%;

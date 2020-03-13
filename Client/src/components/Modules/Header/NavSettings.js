@@ -14,7 +14,7 @@ const List = styled.ul`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-right: 20px;
+  margin-top: 10px;
   padding: 0;
 `;
 
@@ -25,9 +25,10 @@ const StyledLink = {
 const NavSettings = () => {
   return (
     <List>
+     
       <li>
-        <Link to='/dashboard' style={StyledLink}>
-          <RollButton text='Dashboard' />
+        <Link to='/dashboard/search' style={StyledLink}>
+          <RollButton text='Browser' />
         </Link>
       </li>
       <li>
@@ -38,6 +39,11 @@ const NavSettings = () => {
       <li>
         <Link to='/register' style={StyledLink}>
           <RollButton text='Register' />
+        </Link>
+      </li>
+      <li>
+        <Link to='/dashboard/journal' style={StyledLink}>
+          <RollButton text='Profile' />
         </Link>
       </li>
     </List>
