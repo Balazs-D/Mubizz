@@ -2,33 +2,32 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import UserContext from './userContext';
 import UserReducer from './userReducer';
-import { LOGIN, SIGNIN } from '../types';
+import { TOGGLE_FILTER_BAR } from '../types';
 
 const UserState = props => {
   const initialState = {
-    loggedIn: false,
-    newSignin: false,
-    date: Date()
+   
+    date: Date(),
+    filterBar: true
   };
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
   //  Functions
 
   // handle Login
-  const handleLogin = e => dispatch({ type: LOGIN });
-
-  const newUser = e =>  dispatch({ type: SIGNIN });
+  const toggleFilterBar = e => {
+  console.log('toggle')
+    dispatch({ type: TOGGLE_FILTER_BAR });
   
+  }
+  //
 
   return (
     <UserContext.Provider
       value={{
-        loggedIn: state.loggedIn,
-        newSignin: state.newSignin,
-        handleLogin,
-        newUser
-    
-        
+        date: state.date,
+        filterBar: state.filterBar,
+        toggleFilterBar
       }}
     >
       {props.children}

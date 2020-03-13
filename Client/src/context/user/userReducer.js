@@ -1,20 +1,16 @@
-import { 
-LOGIN,
-SIGNIN } from '../types';
+import { TOGGLE_FILTER_BAR } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
-    case LOGIN:
-      return {
+   
+    case TOGGLE_FILTER_BAR:
+      return{
         ...state,
-        loggedIn: true
-      };
+        filterBar: !state.filterBar
 
-      case SIGNIN: 
-      return {
-        ...state,
-        newSignin: !state.newSignin,
       }
+
+     
 
     default:
       return state;

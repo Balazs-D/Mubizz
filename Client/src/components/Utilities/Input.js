@@ -30,20 +30,21 @@ const InputField = styled.input`
 `;
 
 const LabelInput = styled.label`
-color: black;
-display: flex;
-align-self: flex-end;
-padding: 0px;
-width: 97.5%;
-margin-bottom: 5px;
-font-family: ${props => props.theme.fontFamily[3]};
-font-size: ${props => props.theme.fontSizes.small};
-font-weight: 100;`
+  color: black;
+  display: flex;
+  align-self: flex-end;
+  padding: 0px;
+  width: 97.5%;
+  margin-bottom: 5px;
+  font-family: ${props => props.theme.fontFamily[3]};
+  font-size: ${props => props.theme.fontSizes.small};
+  font-weight: 100;
+`;
 
 const Input = ({ placeholder, className, onChange, value, name, label }) => {
   return (
     <Fragment>
-    <LabelInput for={name}>{label}</LabelInput>
+      <LabelInput htmlFor={name}>{label}</LabelInput>
       <InputField
         placeholder={placeholder}
         name={name}

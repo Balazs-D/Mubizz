@@ -1,5 +1,6 @@
 // Utilities
 import React, { useContext, useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
 import UserContext from '../../../context/user/userContext';
@@ -164,9 +165,11 @@ const Login = props => {
           />
         </ColRight>
       </FormDiv>
-
       <ButtonDiv>
-        <ButtonSwap text='I want to Signin' onClick={userCont.newUser} />
+        <Link to='/register'>
+          <RollButton text='Signin' onClick={userCont.newUser} />
+        </Link>
+
         <RollButton text='Login' onClick={onSubmit} />
       </ButtonDiv>
     </LoginCont>
