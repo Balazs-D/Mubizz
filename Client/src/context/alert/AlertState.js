@@ -8,7 +8,8 @@ const AlertState = props => {
   const initialState = [
     {
       msg: '',
-      type: ''
+      type: '',
+      id: ''
     }
   ];
   const [state, dispatch] = useReducer(AlertReducer, initialState);

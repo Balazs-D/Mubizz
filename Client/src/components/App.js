@@ -1,5 +1,5 @@
 // Libraries
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import '../assets/css/style.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -14,6 +14,9 @@ import Login from './Modules/Auth/Login';
 import Register from './Modules/Auth/Register';
 import Settings from './Modules/Menü/Settings';
 import Footer from '../components/Modules/Footer/Footer';
+import Dashboard from './Modules/MainView/Dashboard';
+import TagBar from './Modules/TagBar';
+import userContext from '../context/user/userContext';
 
 // Styled Components
 
@@ -27,6 +30,9 @@ const MainContainer = styled.div`
 // =========================================================== //
 
 export default function App() {
+
+  const userCont = useContext(userContext);
+
   return (
     <AuthState>
       <UserState>
@@ -34,6 +40,8 @@ export default function App() {
           <Theme>
             <Router>
               <Header />
+              <TagBar />
+
               <MainContainer>
                 <Switch>
                   <Route exact path='/login' component={Login}>
@@ -42,8 +50,12 @@ export default function App() {
                   <Route exact path='/register' component={Register}>
                     <Register />
                   </Route>
+                  <Route path='/' component={Dashboard}>
+                     {<Dashboard />}
+                  </Route>
                 </Switch>
               </MainContainer>
+
               <Footer />
             </Router>
           </Theme>

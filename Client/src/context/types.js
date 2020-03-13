@@ -1,5 +1,5 @@
 export const LOGIN = 'LOGIN';
-export const SIGNIN = 'SIGNIN';
+export const TOGGLE_FILTER_BAR = 'TOGGLE_FILTER_BAR';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';

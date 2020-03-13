@@ -1,5 +1,5 @@
 // Utilities
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -11,7 +11,11 @@ import AlertContext from '../../../context/alert/alertContext';
 // Components
 import Input from '../../Utilities/Input';
 import Button from '../../Utilities/Button';
+import RollButton from '../../Utilities/RollButton';
 import Login from '../Auth/Login';
+import Alerts from '../Alerts';
+import WinTitle from '../../Utilities/WinTitle';
+import WinTitleOff from '../../Utilities/WinTitleOff';
 
 // Styled Components
 
@@ -104,18 +108,10 @@ const InputStyleForm = styled(Input)`
   width: 95%;
 `;
 
-const TitleCont = styled.h2`
-padding: 5px 10px;
-background: ${props => props.theme.colors.gradientPink};
-border: 1px solid ${props => props.theme.colors.mainPurple};
-border-radius: 4px;
-font-size: ${props => props.theme.fontSizes.medium};
-position: absolute;
-top: -26px;
-right: 56px;
-text-transform: uppercase;
-font-family: ${props => props.theme.fontFamily[4]}
-`
+
+
+
+
 
 const Register = props => {
   const userCont = useContext(UserContext);
@@ -130,9 +126,10 @@ const Register = props => {
     email: '',
     email2: ''
   });
+  
   const { firstName, lastName, email, email2, password, password2 } = user;
   const { setAlert } = alertCont;
-  const { register } = authCont;
+  const { register, error } = authCont;
 
   const onChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -147,8 +144,11 @@ const Register = props => {
       password === ''
     ) {
       setAlert('Please enter all fields');
+      console.log('error 02')
     } else if (password !== password2) {
       setAlert('Password do have to match!');
+            console.log('error 03');
+
     } else {
       register({
         firstName,
@@ -161,8 +161,14 @@ const Register = props => {
 
   return (
     <LoginCont onSubmit={onSubmit}>
-<TitleCont>Registration</TitleCont>
+      <WinTitle text='registration'></WinTitle>
+      <Link to='/login'>
+        <WinTitleOff text='to login' component={Link} to='/login'>
+          To Login
+        </WinTitleOff>
+      </Link>
       <FormDiv>
+        <Alerts />
         <ColLeft>
           <InputStyleForm
             placeholder='Your first name...'
@@ -212,8 +218,8 @@ const Register = props => {
       </FormDiv>
 
       <ButtonDiv>
-        <ButtonSwap text='Back to Login' component={Link} to='/login' />
-        <ButtonThis text='Signin' value='Register' onClick={onSubmit} />
+       
+        <RollButton text='Signin' value='Register' onClick={onSubmit} />
       </ButtonDiv>
     </LoginCont>
   );

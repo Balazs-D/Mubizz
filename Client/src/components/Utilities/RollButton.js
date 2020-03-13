@@ -6,48 +6,40 @@ import styled from 'styled-components';
 
 const ButtonRoll = styled.button`
   display: block;
-  width: 100px;
-  height: 40px;
-  line-height: 40px;
+
+  width: 90px;
+  height: 20px;
+  /* line-height: 40px; */
   font-size: 10px;
   font-family: sans-serif;
   text-decoration: none;
+  border-radius: 0vh;
   background: transparent;
-  border: none;
-  color: red;
+  border: 1px solid ${props => props.theme.colors.mainPurple};
+  color: ${props => props.theme.colors.mainBlue};
   letter-spacing: 2px;
   text-align: center;
+
   position: relative;
   transition: all 0.35s;
-  margin: 0 2vh;
-  z-index: 3;
+  margin: 0vh;
+  z-index: 0;
+  outline: none;
+
+  &:hover {
+    background: ${props => props.theme.colors.gradientPink};
+  }
 `;
 
 const SpanButton = styled.div`
-  position: relative;
-  z-index: 0;
-
-  &:after {
-    position: absolute;
-    content: '';
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 10%;
-    background: #00aaff;
-    transition: all 0.35s;
-  }
-
-  &:hover {
-    color: green;
-  }
-
-  &:hover:after {
-    height: 100%;
-  }
+  font-family: sans-serif;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 3px;
 `;
 
-const RollButton = ({ className, text, onClick, type, component }) => {
+const RollButton = ({ className, text, onClick, type, component, value }) => {
   return (
     <div>
       <ButtonRoll
@@ -55,10 +47,9 @@ const RollButton = ({ className, text, onClick, type, component }) => {
         component={component}
         onClick={onClick}
         type={type}
+        value={value}
       >
-        
-         <SpanButton>{text}</SpanButton>
-        
+        <SpanButton>{text}</SpanButton>
       </ButtonRoll>
     </div>
   );
