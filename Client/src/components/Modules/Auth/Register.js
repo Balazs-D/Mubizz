@@ -159,9 +159,27 @@ const Register = props => {
     }
   };
 
+   const onSubmit = async e => {
+     e.preventDefault();
+
+     let res = null;
+
+     try {
+       res = await axios.post('http://localhost:5000/api/auth', {
+         email,
+         password
+       });
+       console.log(res.data);
+     } catch (error) {
+       console.log(error.message);
+     }
+   };
+
+
   return (
     <LoginCont onSubmit={onSubmit}>
       <WinTitle text='registration'></WinTitle>
+
       <Link to='/login'>
         <WinTitleOff text='to login' component={Link} to='/login'>
           To Login
@@ -215,10 +233,11 @@ const Register = props => {
             label='*'
           />
         </ColRight>
+
+        <Alerts />
       </FormDiv>
 
       <ButtonDiv>
-       
         <RollButton text='Signin' value='Register' onClick={onSubmit} />
       </ButtonDiv>
     </LoginCont>

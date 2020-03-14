@@ -25,7 +25,6 @@ const StyledLink = {
 const NavSettings = () => {
   return (
     <List>
-     
       <li>
         <Link to='/dashboard/search' style={StyledLink}>
           <RollButton text='Browser' />

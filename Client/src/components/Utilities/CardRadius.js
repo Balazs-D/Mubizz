@@ -15,7 +15,7 @@ const CardWrapper = styled.div`
   );
   padding: 0.075vw;
   /* border-radius: 1vw; */
-  box-shadow: 0.2vw 0.2vw 0.4vw grey;
+  box-shadow: 0.15vw 0.2vw 0.4vw grey;
   margin-bottom: 40px;
 `;
 

@@ -38,6 +38,7 @@ const List = styled.ul`
   align-items: flex-start;
   width: 100%;
   padding: 0;
+  
 `;
 const StyledLink = {
   textDecoration: 'none'
