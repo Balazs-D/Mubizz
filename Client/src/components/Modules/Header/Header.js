@@ -19,8 +19,8 @@ const HeaderCont = styled.div`
   flex-direction: column;
   background-color: #2d3436;
 background-color: #000000;
-/* background-image: linear-gradient(-45deg, #000000 0%, #2c3e50 90%); */
-  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+background-image: linear-gradient(-45deg, #000000 0%, #2c3e50 90%);
+  /* background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%); */
   padding: 0.5vw 1vw;
   /* background: ${props => props.theme.colors.basicBlue}; */
   position: relative;

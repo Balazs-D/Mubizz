@@ -26,7 +26,7 @@ const FilterContOn = styled.div`
 @media (min-width: 800px){
   width: 100%;
   height: 7vh;
-  background: ${props => props.theme.colors.basicYellow};
+  background: ${props => props.theme.colors.steelBlue};
   position: sticky;
   top: 30vh;
   z-index: 1;

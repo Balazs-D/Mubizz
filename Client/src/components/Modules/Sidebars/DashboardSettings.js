@@ -28,6 +28,7 @@ const Status = styled.h5`
   font-weight: 100;
   padding: 0 10px;
   line-height: 2;
+  height: 28px;
 `;
 
 const List = styled.ul`

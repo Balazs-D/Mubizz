@@ -43,6 +43,7 @@ const ContDiv = styled.div`
   border-bottom-right-radius: 4px;
 `;
 
+
 const ActualDeals = () => {
   return (
     <Main>

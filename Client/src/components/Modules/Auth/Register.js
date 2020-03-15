@@ -1,6 +1,6 @@
 // Utilities
 import React, { useContext, useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
@@ -10,7 +10,6 @@ import AlertContext from '../../../context/alert/alertContext';
 
 // Components
 import Input from '../../Utilities/Input';
-import Button from '../../Utilities/Button';
 import RollButton from '../../Utilities/RollButton';
 import Login from '../Auth/Login';
 import Alerts from '../Alerts';
@@ -95,13 +94,7 @@ const ButtonDiv = styled.div`
   }
 `;
 
-const ButtonThis = styled(Button)`
-  margin-left: 10px;
-`;
 
-const ButtonSwap = styled(Button)`
-  background: ${props => props.theme.colors.gradientPink};
-`;
 
 const InputStyleForm = styled(Input)`
   margin-bottom: 15px;
@@ -109,7 +102,10 @@ const InputStyleForm = styled(Input)`
 `;
 
 
+// useEffect(()=>{
+//   authCont.isAuthenticated === true &&
 
+// },[authCont.isAuthenticated])
 
 
 
@@ -117,6 +113,8 @@ const Register = props => {
   const userCont = useContext(UserContext);
   const authCont = useContext(AuthContext);
   const alertCont = useContext(AlertContext);
+
+  
 
   const [user, setUser] = useState({
     firstName: '',
@@ -156,24 +154,27 @@ const Register = props => {
         email,
         password
       });
+      
+     
     }
+    console.log(authCont);
   };
 
-   const onSubmit = async e => {
-     e.preventDefault();
+  //  const onSubmit = async e => {
+  //    e.preventDefault();
 
-     let res = null;
+  //    let res = null;
 
-     try {
-       res = await axios.post('http://localhost:5000/api/auth', {
-         email,
-         password
-       });
-       console.log(res.data);
-     } catch (error) {
-       console.log(error.message);
-     }
-   };
+  //    try {
+  //      res = await axios.post('http://localhost:5000/api/auth', {
+  //        email,
+  //        password
+  //      });
+  //      console.log(res.data);
+  //    } catch (error) {
+  //      console.log(error.message);
+  //    }
+  //  };
 
 
   return (
@@ -185,8 +186,8 @@ const Register = props => {
           To Login
         </WinTitleOff>
       </Link>
+      <Alerts />
       <FormDiv>
-        <Alerts />
         <ColLeft>
           <InputStyleForm
             placeholder='Your first name...'
@@ -233,8 +234,6 @@ const Register = props => {
             label='*'
           />
         </ColRight>
-
-        <Alerts />
       </FormDiv>
 
       <ButtonDiv>

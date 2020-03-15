@@ -30,9 +30,6 @@ const CardCont = styled.div`
   align-items: center;
   font-family: ${props => props.theme.fontFamily[0]};
 
-
-  
-
   /* padding: 3%; */
 `;
 
@@ -51,7 +48,28 @@ const InfoField = styled.div`
     ${props => props.theme.colors.basicGrey},
     ${props => props.theme.colors.basicGrey}
   );
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   /* border-radius: 1vw; */
+`;
+
+const IconSpan = styled.div`
+  padding-right: 10px;
+  color: ${props => props.theme.colors.lightGrey};
+  transition: all 0.35s;
+  display: flex;
+`;
+
+const ICont = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 7px;
+
+  &:hover {
+    color: ${props => props.theme.colors.darkGrey};
+  }
 `;
 
 const PicStyle = styled.img`
@@ -62,9 +80,28 @@ const PicStyle = styled.img`
   margin: 0;
   opacity: 0.5;
   transition: all 0.35s;
-  &:hover{
-      opacity: 1;
+  &:hover {
+    opacity: 1;
   }
+`;
+
+const DropdownCont = styled.div`
+  position: relative;
+  display: inline-block;
+
+  &:hover .DropContent {
+    display: block;
+  }
+`;
+
+const DropdownContent = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
 `;
 
 const Card = ({ src, offerText, infraText }) => {
@@ -97,6 +134,29 @@ const Card = ({ src, offerText, infraText }) => {
               <h5>by Billy Bob John</h5>
               <p>*****</p>
             </span>
+            <IconSpan>
+              <ICont>
+                <i class='fas fa-marker'></i>
+              </ICont>
+              <DropdownCont>
+                <ICont>
+                  <i class='fas fa-external-link-alt'></i>
+                </ICont>
+                <DropdownContent className='DropContent'>
+                  TEXT (Later map() through corresponding array)
+                </DropdownContent>
+              </DropdownCont>
+              <DropdownCont>
+                <ICont>
+                  {' '}
+                  <i class='fas fa-users'></i>
+                </ICont>
+
+                <DropdownContent className='DropContent'>
+                  TEXT 2 (Later map() through corresponding array)
+                </DropdownContent>
+              </DropdownCont>
+            </IconSpan>
           </InfoField>
         </CardCont>
       </CardWrapper>
