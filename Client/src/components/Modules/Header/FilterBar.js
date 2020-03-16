@@ -1,6 +1,7 @@
 // Utilities
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
+import UserCont from '../../../context/user/userContext';
 
 // Components
 
@@ -27,17 +28,25 @@ const TagBarCont = styled.div`
     position: sticky;
     top: 30vh;
     z-index: 1;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: space-between;
     align-items: center;
+
+    ${({ filterBar }) =>
+      filterBar &&
+      `
+    display: flex;
+  `}
   }
   /* padding: 0px 30px 0px 10px; */
 `;
 
 const FilterBar = () => {
+
+  const userCont = useContext(UserCont);
   return (
-    <TagBarCont>
+    <TagBarCont filterBar={userCont.filterBar}>
       <FilterButton text='Engineer / Technician' />
       <FilterButton text='Musician' />
       <FilterButton text='Singer / Performance' />

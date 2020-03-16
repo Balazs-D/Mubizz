@@ -125,7 +125,7 @@ const Register = props => {
     email2: ''
   });
   
-  const { firstName, lastName, email, email2, password, password2 } = user;
+  const { name , email, email2, password, password2 } = user;
   const { setAlert } = alertCont;
   const { register, error, clearErrors } = authCont;
 
@@ -143,22 +143,23 @@ const Register = props => {
     e.preventDefault();
     console.log('on submit');
     if (
-      firstName === '' ||
-      lastName === '' ||
+     
+      name === '' ||
       email === '' ||
       password === ''
     ) {
       setAlert('Please enter all fields', 'danger');
       console.log('error 02')
-    } else if (password !== password2) {
-      setAlert('Passwords do have to match!', 'danger');
-            console.log('error 03');
+    }
+    //  else if (password !== password2) {
+    //   setAlert('Passwords do have to match!', 'danger');
+    //         console.log('error 03');
 
-    } else {
+    // }
+     else {
       register({
         // FormData
-        firstName,
-        lastName,
+        name,
         email,
         password
       });
@@ -199,8 +200,8 @@ const Register = props => {
         <ColLeft>
           <InputStyleForm
             placeholder='Your first name...'
-            name='firstName'
-            value={firstName}
+            name='name'
+            value={name}
             onChange={onChange}
             label='NAME'
             required
@@ -222,31 +223,7 @@ const Register = props => {
             label='PASSWORD'
           />
         </ColLeft>
-        <ColRight>
-          <InputStyleForm
-            placeholder='Your last name...'
-            value={lastName}
-            name='lastName'
-            onChange={onChange}
-            label='*'
-          />
-          <InputStyleForm
-            placeholder='Repeat your e-mail...'
-            value={email2}
-            name='email2'
-            onChange={onChange}
-            label='*'
-            minLength='6'
-          />
-          <InputStyleForm
-            placeholder='Repeat your password...'
-            name='password2'
-            value={password2}
-            onChange={onChange}
-            label='*'
-            type='password'
-          />
-        </ColRight>
+       
       </FormDiv>
 
       <ButtonDiv>

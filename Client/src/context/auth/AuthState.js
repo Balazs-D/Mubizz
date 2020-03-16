@@ -38,7 +38,7 @@ const AuthState = props => {
         formData,
         config
       );
-      console.log('try is running');
+      console.log(res.data);
       dispatch({ type: REGISTER_SUCCESS, type: res.data });
     } catch (err) {
       dispatch({

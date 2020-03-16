@@ -2,13 +2,14 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import UserContext from './userContext';
 import UserReducer from './userReducer';
-import { TOGGLE_FILTER_BAR, GET_USERS } from '../types';
+import { TOGGLE_FILTER_BAR, GET_USERS, EDIT_TOGGLE, SAVE_TOGGLE } from '../types';
 
 const UserState = props => {
   const initialState = {
    
     date: Date(),
     filterBar: true,
+    edit: false,
     usersArray: [],
   };
   const [state, dispatch] = useReducer(UserReducer, initialState);
@@ -32,15 +33,26 @@ const UserState = props => {
     dispatch({ type: TOGGLE_FILTER_BAR });
   
   }
-  //
+  // handle edit toggle
+  const editToggle = (e) => {
+    console.log('edit f works')
+    dispatch({ type: EDIT_TOGGLE })}
+
+  // handle save edit
+  const saveToggle =(e)=>{
+    dispatch({type: SAVE_TOGGLE})
+  }
 
   return (
     <UserContext.Provider
       value={{
         date: state.date,
         filterBar: state.filterBar,
+        edit: state.edit,
         toggleFilterBar,
-        getUsers
+        getUsers,
+        editToggle,
+        saveToggle
       }}
     >
       {props.children}

@@ -15,8 +15,9 @@ import Register from './Modules/Auth/Register';
 import Settings from './Modules/Menü/Settings';
 import Footer from '../components/Modules/Footer/Footer';
 import Dashboard from './Modules/MainView/Dashboard';
-import TagBar from './Modules/TagBar';
 import userContext from '../context/user/userContext';
+import TagBar from './Modules/TagBar';
+
 
 // Styled Components
 
@@ -51,7 +52,7 @@ export default function App() {
                     <Register />
                   </Route>
                   <Route path='/' component={Dashboard}>
-                     {<Dashboard />}
+                    {<Dashboard />}
                   </Route>
                 </Switch>
               </MainContainer>

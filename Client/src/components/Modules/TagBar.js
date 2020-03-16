@@ -1,6 +1,6 @@
 // Utilities
 import React, { useContext } from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import userContext from '../../context/user/userContext';
 import RollButton from '../Utilities/RollButton';
 
@@ -9,7 +9,7 @@ import RollButton from '../Utilities/RollButton';
 // Styled Comp
 
 const FilterContOn = styled.div`
- width: 100%;
+  width: 100%;
   height: 7vh;
   background: ${props => props.theme.colors.basicYellow};
   position: sticky;
@@ -23,19 +23,26 @@ const FilterContOn = styled.div`
   border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
   display: none;
 
-@media (min-width: 800px){
-  width: 100%;
-  height: 7vh;
-  background: ${props => props.theme.colors.steelBlue};
-  position: sticky;
-  top: 30vh;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 15px 0px 30px;
-  border-bottom: 1px solid ${props => props.theme.colors.mainPurple}};
+  @media (min-width: 800px) {
+    width: 100%;
+    height: 7vh;
+    background: ${props => props.theme.colors.steelBlue};
+    position: sticky;
+    top: 30vh;
+    z-index: 1;
+    display: hidden;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px 0px 30px;
+    border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
+  };
+
+  ${({ filterBar }) =>
+    filterBar && css
+    `
+    display: flex;
+  `}
 `;
 
 const FilterContOff = styled.div`
@@ -61,8 +68,10 @@ const TagButton = styled(RollButton)`
 const FilterBar = () => {
   const userCont = useContext(userContext);
 
-  return userCont.filterBar ? (
-    <FilterContOn>
+   
+  // userCont.filterBar ? 
+  return (
+    <FilterContOn filterBar={userCont.filterBar}>
       <TagButton text='Recording' />
       <TagButton text='' />
       <TagButton text='' />
@@ -74,8 +83,8 @@ const FilterBar = () => {
       <TagButton text='' />
       <TagButton text='' />
     </FilterContOn>
-  ) : (
-    <FilterContOff></FilterContOff>
+    // ) : (
+    // <FilterContOff></FilterContOff>
   );
 };
 

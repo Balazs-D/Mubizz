@@ -1,6 +1,6 @@
 // Libraries
 import React, { useContext } from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 // Components
 import Logo from './Logo';
@@ -11,6 +11,7 @@ import Intro from '../Header/Intro';
 import userContext from '../../../context/user/userContext';
 import RollButton from '../../Utilities/RollButton';
 import FilterBar from '../../Modules/Header/FilterBar';
+
 
 // Styled Components
 
@@ -36,9 +37,16 @@ background-image: linear-gradient(-45deg, #000000 0%, #2c3e50 90%);
     position: sticky;
     top: 0;
 
+    height: 15vh;
+
+    ${({ filterBar }) =>
+      filterBar &&
+      `
     height: 30vh;
+  `}
   }
 `;
+
 
 const InputSearch = styled(Input)`
   width: 100000%;
@@ -81,14 +89,16 @@ right: 15px;
 }`
 
 const iconStyle = {
-  position: 'absolute',
+  // position: 'absolute',
   zIndex: '10',
-  left: '0px',
-  bottom: '-15px',
+  left: '-30px',
+  bottom: '4px',
+  zIndex: '100', 
+  fontSize: '30px', 
   transform: 'rotate(180deg) scale(0.7)',
-  padding: '5px',
+  padding: '10px',
   background: '#FEDF41',
-  borderRadius: '4px',
+  borderRadius: '12%',
   border: '1px solid #6047A8',
   
 
@@ -101,13 +111,30 @@ const Header = () => {
   const userCont = useContext(userContext);
 
   return (
-    <HeaderCont>
+    <HeaderCont filterBar={userCont.filterBar}>
       <UpperCont>
         <Logo />
-
+        {userCont.filterBar ? (
+          <i
+            style={iconStyle}
+            onClick={userCont.toggleFilterBar}
+            className='fas fa-arrow-circle-down'
+          >
+            {' '}
+          </i>
+        ) : (
+          <i
+            style={iconStyle}
+            onClick={userCont.toggleFilterBar}
+            className='fas fa-arrow-circle-up'
+          >
+            {' '}
+          </i>
+        )}
         <ControlContainer>
           <InputCont>
             <InputSearch placeholder='Search...' />
+
             <SpanIcon>
               <i class='fas fa-search'></i>
             </SpanIcon>
@@ -116,23 +143,6 @@ const Header = () => {
           <InputCont>
             <NavSettings />
           </InputCont>
-          {userCont.filterBar ? (
-            <i
-              style={iconStyle}
-              onClick={userCont.toggleFilterBar}
-              className='fas fa-arrow-circle-down'
-            >
-              {' '}
-            </i>
-          ) : (
-            <i
-              style={iconStyle}
-              onClick={userCont.toggleFilterBar}
-              className='fas fa-arrow-circle-up'
-            >
-              {' '}
-            </i>
-          )}
         </ControlContainer>
       </UpperCont>
       <FilterBar />
