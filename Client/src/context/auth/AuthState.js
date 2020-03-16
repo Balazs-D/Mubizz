@@ -38,6 +38,7 @@ const AuthState = props => {
         formData,
         config
       );
+      console.log('try is running');
       dispatch({ type: REGISTER_SUCCESS, type: res.data });
     } catch (err) {
       dispatch({
@@ -53,6 +54,8 @@ const AuthState = props => {
 
   //  Clear errors
 
+  const clearErrors=()=>dispatch({ type: CLEAR_ERRORS})
+
   return (
     <AuthContext.Provider
       value={{
@@ -61,7 +64,8 @@ const AuthState = props => {
         user: state.user,
         loading: state.loading,
         error: state.error,
-        register
+        register,
+        clearErrors
       }}
     >
       {props.children}

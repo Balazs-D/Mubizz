@@ -127,7 +127,14 @@ const Register = props => {
   
   const { firstName, lastName, email, email2, password, password2 } = user;
   const { setAlert } = alertCont;
-  const { register, error } = authCont;
+  const { register, error, clearErrors } = authCont;
+
+  useEffect(()=>{
+    if(error === 'User already exists'){
+      setAlert(error, 'danger');
+      clearErrors()
+    }
+  }, [error])
 
   const onChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -141,14 +148,15 @@ const Register = props => {
       email === '' ||
       password === ''
     ) {
-      setAlert('Please enter all fields');
+      setAlert('Please enter all fields', 'danger');
       console.log('error 02')
     } else if (password !== password2) {
-      setAlert('Password do have to match!');
+      setAlert('Passwords do have to match!', 'danger');
             console.log('error 03');
 
     } else {
       register({
+        // FormData
         firstName,
         lastName,
         email,
@@ -195,6 +203,7 @@ const Register = props => {
             value={firstName}
             onChange={onChange}
             label='NAME'
+            required
           />
           <InputStyleForm
             placeholder='Your e-mail...'
@@ -202,8 +211,10 @@ const Register = props => {
             value={email}
             onChange={onChange}
             label='E-MAIL'
+            
           />
           <InputStyleForm
+          type='password'
             placeholder='Select a password...'
             name='password'
             value={password}
@@ -225,6 +236,7 @@ const Register = props => {
             name='email2'
             onChange={onChange}
             label='*'
+            minLength='6'
           />
           <InputStyleForm
             placeholder='Repeat your password...'
@@ -232,6 +244,7 @@ const Register = props => {
             value={password2}
             onChange={onChange}
             label='*'
+            type='password'
           />
         </ColRight>
       </FormDiv>

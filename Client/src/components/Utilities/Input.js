@@ -41,7 +41,7 @@ const LabelInput = styled.label`
   font-weight: 100;
 `;
 
-const Input = ({ placeholder, className, onChange, value, name, label }) => {
+const Input = ({ placeholder, className, onChange, value, name, label, required, type, minLength }) => {
   return (
     <Fragment>
       <LabelInput htmlFor={name}>{label}</LabelInput>
@@ -51,6 +51,9 @@ const Input = ({ placeholder, className, onChange, value, name, label }) => {
         onChange={onChange}
         value={value}
         className={className}
+        required={required}
+        type={type}
+        minLength={minLength}
       ></InputField>
     </Fragment>
   );
