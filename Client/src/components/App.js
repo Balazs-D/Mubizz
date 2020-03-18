@@ -18,6 +18,13 @@ import Register from './Modules/Auth/Register';
 import Settings from './Modules/Menü/Settings';
 import Footer from '../components/Modules/Footer/Footer';
 import Dashboard from './Modules/MainView/Dashboard';
+import SearchView from './Modules/MainView/SearchView';
+import JournalView from './Modules/MainView/JournalView';
+import OfferManagement from './Modules/MainView/OfferManagement';
+import Marked from './Modules/MainView/Marked';
+import UserNetwork from './Modules/MainView/UserNetwork';
+import EditProfile from './Modules/MainView/EditProfile';
+import Messages from './Modules/MainView/Messages';
 
 import setAuthToken from '../../src/utils/setAuthToken';
 
@@ -55,10 +62,11 @@ export default function App() {
                     path='/'
                     component={Dashboard}
                   ></PrivateRoute>
+                  <PrivateRoute path='/dashboard' component={Dashboard}></PrivateRoute>
 
-                  <Route exact path='/login' component={Login}></Route>
+                  <Route path='/login' component={Login}></Route>
 
-                  <Route exact path='/register' component={Register}></Route>
+                  <Route path='/register' component={Register}></Route>
                 </Switch>
               </MainContainer>
               <Footer />

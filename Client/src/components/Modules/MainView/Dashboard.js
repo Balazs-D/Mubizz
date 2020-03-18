@@ -19,7 +19,7 @@ const DashCont = styled.div`
   padding: 20px;
 `;
 
-const Dashboard = () => {
+const Dashboard = ({match}) => {
 
   const authCont = useContext(AuthContext); 
 

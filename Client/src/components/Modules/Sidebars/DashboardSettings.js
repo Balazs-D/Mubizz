@@ -1,7 +1,8 @@
 // Utilities
-import React from 'react';
+import React, { useContext, Fragment } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import AuthCont from '../../../context/auth/authContext';
 
 const DashboardSidebar = styled.div`
   width: 20%;
@@ -39,62 +40,66 @@ const List = styled.ul`
   align-items: flex-start;
   width: 100%;
   padding: 0;
-  
 `;
 const StyledLink = {
   textDecoration: 'none'
 };
 
-const DashboardSettings = ({ Name }) => {
+const DashboardSettings = () => {
+  const authCont = useContext(AuthCont);
+  const { user } = authCont;
+
   return (
     <DashboardSidebar>
-      <TitleDiv>
-        <h2>Billy John Bob</h2>
-        <Status>Pro</Status>
-      </TitleDiv>
-      <List>
-        <li>
-          <Link to='/dashboard/marked' style={StyledLink}>
-            Marked Posts
-          </Link>
-        </li>
-        <li>
-          <Link to='/dashboard/network' style={StyledLink}>
-            Your Network: 4
-          </Link>
-        </li>
+      {user && <Fragment>
+        <TitleDiv>
+          <h2>{user.name}</h2>
 
-        <li>
-          <Link to='/dashboard/edit-profile' style={StyledLink}>
-            Edit Profile
-          </Link>
-        </li>
+          <Status>Pro</Status>
+        </TitleDiv>
+        <List>
+          <li>
+            <Link to='/dashboard/marked' style={StyledLink}>
+              Marked Posts
+            </Link>
+          </li>
+          <li>
+            <Link to='/dashboard/network' style={StyledLink}>
+              Your Network: 4
+            </Link>
+          </li>
 
-        
-        <li>
-          <Link to='/dashboard/messages' style={StyledLink}>
-            Messages
-          </Link>
-        </li>
+          <li>
+            <Link to='/dashboard/edit-profile' style={StyledLink}>
+              Edit Profile
+            </Link>
+          </li>
 
-        <li>
-          <Link to='/dashboard/settings' style={StyledLink}>
-            Settings
-          </Link>
-        </li>
+          <li>
+            <Link to='/dashboard/messages' style={StyledLink}>
+              Messages
+            </Link>
+          </li>
 
-        <li>
-          <Link to='/dashboard/offer-management' style={StyledLink}>
-            Offer Manager
-          </Link>
-        </li>
+          <li>
+            <Link to='/dashboard/settings' style={StyledLink}>
+              Settings
+            </Link>
+          </li>
 
-        <li>
-          <Link to='/dashboard/deals' style={StyledLink}>
-            Actual Deals
-          </Link>
-        </li>
-      </List>
+          <li>
+            <Link to='/dashboard/offer-management' style={StyledLink}>
+              Offer Manager
+            </Link>
+          </li>
+
+          <li>
+            <Link to='/dashboard/deals' style={StyledLink}>
+              Actual Deals
+            </Link>
+          </li>
+        </List>
+      </Fragment>}
     </DashboardSidebar>
   );
 };

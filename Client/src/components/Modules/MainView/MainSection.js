@@ -1,5 +1,5 @@
 // Utilities
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 import bg1 from '../../../graphics/processed/bg2.jpg';
@@ -17,6 +17,8 @@ import Marked from './Marked';
 import UserNetwork from './UserNetwork';
 import EditProfile from './EditProfile';
 import Messages from './Messages';
+import Dashboard from './Dashboard';
+
 
 // Styled Comp
 
@@ -38,41 +40,21 @@ const MainSection = () => {
   return (
     <Main>
       <Switch>
-        <Route exact path='/dashboard/search' component={SearchView}>
-          <SearchView />
-        </Route>
+        <Route path='/dashboard/search' component={SearchView} />
 
-        <Route exact path='/dashboard/journal' component={JournalView}>
-          <JournalView />
-        </Route>
+        <Route path='/dashboard/journal' component={JournalView} />
 
-        <Route exact path='/dashboard/marked' component={Marked}>
-          <Marked />
-        </Route>
+        <Route path='/dashboard/marked' component={Marked} />
 
-        <Route exact path='/dashboard/network' component={UserNetwork}>
-          <UserNetwork />
-        </Route>
+        <Route path='/dashboard/network' component={UserNetwork} />
 
-        <Route exact path='/dashboard/edit-profile' component={EditProfile}>
-          <EditProfile />
-        </Route>
+        <Route path='/dashboard/edit-profile' component={EditProfile} />
 
-        <Route exact path='/dashboard/messages' component={Messages}>
-          <Messages />
-        </Route>
+        <Route path='/dashboard/messages' component={Messages} />
 
-        <Route exact path='/dashboard/settings' component={Settings}>
-          <Settings />
-        </Route>
+        <Route path='/dashboard/settings' component={Settings} />
 
-        <Route
-          exact
-          path='/dashboard/offer-management'
-          component={OfferManagement}
-        >
-          <OfferManagement />
-        </Route>
+        <Route path='/dashboard/offer-management' component={OfferManagement} />
       </Switch>
     </Main>
   );
