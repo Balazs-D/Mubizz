@@ -1,5 +1,5 @@
 // Utilities
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -7,6 +7,60 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Button from '../../Utilities/Button';
 import RollButton from '../../Utilities/RollButton';
 import userContext from '../../../context/user/userContext';
+import AuthContext from '../../../context/auth/authContext';
+
+const NavSettings = () => {
+  const authCont = useContext(AuthContext);
+  const { isAuthenticated, logout, user } = authCont;
+  const onLogout = () => {authCont.logout();
+  };
+
+  const loggedNavbar = (
+    <List>
+      <li>
+        <Link to='/dashboard/search' style={StyledLink}>
+          <RollButton text='Browser' />
+        </Link>
+      </li>
+      <li>
+        <Link to='/login' style={StyledLink}>
+          <RollButton text='Login' />
+        </Link>
+      </li>
+
+      <li>
+        <Link to='/dashboard/journal' style={StyledLink}>
+          <RollButton text='Profile' />
+        </Link>
+      </li>
+      <Link>
+        <Link to='/login' style={StyledLink}>
+          <RollButton text='Logout' onClick={onLogout} />
+        </Link>
+      </Link>
+    </List>
+  );
+
+  const guestNavbar = (
+    <List loggedOut={true}>
+      <li>
+        <Link to='/login' style={StyledLink}>
+          <RollButton text='Login' />
+        </Link>
+      </li>
+      <Link>
+        <Link to='/register' style={StyledLink}>
+          <RollButton text='Register' />
+        </Link>
+      </Link>
+    </List>
+  );
+
+
+  return isAuthenticated ? loggedNavbar : guestNavbar;
+};
+
+export default NavSettings;
 
 // Styled Components
 
@@ -17,37 +71,15 @@ const List = styled.ul`
   width: 100%;
   margin-top: 10px;
   padding: 0;
+
+  ${({ loggedOut }) =>
+    loggedOut &&
+    `
+    width: 50%;
+  `}
 `;
 
 const StyledLink = {
   textDecoration: 'none'
 };
 
-const NavSettings = () => {
-  return (
-    <List>
-      <li>
-        <Link to='/dashboard/search' style={StyledLink}>
-          <RollButton text='Browser'   />
-        </Link>
-      </li>
-      <li>
-        <Link to='/login' style={StyledLink}>
-          <RollButton text='Login' />
-        </Link>
-      </li>
-      <li>
-        <Link to='/register' style={StyledLink}>
-          <RollButton text='Register' />
-        </Link>
-      </li>
-      <li>
-        <Link to='/dashboard/journal' style={StyledLink}>
-          <RollButton text='Profile' />
-        </Link>
-      </li>
-    </List>
-  );
-};
-
-export default NavSettings;
