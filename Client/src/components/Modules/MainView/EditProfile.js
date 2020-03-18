@@ -72,7 +72,7 @@ const Ul = styled.ul`
 const Li = styled.li`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 `;
 
@@ -131,17 +131,17 @@ const EditProfile = () => {
           <Ul>
             <Li>
               <H4>Profile Name:</H4>
-              <HeaderText>Bucky`s Mastering</HeaderText>
+              <HeaderText>Bucky`s Mastering (Visible in profile)</HeaderText>
               <p>edit</p>
             </Li>
             <Li>
               <H4>Description:</H4>
-              <HeaderText></HeaderText>
+              <HeaderText>Max 160 character</HeaderText>
               <p>edit</p>
             </Li>
             <Li>
               <H4>Offered Services:</H4>
-              <HeaderText></HeaderText>
+              <HeaderText>Selected by tags: Sound Technic, Singer, Musician</HeaderText>
               <p>edit</p>
             </Li>
           </Ul>
@@ -157,12 +157,12 @@ const EditProfile = () => {
             </Li>
             <Li>
               <H4>Detailed Description:</H4>
-              <HeaderText></HeaderText>
+              <HeaderText>Max 1000 character</HeaderText>
               <p>edit</p>
             </Li>
             <Li>
-              <H4>Skills:</H4>
-              <HeaderText></HeaderText>
+              <H4>Skills & Technologies</H4>
+              <HeaderText>Pro Tools pro user, Microphones & Recording, Outdoor recording </HeaderText>
               <p>edit</p>
             </Li>
             <Li>
@@ -172,7 +172,9 @@ const EditProfile = () => {
             </Li>
             <Li>
               <H4>Degrees & Certificates:</H4>
-              <HeaderText>English, German</HeaderText>
+              <HeaderText>School or Project, Degree or Position (li)</HeaderText>
+              
+
               <p>edit</p>
             </Li>
           </Ul>

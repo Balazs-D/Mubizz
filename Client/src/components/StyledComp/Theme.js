@@ -15,7 +15,13 @@ const theme = {
     darkGrey: '#403642',
     basicBlue: '#0077B3',
     basicYellow: '#FFC700',
-    basicGrey: '#E0E0E0'
+    basicGrey: '#E0E0E0',
+    primary: '',
+    secondary: '',
+    warning: '',
+    info: '',
+    danger: '',
+    
   },
   fontFamily: [
     'sans-serif',
