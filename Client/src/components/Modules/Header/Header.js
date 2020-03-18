@@ -1,6 +1,6 @@
 // Libraries
-import React, { useContext } from 'react';
-import styled, {css} from 'styled-components';
+import React, { useContext, Fragment } from 'react';
+import styled, { css } from 'styled-components';
 
 // Components
 import Logo from './Logo';
@@ -9,8 +9,10 @@ import Button from '../../Utilities/Button';
 import NavSettings from './NavSettings';
 import Intro from '../Header/Intro';
 import userContext from '../../../context/user/userContext';
+import AuthContext from '../../../context/auth/authContext';
 import RollButton from '../../Utilities/RollButton';
 import FilterBar from '../../Modules/Header/FilterBar';
+import TagBar from '../TagBar';
 
 
 // Styled Components
@@ -47,7 +49,6 @@ background-image: linear-gradient(-45deg, #000000 0%, #2c3e50 90%);
   }
 `;
 
-
 const InputSearch = styled(Input)`
   width: 100000%;
 `;
@@ -77,30 +78,30 @@ const UpperCont = styled.div`
 `;
 
 const SpanIcon = styled.div`
-position: absolute;
-top: 11px;
-right: 15px;
-&:hover{
-  color: ${props=>props.theme.colors.mainPurple};
-}
+  position: absolute;
+  top: 11px;
+  right: 15px;
+  &:hover {
+    color: ${props => props.theme.colors.mainPurple};
+  }
 
-&:active{
-  text-shadow: 0px 0px 5px ${props=>props.theme.colors.gradientPink};
-}`
+  &:active {
+    text-shadow: 0px 0px 5px ${props => props.theme.colors.gradientPink};
+  }
+`;
 
 const iconStyle = {
   // position: 'absolute',
   zIndex: '10',
   left: '-30px',
   bottom: '4px',
-  zIndex: '100', 
-  fontSize: '30px', 
+  zIndex: '100',
+  fontSize: '30px',
   transform: 'rotate(180deg) scale(0.7)',
   padding: '10px',
   background: '#FEDF41',
   borderRadius: '12%',
   border: '1px solid #6047A8',
-  
 
   display: 'flex',
   cursor: 'default',
@@ -109,45 +110,65 @@ const iconStyle = {
 
 const Header = () => {
   const userCont = useContext(userContext);
+  const authCont = useContext(AuthContext);
 
-  return (
-    <HeaderCont filterBar={userCont.filterBar}>
+  const loggedHeader = (
+    <Fragment>
+      <HeaderCont filterBar={userCont.filterBar}>
+        <UpperCont>
+          <Logo />
+          {userCont.filterBar ? (
+            <i
+              style={iconStyle}
+              onClick={userCont.toggleFilterBar}
+              className='fas fa-arrow-circle-down'
+            >
+              {' '}
+            </i>
+          ) : (
+            <i
+              style={iconStyle}
+              onClick={userCont.toggleFilterBar}
+              className='fas fa-arrow-circle-up'
+            >
+              {' '}
+            </i>
+          )}
+          <ControlContainer>
+            <InputCont>
+              <InputSearch placeholder='Search...' />
+
+              <SpanIcon>
+                <i className='fas fa-search'></i>
+              </SpanIcon>
+              {/* <Button text='Go' /> */}
+            </InputCont>
+            <InputCont>
+              <NavSettings />
+            </InputCont>
+          </ControlContainer>
+        </UpperCont>
+
+        <FilterBar />
+      </HeaderCont>
+      <TagBar />
+    </Fragment>
+  );
+
+  const logoutHeader = (
+    <HeaderCont filterBar={false}>
       <UpperCont>
         <Logo />
-        {userCont.filterBar ? (
-          <i
-            style={iconStyle}
-            onClick={userCont.toggleFilterBar}
-            className='fas fa-arrow-circle-down'
-          >
-            {' '}
-          </i>
-        ) : (
-          <i
-            style={iconStyle}
-            onClick={userCont.toggleFilterBar}
-            className='fas fa-arrow-circle-up'
-          >
-            {' '}
-          </i>
-        )}
         <ControlContainer>
-          <InputCont>
-            <InputSearch placeholder='Search...' />
-
-            <SpanIcon>
-              <i className='fas fa-search'></i>
-            </SpanIcon>
-            {/* <Button text='Go' /> */}
-          </InputCont>
           <InputCont>
             <NavSettings />
           </InputCont>
         </ControlContainer>
       </UpperCont>
-      <FilterBar />
     </HeaderCont>
   );
+
+  return authCont.isAuthenticated ? loggedHeader : logoutHeader;
 };
 
 export default Header;

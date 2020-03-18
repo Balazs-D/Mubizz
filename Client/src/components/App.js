@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import UserState from '../context/user/UserState';
 import AuthState from '../context/auth/AuthState';
 import AlertState from '../context/alert/AlertState';
+import userContext from '../context/user/userContext';
+import AuthContext from '../context/auth/authContext';
 
 // Components
 import Header from './Modules/Header/Header';
@@ -15,8 +17,7 @@ import Register from './Modules/Auth/Register';
 import Settings from './Modules/Menü/Settings';
 import Footer from '../components/Modules/Footer/Footer';
 import Dashboard from './Modules/MainView/Dashboard';
-import userContext from '../context/user/userContext';
-import TagBar from './Modules/TagBar';
+
 import setAuthToken from '../../src/utils/setAuthToken';
 
 // Styled Components
@@ -36,6 +37,7 @@ if (localStorage.token) {
 
 export default function App() {
   const userCont = useContext(userContext);
+  const authCont = useContext(AuthContext);
 
   return (
     <AuthState>
@@ -44,10 +46,9 @@ export default function App() {
           <Theme>
             <Router>
               <Header />
-              <TagBar />
+
               <MainContainer>
                 <Switch>
-
                   <Route exact path='/login' component={Login}>
                     <Login />
                   </Route>
@@ -59,7 +60,6 @@ export default function App() {
                   <Route exact path='/' component={Dashboard}>
                     <Dashboard />
                   </Route>
-
                 </Switch>
               </MainContainer>
               <Footer />
