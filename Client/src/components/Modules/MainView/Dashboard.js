@@ -1,6 +1,7 @@
 // Utilities
-import React from 'react';
+import React, { useContext, useEffect} from 'react';
 import styled from 'styled-components';
+import AuthContext from '../../../context/auth/authContext';
 
 // Components
 import MainSection from './MainSection';
@@ -19,6 +20,14 @@ const DashCont = styled.div`
 `;
 
 const Dashboard = () => {
+
+  const authCont = useContext(AuthContext); 
+
+  useEffect(()=>{
+    authCont.loadUser();
+  //eslint-disable-next-line
+  }, []);
+
   return (
     <DashCont>
       <DashboardSettings />
