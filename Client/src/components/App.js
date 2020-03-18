@@ -8,6 +8,7 @@ import AuthState from '../context/auth/AuthState';
 import AlertState from '../context/alert/AlertState';
 import userContext from '../context/user/userContext';
 import AuthContext from '../context/auth/authContext';
+import PrivateRoute from '../components/routing/PrivateRoute';
 
 // Components
 import Header from './Modules/Header/Header';
@@ -49,17 +50,15 @@ export default function App() {
 
               <MainContainer>
                 <Switch>
-                  <Route exact path='/login' component={Login}>
-                    <Login />
-                  </Route>
+                  <PrivateRoute
+                    exact
+                    path='/'
+                    component={Dashboard}
+                  ></PrivateRoute>
 
-                  <Route exact path='/register' component={Register}>
-                    <Register />
-                  </Route>
+                  <Route exact path='/login' component={Login}></Route>
 
-                  <Route exact path='/' component={Dashboard}>
-                    <Dashboard />
-                  </Route>
+                  <Route exact path='/register' component={Register}></Route>
                 </Switch>
               </MainContainer>
               <Footer />
