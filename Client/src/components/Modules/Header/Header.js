@@ -136,7 +136,7 @@ const Header = () => {
             <InputSearch placeholder='Search...' />
 
             <SpanIcon>
-              <i class='fas fa-search'></i>
+              <i className='fas fa-search'></i>
             </SpanIcon>
             {/* <Button text='Go' /> */}
           </InputCont>

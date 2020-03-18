@@ -1,5 +1,5 @@
 // Libraries
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import '../assets/css/style.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -17,7 +17,7 @@ import Footer from '../components/Modules/Footer/Footer';
 import Dashboard from './Modules/MainView/Dashboard';
 import userContext from '../context/user/userContext';
 import TagBar from './Modules/TagBar';
-
+import setAuthToken from '../../src/utils/setAuthToken';
 
 // Styled Components
 
@@ -30,8 +30,11 @@ const MainContainer = styled.div`
 `;
 // =========================================================== //
 
-export default function App() {
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
+export default function App() {
   const userCont = useContext(userContext);
 
   return (
@@ -42,21 +45,23 @@ export default function App() {
             <Router>
               <Header />
               <TagBar />
-
               <MainContainer>
                 <Switch>
+
                   <Route exact path='/login' component={Login}>
                     <Login />
                   </Route>
+
                   <Route exact path='/register' component={Register}>
                     <Register />
                   </Route>
-                  <Route path='/' component={Dashboard}>
-                    {<Dashboard />}
+
+                  <Route exact path='/' component={Dashboard}>
+                    <Dashboard />
                   </Route>
+
                 </Switch>
               </MainContainer>
-
               <Footer />
             </Router>
           </Theme>
