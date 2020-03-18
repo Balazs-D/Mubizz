@@ -16,17 +16,13 @@ import WinTitle from '../../Utilities/WinTitle';
 import WinTitleOff from '../../Utilities/WinTitleOff';
 
 const Register = props => {
-  const userCont = useContext(UserContext);
   const authCont = useContext(AuthContext);
   const alertCont = useContext(AlertContext);
 
   const [user, setUser] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     password: '',
-    password2: '',
     email: '',
-    email2: ''
   });
 
   const { name, email, password } = user;

@@ -10,6 +10,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOGIN,
   LOGOUT,
   CLEAR_ERRORS
 } from '../types';
@@ -81,10 +82,14 @@ const AuthState = props => {
         config
       );
       console.log(res.data);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      });
+      loadUser();
     } catch (err) {
       dispatch({
-        type: REGISTER_FAIL,
+        type: LOGIN,
         payload: err.response.data.msg
       });
     }

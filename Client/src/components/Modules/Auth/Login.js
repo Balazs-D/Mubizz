@@ -1,9 +1,11 @@
 // Utilities
-import React, { useContext, useState, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
-import UserContext from '../../../context/user/userContext';
+import AlertContext from '../../../context/alert/alertContext';
+import AuthContext from '../../../context/auth/authContext';
+
 import axios from 'axios';
 
 // Components
@@ -12,6 +14,107 @@ import Button from '../../Utilities/Button';
 import RollButton from '../../Utilities/RollButton';
 import WinTitle from '../../Utilities/WinTitle';
 import WinTitleOff from '../../Utilities/WinTitleOff';
+
+const Login = props => {
+  const [user, setUser] = useState({
+    password: '',
+    email: ''
+  });
+
+  const authCont = useContext(AuthContext);
+  const alertCont = useContext(AlertContext);
+
+  const { email, password } = user;
+  const { setAlert } = alertCont;
+  const { login, error, clearErrors, isAuthenticated } = authCont;
+
+  // Re-render  //  Re-direct
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/');
+    }
+    console.log('cp 01');
+    if (error === 'Invalid Credentials') {
+      setAlert(error);
+      clearErrors();
+    }
+    console.log('cp 02');
+
+    //eslint-disable-next-line
+  }, [error, isAuthenticated, props.history]);
+
+  const onChange = e => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    });
+    console.log(e.target);
+  };
+
+  const onSubmit = async e => {
+    e.preventDefault();
+    if (email === '' || password === '') {
+      setAlert('Please fill all fields');
+    } else {
+      login({
+        email,
+        password
+      });
+    }
+
+    let res = null;
+
+    try {
+      res = await axios.post('http://localhost:5000/api/auth', {
+        email,
+        password
+      });
+      console.log(res.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  console.log('Re-rendering', { email, password });
+
+  return (
+    <LoginCont onSubmit={onSubmit}>
+      <WinTitle text='Login'>Login</WinTitle>
+
+      <Link to='/register'>
+        <WinTitleOff text='to registration' component={Link} to='/register'>
+          To Registration
+        </WinTitleOff>
+      </Link>
+
+      <FormDiv>
+        <ColLeft>
+          <Input
+            placeholder='Your e-mail...'
+            name='email'
+            value={email}
+            onChange={onChange}
+            label='E-Mail'
+          />
+        </ColLeft>
+        <ColRight>
+          <Input
+            placeholder='Your password...'
+            name='password'
+            value={password}
+            onChange={onChange}
+            label='Password'
+          />
+        </ColRight>
+      </FormDiv>
+      <ButtonDiv>
+        <RollButton text='Login' onClick={onSubmit} />
+      </ButtonDiv>
+    </LoginCont>
+  );
+};
+
+export default withRouter(Login);
 
 // Styled Components
 
@@ -98,77 +201,3 @@ const ButtonThis = styled(Button)`
 const ButtonSwap = styled(Button)`
   background: ${props => props.theme.colors.gradientPink};
 `;
-
-
-
-const Login = props => {
-  const userCont = useContext(UserContext);
-
-  const [user, setUser] = useState({
-    password: '',
-    email: ''
-  });
-  const { email, password } = user;
-
-  const onChange = e => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(e.target);
-  };
-
-  const onSubmit = async e => {
-    e.preventDefault();
-
-    let res = null;
-
-    try {   
-      res = await axios.post('http://localhost:5000/api/auth', {
-        email,
-        password
-      });
-      console.log(res.data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  console.log('Re-rendering', { email, password });
-
-  return (
-    <LoginCont onSubmit={onSubmit}>
-      <WinTitle text='Login'>Login</WinTitle>
-      
-      <Link to='/register'>
-        <WinTitleOff text='to registration' component={Link} to='/register'>
-          To Registration
-        </WinTitleOff></Link>
-
-      <FormDiv>
-        <ColLeft>
-          <Input
-            placeholder='Your e-mail...'
-            name='email'
-            value={email}
-            onChange={onChange}
-            label='E-Mail'
-          />
-        </ColLeft>
-        <ColRight>
-          <Input
-            placeholder='Your password...'
-            name='password'
-            value={password}
-            onChange={onChange}
-            label='Password'
-          />
-        </ColRight>
-      </FormDiv>
-      <ButtonDiv>
-       
-
-        <RollButton text='Login' onClick={onSubmit} />
-      </ButtonDiv>
-    </LoginCont>
-  );
-};
-
-export default Login;
