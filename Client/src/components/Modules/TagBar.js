@@ -1,6 +1,6 @@
 // Utilities
 import React, { useContext } from 'react';
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import userContext from '../../context/user/userContext';
 import RollButton from '../Utilities/RollButton';
 
@@ -36,13 +36,13 @@ const FilterContOn = styled.div`
     align-items: center;
     padding: 0px 15px 0px 30px;
     border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
-  };
+  }
 
   ${({ filterBar }) =>
-    filterBar && css
-    `
-    display: flex;
-  `}
+    filterBar &&
+    css`
+      display: flex;
+    `}
 `;
 
 const FilterContOff = styled.div`
@@ -65,12 +65,14 @@ const TagButton = styled(RollButton)`
   }
 `;
 
+
+
 const FilterBar = () => {
   const userCont = useContext(userContext);
 
-   
-  // userCont.filterBar ? 
+  // userCont.filterBar ?
   return (
+    
     <FilterContOn filterBar={userCont.filterBar}>
       <TagButton text='Recording' />
       <TagButton text='' />
@@ -85,7 +87,7 @@ const FilterBar = () => {
     </FilterContOn>
     // ) : (
     // <FilterContOff></FilterContOff>
-  );
+  )
 };
 
 export default FilterBar;

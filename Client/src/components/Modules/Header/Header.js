@@ -151,7 +151,7 @@ const Header = () => {
 
         <FilterBar />
       </HeaderCont>
-      <TagBar />
+      {userCont.tagBar && <TagBar />}
     </Fragment>
   );
 

@@ -18,18 +18,18 @@ const NavSettings = () => {
   const loggedNavbar = (
     <List>
       <li>
-        <Link to='/dashboard/search' style={StyledLink}>
-          <RollButton text='Browser' />
+        <Link to='/dashboard/settings' style={StyledLink}>
+          <RollButton text='Settings' />
         </Link>
       </li>
       <li>
-        <Link to='/login' style={StyledLink}>
-          <RollButton text='Login' />
+        <Link to='/dashboard/messages' style={StyledLink}>
+          <RollButton text='Messages' />
         </Link>
       </li>
 
       <li>
-        <Link to='/dashboard/journal' style={StyledLink}>
+        <Link to='/dashboard/edit-profile' style={StyledLink}>
           <RollButton text='Profile' />
         </Link>
       </li>

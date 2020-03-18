@@ -13,3 +13,4 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const GET_USERS = 'GET_USERS';
 export const EDIT_TOGGLE = 'EDIT_TOGGLE';
 export const SAVE_TOGGLE = 'SAVE_TOGGLE';
+export const TOGGLE_TAG_BAR = 'TOGGLE_TAG_BAR';

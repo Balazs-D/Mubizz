@@ -1,5 +1,5 @@
 // Utilities
-import React, {useContext} from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import UserCont from '../../../context/user/userContext';
 
@@ -43,11 +43,11 @@ const TagBarCont = styled.div`
 `;
 
 const FilterBar = () => {
-
   const userCont = useContext(UserCont);
+  const { toggleTagBar } = userCont;
   return (
     <TagBarCont filterBar={userCont.filterBar}>
-      <FilterButton text='Engineer / Technician' />
+      <FilterButton text='Engineer / Technician' onClick={toggleTagBar} />
       <FilterButton text='Musician' />
       <FilterButton text='Singer / Performance' />
       <FilterButton text='Studio' />
