@@ -16,12 +16,14 @@ const theme = {
     basicBlue: '#0077B3',
     basicYellow: '#FFC700',
     basicGrey: '#E0E0E0',
-    primary: '',
-    secondary: '',
-    warning: '',
-    info: '',
-    danger: '',
-    
+    primaryDark: '#272B2B',
+    primaryLight: '#C4C4C4',
+    darkOne: '#787878',
+    secondaryDecent: '#0476D9',
+    secondaryBright: '#A9BF04',
+    warning: '#F2B705',
+    info: '#30BF97',
+    danger: '#D9042B'
   },
   fontFamily: [
     'sans-serif',

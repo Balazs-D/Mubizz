@@ -14,9 +14,9 @@ const ButtonRoll = styled.button`
   font-family: sans-serif;
   text-decoration: none;
   border-radius: 0vh;
-  background: transparent;
-  border: 1px solid ${props => props.theme.colors.mainPurple};
-  color: ${props => props.theme.colors.mainBlue};
+  background:transparent;
+  border: 1px solid ${props => props.theme.colors.secondaryBright};
+  color: ${props => props.theme.colors.secondaryBright};
   letter-spacing: 2px;
   text-align: center;
 
@@ -27,7 +27,12 @@ const ButtonRoll = styled.button`
   outline: none;
 
   &:hover {
-    background: ${props => props.theme.colors.gradientPink};
+    background: ${props => props.theme.colors.warning};
+    color: ${props => props.theme.colors.primaryDark};
+  }
+  &:active {
+    background: ${props => props.theme.colors.info};
+    color: ${props => props.theme.colors.primaryDark};
   }
 `;
 

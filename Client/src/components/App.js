@@ -33,7 +33,7 @@ import setAuthToken from '../../src/utils/setAuthToken';
 const MainContainer = styled.div`
   width: 100vw;
   overflow-x: hidden;
-  background: lightblue;
+  background: ${props => props.theme.colors.primaryLight};
   display: flex;
   justify-content: center;
 `;

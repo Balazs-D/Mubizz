@@ -17,6 +17,7 @@ const DashCont = styled.div`
   background: white;
   justify-content: space-between;
   padding: 20px;
+  background: ${props=>props.theme.colors.primaryLight};
 `;
 
 const Dashboard = ({match}) => {

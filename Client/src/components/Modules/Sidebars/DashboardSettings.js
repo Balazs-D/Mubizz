@@ -4,12 +4,24 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import AuthCont from '../../../context/auth/authContext';
 
-const DashboardSidebar = styled.div`
+const FrameCont = styled.div`
   width: 20%;
   height: 50vh;
-  background: white;
-  border: 1px solid ${props => props.theme.colors.mainPurple};
-  border-radius: 4px;
+  padding: 0;
+  background: linear-gradient(
+    ${props => props.theme.colors.primaryDark},
+    ${props => props.theme.colors.primaryDark}
+  );
+`;
+
+const DashboardSidebar = styled.div`
+  width: 100%;
+  height: 100%;
+  background: ${props => props.theme.colors.primaryLight};
+  border: 5px solid ${props => props.theme.colors.primaryDark};
+  box-shadow: inset 4px 4px 8px ${props => props.theme.colors.darkOne},
+    1px 1px 4px black;
+  /* border-radius: 4px; */
   font-family: ${props => props.theme.fontFamily[0]};
   padding: 20px;
 `;
@@ -41,6 +53,13 @@ const List = styled.ul`
   width: 100%;
   padding: 0;
 `;
+
+const PicCont = styled.img`
+  width: 100%;
+  height: 20%;
+  object-fit: cover;
+  margin: 1.5vw 0vh 0vw 0vh;
+`;
 const StyledLink = {
   textDecoration: 'none'
 };
@@ -50,57 +69,62 @@ const DashboardSettings = () => {
   const { user } = authCont;
 
   return (
-    <DashboardSidebar>
-      {user && <Fragment>
-        <TitleDiv>
-          <h2>{user.name}</h2>
+    <FrameCont>
+      <DashboardSidebar>
+        {user && (
+          <Fragment>
+            <TitleDiv>
+              <h2>{user.name}</h2>
 
-          <Status>Pro</Status>
-        </TitleDiv>
-        <List>
-          <li>
-            <Link to='/dashboard/marked' style={StyledLink}>
-              Marked Posts
-            </Link>
-          </li>
-          <li>
-            <Link to='/dashboard/network' style={StyledLink}>
-              Your Network: 4
-            </Link>
-          </li>
+              <Status>Pro</Status>
+            </TitleDiv>
+            <PicCont src={user.avatar}></PicCont>
+            <List>
+              <li>
+                <Link to='/dashboard/marked' style={StyledLink}>
+                  Marked Posts
+                </Link>
+              </li>
+              <li>
+                <Link to='/dashboard/network' style={StyledLink}>
+                  Your Network: 4
+                </Link>
+              </li>
 
-          <li>
-            <Link to='/dashboard/edit-profile' style={StyledLink}>
-              Edit Profile
-            </Link>
-          </li>
+              <li>
+                <Link to='/dashboard/edit-profile' style={StyledLink}>
+                  Edit Profile
+                </Link>
+              </li>
 
-          <li>
-            <Link to='/dashboard/messages' style={StyledLink}>
-              Messages
-            </Link>
-          </li>
+              <li>
+                <Link to='/dashboard/messages' style={StyledLink}>
+                  Messages
+                </Link>
+              </li>
 
-          <li>
-            <Link to='/dashboard/settings' style={StyledLink}>
-              Settings
-            </Link>
-          </li>
+              <li>
+                <Link to='/dashboard/settings' style={StyledLink}>
+                  Settings
+                </Link>
+              </li>
 
-          <li>
-            <Link to='/dashboard/offer-management' style={StyledLink}>
-              Offer Manager
-            </Link>
-          </li>
+              <li>
+                <Link to='/dashboard/offer-management' style={StyledLink}>
+                  Offer Manager
+                </Link>
+              </li>
 
-          <li>
-            <Link to='/dashboard/deals' style={StyledLink}>
-              Actual Deals
-            </Link>
-          </li>
-        </List>
-      </Fragment>}
-    </DashboardSidebar>
+              <li>
+                <Link to='/dashboard/deals' style={StyledLink}>
+                  Actual Deals
+                </Link>
+              </li>
+            </List>
+          </Fragment>
+        )}
+      </DashboardSidebar>
+    </FrameCont>
   );
 };
 

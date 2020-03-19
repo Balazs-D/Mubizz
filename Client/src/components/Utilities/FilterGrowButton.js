@@ -12,7 +12,7 @@ const ButtonGrow = styled.button`
   font-size: 10px;
   font-family: sans-serif;
   text-decoration: none;
-  color: ${props=>props.theme.colors.mainPurple};
+  color: ${props=>props.theme.colors.primaryLight};
   letter-spacing: 2px;
   text-align: center;
   position: relative;

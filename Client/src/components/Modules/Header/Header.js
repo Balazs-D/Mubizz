@@ -21,8 +21,7 @@ const HeaderCont = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #2d3436;
-background-color: #000000;
-background-image: linear-gradient(-45deg, #000000 0%, #2c3e50 90%);
+background: ${props => props.theme.colors.primaryDark};
   /* background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%); */
   padding: 0.5vw 1vw;
   /* background: ${props => props.theme.colors.basicBlue}; */
@@ -31,7 +30,7 @@ background-image: linear-gradient(-45deg, #000000 0%, #2c3e50 90%);
   z-index: 1;
 
   @media (min-width: 800px) {
-    border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
+    border-bottom: 5px solid ${props => props.theme.colors.primaryDark};
     align-items: flex-start;
     flex-direction: column;
     /* box-shadow: 0px 0px 70px ${props => props.theme.colors.gradientPink}; */
