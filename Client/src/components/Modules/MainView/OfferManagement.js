@@ -3,8 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 // Component
-import DashboardViewContainer from '../../Utilities/DbView';
-import DashboardCont from '../../Utilities/DbCont';
+import BoardCont from '../../Utilities/BoardCont';
+import BoardSection from '../../Utilities/BoardSection';
+import BoardTitle from '../../Utilities/BoardTitle';
 
 
 // Styled Comp
@@ -13,10 +14,9 @@ import DashboardCont from '../../Utilities/DbCont';
 
 const OfferManagement = () => {
   return (
-    <DashboardViewContainer>
-    <DashboardCont>hello</DashboardCont>
-      
-    </DashboardViewContainer>
+    <BoardCont>
+    
+    </BoardCont>
   );
 };
 

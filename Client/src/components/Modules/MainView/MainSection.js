@@ -19,7 +19,6 @@ import EditProfile from './EditProfile';
 import Messages from './Messages';
 import Dashboard from './Dashboard';
 
-
 // Styled Comp
 
 const Main = styled.div`
@@ -27,7 +26,7 @@ display: flex;
 flex-wrap: wrap;
 justify-content: space-between;
 align-items: flex-start;
-padding: 10px;
+padding: 0 10px;
 width: 70%;
 margin-right: 5%;
 position: relative;

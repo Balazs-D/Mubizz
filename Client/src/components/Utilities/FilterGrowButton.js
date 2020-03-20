@@ -12,7 +12,9 @@ const ButtonGrow = styled.button`
   font-size: 10px;
   font-family: sans-serif;
   text-decoration: none;
-  color: ${props=>props.theme.colors.primaryLight};
+      font-family: ${props => props.theme.fontFamily[4]};
+
+  color: ${props => props.theme.colors.secondaryDecent};
   letter-spacing: 2px;
   text-align: center;
   position: relative;
@@ -23,7 +25,7 @@ const ButtonGrow = styled.button`
   border: none;
 
   &:hover {
-    color: #fff;
+    color: ${props => props.theme.colors.secondaryBright};
   }
 /* 
   &:after {

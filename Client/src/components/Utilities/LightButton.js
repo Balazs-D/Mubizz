@@ -4,16 +4,16 @@ import styled from 'styled-components';
 
 // Styled Components
 
-const ButtonRoll = styled.button`
+const Button = styled.button`
   display: block;
 
-  width: 90px;
+  width: 50px;
   height: 20px;
   /* line-height: 40px; */
   font-size: 10px;
   font-family: sans-serif;
   text-decoration: none;
-  border-radius: 0vh;
+  border-radius: 4px;
   background: transparent;
   border: 1px solid ${props => props.theme.colors.mainPurple};
   color: ${props => props.theme.colors.mainPurple};
@@ -44,10 +44,10 @@ const SpanButton = styled.div`
   top: 3px;
 `;
 
-const RollButton = ({ className, text, onClick, type, component, value }) => {
+const LightButton = ({ className, text, onClick, type, component, value }) => {
   return (
     <div>
-      <ButtonRoll
+      <Button
         className={className}
         component={component}
         onClick={onClick}
@@ -55,8 +55,8 @@ const RollButton = ({ className, text, onClick, type, component, value }) => {
         value={value}
       >
         <SpanButton>{text}</SpanButton>
-      </ButtonRoll>
+      </Button>
     </div>
   );
 };
-export default RollButton;
+export default LightButton;

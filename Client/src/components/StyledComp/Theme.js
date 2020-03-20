@@ -23,14 +23,17 @@ const theme = {
     secondaryBright: '#A9BF04',
     warning: '#F2B705',
     info: '#30BF97',
-    danger: '#D9042B'
+    infoLight: '#6FCAB0',
+    danger: '#D9042B',
+    white: '#fff',
   },
   fontFamily: [
     'sans-serif',
     'Jockey One',
     'Rocky Salt',
     'Baloo Da',
-    'Baloo Bhaijaan'
+    'Baloo Bhaijaan',
+    'Nunito'
   ],
   fontSizes: {
     xs: '0.5em',

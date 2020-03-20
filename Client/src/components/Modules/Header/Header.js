@@ -21,16 +21,20 @@ const HeaderCont = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #2d3436;
-background: ${props => props.theme.colors.primaryDark};
-  /* background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%); */
+/* background: ${props => props.theme.colors.primaryLight}; */
+  background-image: linear-gradient(to right, ${props =>
+    props.theme.colors.white} 0%, ${props => props.theme.colors.white} 100%);
   padding: 0.5vw 1vw;
   /* background: ${props => props.theme.colors.basicBlue}; */
   position: relative;
   height: 20vw;
   z-index: 1;
+  border-bottom: 12px;
+ 
 
   @media (min-width: 800px) {
-    border-bottom: 5px solid ${props => props.theme.colors.primaryDark};
+    border-bottom: 2px solid ${props => props.theme.colors.info};
+
     align-items: flex-start;
     flex-direction: column;
     /* box-shadow: 0px 0px 70px ${props => props.theme.colors.gradientPink}; */

@@ -7,7 +7,7 @@ import AuthCont from '../../../context/auth/authContext';
 const FrameCont = styled.div`
   width: 20%;
   height: 50vh;
-  padding: 0;
+  padding: 0vh;
   background: linear-gradient(
     ${props => props.theme.colors.primaryDark},
     ${props => props.theme.colors.primaryDark}
@@ -16,13 +16,11 @@ const FrameCont = styled.div`
 
 const DashboardSidebar = styled.div`
   width: 100%;
-  height: 100%;
-  background: ${props => props.theme.colors.primaryLight};
-  border: 5px solid ${props => props.theme.colors.primaryDark};
-  box-shadow: inset 4px 4px 8px ${props => props.theme.colors.darkOne},
-    1px 1px 4px black;
+  background: ${props => props.theme.colors.white};
+  border: 1px solid ${props => props.theme.colors.info};
+  box-shadow: inset 4px 4px 8px ${props => props.theme.colors.white};
   /* border-radius: 4px; */
-  font-family: ${props => props.theme.fontFamily[0]};
+  font-family: ${props => props.theme.fontFamily[5]};
   padding: 20px;
 `;
 
@@ -52,16 +50,22 @@ const List = styled.ul`
   align-items: flex-start;
   width: 100%;
   padding: 0;
+  
 `;
 
 const PicCont = styled.img`
   width: 100%;
-  height: 20%;
+  height: 100px;
   object-fit: cover;
   margin: 1.5vw 0vh 0vw 0vh;
+  border:1px solid  ${props=>props.theme.colors.info};
 `;
+
+
 const StyledLink = {
-  textDecoration: 'none'
+  textDecoration: 'none',
+  color: '#30BF97'
+  
 };
 
 const DashboardSettings = () => {

@@ -10,8 +10,9 @@ const InputField = styled.input`
   border-radius: 4px;
   width: 100%;
   outline: none;
-  border: 1px solid ${props => props.theme.colors.mainBlue};
+  border: 1px solid ${props => props.theme.colors.mainPurple};
   margin: 0px;
+  
   @media (min-width: 800px) {
     padding: 10px;
     font-size: ${props => props.theme.fontSizes.small};
@@ -24,8 +25,9 @@ const InputField = styled.input`
   }
 
   &:focus {
-    box-shadow: 0px 0px 6px ${props => props.theme.colors.mainBlue};
-    border: 1px solid ${props => props.theme.colors.mainLightBlue};
+    box-shadow: 0px 0px 0px 1px ${props => props.theme.colors.mainPurple};
+    border: 1px solid ${props => props.theme.colors.mainPurple};
+    background: ${props => props.theme.colors.infoLight};
   }
 `;
 
@@ -54,6 +56,7 @@ const Input = ({ placeholder, className, onChange, value, name, label, required,
         required={required}
         type={type}
         minLength={minLength}
+        autoFocus
       ></InputField>
     </Fragment>
   );

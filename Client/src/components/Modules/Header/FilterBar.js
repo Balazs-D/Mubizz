@@ -22,6 +22,7 @@ const TagBarCont = styled.div`
   align-items: center; */
 
   @media (min-width: 800px) {
+
     width: 100%;
     height: 7vh;
     background: transparent;
