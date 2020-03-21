@@ -1,10 +1,10 @@
 // Utilities
 import React from 'react';
-import styled from 'styled-components';
+import styled, { variant, css } from 'styled-components';
 
 // Styled Components
 
-const ButtonRoll = styled.button`
+const Button = styled.button`
   display: block;
 
   width: 90px;
@@ -34,6 +34,26 @@ const ButtonRoll = styled.button`
     background: ${props => props.theme.colors.info};
     color: ${props => props.theme.colors.primaryDark};
   }
+
+  ${({ secondary }) =>
+    secondary &&
+    css`
+      border-radius: 4px;
+      display: flex;
+      text-align: end;
+      color: ${props => props.theme.colors.primaryDark};
+      border: 1px solid ${props => props.theme.colors.secondaryDecent};
+      background: transparent;
+
+      &:hover {
+        color: ${props => props.theme.colors.white};
+        background: ${props => props.theme.colors.darkOne};
+      }
+      &:active {
+        color: ${props => props.theme.colors.primaryDark};
+        background: ${props => props.theme.colors.secondaryBright};
+      }
+    `}
 `;
 
 const SpanButton = styled.div`
@@ -44,19 +64,22 @@ const SpanButton = styled.div`
   top: 3px;
 `;
 
-const RollButton = ({ className, text, onClick, type, component, value }) => {
+const ButtonMain = ({ className, text, onClick, type, component, value }) => {
+
   return (
     <div>
-      <ButtonRoll
+      <Button
         className={className}
         component={component}
         onClick={onClick}
         type={type}
         value={value}
+        
+        
       >
         <SpanButton>{text}</SpanButton>
-      </ButtonRoll>
+      </Button>
     </div>
   );
 };
-export default RollButton;
+export default ButtonMain;

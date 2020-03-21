@@ -5,7 +5,7 @@ import UserCont from '../../../context/user/userContext';
 
 // Components
 
-import FilterButton from '../../Utilities/FilterGrowButton';
+import ButtonFilter from '../../Utilities/ButtonFilter';
 
 // Styled Comp
 const TagBarCont = styled.div`
@@ -22,7 +22,6 @@ const TagBarCont = styled.div`
   align-items: center; */
 
   @media (min-width: 800px) {
-
     width: 100%;
     height: 7vh;
     background: transparent;
@@ -48,14 +47,14 @@ const FilterBar = () => {
   const { toggleTagBar } = userCont;
   return (
     <TagBarCont filterBar={userCont.filterBar}>
-      <FilterButton text='Engineer / Technician' onClick={toggleTagBar} />
-      <FilterButton text='Musician' />
-      <FilterButton text='Singer / Performance' />
-      <FilterButton text='Studio' />
-      <FilterButton text='Live' />
-      <FilterButton text='Broadcasting' />
-      <FilterButton text='Promotion' />
-      <FilterButton text='Volunteer' />
+      <ButtonFilter text='Engineer / Technician' onClick={toggleTagBar} />
+      <ButtonFilter text='Musician' />
+      <ButtonFilter text='Singer / Performance' />
+      <ButtonFilter text='Studio' />
+      <ButtonFilter text='Live' />
+      <ButtonFilter text='Broadcasting' />
+      <ButtonFilter text='Promotion' />
+      <ButtonFilter text='Volunteer' />
     </TagBarCont>
   );
 };

@@ -44,7 +44,7 @@ const SpanButton = styled.div`
   top: 3px;
 `;
 
-const LightButton = ({ className, text, onClick, type, component, value }) => {
+const ButtonLight = ({ className, text, onClick, type, component, value }) => {
   return (
     <div>
       <Button
@@ -59,4 +59,4 @@ const LightButton = ({ className, text, onClick, type, component, value }) => {
     </div>
   );
 };
-export default LightButton;
+export default ButtonLight;

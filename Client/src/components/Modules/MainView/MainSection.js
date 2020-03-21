@@ -29,6 +29,7 @@ align-items: flex-start;
 padding: 0 10px;
 width: 70%;
 margin-right: 5%;
+margin-left: 25%;
 position: relative;
 z-index: 0;
 

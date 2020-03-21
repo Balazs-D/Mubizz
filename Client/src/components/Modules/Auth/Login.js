@@ -10,8 +10,7 @@ import axios from 'axios';
 
 // Components
 import Input from '../../Utilities/Input';
-import Button from '../../Utilities/Button';
-import RollButton from '../../Utilities/RollButton';
+import ButtonSub from '../../Utilities/ButtonSub';
 import WinTitle from '../../Utilities/WinTitle';
 import WinTitleOff from '../../Utilities/WinTitleOff';
 
@@ -108,7 +107,7 @@ const Login = props => {
         </ColRight>
       </FormDiv>
       <ButtonDiv>
-        <RollButton text='Login' onClick={onSubmit} />
+        <ButtonSub text='Login' onClick={onSubmit} />
       </ButtonDiv>
     </LoginCont>
   );
@@ -194,10 +193,3 @@ const ButtonDiv = styled.div`
   }
 `;
 
-const ButtonThis = styled(Button)`
-  margin-left: 10px;
-`;
-
-const ButtonSwap = styled(Button)`
-  background: ${props => props.theme.colors.gradientPink};
-`;

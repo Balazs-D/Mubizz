@@ -36,7 +36,8 @@ const theme = {
     'Nunito'
   ],
   fontSizes: {
-    xs: '0.5em',
+    xs: '0.5vw',
+    xm: '0.7vw',
     small: '1vw',
     medium: '2vw',
     large: '3vw',

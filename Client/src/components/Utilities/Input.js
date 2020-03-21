@@ -1,6 +1,6 @@
 // Utilities
 import React, { Fragment } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 // Styled Components
 
@@ -12,11 +12,11 @@ const InputField = styled.input`
   outline: none;
   border: 1px solid ${props => props.theme.colors.mainPurple};
   margin: 0px;
-  
+
   @media (min-width: 800px) {
     padding: 10px;
     font-size: ${props => props.theme.fontSizes.small};
-
+    font-style: italic;
     border-radius: 4px;
     width: 20vw;
     outline: none;
@@ -27,7 +27,9 @@ const InputField = styled.input`
   &:focus {
     box-shadow: 0px 0px 0px 1px ${props => props.theme.colors.mainPurple};
     border: 1px solid ${props => props.theme.colors.mainPurple};
-    background: ${props => props.theme.colors.infoLight};
+    background: ${props => props.theme.colors.white};
+    font-weight: bold;
+    font-style: normal;
   }
 `;
 
@@ -41,12 +43,16 @@ const LabelInput = styled.label`
   font-family: ${props => props.theme.fontFamily[3]};
   font-size: ${props => props.theme.fontSizes.small};
   font-weight: 100;
+
+  
 `;
 
 const Input = ({ placeholder, className, onChange, value, name, label, required, type, minLength }) => {
   return (
     <Fragment>
-      <LabelInput htmlFor={name}>{label}</LabelInput>
+      <LabelInput htmlFor={name} >
+        {label} 
+      </LabelInput>
       <InputField
         placeholder={placeholder}
         name={name}

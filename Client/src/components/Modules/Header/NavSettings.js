@@ -1,43 +1,42 @@
 // Utilities
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Switch, Nav, Route, Link } from 'react-router-dom';
 
 // Components
-import Button from '../../Utilities/Button';
-import RollButton from '../../Utilities/RollButton';
-import userContext from '../../../context/user/userContext';
+import ButtonMain from '../../Utilities/ButtonMain';
 import AuthContext from '../../../context/auth/authContext';
 
 const NavSettings = () => {
   const authCont = useContext(AuthContext);
   const { isAuthenticated, logout, user } = authCont;
-  const onLogout = () => {authCont.logout();
+  const onLogout = () => {
+    authCont.logout();
   };
 
   const loggedNavbar = (
     <List>
       <li>
         <Link to='/dashboard/settings' style={StyledLink}>
-          <RollButton text='Settings' />
+          <ButtonMain text='Settings' />
         </Link>
       </li>
       <li>
         <Link to='/dashboard/messages' style={StyledLink}>
-          <RollButton text='Messages' />
+          <ButtonMain text='Messages' />
         </Link>
       </li>
 
       <li>
         <Link to='/dashboard/edit-profile' style={StyledLink}>
-          <RollButton text='Profile' />
+          <ButtonMain text='Profile' />
         </Link>
       </li>
-      <Link>
+     
         <Link to='/login' style={StyledLink}>
-          <RollButton text='Logout' onClick={onLogout} />
+          <ButtonMain text='Logout' onClick={onLogout} />
         </Link>
-      </Link>
+     
     </List>
   );
 
@@ -45,17 +44,16 @@ const NavSettings = () => {
     <List loggedOut={true}>
       <li>
         <Link to='/login' style={StyledLink}>
-          <RollButton text='Login' />
+          <ButtonMain text='Login' />
         </Link>
       </li>
-      <Link>
+      
         <Link to='/register' style={StyledLink}>
-          <RollButton text='Register' />
+          <ButtonMain text='Register' />
         </Link>
-      </Link>
+      
     </List>
   );
-
 
   return isAuthenticated ? loggedNavbar : guestNavbar;
 };
@@ -82,4 +80,3 @@ const List = styled.ul`
 const StyledLink = {
   textDecoration: 'none'
 };
-

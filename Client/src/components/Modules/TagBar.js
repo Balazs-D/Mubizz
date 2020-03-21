@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import userContext from '../../context/user/userContext';
-import RollButton from '../Utilities/RollButton';
+import ButtonMain from '../Utilities/ButtonMain';
 import { Tween, Timeline } from 'react-gsap';
 
 // Components
@@ -55,7 +55,7 @@ const FilterContOff = styled.div`
   z-index: 0;
 `;
 
-const TagButton = styled(RollButton)`
+const TagButton = styled(ButtonMain)`
   border-radius: 4px;
   display: flex;
   text-align: end;

@@ -10,7 +10,7 @@ import AlertContext from '../../../context/alert/alertContext';
 
 // Components
 import Input from '../../Utilities/Input';
-import RollButton from '../../Utilities/RollButton';
+import ButtonS from '../../Utilities/ButtonMain';
 import Alerts from '../Alerts';
 import WinTitle from '../../Utilities/WinTitle';
 import WinTitleOff from '../../Utilities/WinTitleOff';
@@ -22,7 +22,7 @@ const Register = props => {
   const [user, setUser] = useState({
     name: '',
     password: '',
-    email: '',
+    email: ''
   });
 
   const { name, email, password } = user;
@@ -31,7 +31,6 @@ const Register = props => {
 
   // Re-render  //  Re-direct
   useEffect(() => {
-
     if (isAuthenticated) {
       props.history.push('/');
     }
@@ -106,7 +105,7 @@ const Register = props => {
       </FormDiv>
 
       <ButtonDiv>
-        <RollButton text='Signin' value='Register' onClick={onSubmit} />
+        <ButtonS text='Signin' value='Register' onClick={onSubmit} />
       </ButtonDiv>
     </LoginCont>
   );

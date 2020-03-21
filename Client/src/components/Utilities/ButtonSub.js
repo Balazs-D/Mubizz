@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 // Styled Components
 
-const ButtonBasic = styled.button`
+const Button = styled.button`
   padding: 5px;
   display: flex;
   align-items: center;
@@ -27,14 +27,12 @@ const ButtonBasic = styled.button`
       background-color: ${props => props.theme.colors.mainRed};
       box-shadow: 0px 0px 40px ${props => props.theme.colors.gradientPink};
     }
-
-
   }
 `;
-const Button = ({ className, text, onClick, type, component }) => {
+const ButtonSub = ({ className, text, onClick, type, component }) => {
   return (
     <div>
-      <ButtonBasic
+      <Button
         className={className}
         component={component}
         onClick={onClick}
@@ -43,8 +41,8 @@ const Button = ({ className, text, onClick, type, component }) => {
         <span>
           <span>{text}</span>
         </span>
-      </ButtonBasic>
+      </Button>
     </div>
   );
 };
-export default Button;
+export default ButtonSub;

@@ -6,22 +6,23 @@ import AuthCont from '../../../context/auth/authContext';
 
 const FrameCont = styled.div`
   width: 20%;
-  height: 50vh;
-  padding: 0vh;
+  padding: 1px;
+  position: fixed;
+  top: 20%;
   background: linear-gradient(
-    ${props => props.theme.colors.primaryDark},
-    ${props => props.theme.colors.primaryDark}
+    ${props => props.theme.colors.mainPurple},
+    ${props => props.theme.colors.info}
   );
 `;
 
 const DashboardSidebar = styled.div`
   width: 100%;
   background: ${props => props.theme.colors.white};
-  border: 1px solid ${props => props.theme.colors.info};
-  box-shadow: inset 4px 4px 8px ${props => props.theme.colors.white};
+  /* border: 1px solid ${props => props.theme.colors.info}; */
   /* border-radius: 4px; */
   font-family: ${props => props.theme.fontFamily[5]};
   padding: 20px;
+  box-shadow: 0px 0px 7px ${props => props.theme.colors.steelBlue};
 `;
 
 const TitleDiv = styled.div`

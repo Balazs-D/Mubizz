@@ -5,12 +5,12 @@ import styled, { css } from 'styled-components';
 // Components
 import Logo from './Logo';
 import Input from '../../Utilities/Input';
-import Button from '../../Utilities/Button';
+import Button from '../../Utilities/ButtonSub';
 import NavSettings from './NavSettings';
 import Intro from '../Header/Intro';
 import userContext from '../../../context/user/userContext';
 import AuthContext from '../../../context/auth/authContext';
-import RollButton from '../../Utilities/RollButton';
+import ButtonMain from '../../Utilities/ButtonMain';
 import FilterBar from '../../Modules/Header/FilterBar';
 import TagBar from '../TagBar';
 

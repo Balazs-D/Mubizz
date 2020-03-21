@@ -2,7 +2,6 @@ import {
   TOGGLE_FILTER_BAR,
   GET_USERS,
   EDIT_TOGGLE,
-  SAVE_TOGGLE,
   TOGGLE_TAG_BAR
 } from '../types';
 
@@ -23,14 +22,9 @@ export default (state, action) => {
     case EDIT_TOGGLE:
       return {
         ...state,
-        edit: true
+        edit: !state.edit
       };
 
-    case SAVE_TOGGLE:
-      return {
-        ...state,
-        edit: false
-      };
 
     case TOGGLE_TAG_BAR:
       return {

@@ -6,7 +6,6 @@ import {
   TOGGLE_FILTER_BAR,
   GET_USERS,
   EDIT_TOGGLE,
-  SAVE_TOGGLE,
   TOGGLE_TAG_BAR
 } from '../types';
 
@@ -44,10 +43,6 @@ const UserState = props => {
     dispatch({ type: EDIT_TOGGLE });
   };
 
-  // handle profile-edit save edit
-  const saveToggle = e => {
-    dispatch({ type: SAVE_TOGGLE });
-  };
 
   // toggle filter bar
   const toggleTagBar = e => {
@@ -64,7 +59,6 @@ const UserState = props => {
         toggleFilterBar,
         getUsers,
         editToggle,
-        saveToggle,
         toggleTagBar
       }}
     >
