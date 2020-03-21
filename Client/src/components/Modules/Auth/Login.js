@@ -10,7 +10,7 @@ import axios from 'axios';
 
 // Components
 import Input from '../../Utilities/Input';
-import ButtonSub from '../../Utilities/ButtonSub';
+import ButtonMain from '../../Utilities/ButtonMain';
 import WinTitle from '../../Utilities/WinTitle';
 import WinTitleOff from '../../Utilities/WinTitleOff';
 
@@ -95,8 +95,7 @@ const Login = props => {
             onChange={onChange}
             label='E-Mail'
           />
-        </ColLeft>
-        <ColRight>
+
           <Input
             placeholder='Your password...'
             name='password'
@@ -104,11 +103,12 @@ const Login = props => {
             onChange={onChange}
             label='Password'
           />
-        </ColRight>
+
+          <ButtonDiv>
+            <ButtonMain text='Login' onClick={onSubmit} />
+          </ButtonDiv>
+        </ColLeft>
       </FormDiv>
-      <ButtonDiv>
-        <ButtonSub text='Login' onClick={onSubmit} />
-      </ButtonDiv>
     </LoginCont>
   );
 };

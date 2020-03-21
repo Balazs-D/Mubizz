@@ -10,7 +10,7 @@ import AlertContext from '../../../context/alert/alertContext';
 
 // Components
 import Input from '../../Utilities/Input';
-import ButtonS from '../../Utilities/ButtonMain';
+import ButtonMain from '../../Utilities/ButtonMain';
 import Alerts from '../Alerts';
 import WinTitle from '../../Utilities/WinTitle';
 import WinTitleOff from '../../Utilities/WinTitleOff';
@@ -85,6 +85,7 @@ const Register = props => {
             onChange={onChange}
             label='NAME'
             required
+            autoFocus
           />
           <InputStyleForm
             placeholder='Your e-mail...'
@@ -101,12 +102,12 @@ const Register = props => {
             onChange={onChange}
             label='PASSWORD'
           />
+
+          <ButtonDiv>
+            <ButtonMain text='Signin' value='Register' onClick={onSubmit} />
+          </ButtonDiv>
         </ColLeft>
       </FormDiv>
-
-      <ButtonDiv>
-        <ButtonS text='Signin' value='Register' onClick={onSubmit} />
-      </ButtonDiv>
     </LoginCont>
   );
 };

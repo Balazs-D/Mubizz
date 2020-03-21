@@ -10,6 +10,8 @@ import Input from '../../Utilities/Input';
 import BoardCont from '../../Utilities/BoardCont';
 import ButtonLight from '../../Utilities/ButtonLight';
 import EditSoloLine from '../../Utilities/EditProfile/EditSoloLine';
+import EditTextArea from '../../Utilities/EditProfile/EditTextArea';
+import EditTagItem from '../../Utilities/EditProfile/EditTagItem';
 
 // Styled Comp
 
@@ -22,6 +24,7 @@ const GradientCont = styled.div`
     ${props => props.theme.colors.info}
   );
   padding: 1px;
+  
 `;
 
 const GradientContRadius = styled.div`
@@ -34,6 +37,7 @@ const GradientContRadius = styled.div`
   );
   padding: 1px;
   border-radius: 4px;
+  width: 100%;
 `;
 
 const Main = styled.div`
@@ -77,7 +81,6 @@ const ContDiv = styled.form`
   flex-direction: column;
   align-items: center;
   padding: 0px 0px;
-  background: yellow;
 `;
 
 const InputEdit = styled(Input)`
@@ -94,6 +97,7 @@ const Block = styled.div`
 align-items: center;
 justify-content: center;
   display: flex;
+  
   flex-direction: column;
 `;
 
@@ -111,12 +115,14 @@ const Ul = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: space-around;
   width: 100%;
   padding: 0px 20px;
   font-weight: 200;
   font-family: ${props => props.theme.fontFamily[5]};
   letter-spacing: 1px;
   color: ${props => props.theme.colors.mainPurple};
+
 `;
 
 const Li = styled.li`
@@ -148,7 +154,7 @@ const Notes = styled.div`
   padding: 20px;
   text-align: justify;
   margin-right: 30px;
-  font-size: ${props => props.theme.fontSizes.xm};
+  font-size: ${props => props.theme.fontSizes.sm};
   font-family: ${props => props.theme.fontFamily[4]};
   position: relative;
   box-shadow: 0px 0px 3px ${props => props.theme.colors.info};
@@ -178,7 +184,7 @@ const HeaderText = styled.h3`
 `;
 
 const H4 = styled.h4`
-  width: 70%;
+  width: 80%;
   font-size: ${props => props.theme.fontSizes.small};
 `;
 
@@ -208,22 +214,22 @@ const EditProfile = () => {
                   {user && (
                     <EditSoloLine
                       title={'Name: '}
-                      titleVal={user.name}
                       onClick={userCont.editToggle}
                       onChange={onChange}
+                      value={user.name}
                     />
                   )}
                   {user && (
                     <EditSoloLine
                       title={'E-Mail: '}
-                      titleVal={user.email}
                       onClick={userCont.editToggle}
+                      value={user.email}
                     />
                   )}
                   {user && (
                     <EditSoloLine
                       title={'Password: '}
-                      titleVal={user.password}
+                      value={user.password}
                       onClick={userCont.editToggle}
                     />
                   )}
@@ -236,13 +242,53 @@ const EditProfile = () => {
           </Block>
 
           <Block>
+            <Title>Basic User Infos</Title>
+            <GradientContRadius>
+              <Row>
+                <Ul>
+                  {user && (
+                    <EditSoloLine
+                      title={'Profile Name: '}
+                      titleVal={user.name}
+                      onClick={userCont.editToggle}
+                      onChange={onChange}
+                      value='King Mastering'
+                    />
+                  )}
+                  {user && (
+                    <EditTextArea
+                      title={'E-Mail: '}
+                      titleVal={user.email}
+                      onClick={userCont.editToggle}
+                      value={user.email}
+                    />
+                  )}
+                  {user && (
+                    <EditSoloLine
+                      title={'Service Fields: '}
+                      value=''
+                      onClick={userCont.editToggle}
+                    />
+                  )}
+                </Ul>
+                <Notes>
+                  Profile information are public. You need to fill all fields to be able to interact and create refferences.  
+                </Notes>
+              </Row>
+            </GradientContRadius>
+          </Block>
+
+          <Block>
             <Title>Profile Infos</Title>
             <Ul>
-              <Li>
-                <H4>Profile Name:</H4>
-                <HeaderText>Bucky`s Mastering (Visible in profile)</HeaderText>
-                <p>edit</p>
-              </Li>
+              {user && (
+                <EditSoloLine
+                  title={'Profile Name: '}
+                  titleVal='King Mastering'
+                  onClick={userCont.editToggle}
+                  value='King Mastering'
+                />
+              )}
               <Li>
                 <H4>Description:</H4>
                 <HeaderText>Max 160 character</HeaderText>
@@ -257,6 +303,8 @@ const EditProfile = () => {
               </Li>
             </Ul>
           </Block>
+
+          <EditTagItem />
 
           <Block>
             <Title>Membership Infos</Title>

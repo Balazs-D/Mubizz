@@ -14,7 +14,7 @@ const Button = styled.button`
   font-family: sans-serif;
   text-decoration: none;
   border-radius: 0vh;
-  background: transparent;
+  background: ${props=>props.theme.colors.info};
   border: 1px solid ${props => props.theme.colors.mainPurple};
   color: ${props => props.theme.colors.mainPurple};
   letter-spacing: 2px;

@@ -12,10 +12,18 @@ import ButtonLight from '../ButtonLight';
 
 // Styled Comp
 
-const InputEdit = styled(InputMinimal)`
+// Styled Comp
+
+const InputEdit = styled.textarea`
   padding: 1px;
-  
- 
+  font-size: ${props => props.theme.fontSizes.small};
+  font-style: italic;
+  /* width: 10vw; */
+ border-radius: 4px;
+  border: 1px solid ${props => props.theme.colors.info};
+  margin: 0px;
+  color: ${props => props.theme.colors.info};
+
   width: 90%;
   &:focus {
     background: ${props => props.theme.colors.white};
@@ -28,6 +36,7 @@ const Li = styled.li`
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
+  height: 100%;
   margin: 20px;
 `;
 
@@ -37,6 +46,7 @@ const H4 = styled.h4`
   margin-bottom: 10px;
 `;
 
+
 const EditSoloLine = ({ value, title, onClick }) => {
   const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
@@ -45,15 +55,10 @@ const EditSoloLine = ({ value, title, onClick }) => {
   return (
     <Li>
       <H4>{title}</H4>
-     
-       
-          <InputEdit value={value}/>
-     
-    
-         
-          {/* <ButtonLight onClick={onClick} text='Edit'></ButtonLight> */}
-       
-    
+
+      <InputEdit value={value} />
+
+      {/* <ButtonLight onClick={onClick} text='Edit'></ButtonLight> */}
     </Li>
   );
 };
