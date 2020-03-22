@@ -15,36 +15,26 @@ const InputField = styled.input`
   @media (min-width: 800px) {
     padding: 12px;
     font-size: ${props => props.theme.fontSizes.small};
-    font-style: italic;
+    font-style: normal;
     /* width: 10vw; */
     outline: none;
     border: none;
     border-bottom: 1px solid ${props => props.theme.colors.info};
     margin: 0px;
-    color: ${props=>props.theme.colors.info};
+    color: ${props => props.theme.colors.info};
+    background: transparent;
   }
 
   &:focus {
     /* box-shadow: 0px 0px 0px 1px ${props => props.theme.colors.mainPurple}; */
     border-bottom: 1px solid ${props => props.theme.colors.warning};
-    background: ${props => props.theme.colors.white};
+    /* box-shadow: inset 0px 0px 100px 100px ${props => props.theme.colors.white}; */
     font-weight: bold;
     font-style: normal;
     outline: none
   }
 `;
 
-const LabelInput = styled.label`
-  color: black;
-  display: flex;
-  align-self: flex-end;
-  padding: 0px;
-  width: 97.5%;
-  margin-bottom: 5px;
-  font-family: ${props => props.theme.fontFamily[3]};
-  font-size: ${props => props.theme.fontSizes.small};
-  font-weight: 100;
-`;
 
 const InputMinimal = ({
   placeholder,

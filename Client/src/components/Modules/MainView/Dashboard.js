@@ -16,7 +16,7 @@ const DashCont = styled.div`
   background: white;
   justify-content: space-between;
   padding: 30px;
-  background: ${props => props.theme.colors.white};
+  background: ${props => props.theme.colors.info};
   /* border-top: 2px solid ${props => props.theme.colors.secondaryDecent}; */
 `;
 

@@ -32,7 +32,7 @@ const Li = styled.li`
 `;
 
 const H4 = styled.h4`
-  width: 50%;
+  width: 100%;
   font-size: ${props => props.theme.fontSizes.small};
   margin-bottom: 10px;
 `;

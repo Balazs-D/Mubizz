@@ -9,6 +9,8 @@ import AuthCont from '../../../context/auth/authContext';
 import InputMinimal from '../InputMinimal';
 import BoardCont from '../BoardCont';
 import ButtonLight from '../ButtonLight';
+import ButtonCheck from '../../Utilities//ButtonCheck';
+
 
 // Styled Comp
 
@@ -41,10 +43,19 @@ const Li = styled.li`
 `;
 
 const H4 = styled.h4`
-  width: 50%;
+  width: 100%;
   font-size: ${props => props.theme.fontSizes.small};
   margin-bottom: 10px;
 `;
+
+const TagCont = styled.div`
+display: flex; 
+flex-direction: row;
+flex-wrap: wrap;
+width: 95%;
+ `;
+
+
 
 const EditTagItem = ({ value, title, onClick }) => {
   const userCont = useContext(UserCont);
@@ -54,10 +65,44 @@ const EditTagItem = ({ value, title, onClick }) => {
   return (
     <Li>
       <H4>{title}</H4>
-
-      <InputEdit value={value} />
-
-      {/* <ButtonLight onClick={onClick} text='Edit'></ButtonLight> */}
+      <TagCont>
+        <label>
+          <ButtonCheck text='Sound Technician' />
+        </label>
+        <label>
+          <ButtonCheck text='Sound Engineer' />
+        </label>
+        <label>
+          <ButtonCheck text='Singer' />
+        </label>
+        <label>
+          <ButtonCheck text='Performance' />
+        </label>
+        <label>
+          <ButtonCheck text='Musician' />
+        </label>
+        <label>
+          <ButtonCheck text='Studio' />
+        </label>
+        <label>
+          <ButtonCheck text='Live' />
+        </label>
+        <label>
+          <ButtonCheck text='Broadcasting' />
+        </label>
+        <label>
+          <ButtonCheck text='Promotion' />
+        </label>
+        <label>
+          <ButtonCheck text='Organisation' />
+        </label>
+        <label>
+          <ButtonCheck text='Management' />
+        </label>
+        <label>
+          <ButtonCheck text='Volunteer' />
+        </label>
+      </TagCont>
     </Li>
   );
 };
