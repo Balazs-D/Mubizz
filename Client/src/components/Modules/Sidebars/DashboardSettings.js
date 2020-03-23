@@ -5,18 +5,18 @@ import { Link } from 'react-router-dom';
 import AuthCont from '../../../context/auth/authContext';
 
 const FrameCont = styled.div`
-  width: 20%;
+  width: 15vw;
   padding: 1px;
-  position: fixed;
-  top: 20%;
+  height: 70vh;
   background: linear-gradient(
     ${props => props.theme.colors.mainPurple},
-    ${props => props.theme.colors.info}
+    ${props => props.theme.colors.basicBlue}
   );
 `;
 
 const DashboardSidebar = styled.div`
   width: 100%;
+  height: 100%;
   background: ${props => props.theme.colors.white};
   /* border: 1px solid ${props => props.theme.colors.info}; */
   /* border-radius: 4px; */

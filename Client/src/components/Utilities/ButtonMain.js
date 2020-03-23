@@ -1,6 +1,6 @@
 // Utilities
 import React from 'react';
-import styled, { variant, css } from 'styled-components';
+import styled, {  css } from 'styled-components';
 
 // Styled Components
 
@@ -15,7 +15,7 @@ const Button = styled.button`
   text-decoration: none;
   border-radius: 0vh;
   background: ${props=>props.theme.colors.info};
-  border: 1px solid ${props => props.theme.colors.mainPurple};
+  border: 1px solid ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.mainPurple};
   letter-spacing: 2px;
   text-align: center;

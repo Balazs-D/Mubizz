@@ -1,5 +1,5 @@
 // Utilities
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, Fragment } from 'react';
 import styled from 'styled-components';
 import UserCont from '../../../context/user/userContext';
 import AuthCont from '../../../context/auth/authContext';
@@ -12,17 +12,19 @@ import ButtonLight from '../../Utilities/ButtonLight';
 import EditSoloLine from '../../Utilities/EditProfile/EditSoloLine';
 import EditTextArea from '../../Utilities/EditProfile/EditTextArea';
 import EditTagItem from '../../Utilities/EditProfile/EditTagItem';
-import IntroText from '../../Utilities/IntroText';
+import EditReadLine from '../../Utilities/EditProfile/EditReadLine';
+import EditAddLine from '../../Utilities/EditProfile/EditAddLine';
 
 // Styled Comp
 
 const GradientCont = styled.div`
   display: flex;
+  /* margin-top: 17.5vw; */
   justify-content: center;
   align-items: center;
   background-image: linear-gradient(
-    ${props => props.theme.colors.mainPurple},
-    ${props => props.theme.colors.info}
+    ${props => props.theme.colors.basicBlue},
+    ${props => props.theme.colors.danger}
   );
   padding: 1px;
 `;
@@ -38,7 +40,7 @@ const GradientContRadius = styled.div`
   padding: 1px 0px 0px 0px;
   /* border-radius: 4px; */
   width: 100%;
-  height: 100%;
+  height: 70%;
   margin-bottom: 50px;
 `;
 
@@ -69,7 +71,7 @@ const Form = styled.form`
 
 const SiteName = styled.h2`
   color: white;
-  background: ${props => props.theme.colors.mainPurple};
+  background: ${props => props.theme.colors.basicBlue};
   font-family: ${props => props.theme.fontFamily[5]};
   padding: 5px 10px;
 
@@ -85,13 +87,7 @@ const ContDiv = styled.form`
   padding: 0px 0px;
 `;
 
-const InputEdit = styled(Input)`
-  padding: 1px;
-  margin: 0px 85px 0px 0px;
-  &:focus {
-    background: ${props => props.theme.colors.white};
-  }
-`;
+
 
 const Block = styled.div`
   width: 100%;
@@ -123,6 +119,7 @@ const Ul = styled.ul`
   align-items: space-around;
   width: 50%;
   padding: 0px 20px;
+  margin-top: 30px;
   font-weight: 200;
   font-family: ${props => props.theme.fontFamily[5]};
   letter-spacing: 1px;
@@ -139,18 +136,17 @@ const Li = styled.li`
 
 const Row = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   position: relative;
   width: 100%;
+  margin-top: 0px;
   background-image: linear-gradient(
     ${props => props.theme.colors.white},
     ${props => props.theme.colors.white}
   );
-
-  /* border: 1px solid ${props => props.theme.colors.mainPurple}; */
   padding: 15px 0px;
-  /* border-radius: 4px; */
 `;
 const Notes = styled.div`
   width: 100%;
@@ -159,8 +155,6 @@ const Notes = styled.div`
   background: ${props => props.theme.colors.white};
   padding: 10px;
   text-align: justify;
-  
- 
   font-size: ${props => props.theme.fontSizes.small};
   font-family: ${props => props.theme.fontFamily[4]};
   position: relative;
@@ -172,34 +166,15 @@ const NoteWrap = styled.div`
   align-content: center;
   width: 40%;
   padding: 1px;
-  /* margin: 5% 7% 0px 0px; */
-  position: absolute;
-  right: 5%;
-  top: 25%;
+  margin-top: 40px;
   background-image: linear-gradient(
-    ${props => props.theme.colors.secondaryDecent},
-    ${props => props.theme.colors.mainPurple}
+    ${props => props.theme.colors.info},
+    ${props => props.theme.colors.secondaryDecent}
   );
-  box-shadow: 4px 4px 1px 0px ${props => props.theme.colors.warning};
+  box-shadow: 4px 4px 1px 0px ${props => props.theme.colors.info};
 `;
 
-const Icon = styled.p`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  /* transform: translate(50%, 50%); */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  left: -20px;
-  top: 10%;
-  background: ${props => props.theme.colors.info};
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  box-shadow: 0px 0px 3px ${props => props.theme.colors.info};
 
-  color: white;
-`;
 
 const HeaderText = styled.h3`
   width: 150%;
@@ -224,146 +199,141 @@ const EditProfile = () => {
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
   return (
-    <GradientCont>
-      <Main>
-        <ContDiv>
-          <SiteName>Edit Profile</SiteName>
-          <IntroText text='Here we goooooo....!!!' />
-          <Block>
-            <Title>Basic User Infos</Title>
-            <GradientContRadius>
-              <Row>
-                <Ul>
-                  {user && (
-                    <EditSoloLine
-                      title={'Name: '}
-                      onClick={userCont.editToggle}
-                      onChange={onChange}
-                      value={user.name}
-                    />
-                  )}
-                  {user && (
-                    <EditSoloLine
-                      title={'E-Mail: '}
-                      onClick={userCont.editToggle}
-                      value={user.email}
-                    />
-                  )}
-                  {user && (
-                    <EditSoloLine
-                      title={'Password: '}
-                      value={user.password}
-                      onClick={userCont.editToggle}
-                    />
-                  )}
-                </Ul>
-                <NoteWrap>
-                  <Notes>
-                    Basic user informations are hidden for the public view.{' '}
-                  </Notes>
-                </NoteWrap>
-              </Row>
-            </GradientContRadius>
-          </Block>
-
-          <Block>
-            <Title>Profile Infos</Title>
-            <GradientContRadius>
-              <Row>
-                <Ul>
-                  {user && (
-                    <EditSoloLine
-                      title={'Profile Name: '}
-                      titleVal={user.name}
-                      onClick={userCont.editToggle}
-                      onChange={onChange}
-                      value='King Mastering'
-                    />
-                  )}
-                  {user && (
-                    <EditTextArea
-                      title={'Message: '}
-                      titleVal={user.email}
-                      onClick={userCont.editToggle}
-                      value={user.email}
-                    />
-                  )}
-                  {user && (
-                    <EditTagItem
-                      title={'Service Fields: '}
-                      value=''
-                      onClick={userCont.editToggle}
-                    />
-                  )}
-                </Ul>
-                <NoteWrap>
-                  <Notes>
-                    Profile information are public. You need to fill all fields
-                    to be able to interact and create refferences.
-                  </Notes>
-                </NoteWrap>
-              </Row>
-            </GradientContRadius>
-          </Block>
-
-          <Block>
-            <Title>Membership Infos</Title>
-            <GradientContRadius>
-              <Row>
-                <Ul>
-                  {user && (
-                    <EditSoloLine
-                      title={'Location: '}
-                      titleVal={user.name}
-                      onClick={userCont.editToggle}
-                      onChange={onChange}
-                      value='Berlin'
-                    />
-                  )}
-                  {user && (
-                    <EditTextArea
-                      title={'Detailed Description: '}
-                      titleVal={user.email}
-                      onClick={userCont.editToggle}
-                      value={user.email}
-                    />
-                  )}
-                  {user && (
-                    <EditTagItem
-                      title={'Skills & Technologies: '}
-                      value=''
-                      onClick={userCont.editToggle}
-                    />
-                  )}
-                </Ul>
-                <NoteWrap>
-                  <Notes>
-                    Membership information are public. You need to fill all
-                    fields to be able to offers.
-                  </Notes>
-                </NoteWrap>
-              </Row>
-            </GradientContRadius>
-          </Block>
-
-          <Block>
-            <Title>Works</Title>
+    <Fragment>
+      <Block>
+        <Title>Basic User Infos</Title>
+        <GradientContRadius>
+          <Row>
+            <NoteWrap>
+              <Notes>
+                Basic user information are hidden for the public view.{' '}
+              </Notes>
+            </NoteWrap>
             <Ul>
-              <Li>
-                <H4>Offers</H4>
-                <HeaderText>3</HeaderText>
-                <p>edit</p>
-              </Li>
-              <Li>
-                <H4>Refferences</H4>
-                <HeaderText>5</HeaderText>
-                <p>edit</p>
-              </Li>
+              {user && (
+                <EditSoloLine
+                  title={'Name: '}
+                  onClick={userCont.editToggle}
+                  onChange={onChange}
+                  value={user.name}
+                />
+              )}
+              {user && (
+                <EditSoloLine
+                  title={'E-Mail: '}
+                  onClick={userCont.editToggle}
+                  value={user.email}
+                />
+              )}
+              {user && (
+                <EditSoloLine
+                  title={'Password: '}
+                  value={user.password}
+                  onClick={userCont.editToggle}
+                />
+              )}
             </Ul>
-          </Block>
-        </ContDiv>
-      </Main>
-    </GradientCont>
+          </Row>
+        </GradientContRadius>
+      </Block>
+
+      <Block>
+        <Title>Profile Infos</Title>
+        <GradientContRadius>
+          <Row>
+            <NoteWrap>
+              <Notes>
+                Profile information are public. You need to fill all fields to
+                be able to interact and create references.
+              </Notes>
+            </NoteWrap>
+            <Ul>
+              {user && (
+                <EditSoloLine
+                  title={'Profile Name: '}
+                  titleVal={user.name}
+                  onClick={userCont.editToggle}
+                  onChange={onChange}
+                  value='King Mastering'
+                />
+              )}
+              {user && (
+                <EditTextArea
+                  title={'Message: '}
+                  titleVal={user.email}
+                  onClick={userCont.editToggle}
+                  value={user.email}
+                />
+              )}
+              {user && (
+                <EditTagItem
+                  title={'Service Fields: '}
+                  value=''
+                  onClick={userCont.editToggle}
+                />
+              )}
+            </Ul>
+          </Row>
+        </GradientContRadius>
+      </Block>
+
+      <Block>
+        <Title>Membership Infos</Title>
+        <GradientContRadius>
+          <Row>
+            <NoteWrap>
+              <Notes>
+                Membership information are public. You need to fill all fields
+                to be able to post offers.
+              </Notes>
+            </NoteWrap>
+            <Ul>
+              {user && (
+                <EditSoloLine
+                  title={'Location: '}
+                  titleVal={user.name}
+                  onClick={userCont.editToggle}
+                  onChange={onChange}
+                  value='Berlin'
+                />
+              )}
+              {user && (
+                <EditTextArea
+                  title={'Detailed Description: '}
+                  titleVal={user.email}
+                  onClick={userCont.editToggle}
+                  value={user.email}
+                />
+              )}
+              {user && (
+                <EditAddLine
+                  title={'Skills & Technologies: '}
+                  value=''
+                  onClick={userCont.editToggle}
+                />
+              )}
+            </Ul>
+          </Row>
+        </GradientContRadius>
+      </Block>
+
+      <Block>
+        <GradientContRadius>
+          <Title>Works</Title>
+          <Row>
+            <NoteWrap>
+              <Notes>
+                After you created at least one of each item your profile will reach the PRO level. 
+              </Notes>
+            </NoteWrap>
+            <Ul>
+              <EditReadLine title='Offers' value='5'></EditReadLine>
+              <EditReadLine title='References' value='7'></EditReadLine>
+            </Ul>
+          </Row>
+        </GradientContRadius>
+      </Block>
+    </Fragment>
   );
 };
 

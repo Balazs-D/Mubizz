@@ -1,16 +1,8 @@
 // Utilities
 import React, { useContext, Fragment } from 'react';
 import styled from 'styled-components';
-import UserCont from '../../../context/user/userContext';
-import AuthCont from '../../../context/auth/authContext';
 
-// Component
-
-import InputMinimal from '../InputMinimal';
-import BoardCont from '../BoardCont';
-import ButtonLight from '../ButtonLight';
-
-// Styled Comp
+// Components
 
 // Styled Comp
 
@@ -52,18 +44,12 @@ const H4 = styled.h4`
   margin-bottom: 10px;
 `;
 
-const EditSoloLine = ({ value, title, onClick }) => {
-  const userCont = useContext(UserCont);
-  const authCont = useContext(AuthCont);
-  const { user } = authCont;
-
+const EditSoloLine = ({ value, title }) => {
   return (
     <Li>
       <H4>{title}</H4>
 
       <InputEdit value={value} />
-
-      {/* <ButtonLight onClick={onClick} text='Edit'></ButtonLight> */}
     </Li>
   );
 };

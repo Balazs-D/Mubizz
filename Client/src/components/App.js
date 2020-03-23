@@ -35,6 +35,7 @@ const MainContainer = styled.div`
   overflow-x: hidden;
   display: flex;
   justify-content: center;
+  background-image: linear-gradient(${props=>props.theme.colors.info}, ${props=>props.theme.colors.infoLight});
 `;
 // =========================================================== //
 

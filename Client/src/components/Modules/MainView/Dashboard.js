@@ -11,12 +11,11 @@ import DashboardSettings from '../Sidebars/DashboardSettings';
 
 // Styled Components
 const DashCont = styled.div`
-  width: 100vw;
+  width: 80vw;
   display: flex;
-  background: white;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 30px;
-  background: ${props => props.theme.colors.info};
+  background: transparent;
   /* border-top: 2px solid ${props => props.theme.colors.secondaryDecent}; */
 `;
 

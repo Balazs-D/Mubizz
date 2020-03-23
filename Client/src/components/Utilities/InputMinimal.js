@@ -16,7 +16,6 @@ const InputField = styled.input`
     padding: 12px;
     font-size: ${props => props.theme.fontSizes.small};
     font-style: normal;
-    /* width: 10vw; */
     outline: none;
     border: none;
     border-bottom: 1px solid ${props => props.theme.colors.info};
@@ -26,9 +25,7 @@ const InputField = styled.input`
   }
 
   &:focus {
-    /* box-shadow: 0px 0px 0px 1px ${props => props.theme.colors.mainPurple}; */
     border-bottom: 1px solid ${props => props.theme.colors.warning};
-    /* box-shadow: inset 0px 0px 100px 100px ${props => props.theme.colors.white}; */
     font-weight: bold;
     font-style: normal;
     outline: none
@@ -42,7 +39,6 @@ const InputMinimal = ({
   onChange,
   value,
   name,
-  label,
   required,
   type,
   minLength

@@ -23,17 +23,17 @@ const HeaderCont = styled.div`
   background-color: #2d3436;
 /* background: ${props => props.theme.colors.primaryLight}; */
   background-image: linear-gradient(to right, ${props =>
-    props.theme.colors.white} 0%, ${props => props.theme.colors.white} 100%);
+    props.theme.colors.basicBlue} 0%, ${props => props.theme.colors.basicBlue} 100%);
   padding: 0.5vw 1vw;
   /* background: ${props => props.theme.colors.basicBlue}; */
   position: relative;
   height: 20vw;
   z-index: 1;
-  border-bottom: 12px;
+  border-bottom: 0px;
  
 
   @media (min-width: 800px) {
-    border-bottom: 2px solid ${props => props.theme.colors.info};
+    border-bottom: 0px solid ${props => props.theme.colors.warning};
 
     align-items: flex-start;
     flex-direction: column;

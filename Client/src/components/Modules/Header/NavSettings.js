@@ -55,7 +55,7 @@ const NavSettings = () => {
     </List>
   );
 
-  return isAuthenticated ? loggedNavbar : guestNavbar;
+  return isAuthenticated ? loggedNavbar : null;
 };
 
 export default NavSettings;

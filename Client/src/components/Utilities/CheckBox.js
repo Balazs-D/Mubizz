@@ -46,7 +46,8 @@ const StyledCheckbox = styled.div`
 
   ${Icon} {
     /* visibility: ${props => (props.checked ? 'visible' : 'hidden')} */
-    visibility: visible
+    visibility: visible;
+    color: ${props=> (props.checked ? props.theme.colors.mainPurple : props.theme.colors.info)}; 
   }
 `;
 
@@ -54,8 +55,8 @@ const Checkbox = ({ className, checked, text, ...props }) => (
   <CheckboxContainer className={className}>
     <HiddenCheckbox checked={checked} {...props} />
     <StyledCheckbox checked={checked}>
-      <Icon viewBox='0 0 24 24'>{text}
-        <polyline points='20 6 9 17 4 12' />
+      <Icon>{text}
+        
       </Icon>
     </StyledCheckbox>
   </CheckboxContainer>

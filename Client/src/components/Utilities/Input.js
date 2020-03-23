@@ -25,7 +25,7 @@ const InputField = styled.input`
   }
 
   &:focus {
-    box-shadow: 0px 0px 0px 1px ${props => props.theme.colors.mainPurple};
+    box-shadow: 0px 0px 3px ${props => props.theme.colors.white};
     border: 1px solid ${props => props.theme.colors.mainPurple};
     background: ${props => props.theme.colors.white};
     font-weight: bold;
