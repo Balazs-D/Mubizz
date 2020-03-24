@@ -41,7 +41,7 @@ const InputMinimal = ({
   name,
   required,
   type,
-  minLength
+  minLength,
 }) => {
   return (
     <Fragment>
@@ -49,7 +49,7 @@ const InputMinimal = ({
         placeholder={placeholder}
         name={name}
         onChange={onChange}
-        value={value}
+        defaultValue={value}
         className={className}
         required={required}
         type={type}

@@ -56,10 +56,10 @@ const EditAddLine = ({ value, title }) => {
 
   for (let i = 0; i < itemsCounter; i++) {
     items.push(
-      <ItemDiv>
-        <InputEdit value='test' />
+      <ItemDiv key={i}>
+        <InputEdit defaultValue='test' />
         <ButtonCircle
-          icon={<i class='fas fa-plus'></i>}
+          icon={<i className='fas fa-plus'></i>}
           onClick={addOne}
         ></ButtonCircle>
       </ItemDiv>

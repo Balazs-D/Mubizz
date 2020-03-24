@@ -49,7 +49,7 @@ const EditSoloLine = ({ value, title }) => {
     <Li>
       <H4>{title}</H4>
 
-      <InputEdit value={value} />
+      <InputEdit defaultValue={value} />
     </Li>
   );
 };

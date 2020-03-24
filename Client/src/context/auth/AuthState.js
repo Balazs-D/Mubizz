@@ -12,8 +12,10 @@ import {
   LOGIN_FAIL,
   LOGIN,
   LOGOUT,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  SET_ALERT
 } from '../types';
+import { selectFields } from 'express-validator/src/select-fields';
 
 const AuthState = props => {
   const initialState = {
@@ -56,7 +58,10 @@ const AuthState = props => {
         formData,
         config
       );
-      dispatch({ type: REGISTER_SUCCESS, payload: res.data });
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data
+      });
 
       loadUser();
     } catch (err) {
@@ -103,6 +108,8 @@ const AuthState = props => {
 
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
+  
+
   return (
     <AuthContext.Provider
       value={{
@@ -115,7 +122,7 @@ const AuthState = props => {
         clearErrors,
         login,
         loadUser,
-        logout
+        logout,
       }}
     >
       {props.children}

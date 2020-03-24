@@ -14,6 +14,7 @@ import EditTextArea from '../../Utilities/EditProfile/EditTextArea';
 import EditTagItem from '../../Utilities/EditProfile/EditTagItem';
 import EditReadLine from '../../Utilities/EditProfile/EditReadLine';
 import EditAddLine from '../../Utilities/EditProfile/EditAddLine';
+import PicUpload from '../../Utilities/PicUpload/PicUpload';
 
 // Styled Comp
 
@@ -134,9 +135,23 @@ const Li = styled.li`
   width: 100%;
 `;
 
-const Row = styled.div`
+const Col = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-top: 0px;
+  background-image: linear-gradient(
+    ${props => props.theme.colors.white},
+    ${props => props.theme.colors.white}
+  );
+  padding: 15px 0px;
+`;
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   position: relative;
@@ -203,12 +218,13 @@ const EditProfile = () => {
       <Block>
         <Title>Basic User Infos</Title>
         <GradientContRadius>
-          <Row>
+          <Col>
             <NoteWrap>
               <Notes>
-                Basic user information are hidden for the public view.{' '}
+                Basic user information are hidden for the public view while your photo will be published.
               </Notes>
             </NoteWrap>
+
             <Ul>
               {user && (
                 <EditSoloLine
@@ -232,15 +248,16 @@ const EditProfile = () => {
                   onClick={userCont.editToggle}
                 />
               )}
+              {user && <PicUpload />}
             </Ul>
-          </Row>
+          </Col>
         </GradientContRadius>
       </Block>
 
       <Block>
         <Title>Profile Infos</Title>
         <GradientContRadius>
-          <Row>
+          <Col>
             <NoteWrap>
               <Notes>
                 Profile information are public. You need to fill all fields to
@@ -273,14 +290,14 @@ const EditProfile = () => {
                 />
               )}
             </Ul>
-          </Row>
+          </Col>
         </GradientContRadius>
       </Block>
 
       <Block>
         <Title>Membership Infos</Title>
         <GradientContRadius>
-          <Row>
+          <Col>
             <NoteWrap>
               <Notes>
                 Membership information are public. You need to fill all fields
@@ -313,24 +330,25 @@ const EditProfile = () => {
                 />
               )}
             </Ul>
-          </Row>
+          </Col>
         </GradientContRadius>
       </Block>
 
       <Block>
         <GradientContRadius>
           <Title>Works</Title>
-          <Row>
+          <Col>
             <NoteWrap>
               <Notes>
-                After you created at least one of each item your profile will reach the PRO level. 
+                After you created at least one of each item your profile will
+                reach the PRO level.
               </Notes>
             </NoteWrap>
             <Ul>
               <EditReadLine title='Offers' value='5'></EditReadLine>
               <EditReadLine title='References' value='7'></EditReadLine>
             </Ul>
-          </Row>
+          </Col>
         </GradientContRadius>
       </Block>
     </Fragment>
