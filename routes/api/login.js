@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require('../../middleware/auth')
 const User = require('../../models/User')
 const config = require('config')
-const { check, validationResult } = require('express-validator/check')
+const { check, validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 //@ route GET api/auth
@@ -30,6 +30,7 @@ router.post('/', [
         .exists()
 ],
     async (req, res) => {
+        console.log(req.body, "login route ")
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
@@ -38,14 +39,14 @@ router.post('/', [
         const { email, password } = req.body
 
         try {
-
+            console.log("-------")
             let user = await User.findOne({ email })
 
             if (!user) {
                 return res.status(400)
                     .json({ errors: [{ msg: 'Invalid Credentials' }] })
             }
-
+            console.log("comparing password")
             const isMatch = await bcrypt.compare(password, user.password)
 
             if (!isMatch) {
@@ -59,7 +60,9 @@ router.post('/', [
                 user: {
                     id: user.id
                 }
+
             }
+            console.log("creating token")
             jwt.sign(
                 payload,
                 config.get('jwtSecret'),
