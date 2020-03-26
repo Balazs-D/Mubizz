@@ -5,6 +5,43 @@ import axios from 'axios';
 
 // Components
 import AuthCont from '../../../context/auth/authContext';
+import ButtonMain from '../ButtonMain';
+
+const Cont = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+const ButtonCont = styled.li`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 70%;
+  margin: 20px;
+`;
+
+const ImgWrap = styled.div`
+  width: 70%;
+  height: 100%;
+  padding: 1px;
+  background-image: linear-gradient(
+    ${props => props.theme.colors.basicBlue},
+    ${props => props.theme.colors.steelBlue}
+  );
+  box-shadow: 0px 0px 3px ${props=>props.theme.colors.mainPurple};
+  margin-top: 30px;
+`;
+
+let Img = styled.img`
+display: flex;
+justify-self: center;
+width: 100%;`
+
+
+
 
 const PicUpload = () => {
   const authCont = useContext(AuthCont);
@@ -34,11 +71,17 @@ const PicUpload = () => {
  
 
   return (
-    <div>
-      <input type='file' onChange={fileSelectHandler} />
-      {user && <img src={selectedFile} alt=''></img>}
-      <button onClick={uploadPic} >Upload</button>
-    </div>
+    <Cont>
+      <ButtonCont>
+        <input type='file' onChange={fileSelectHandler}></input>
+        <ButtonMain text='Upload' onClick={uploadPic} />
+      </ButtonCont>
+      {user && (
+        <ImgWrap>
+          <Img src={selectedFile} alt=''></Img>
+        </ImgWrap>
+      )}
+    </Cont>
   );
 };
 

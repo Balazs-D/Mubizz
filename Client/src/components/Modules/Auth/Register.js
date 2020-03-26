@@ -33,12 +33,10 @@ const Register = props => {
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push('/');
-    }
+    }  
+    
     console.log('cp 01');
-    if (error === 'User already exists') {
-      setAlert(error);
-      clearErrors();
-    }
+   
     console.log('cp 02');
 
     //eslint-disable-next-line
@@ -53,8 +51,12 @@ const Register = props => {
     e.preventDefault();
     console.log('on submit');
     if (name === '' || email === '' || password === '') {
-      setAlert('Please enter all fields', 'danger');
+      setAlert('Please enter all fields');
       console.log('error 02');
+    }
+    if (error === 'User already exists') {
+      setAlert(error);
+      clearErrors();
     } else {
       register({
         // FormData

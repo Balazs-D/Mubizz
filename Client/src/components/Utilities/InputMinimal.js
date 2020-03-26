@@ -42,6 +42,7 @@ const InputMinimal = ({
   required,
   type,
   minLength,
+  ref
 }) => {
   return (
     <Fragment>
@@ -53,6 +54,7 @@ const InputMinimal = ({
         className={className}
         required={required}
         type={type}
+        ref={ref}
         minLength={minLength}
         autoFocus
       ></InputField>

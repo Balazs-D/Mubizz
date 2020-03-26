@@ -15,20 +15,11 @@ import EditTagItem from '../../Utilities/EditProfile/EditTagItem';
 import EditReadLine from '../../Utilities/EditProfile/EditReadLine';
 import EditAddLine from '../../Utilities/EditProfile/EditAddLine';
 import PicUpload from '../../Utilities/PicUpload/PicUpload';
+import Note from '../../Utilities/Notes';
+import ProcessDiagram from '../../Utilities/EditProfile/ProcessDiagram';
+import IntroText from '../../Utilities/IntroText';
 
 // Styled Comp
-
-const GradientCont = styled.div`
-  display: flex;
-  /* margin-top: 17.5vw; */
-  justify-content: center;
-  align-items: center;
-  background-image: linear-gradient(
-    ${props => props.theme.colors.basicBlue},
-    ${props => props.theme.colors.danger}
-  );
-  padding: 1px;
-`;
 
 const GradientContRadius = styled.div`
   display: flex;
@@ -45,22 +36,6 @@ const GradientContRadius = styled.div`
   margin-bottom: 50px;
 `;
 
-const Main = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center;
-padding: 0px;
-width: 55vw;
-margin-right: 0%;
-position: relative;
-
-z-index: 0;
-background: ${props => props.theme.colors.white};
-
-/* border: 1px solid ${props => props.theme.colors.mainPurple}; */
-`;
-
 const Form = styled.form`
   display: flex;
   /* width: 100%; */
@@ -70,40 +45,21 @@ const Form = styled.form`
   background: green;
 `;
 
-const SiteName = styled.h2`
-  color: white;
-  background: ${props => props.theme.colors.basicBlue};
-  font-family: ${props => props.theme.fontFamily[5]};
-  padding: 5px 10px;
-
-  width: 100%;
-`;
-
-const ContDiv = styled.form`
-  width: 100%;
-  /* border: 1px solid ${props => props.theme.colors.info}; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0px 0px;
-`;
-
-
-
 const Block = styled.div`
   width: 100%;
   margin: 30px 0px 0px 0px;
   align-items: center;
   justify-content: center;
   display: flex;
-position: relative;
+  position: relative;
+
   flex-direction: column;
 `;
 
 const Title = styled.h3`
   background: white;
-position: relative; 
-z-index: 10;
+  position: relative;
+  z-index: 10;
   font-weight: light;
   padding: 0px 15px 0px 15px;
   font-family: ${props => props.theme.fontFamily[5]};
@@ -127,14 +83,6 @@ const Ul = styled.ul`
   color: ${props => props.theme.colors.mainPurple};
 `;
 
-const Li = styled.li`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  width: 100%;
-`;
-
 const Col = styled.div`
   display: flex;
   flex-direction: column;
@@ -149,20 +97,7 @@ const Col = styled.div`
   );
   padding: 15px 0px;
 `;
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  margin-top: 0px;
-  background-image: linear-gradient(
-    ${props => props.theme.colors.white},
-    ${props => props.theme.colors.white}
-  );
-  padding: 15px 0px;
-`;
+
 const Notes = styled.div`
   width: 100%;
   height: 100%;
@@ -189,16 +124,13 @@ const NoteWrap = styled.div`
   box-shadow: 4px 4px 1px 0px ${props => props.theme.colors.info};
 `;
 
+const SiteName = styled.h2`
+  color: white;
+  background: ${props => props.theme.colors.basicBlue};
+  font-family: ${props => props.theme.fontFamily[5]};
+  padding: 5px 10px;
 
-
-const HeaderText = styled.h3`
-  width: 150%;
-  font-size: ${props => props.theme.fontSizes.small};
-`;
-
-const H4 = styled.h4`
-  width: 80%;
-  font-size: ${props => props.theme.fontSizes.small};
+  width: 100%;
 `;
 
 const EditProfile = () => {
@@ -215,16 +147,15 @@ const EditProfile = () => {
   // Then map through the info section and insert option to each section
   return (
     <Fragment>
+      <SiteName>Edit Profile</SiteName>
+
+      <IntroText text='Update your profile to get access to the features you need!' />
+      <ProcessDiagram />
       <Block>
         <Title>Basic User Infos</Title>
         <GradientContRadius>
           <Col>
-            <NoteWrap>
-              <Notes>
-                Basic user information are hidden for the public view while your photo will be published.
-              </Notes>
-            </NoteWrap>
-
+            <Note text='Basic user information are hidden for the public view while your photo will be published.' />
             <Ul>
               {user && (
                 <EditSoloLine
@@ -326,6 +257,7 @@ const EditProfile = () => {
                 <EditAddLine
                   title={'Skills & Technologies: '}
                   value=''
+                  placeholder='Ex.: Pro Tools / Overdub Recording ... '
                   onClick={userCont.editToggle}
                 />
               )}
