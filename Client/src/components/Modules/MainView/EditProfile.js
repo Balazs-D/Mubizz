@@ -1,14 +1,12 @@
 // Utilities
-import React, { useContext, useState, Fragment } from 'react';
+import React, { useContext, useState  } from 'react';
 import styled from 'styled-components';
 import UserCont from '../../../context/user/userContext';
 import AuthCont from '../../../context/auth/authContext';
 
 // Component
 
-import Input from '../../Utilities/Input';
-import BoardCont from '../../Utilities/BoardCont';
-import ButtonLight from '../../Utilities/ButtonLight';
+
 import EditSoloLine from '../../Utilities/EditProfile/EditSoloLine';
 import EditTextArea from '../../Utilities/EditProfile/EditTextArea';
 import EditTagItem from '../../Utilities/EditProfile/EditTagItem';
@@ -37,12 +35,7 @@ const GradientContRadius = styled.div`
 `;
 
 const Form = styled.form`
-  display: flex;
-  /* width: 100%; */
-  justify-content: center;
-  align-content: flex-end;
-  flex-direction: column;
-  background: green;
+  display: contents;
 `;
 
 const Block = styled.div`
@@ -134,19 +127,86 @@ const SiteName = styled.h2`
 `;
 
 const EditProfile = () => {
-  const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
-  const { user } = authCont;
+
+  const [user, setUser] = useState({
+    name:'',
+    email:'',
+    profileName:'',
+    profileMotto:'',
+    description:'',
+    services:'',
+    website:'',
+    location:'',
+    languages:'',
+    skills:'',
+    reference:'',
+    social:''
+  });
+
+  const {
+    name,
+    email,
+    profileName,
+    profileMotto,
+    description,
+    services,
+    website,
+    location,
+    languages,
+    skills,
+    reference,
+    social
+  } = user;
+
+
+
 
   const onChange = e => {
-    console.log({ ...user, [e.target.name]: e.target.value });
+    setUser({ ...user, [e.target.name]: e.target.value });
+    console.log(e.target.value);
+
   };
 
-  console.log(userCont);
+  console.log(user);
+
+  const onSubmit = e => {
+    e.preventDefault();
+    console.log('on submit');
+    //  if (name === '' || email === '' || password === '') {
+    //    setAlert('Please enter all fields');
+    //    console.log('error 02');
+    //  }
+    //  if (error === 'User already exists') {
+    //    setAlert(error);
+    //    clearErrors();
+    //  } else {
+      console.log('test 01')
+    authCont.update({
+      // FormData
+      name,
+      email,
+      profileName,
+      profileMotto,
+      description,
+      services,
+      website,
+      location,
+      languages,
+      skills,
+      reference,
+      social
+    });
+      console.log('test 02');
+
+    console.log(authCont);
+  };
+
+  
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
   return (
-    <Fragment>
+    <Form onSubmit={onSubmit}>
       <SiteName>Edit Profile</SiteName>
 
       <IntroText text='Update your profile to get access to the features you need!' />
@@ -157,29 +217,21 @@ const EditProfile = () => {
           <Col>
             <Note text='Basic user information are hidden for the public view while your photo will be published.' />
             <Ul>
-              {user && (
+              {authCont.user && (
                 <EditSoloLine
                   title={'Name: '}
-                  onClick={userCont.editToggle}
                   onChange={onChange}
-                  value={user.name}
+                  value={name}
+                  name='name'
                 />
               )}
-              {user && (
-                <EditSoloLine
-                  title={'E-Mail: '}
-                  onClick={userCont.editToggle}
-                  value={user.email}
-                />
+              {authCont.user && (
+                <EditSoloLine title={'E-Mail: '} value={email} name='email' />
               )}
-              {user && (
-                <EditSoloLine
-                  title={'Password: '}
-                  value={user.password}
-                  onClick={userCont.editToggle}
-                />
+              {authCont.user && (
+                <EditSoloLine title={'Password: '} name='password' />
               )}
-              {user && <PicUpload />}
+              {authCont.user && <PicUpload />}
             </Ul>
           </Col>
         </GradientContRadius>
@@ -196,28 +248,26 @@ const EditProfile = () => {
               </Notes>
             </NoteWrap>
             <Ul>
-              {user && (
+              {authCont.user && (
                 <EditSoloLine
                   title={'Profile Name: '}
-                  titleVal={user.name}
-                  onClick={userCont.editToggle}
                   onChange={onChange}
-                  value='King Mastering'
+                  value={profileName}
+                  name='profileName'
                 />
               )}
-              {user && (
+              {authCont.user && (
                 <EditTextArea
                   title={'Message: '}
-                  titleVal={user.email}
-                  onClick={userCont.editToggle}
-                  value={user.email}
+                  value={profileMotto}
+                  name='profileMotto'
                 />
               )}
-              {user && (
+              {authCont.user && (
                 <EditTagItem
                   title={'Service Fields: '}
-                  value=''
-                  onClick={userCont.editToggle}
+                  value={services}
+                  name='services'
                 />
               )}
             </Ul>
@@ -236,29 +286,27 @@ const EditProfile = () => {
               </Notes>
             </NoteWrap>
             <Ul>
-              {user && (
+              {authCont.user && (
                 <EditSoloLine
                   title={'Location: '}
-                  titleVal={user.name}
-                  onClick={userCont.editToggle}
                   onChange={onChange}
-                  value='Berlin'
+                  value={location}
+                  name='location'
                 />
               )}
-              {user && (
+              {authCont.user && (
                 <EditTextArea
                   title={'Detailed Description: '}
-                  titleVal={user.email}
-                  onClick={userCont.editToggle}
-                  value={user.email}
+                  value={description}
+                  name='description'
                 />
               )}
-              {user && (
+              {authCont.user && (
                 <EditAddLine
                   title={'Skills & Technologies: '}
-                  value=''
+                  value={skills}
                   placeholder='Ex.: Pro Tools / Overdub Recording ... '
-                  onClick={userCont.editToggle}
+                  name='skills'
                 />
               )}
             </Ul>
@@ -283,7 +331,10 @@ const EditProfile = () => {
           </Col>
         </GradientContRadius>
       </Block>
-    </Fragment>
+      <button type='submit' onClick={onSubmit}>
+        SUBMIT
+      </button>
+    </Form>
   );
 };
 

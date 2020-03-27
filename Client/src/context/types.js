@@ -15,3 +15,4 @@ export const EDIT_TOGGLE = 'EDIT_TOGGLE';
 export const SAVE_TOGGLE = 'SAVE_TOGGLE';
 export const TOGGLE_TAG_BAR = 'TOGGLE_TAG_BAR';
 export const UPLOAD_IMG = 'UPLOAD_IMG';
+export const UPDATE = 'UPDATE';

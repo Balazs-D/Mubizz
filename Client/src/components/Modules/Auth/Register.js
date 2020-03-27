@@ -35,9 +35,7 @@ const Register = props => {
       props.history.push('/');
     }  
     
-    console.log('cp 01');
-   
-    console.log('cp 02');
+    
 
     //eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
@@ -86,7 +84,6 @@ const Register = props => {
             value={name}
             onChange={onChange}
             label='NAME'
-            required
             autoFocus
           />
           <InputStyleForm

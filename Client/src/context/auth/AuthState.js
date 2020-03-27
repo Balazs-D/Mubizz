@@ -10,12 +10,11 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGIN,
   LOGOUT,
+  UPDATE,
   CLEAR_ERRORS,
   SET_ALERT
 } from '../types';
-import { selectFields } from 'express-validator/src/select-fields';
 
 const AuthState = props => {
   const initialState = {
@@ -35,7 +34,7 @@ const AuthState = props => {
     }
 
     try {
-      const res = await axios.get('http://localhost:5000/api/auth');
+      const res = await axios.get('http://localhost:5000/api/profile');
       dispatch({
         type: USER_LOADED,
         payload: res.data
@@ -52,9 +51,10 @@ const AuthState = props => {
         'Content-Type': 'application/json'
       }
     };
+
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/users',
+        'http://localhost:5000/api/register',
         formData,
         config
       );
@@ -82,7 +82,7 @@ const AuthState = props => {
     };
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/auth',
+        'http://localhost:5000/api/login',
         formData,
         config
       );
@@ -94,7 +94,7 @@ const AuthState = props => {
       loadUser();
     } catch (err) {
       dispatch({
-        type: LOGIN,
+        type: LOGIN_FAIL,
         payload: err.response.data.msg
       });
     }
@@ -108,7 +108,35 @@ const AuthState = props => {
 
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
-  
+  //  Update Profile
+  const update = async formData => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+console.log(formData);
+
+    try {
+      const res = await axios.post(
+        'http://localhost:5000/api/profile',
+        formData,
+        config
+      );
+      console.log('try pre dispatch');
+
+      dispatch({
+        type: UPDATE,
+        payload: res.data
+      });
+console.log('pre load user')
+      loadUser();
+      
+
+    } catch (err) {
+      console.log('ERROR UPDATE');
+    }
+  };
 
   return (
     <AuthContext.Provider
@@ -123,6 +151,7 @@ const AuthState = props => {
         login,
         loadUser,
         logout,
+        update
       }}
     >
       {props.children}
