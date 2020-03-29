@@ -44,12 +44,12 @@ const H4 = styled.h4`
   margin-bottom: 10px;
 `;
 
-const EditSoloLine = ({ value, title }) => {
+const EditSoloLine = ({ value, title, name, onChange, onSubmit }) => {
   return (
     <Li>
       <H4>{title}</H4>
 
-      <InputEdit defaultValue={value} />
+      <InputEdit value={value} name={name} onChange={onChange} onSubmit={onSubmit} />
     </Li>
   );
 };

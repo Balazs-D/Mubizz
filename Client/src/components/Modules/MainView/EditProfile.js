@@ -160,6 +160,7 @@ const EditProfile = () => {
   } = user;
 
 
+const [itemArray, setItemArray ] = useState([]);
 
 
   const onChange = e => {
@@ -168,7 +169,21 @@ const EditProfile = () => {
 
   };
 
+  const onTag = e => {
+
+      if(itemArray.includes(e.target.value)){
+      let index = itemArray.indexOf(e.target.value);
+      itemArray.splice(index, 1)
+      }else{
+       itemArray.push(e.target.value);
+      };
+      console.log(itemArray);
+
+
+  }
+
   console.log(user);
+
 
   const onSubmit = e => {
     e.preventDefault();
@@ -261,6 +276,7 @@ const EditProfile = () => {
                   title={'Message: '}
                   value={profileMotto}
                   name='profileMotto'
+                  onChange={onChange}
                 />
               )}
               {authCont.user && (
@@ -268,6 +284,7 @@ const EditProfile = () => {
                   title={'Service Fields: '}
                   value={services}
                   name='services'
+                  onChange={onTag}
                 />
               )}
             </Ul>
@@ -299,6 +316,7 @@ const EditProfile = () => {
                   title={'Detailed Description: '}
                   value={description}
                   name='description'
+                  onChange={onChange}
                 />
               )}
               {authCont.user && (
