@@ -21,7 +21,7 @@ const ButtonBasic = styled.button`
     font-size: ${props => props.theme.fontSizes.small};
   }
 `;
-const Button = ({ className, iconClass, text }) => {
+const ButtonIcon = ({ className, iconClass, text }) => {
   return (
     <div>
       <ButtonBasic className={className}>
@@ -33,4 +33,4 @@ const Button = ({ className, iconClass, text }) => {
     </div>
   );
 };
-export default Button;
+export default ButtonIcon;

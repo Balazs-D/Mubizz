@@ -18,6 +18,7 @@ body {
     sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 ul {
@@ -28,6 +29,4 @@ ul {
 
 li {
   text-decoration: none;
-};
-
-
+}
