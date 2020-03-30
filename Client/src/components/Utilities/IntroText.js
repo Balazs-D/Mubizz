@@ -15,7 +15,8 @@ const IntroText = ({text}) => {
 export default IntroText;
 
 const Notes = styled.div`
-  width: 100%;
+  width: 90%;
+  margin: 30px 0px;
   height: 100%;
   color: ${props => props.theme.colors.secondaryDecent};
   background: ${props => props.theme.colors.white};
@@ -26,4 +27,8 @@ const Notes = styled.div`
   font-family: ${props => props.theme.fontFamily[4]};
   position: relative;
   box-shadow: 0px 0px 0px ${props => props.theme.colors.white};
+  display: flex;
+  justify-content: center;
+  border: 1px solid ${props => props.theme.colors.mainPurple};
+
 `;

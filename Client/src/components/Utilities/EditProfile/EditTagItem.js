@@ -1,5 +1,5 @@
 // Utilities
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 // Component
@@ -45,22 +45,49 @@ const ServiceFieldArray = [
   'Volunteer'
 ];
 
-const EditTagItem = ({ title }) => {
+const EditTagItem = ({ title, onChange }) => {
+
+const [tagArray, setTagArray] = useState([]);
+const [checked, setChecked] = useState(false)
+
+
+     const handleClick = e => {
+       console.log(e.target)
+       
+     };
+
+       
+
+
+
+    useEffect(() => {
+      // if (isAuthenticated) {
+      //   props.history.push('/');
+ console.log(tagArray);
+
+      //eslint-disable-next-line
+    }, [tagArray]);
+
   return (
     <Li>
       <H4>{title}</H4>
       <TagCont>
         {ServiceFieldArray &&
           ServiceFieldArray.map((field, i) => {
+            if(field.checked)tagArray.push();
+
             return (
               <label key={i}>
-                <ButtonCheck key={i} value={field} text={field}></ButtonCheck>
+                <ButtonCheck key={i} value={field} text={field} onClick={handleClick} onChange={onChange}  ></ButtonCheck>
               </label>
             );
           })}
       </TagCont>
     </Li>
   );
+
+ console.log(tagArray);
+
 };
 
 export default EditTagItem;

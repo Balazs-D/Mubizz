@@ -13,6 +13,7 @@ import Input from '../../Utilities/Input';
 import ButtonMain from '../../Utilities/ButtonMain';
 import WinTitle from '../../Utilities/WinTitle';
 import WinTitleOff from '../../Utilities/WinTitleOff';
+import Alert from '../Alerts';
 
 const Login = props => {
   const [user, setUser] = useState({
@@ -63,15 +64,15 @@ const Login = props => {
 
     let res = null;
 
-    try {
-      res = await axios.post('http://localhost:5000/api/auth', {
-        email,
-        password
-      });
-      console.log(res.data);
-    } catch (error) {
-      console.log(error.message);
-    }
+    // try {
+    //   res = await axios.post('http://localhost:5000/api/auth', {
+    //     email,
+    //     password
+    //   });
+    //   console.log(res.data);
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
   };
 
   console.log('Re-rendering', { email, password });
@@ -79,7 +80,7 @@ const Login = props => {
   return (
     <LoginCont onSubmit={onSubmit}>
       <WinTitle text='Login'>Login</WinTitle>
-
+<Alert />
       <Link to='/register'>
         <WinTitleOff text='to registration' component={Link} to='/register'>
           To Registration

@@ -1,7 +1,7 @@
 // Utilities
 import React, { useContext, Fragment } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import AuthCont from '../../../context/auth/authContext';
 
 const FrameCont = styled.div`
@@ -68,6 +68,10 @@ const StyledLink = {
   color: '#30BF97'
   
 };
+const StyledActiveLink = {
+  textDecoration: 'none',
+  color: '#1C377B'
+};
 
 const DashboardSettings = () => {
   const authCont = useContext(AuthCont);
@@ -79,51 +83,79 @@ const DashboardSettings = () => {
         {user && (
           <Fragment>
             <TitleDiv>
-              <h2>{user.name}</h2>
+              <h2>{user.user.name}</h2>
 
               <Status>Pro</Status>
             </TitleDiv>
-            <PicCont src={user.avatar}></PicCont>
+            <PicCont src={user.user.avatar}></PicCont>
             <List>
               <li>
-                <Link to='/dashboard/marked' style={StyledLink}>
+                <NavLink
+                  to='/dashboard/marked'
+                  activeStyle={StyledActiveLink}
+                  style={StyledLink}
+                >
                   Marked Posts
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to='/dashboard/network' style={StyledLink}>
+                <NavLink
+                  to='/dashboard/network'
+                  activeStyle={StyledActiveLink}
+                  style={StyledLink}
+                >
                   Your Network: 4
-                </Link>
+                </NavLink>
               </li>
 
               <li>
-                <Link to='/dashboard/edit-profile' style={StyledLink}>
+                <NavLink
+                  to='/dashboard/edit-profile'
+                  activeStyle={StyledActiveLink}
+                  style={StyledLink}
+                >
                   Edit Profile
-                </Link>
+                </NavLink>
               </li>
 
               <li>
-                <Link to='/dashboard/messages' style={StyledLink}>
+                <NavLink
+                  to='/dashboard/messages'
+                  activeStyle={StyledActiveLink}
+                  style={StyledLink}
+                >
                   Messages
-                </Link>
+                </NavLink>
               </li>
 
               <li>
-                <Link to='/dashboard/settings' style={StyledLink}>
+                <NavLink
+                  to='/dashboard/settings'
+                  activeStyle={StyledActiveLink}
+                  style={StyledLink}
+                >
                   Settings
-                </Link>
+                </NavLink>
               </li>
 
               <li>
-                <Link to='/dashboard/offer-management' style={StyledLink}>
+                <NavLink
+                  to='/dashboard/offer-management'
+                  activeStyle={StyledActiveLink}
+                  style={StyledLink}
+                >
                   Offer Manager
-                </Link>
+                </NavLink>
               </li>
 
               <li>
-                <Link to='/dashboard/deals' style={StyledLink}>
+                <NavLink
+                  to='/dashboard/deals'
+                  activeStyle={StyledActiveLink}
+                  style={StyledLink}
+                >
                   Actual Deals
-                </Link>
+                </NavLink>
               </li>
             </List>
           </Fragment>

@@ -4,24 +4,24 @@ import React, { useState } from 'react';
 // Components
 import CheckBox from '../Utilities/CheckBox'
 
-const ButtonCheck = ({text, value }) => {
+const ButtonCheck = ({text, value, onClick, ...props }) => {
 
-  const [checked, setChecked ] = useState(false);
-  const handleCheckboxChange = e => setChecked( e.target.checked );
-  const handleClick = e => {
-    console.log(e.target.value);
-    console.log(checked);
-  };
+  const [checkedItem, setCheckedItem ] = useState(false);
+  const handleCheckboxChange = e => setCheckedItem( e.target.checked );
 
+
+console.log(checkedItem)
    return (
      <div style={{ fontFamily: 'system-ui' }}>
        <label>
          <CheckBox
-           checked={checked}
-           onClick={handleClick}
+           checked={checkedItem}
+           onClick={onClick}
            onChange={handleCheckboxChange}
            text={text}
            value={value}
+           {...props}
+           
          />
         
        </label>

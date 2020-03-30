@@ -1,33 +1,23 @@
 // Utilities
-import React, { useContext, useState, Fragment } from 'react';
+import React, { useContext, useState  } from 'react';
 import styled from 'styled-components';
 import UserCont from '../../../context/user/userContext';
 import AuthCont from '../../../context/auth/authContext';
 
 // Component
 
-import Input from '../../Utilities/Input';
-import BoardCont from '../../Utilities/BoardCont';
-import ButtonLight from '../../Utilities/ButtonLight';
+
 import EditSoloLine from '../../Utilities/EditProfile/EditSoloLine';
 import EditTextArea from '../../Utilities/EditProfile/EditTextArea';
 import EditTagItem from '../../Utilities/EditProfile/EditTagItem';
 import EditReadLine from '../../Utilities/EditProfile/EditReadLine';
 import EditAddLine from '../../Utilities/EditProfile/EditAddLine';
+import PicUpload from '../../Utilities/PicUpload/PicUpload';
+import Note from '../../Utilities/Notes';
+import ProcessDiagram from '../../Utilities/EditProfile/ProcessDiagram';
+import IntroText from '../../Utilities/IntroText';
 
 // Styled Comp
-
-const GradientCont = styled.div`
-  display: flex;
-  /* margin-top: 17.5vw; */
-  justify-content: center;
-  align-items: center;
-  background-image: linear-gradient(
-    ${props => props.theme.colors.basicBlue},
-    ${props => props.theme.colors.danger}
-  );
-  padding: 1px;
-`;
 
 const GradientContRadius = styled.div`
   display: flex;
@@ -44,50 +34,9 @@ const GradientContRadius = styled.div`
   margin-bottom: 50px;
 `;
 
-const Main = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center;
-padding: 0px;
-width: 55vw;
-margin-right: 0%;
-position: relative;
-
-z-index: 0;
-background: ${props => props.theme.colors.white};
-
-/* border: 1px solid ${props => props.theme.colors.mainPurple}; */
-`;
-
 const Form = styled.form`
-  display: flex;
-  /* width: 100%; */
-  justify-content: center;
-  align-content: flex-end;
-  flex-direction: column;
-  background: green;
+  display: contents;
 `;
-
-const SiteName = styled.h2`
-  color: white;
-  background: ${props => props.theme.colors.basicBlue};
-  font-family: ${props => props.theme.fontFamily[5]};
-  padding: 5px 10px;
-
-  width: 100%;
-`;
-
-const ContDiv = styled.form`
-  width: 100%;
-  /* border: 1px solid ${props => props.theme.colors.info}; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0px 0px;
-`;
-
-
 
 const Block = styled.div`
   width: 100%;
@@ -95,14 +44,15 @@ const Block = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
-position: relative;
+  position: relative;
+
   flex-direction: column;
 `;
 
 const Title = styled.h3`
   background: white;
-position: relative; 
-z-index: 10;
+  position: relative;
+  z-index: 10;
   font-weight: light;
   padding: 0px 15px 0px 15px;
   font-family: ${props => props.theme.fontFamily[5]};
@@ -126,15 +76,7 @@ const Ul = styled.ul`
   color: ${props => props.theme.colors.mainPurple};
 `;
 
-const Li = styled.li`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-const Row = styled.div`
+const Col = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -148,6 +90,7 @@ const Row = styled.div`
   );
   padding: 15px 0px;
 `;
+
 const Notes = styled.div`
   width: 100%;
   height: 100%;
@@ -174,73 +117,145 @@ const NoteWrap = styled.div`
   box-shadow: 4px 4px 1px 0px ${props => props.theme.colors.info};
 `;
 
+const SiteName = styled.h2`
+  color: white;
+  background: ${props => props.theme.colors.basicBlue};
+  font-family: ${props => props.theme.fontFamily[5]};
+  padding: 5px 10px;
 
-
-const HeaderText = styled.h3`
-  width: 150%;
-  font-size: ${props => props.theme.fontSizes.small};
-`;
-
-const H4 = styled.h4`
-  width: 80%;
-  font-size: ${props => props.theme.fontSizes.small};
+  width: 100%;
 `;
 
 const EditProfile = () => {
-  const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
-  const { user } = authCont;
+
+  const [user, setUser] = useState({
+    name:'',
+    email:'',
+    profileName:'',
+    profileMotto:'',
+    description:'',
+    services:'',
+    website:'',
+    location:'',
+    languages:'',
+    skills:'',
+    reference:'',
+    social:''
+  });
+
+  const {
+    name,
+    email,
+    profileName,
+    profileMotto,
+    description,
+    services,
+    website,
+    location,
+    languages,
+    skills,
+    reference,
+    social
+  } = user;
+
+
+const [itemArray, setItemArray ] = useState([]);
+
 
   const onChange = e => {
-    console.log({ ...user, [e.target.name]: e.target.value });
+    setUser({ ...user, [e.target.name]: e.target.value });
+    console.log(e.target.value);
+
   };
 
-  console.log(userCont);
+  const onTag = e => {
+
+      if(itemArray.includes(e.target.value)){
+      let index = itemArray.indexOf(e.target.value);
+      itemArray.splice(index, 1)
+      }else{
+       itemArray.push(e.target.value);
+      };
+      console.log(itemArray);
+
+
+  }
+
+  console.log(user);
+
+
+  const onSubmit = e => {
+    e.preventDefault();
+    console.log('on submit');
+    //  if (name === '' || email === '' || password === '') {
+    //    setAlert('Please enter all fields');
+    //    console.log('error 02');
+    //  }
+    //  if (error === 'User already exists') {
+    //    setAlert(error);
+    //    clearErrors();
+    //  } else {
+      console.log('test 01')
+    authCont.update({
+      // FormData
+      name,
+      email,
+      profileName,
+      profileMotto,
+      description,
+      services,
+      website,
+      location,
+      languages,
+      skills,
+      reference,
+      social
+    });
+      console.log('test 02');
+
+    console.log(authCont);
+  };
+
+  
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
   return (
-    <Fragment>
+    <Form onSubmit={onSubmit}>
+      <SiteName>Edit Profile</SiteName>
+
+      <IntroText text='Update your profile to get access to the features you need!' />
+      <ProcessDiagram />
       <Block>
         <Title>Basic User Infos</Title>
         <GradientContRadius>
-          <Row>
-            <NoteWrap>
-              <Notes>
-                Basic user information are hidden for the public view.{' '}
-              </Notes>
-            </NoteWrap>
+          <Col>
+            <Note text='Basic user information are hidden for the public view while your photo will be published.' />
             <Ul>
-              {user && (
+              {authCont.user && (
                 <EditSoloLine
                   title={'Name: '}
-                  onClick={userCont.editToggle}
                   onChange={onChange}
-                  value={user.name}
+                  value={name}
+                  name='name'
                 />
               )}
-              {user && (
-                <EditSoloLine
-                  title={'E-Mail: '}
-                  onClick={userCont.editToggle}
-                  value={user.email}
-                />
+              {authCont.user && (
+                <EditSoloLine title={'E-Mail: '} value={email} name='email' />
               )}
-              {user && (
-                <EditSoloLine
-                  title={'Password: '}
-                  value={user.password}
-                  onClick={userCont.editToggle}
-                />
+              {authCont.user && (
+                <EditSoloLine title={'Password: '} name='password' />
               )}
+              {authCont.user && <PicUpload />}
             </Ul>
-          </Row>
+          </Col>
         </GradientContRadius>
       </Block>
 
       <Block>
         <Title>Profile Infos</Title>
         <GradientContRadius>
-          <Row>
+          <Col>
             <NoteWrap>
               <Notes>
                 Profile information are public. You need to fill all fields to
@@ -248,39 +263,39 @@ const EditProfile = () => {
               </Notes>
             </NoteWrap>
             <Ul>
-              {user && (
+              {authCont.user && (
                 <EditSoloLine
                   title={'Profile Name: '}
-                  titleVal={user.name}
-                  onClick={userCont.editToggle}
                   onChange={onChange}
-                  value='King Mastering'
+                  value={profileName}
+                  name='profileName'
                 />
               )}
-              {user && (
+              {authCont.user && (
                 <EditTextArea
                   title={'Message: '}
-                  titleVal={user.email}
-                  onClick={userCont.editToggle}
-                  value={user.email}
+                  value={profileMotto}
+                  name='profileMotto'
+                  onChange={onChange}
                 />
               )}
-              {user && (
+              {authCont.user && (
                 <EditTagItem
                   title={'Service Fields: '}
-                  value=''
-                  onClick={userCont.editToggle}
+                  value={services}
+                  name='services'
+                  onChange={onTag}
                 />
               )}
             </Ul>
-          </Row>
+          </Col>
         </GradientContRadius>
       </Block>
 
       <Block>
         <Title>Membership Infos</Title>
         <GradientContRadius>
-          <Row>
+          <Col>
             <NoteWrap>
               <Notes>
                 Membership information are public. You need to fill all fields
@@ -288,52 +303,56 @@ const EditProfile = () => {
               </Notes>
             </NoteWrap>
             <Ul>
-              {user && (
+              {authCont.user && (
                 <EditSoloLine
                   title={'Location: '}
-                  titleVal={user.name}
-                  onClick={userCont.editToggle}
                   onChange={onChange}
-                  value='Berlin'
+                  value={location}
+                  name='location'
                 />
               )}
-              {user && (
+              {authCont.user && (
                 <EditTextArea
                   title={'Detailed Description: '}
-                  titleVal={user.email}
-                  onClick={userCont.editToggle}
-                  value={user.email}
+                  value={description}
+                  name='description'
+                  onChange={onChange}
                 />
               )}
-              {user && (
+              {authCont.user && (
                 <EditAddLine
                   title={'Skills & Technologies: '}
-                  value=''
-                  onClick={userCont.editToggle}
+                  value={skills}
+                  placeholder='Ex.: Pro Tools / Overdub Recording ... '
+                  name='skills'
                 />
               )}
             </Ul>
-          </Row>
+          </Col>
         </GradientContRadius>
       </Block>
 
       <Block>
         <GradientContRadius>
           <Title>Works</Title>
-          <Row>
+          <Col>
             <NoteWrap>
               <Notes>
-                After you created at least one of each item your profile will reach the PRO level. 
+                After you created at least one of each item your profile will
+                reach the PRO level.
               </Notes>
             </NoteWrap>
             <Ul>
               <EditReadLine title='Offers' value='5'></EditReadLine>
               <EditReadLine title='References' value='7'></EditReadLine>
             </Ul>
-          </Row>
+          </Col>
         </GradientContRadius>
       </Block>
-    </Fragment>
+      <button type='submit' onClick={onSubmit}>
+        SUBMIT
+      </button>
+    </Form>
   );
 };
 

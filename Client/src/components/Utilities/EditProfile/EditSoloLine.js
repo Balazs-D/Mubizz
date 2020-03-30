@@ -37,7 +37,7 @@ const H4 = styled.h4`
   margin-bottom: 10px;
 `;
 
-const EditSoloLine = ({ value, title, onClick }) => {
+const EditSoloLine = ({ value, title, onChange, name }) => {
   const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
   const { user } = authCont;
@@ -47,11 +47,10 @@ const EditSoloLine = ({ value, title, onClick }) => {
       <H4>{title}</H4>
      
        
-          <InputEdit value={value}/>
+          <InputEdit value={value} name={name} onChange={onChange} />
      
     
          
-          {/* <ButtonLight onClick={onClick} text='Edit'></ButtonLight> */}
        
     
     </Li>
