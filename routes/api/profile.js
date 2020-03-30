@@ -10,7 +10,7 @@ router.get('/me', auth, async (req, res) => {
 
         const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar'])
         if (!profile) {
-            return res.status(400).json({ msg: 'The is no profile for this user' })
+            return res.status(400).json({ msg: 'There is no profile for this user' })
         }
         res.json(profile)
 
@@ -30,36 +30,10 @@ router.post('/', auth,
 
 
     async (req, res) => {
-        //const errors = validationResult(req)
-        /* if (!errors.isEmpty()) {
-             return res.status(400).json({ errors: errors.array() })
-         }
-         const {
-             profileN,
-             motto,
-             offeredServices
- 
-         } = req.body
-         console.log(req.user.id)*/
-        //build profile infos
+
         const profileFields = { user: req.user.id, title, profileName, profileMotto, description, services, website, location, languages, skills, reference, social } = req.body
 
-        /*if (profileN) profileFields.profileN = profileN
-        if (motto) profileFields.motto = motto
-        if (offeredServices) profileFields.offeredServices = offeredServices
 
-        //if (skill) {
-        //     profileFields.skills = skills.split(',').map(skill => skill.trim())
-        //}
-
-        // build social object
-
-        /* profileFields.social = {}
-         if (twitter) profileFields.social.twitter = twitter;
-         if (facebook) profileFields.social.facebook = facebook;
-         if (linkedin) profileFields.social.linkedin = linkedin;
-         if (instagram) profileFields.social.instagram = instagram;
-         */
         try {
             console.log(Profile)
             let profile = await Profile.findOne({ user: req.user.id })
