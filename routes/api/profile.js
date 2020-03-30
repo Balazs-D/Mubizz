@@ -31,7 +31,7 @@ router.post('/', auth,
 
     async (req, res) => {
         const userId = req.user.id
-        const { user = userId, title, profileName, profileMotto, description, services, website, location, languages, skills, reference, social, offers } = req.body
+        const { user = userId, profileName, profileMotto, description, services, website, location, languages, skills, reference, social, offers } = req.body
 
 
         try {
@@ -40,7 +40,7 @@ router.post('/', auth,
 
             if (profile) {
                 // update
-                let profileFields = { user: req.user.id, title, profileName, profileMotto, description, services, website, location, languages, skills, reference, social, offers }
+                let profileFields = { user: req.user.id, profileName, profileMotto, description, services, website, location, languages, skills, reference, social, offers }
                 profile = await Profile.findOneAndUpdate(
                     { user: req.user.id },
                     { $set: profileFields },
@@ -50,7 +50,7 @@ router.post('/', auth,
 
             }
             //create
-            let profileFields = { user: req.user.id, title, profileName, profileMotto, description, services, website, location, languages, skills, reference, social, offers }
+            let profileFields = { user: req.user.id, profileName, profileMotto, description, services, website, location, languages, skills, reference, social, offers }
             profile = new Profile(profileFields)
             console.log(profile)
             await profile.save()
