@@ -5,7 +5,7 @@ const { check, validationResult } = require('express-validator')
 const Profile = require('../../models/Profile')
 const user = require('../../models/User')
 
-router.get('/me', auth, async (req, res) => {
+/*router.get('/me', auth, async (req, res) => {
     try {
 
         const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar'])
@@ -20,7 +20,7 @@ router.get('/me', auth, async (req, res) => {
         res.status(500).send('Server Error')
     }
 
-})
+})*/
 //@ route post api/profile
 //@des  create or update current users profile 
 // @access Private
@@ -31,7 +31,7 @@ router.post('/', auth,
 
     async (req, res) => {
 
-        const profileFields = { user: req.user.id, title, profileName, profileMotto, description, services, website, location, languages, skills, reference, social } = req.body
+        const profileFields = { user: req.user.id, title, profileName, profileMotto, description, services, website, location, languages, skills, reference, social, offers } = req.body
 
 
         try {
@@ -40,7 +40,7 @@ router.post('/', auth,
 
             if (profile) {
                 // update
-                let profileFields = { title, profileName, profileMotto, description, services, website, location, languages, skills, reference, social }
+                let profileFields = { title, profileName, profileMotto, description, services, website, location, languages, skills, reference, social, offers }
                 profile = await Profile.findOneAndUpdate(
                     { user: req.user.id },
                     { $set: profileFields },
@@ -50,6 +50,7 @@ router.post('/', auth,
 
             }
             //create
+            let profileFields = { title, profileName, profileMotto, description, services, website, location, languages, skills, reference, social, offers }
             profile = new Profile(profileFields)
             console.log(profile)
             await profile.save()
