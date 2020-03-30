@@ -1,4 +1,3 @@
-
 {
   "mongoURI": "mongodb+srv://mubizz:mubizz123@mubizz-nszco.mongodb.net/test?retryWrites=true&w=majority",
   "jwtSecret": "mysecrettoken"
