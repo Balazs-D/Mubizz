@@ -130,7 +130,7 @@ return (
         todoList.map((listItem, i) => 
     
         <SkillLi key={i}>
-          <p add={true} >{listItem}</p>
+          <p>{listItem}</p>
           <i className='far fa-trash-alt'></i>
         </SkillLi>
         )

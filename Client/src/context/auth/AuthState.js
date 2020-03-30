@@ -29,12 +29,15 @@ const AuthState = props => {
   //  Load User
 
   const loadUser = async () => {
+
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
 
+
     try {
-      const res = await axios.get('http://localhost:5000/api/profile');
+      // console.log(config)
+      const res = await axios.get('http://localhost:5000/api/profile/me');
       dispatch({
         type: USER_LOADED,
         payload: res.data
@@ -112,16 +115,19 @@ const AuthState = props => {
   const update = async formData => {
     const config = {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-auth-token': state.token
       }
     };
-console.log(formData);
+    //  if (localStorage.token) {
+    //    setAuthToken(localStorage.token);
+    //  }
+    console.log(formData);
 
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/profile',
-        formData,
-        config
+        'http://localhost:5000/api/profile/me',
+        formData
       );
       console.log('try pre dispatch');
 
@@ -129,10 +135,8 @@ console.log(formData);
         type: UPDATE,
         payload: res.data
       });
-console.log('pre load user')
+      console.log('pre load user');
       loadUser();
-      
-
     } catch (err) {
       console.log('ERROR UPDATE');
     }
