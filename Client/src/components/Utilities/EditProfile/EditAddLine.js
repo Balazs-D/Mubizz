@@ -6,15 +6,19 @@ import styled from 'styled-components';
 
 import InputMinimal from '../InputMinimal';
 import ButtonCircle from '../ButtonCircle';
+import AddLineComponent from '../EditProfile/AddLineComponent';
 
 // Styled Comp
 
 const InputEdit = styled(InputMinimal)`
   padding: 1px;
-
-  width: 70%;
+  text-transform: italic;
+  font-weight: lighter;
+  width: 80%;
   &:focus {
     background: ${props => props.theme.colors.white};
+    text-transform: normal;
+    font-weight: bold;
   }
 `;
 
@@ -27,13 +31,54 @@ const Li = styled.li`
   margin: 20px;
 `;
 
-const ItemDiv = styled.div`
-display: flex;
-flex-direction: row;
-width: 100%;
-justify-content: space-between;
-margin-bottom: 10px;
-`
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
+
+const Col = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
+
+const SkillLi = styled.div.attrs({
+  add: true
+})`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  font-size: ${props => props.theme.fontSizes.xm};
+  width: 49%;
+  background: ${props => props.theme.colors.white};
+  padding: 3px 6px;
+  align-items: center; 
+  border-radius: 3px;
+  transition: all 150ms;
+  border: 1px solid ${props =>
+    props.checked ? props.theme.colors.mainPurple : props.theme.colors.info};
+
+  
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+  padding: 5px;
+  height: 25px;
+  background: ${props =>
+    props.checked ? props.theme.colors.warning : props.theme.colors.white};
+  border-radius: 3px;
+  transition: all 150ms;
+  border: 1px solid ${props =>
+    props.checked ? props.theme.colors.mainPurple : props.theme.colors.info};  */
+`;
 
 const H4 = styled.h4`
   width: 100%;
@@ -41,40 +86,59 @@ const H4 = styled.h4`
   margin-bottom: 10px;
 `;
 
-const EditAddLine = ({ value, title }) => {
-  let items = [];
-  const [itemsCounter, setItemsCounter] = useState(1);
+const EditAddLine = ({ title, placeholder }) => {
 
- const addOne = e => {
-   e.preventDefault();
-   setItemsCounter(itemsCounter + 1);
+  const [todoList, setTodoList] = useState([]);
+  const [todo, setTodo] = useState('');
+ 
 
-   console.log(itemsCounter, items);
 
-   return itemsCounter;
- };
 
-  for (let i = 0; i < itemsCounter; i++) {
-    items.push(
-      <ItemDiv>
-        <InputEdit value='test' />
-        <ButtonCircle
-          icon={<i class='fas fa-plus'></i>}
-          onClick={addOne}
-        ></ButtonCircle>
-      </ItemDiv>
-    );
-  };
+const handleButtonClick =(e)=>{
+  e.preventDefault();
+  setTodoList([...todoList, todo]); 
+  setTodo('');
+  return todo
+};
 
-   
 
-  return (
-    <Li>
-      <H4>{title}</H4>
+const deleteItem =()=>{
+
+}
+
+console.log(todo)
+
+return (
+  <Li>
+    <H4>{title}</H4>
+    <Row>
+      <InputEdit
+        placeholder={placeholder}
+        value={todo}
+        onChange={e => setTodo(e.target.value)}
+        type='text'
+        name='input'
+        
+      ></InputEdit>
+
+      <ButtonCircle onClick={handleButtonClick}>
+        <i className='fas fa-plus'></i>
+      </ButtonCircle>
+    </Row>
+    <Col>
+      {
+        todoList.map((listItem, i) => 
+    
+        <SkillLi key={i}>
+          <p>{listItem}</p>
+          <i className='far fa-trash-alt'></i>
+        </SkillLi>
+        )
       
-      {items}
-    </Li>
-  );
+      }
+    </Col>
+  </Li>
+);
 };
 
 export default EditAddLine;

@@ -15,7 +15,7 @@ const Button = styled.button`
   /* font-size: 10px; */
   font-family: sans-serif;
   text-decoration: none;
-  background: ${props => props.theme.colors.info};
+  background: ${props => props.theme.colors.warning};
   border: 1px solid ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.mainPurple};
   text-align: center;

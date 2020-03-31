@@ -33,13 +33,9 @@ const Register = props => {
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push('/');
-    }
-    console.log('cp 01');
-    if (error === 'User already exists') {
-      setAlert(error);
-      clearErrors();
-    }
-    console.log('cp 02');
+    }  
+    
+    
 
     //eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
@@ -53,8 +49,12 @@ const Register = props => {
     e.preventDefault();
     console.log('on submit');
     if (name === '' || email === '' || password === '') {
-      setAlert('Please enter all fields', 'danger');
+      setAlert('Please enter all fields');
       console.log('error 02');
+    }
+    if (error === 'User already exists') {
+      setAlert(error);
+      clearErrors();
     } else {
       register({
         // FormData
@@ -84,7 +84,6 @@ const Register = props => {
             value={name}
             onChange={onChange}
             label='NAME'
-            required
             autoFocus
           />
           <InputStyleForm

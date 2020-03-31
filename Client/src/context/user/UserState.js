@@ -15,7 +15,6 @@ const UserState = props => {
     filterBar: false,
     tagBar: false,
     edit: false,
-    usersArray: []
   };
   const [state, dispatch] = useReducer(UserReducer, initialState);
 

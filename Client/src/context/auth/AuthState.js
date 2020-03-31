@@ -10,9 +10,10 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGIN,
   LOGOUT,
-  CLEAR_ERRORS
+  UPDATE,
+  CLEAR_ERRORS,
+  SET_ALERT
 } from '../types';
 
 const AuthState = props => {
@@ -28,12 +29,15 @@ const AuthState = props => {
   //  Load User
 
   const loadUser = async () => {
+
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
 
+
     try {
-      const res = await axios.get('http://localhost:5000/api/auth');
+      // console.log(config)
+      const res = await axios.get('http://localhost:5000/api/profile/me');
       dispatch({
         type: USER_LOADED,
         payload: res.data
@@ -50,13 +54,17 @@ const AuthState = props => {
         'Content-Type': 'application/json'
       }
     };
+
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/users',
+        'http://localhost:5000/api/register',
         formData,
         config
       );
-      dispatch({ type: REGISTER_SUCCESS, payload: res.data });
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data
+      });
 
       loadUser();
     } catch (err) {
@@ -77,7 +85,7 @@ const AuthState = props => {
     };
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/auth',
+        'http://localhost:5000/api/login',
         formData,
         config
       );
@@ -89,7 +97,7 @@ const AuthState = props => {
       loadUser();
     } catch (err) {
       dispatch({
-        type: LOGIN,
+        type: LOGIN_FAIL,
         payload: err.response.data.msg
       });
     }
@@ -103,6 +111,37 @@ const AuthState = props => {
 
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
+  //  Update Profile
+  const update = async formData => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': state.token
+      }
+    };
+    //  if (localStorage.token) {
+    //    setAuthToken(localStorage.token);
+    //  }
+    console.log(formData);
+
+    try {
+      const res = await axios.post(
+        'http://localhost:5000/api/profile/me',
+        formData
+      );
+      console.log('try pre dispatch');
+
+      dispatch({
+        type: UPDATE,
+        payload: res.data
+      });
+      console.log('pre load user');
+      loadUser();
+    } catch (err) {
+      console.log('ERROR UPDATE');
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -115,7 +154,8 @@ const AuthState = props => {
         clearErrors,
         login,
         loadUser,
-        logout
+        logout,
+        update
       }}
     >
       {props.children}
