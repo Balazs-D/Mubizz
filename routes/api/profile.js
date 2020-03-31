@@ -1,14 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
+
 const { check, validationResult } = require('express-validator');
 const Profile = require('../../models/Profile');
-const user = require('../../models/User');
+const User = require('../../models/User');
+
+
 router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.user.id
-    }).populate('user', ['name', 'avatar']);
+    })
     if (!profile) {
       return res.status(400).json({ msg: 'There is no profile for this user' });
     }
@@ -18,10 +21,12 @@ router.get('/me', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
 //@ route post api/profile
 //@des  create or update current users profile
 // @access Private
 //auth is middleware validation
+
 router.post('/', auth, async (req, res) => {
   const userId = req.user.id;
   const {
@@ -94,10 +99,12 @@ router.get('/', async (req, res) => {
   try {
     console.log(Profile);
     let profile = await Profile.findOne({ user: req.user.id });
+
     if (profile) {
       // update
       let profileFields = {
         user: req.user.id,
+
         profileName,
         profileMotto,
         description,
@@ -120,6 +127,7 @@ router.get('/', async (req, res) => {
     //create
     let profileFields = {
       user: req.user.id,
+
       profileName,
       profileMotto,
       description,
@@ -132,6 +140,7 @@ router.get('/', async (req, res) => {
       social,
       offers
     };
+
     profile = new Profile(profileFields);
     console.log(profile);
     await profile.save();
@@ -140,12 +149,13 @@ router.get('/', async (req, res) => {
     console.error(err.message);
     res.status(500).send('server Error');
   }
+
 });
 // Get api/profile
 //  Get all profiles
 router.get('/', async (req, res) => {
   try {
-    const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+    const profiles = await Profile.find();
     res.json(profiles);
   } catch (err) {
     console.error(err.message);
@@ -158,7 +168,7 @@ router.get('/user/:user_id', async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.user_id
-    }).populate('user', ['name', 'avatar']);
+    })
     if (!profile)
       return res.status(400).json({ msg: 'there is no profile for this user' });
     res.json(profiles);
