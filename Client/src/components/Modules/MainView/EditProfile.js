@@ -130,8 +130,7 @@ const EditProfile = () => {
   const authCont = useContext(AuthCont);
 
   const [user, setUser] = useState({
-    name:'',
-    email:'',
+   
     profileName:'',
     profileMotto:'',
     description:'',
@@ -141,12 +140,11 @@ const EditProfile = () => {
     languages:'',
     skills:'',
     reference:'',
-    social:''
+    social:'',
+    offers: ''
   });
 
   const {
-    name,
-    email,
     profileName,
     profileMotto,
     description,
@@ -156,7 +154,8 @@ const EditProfile = () => {
     languages,
     skills,
     reference,
-    social
+    social,
+    offers
   } = user;
 
 
@@ -199,8 +198,6 @@ const [itemArray, setItemArray ] = useState([]);
       console.log('test 01')
     authCont.update({
       // FormData
-      name,
-      email,
       profileName,
       profileMotto,
       description,
@@ -210,14 +207,15 @@ const [itemArray, setItemArray ] = useState([]);
       languages,
       skills,
       reference,
-      social
+      social,
+      offers
     });
       console.log('test 02');
 
     console.log(authCont);
   };
 
-  
+  console.log(authCont)
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
   return (
@@ -236,13 +234,13 @@ const [itemArray, setItemArray ] = useState([]);
                 <EditSoloLine
                   title={'Name: '}
                   onChange={onChange}
-                  value={name}
+                  value={user.name}
                   name='name'
                 />
               )}
-              {authCont.user && (
+              {/* {authCont.user && (
                 <EditSoloLine title={'E-Mail: '} value={email} name='email' />
-              )}
+              )} */}
               {authCont.user && (
                 <EditSoloLine title={'Password: '} name='password' />
               )}
