@@ -113,15 +113,10 @@ const AuthState = props => {
 
   //  Update Profile
   const update = async formData => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-auth-token': state.token
-      }
-    };
-    //  if (localStorage.token) {
-    //    setAuthToken(localStorage.token);
-    //  }
+    
+     if (localStorage.token) {
+       setAuthToken(localStorage.token);
+     }
     console.log(formData);
 
     try {
