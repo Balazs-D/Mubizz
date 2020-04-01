@@ -26,7 +26,7 @@ const Login = props => {
 
   const { email, password } = user;
   const { setAlert } = alertCont;
-  const { login, error, clearErrors, isAuthenticated } = authCont;
+  const { login, getUserData, error, clearErrors, isAuthenticated } = authCont;
 
   // Re-render  //  Re-direct
   useEffect(() => {
@@ -60,6 +60,7 @@ const Login = props => {
         email,
         password
       });
+      getUserData()
     }
 
     let res = null;

@@ -15,6 +15,7 @@ const UserState = props => {
     filterBar: false,
     tagBar: false,
     edit: false,
+    selectedTags: [],
   };
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
@@ -55,6 +56,7 @@ const UserState = props => {
         filterBar: state.filterBar,
         tagBar: state.tagBar,
         edit: state.edit,
+        selectedTags: state.selectedTags,
         toggleFilterBar,
         getUsers,
         editToggle,

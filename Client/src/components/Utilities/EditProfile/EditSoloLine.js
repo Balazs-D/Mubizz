@@ -47,7 +47,7 @@ const EditSoloLine = ({ value, title, onChange, name }) => {
       <H4>{title}</H4>
      
        
-          <InputEdit value={value} name={name} onChange={onChange} />
+          <InputEdit value={value} name={name} onChange={onChange}  />
      
     
          

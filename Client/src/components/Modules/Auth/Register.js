@@ -27,7 +27,7 @@ const Register = props => {
 
   const { name, email, password } = user;
   const { setAlert } = alertCont;
-  const { register, error, clearErrors, isAuthenticated } = authCont;
+  const { register, error, getUserData, clearErrors, isAuthenticated } = authCont;
 
   // Re-render  //  Re-direct
   useEffect(() => {
@@ -62,6 +62,8 @@ const Register = props => {
         email,
         password
       });
+      getUserData()
+
     }
     console.log(authCont);
   };

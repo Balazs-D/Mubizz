@@ -2,10 +2,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+
 // Component
 
 import ButtonCheck from '../../Utilities//ButtonCheck';
-
+import UserCont from '../../../context/user/userContext';
 // Styled Comp
 
 const Li = styled.li`
@@ -47,12 +48,11 @@ const ServiceFieldArray = [
 
 const EditTagItem = ({ title, onChange }) => {
 
-const [tagArray, setTagArray] = useState([]);
-const [checked, setChecked] = useState(false)
+const userCont = useContext(UserCont);
 
 
      const handleClick = e => {
-       console.log(e.target)
+       console.log(e.target.value)
        
      };
 
@@ -63,10 +63,10 @@ const [checked, setChecked] = useState(false)
     useEffect(() => {
       // if (isAuthenticated) {
       //   props.history.push('/');
- console.log(tagArray);
+ console.log(userCont.selectedTags);
 
       //eslint-disable-next-line
-    }, [tagArray]);
+    }, [userCont.selectedTags]);
 
   return (
     <Li>
@@ -74,7 +74,6 @@ const [checked, setChecked] = useState(false)
       <TagCont>
         {ServiceFieldArray &&
           ServiceFieldArray.map((field, i) => {
-            if(field.checked)tagArray.push();
 
             return (
               <label key={i}>
@@ -86,7 +85,6 @@ const [checked, setChecked] = useState(false)
     </Li>
   );
 
- console.log(tagArray);
 
 };
 

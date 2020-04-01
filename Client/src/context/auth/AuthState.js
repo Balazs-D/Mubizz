@@ -13,6 +13,7 @@ import {
   LOGOUT,
   UPDATE,
   CLEAR_ERRORS,
+  PROFILE_LOADED,
   SET_ALERT
 } from '../types';
 
@@ -22,6 +23,7 @@ const AuthState = props => {
     isAuthenticated: null,
     loading: true,
     user: null,
+    profile: [],
     error: null
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -31,13 +33,18 @@ const AuthState = props => {
   const loadUser = async () => {
 
     if (localStorage.token) {
+
+      console.log(localStorage.token)
       setAuthToken(localStorage.token);
     }
 
 
     try {
-      // console.log(config)
-      const res = await axios.get('http://localhost:5000/api/profile/me');
+      console.log('Load User TRY')
+
+      // look fo the user 
+
+      const res = await axios.get('http://localhost:5000/api/login');
       dispatch({
         type: USER_LOADED,
         payload: res.data
@@ -46,6 +53,20 @@ const AuthState = props => {
       dispatch({ type: AUTH_ERROR });
     }
   };
+
+  const getUserData = async () => {
+
+    try {const res = await axios.get('http://localhost:5000/api/profile/me');
+
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data
+    });
+      
+    } catch (error) {
+      console.log('getUserData error')
+    }
+  }
 
   //  Register User
   const register = async formData => {
@@ -114,24 +135,21 @@ const AuthState = props => {
   //  Update Profile
   const update = async formData => {
     
-     if (localStorage.token) {
-       setAuthToken(localStorage.token);
-     }
-    console.log(formData);
+  
 
     try {
+
+          console.log(formData);
+
+
       const res = await axios.post(
-        'http://localhost:5000/api/profile/me',
+        'http://localhost:5000/api/profile',
         formData
       );
       console.log('try pre dispatch');
 
-      dispatch({
-        type: UPDATE,
-        payload: res.data
-      });
       console.log('pre load user');
-      loadUser();
+      // loadUser();
     } catch (err) {
       console.log('ERROR UPDATE');
     }
@@ -150,7 +168,8 @@ const AuthState = props => {
         login,
         loadUser,
         logout,
-        update
+        update,
+        getUserData
       }}
     >
       {props.children}

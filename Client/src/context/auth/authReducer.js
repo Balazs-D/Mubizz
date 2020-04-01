@@ -5,6 +5,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  PROFILE_LOADED,
   UPDATE,
   LOGOUT,
   CLEAR_ERRORS
@@ -19,9 +20,14 @@ export default (state, action) => {
         loading: false,
         user: action.payload
       };
+
+    case PROFILE_LOADED:
+      return {
+        ...state,
+        profile: action.payload
+      };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-    case UPDATE:
       localStorage.setItem('token', action.payload.token);
       return {
         ...state,
@@ -41,7 +47,7 @@ export default (state, action) => {
         isAuthenticated: false,
         loading: false,
         user: null,
-        error: action.payload,
+        error: action.payload
         // name: null,
         // email: null
       };

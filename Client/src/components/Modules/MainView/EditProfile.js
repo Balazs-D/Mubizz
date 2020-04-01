@@ -1,5 +1,5 @@
 // Utilities
-import React, { useContext, useState  } from 'react';
+import React, { useContext, useState, useEffect  } from 'react';
 import styled from 'styled-components';
 import UserCont from '../../../context/user/userContext';
 import AuthCont from '../../../context/auth/authContext';
@@ -16,6 +16,7 @@ import PicUpload from '../../Utilities/PicUpload/PicUpload';
 import Note from '../../Utilities/Notes';
 import ProcessDiagram from '../../Utilities/EditProfile/ProcessDiagram';
 import IntroText from '../../Utilities/IntroText';
+import userContext from '../../../context/user/userContext';
 
 // Styled Comp
 
@@ -128,20 +129,20 @@ const SiteName = styled.h2`
 
 const EditProfile = () => {
   const authCont = useContext(AuthCont);
+  const userCont = useContext(UserCont);
 
   const [user, setUser] = useState({
-   
-    profileName:'',
-    profileMotto:'',
-    description:'',
-    services:'',
-    website:'',
-    location:'',
-    languages:'',
-    skills:'',
-    reference:'',
-    social:'',
-    offers: ''
+    profileName: '',
+    profileMotto: '',
+    description: '',
+    services: [`${userCont.selectedTags}`],
+    website: '',
+    location: '',
+    languages: [''],
+    skills: [{}],
+    reference: [],
+    social: {},
+    offers: {}
   });
 
   const {
@@ -159,7 +160,11 @@ const EditProfile = () => {
   } = user;
 
 
-const [itemArray, setItemArray ] = useState([]);
+useEffect(()=>{
+authCont.loadUser();
+console.log('USE EFFECT')
+
+}, [])
 
 
   const onChange = e => {
@@ -170,18 +175,15 @@ const [itemArray, setItemArray ] = useState([]);
 
   const onTag = e => {
 
-      if(itemArray.includes(e.target.value)){
-      let index = itemArray.indexOf(e.target.value);
-      itemArray.splice(index, 1)
-      }else{
-       itemArray.push(e.target.value);
-      };
-      console.log(itemArray);
+      setUser({ ...user, [services]: userCont.selectedTags });
+      console.log(e.target.name);
+      console.log('Tag works')
 
 
   }
 
   console.log(user);
+      console.log(userCont.selectedTags);
 
 
   const onSubmit = e => {
@@ -215,6 +217,8 @@ const [itemArray, setItemArray ] = useState([]);
     console.log(authCont);
   };
 
+  
+
   console.log(authCont)
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
@@ -234,7 +238,7 @@ const [itemArray, setItemArray ] = useState([]);
                 <EditSoloLine
                   title={'Name: '}
                   onChange={onChange}
-                  value={user.name}
+                  value={authCont.user.name}
                   name='name'
                 />
               )}
@@ -265,7 +269,7 @@ const [itemArray, setItemArray ] = useState([]);
                 <EditSoloLine
                   title={'Profile Name: '}
                   onChange={onChange}
-                  value={profileName}
+                  value={authCont.profileName}
                   name='profileName'
                 />
               )}

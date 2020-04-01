@@ -83,11 +83,11 @@ const DashboardSettings = () => {
         {user && (
           <Fragment>
             <TitleDiv>
-              <h2>{user.user.name}</h2>
+              <h2>{user.name}</h2>
 
               <Status>Pro</Status>
             </TitleDiv>
-            <PicCont src={user.user.avatar}></PicCont>
+            <PicCont src={user.avatar}></PicCont>
             <List>
               <li>
                 <NavLink
