@@ -27,20 +27,28 @@ const DashboardSidebar = styled.div`
 
 const TitleDiv = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  border-left: 3px solid ${props=>props.theme.colors.mainPurple};
+padding-left: 10px;
+  justify-content: flex-start;
 `;
 
-const Status = styled.h5`
+const Status = styled.p`
   color: ${props => props.theme.colors.gradientYellow};
   background: ${props => props.theme.colors.mainRed};
-  border-radius: 25vw;
+  border-radius: 2px;
+  
+  display: flex;
+  align-self: flex-start;
+  justify-self: center;
+  
   border: 1px solid ${props => props.theme.colors.mainPurple};
+  font-size: ${props=>props.theme.fontSizes.xm};
   font-family: ${props => props.theme.fontFamily[4]};
   font-weight: 100;
   padding: 0 10px;
-  line-height: 2;
-  height: 28px;
+  /* line-height: 2; */
+  /* height: 28px; */
 `;
 
 const List = styled.ul`
@@ -75,7 +83,7 @@ const StyledActiveLink = {
 
 const DashboardSettings = () => {
   const authCont = useContext(AuthCont);
-  const { user } = authCont;
+  const { user, profile } = authCont;
 
   return (
     <FrameCont>
@@ -83,7 +91,8 @@ const DashboardSettings = () => {
         {user && (
           <Fragment>
             <TitleDiv>
-              <h2>{user.name}</h2>
+             {profile.profileName ? <h2>{profile.profileName}</h2> : <h2>{user.name}</h2> }
+             {/* {profile.profileName ? <h3>{user.name}</h3> : null } */}
 
               <Status>Pro</Status>
             </TitleDiv>

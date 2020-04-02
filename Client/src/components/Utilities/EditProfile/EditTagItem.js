@@ -29,7 +29,16 @@ const TagCont = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 95%;
+  width: 90%;
+  padding: 10px;
+  border: 1px solid ${props=>props.theme.colors.info};
+  border-radius: 4px;
+  background: ${props=>props.theme.colors.white};
+`;
+
+const Label = styled.label`
+  color: ${props => props.theme.colors.mainPurple};
+  font-size: ${props => props.theme.fontSizes.small};
 `;
 
 const ServiceFieldArray = [
@@ -46,7 +55,7 @@ const ServiceFieldArray = [
   'Volunteer'
 ];
 
-const EditTagItem = ({ title, onChange }) => {
+const EditTagItem = ({ title, onChange, label }) => {
 
 const userCont = useContext(UserCont);
 
@@ -74,14 +83,20 @@ const userCont = useContext(UserCont);
       <TagCont>
         {ServiceFieldArray &&
           ServiceFieldArray.map((field, i) => {
-
             return (
               <label key={i}>
-                <ButtonCheck key={i} value={field} text={field} onClick={handleClick} onChange={onChange}  ></ButtonCheck>
+                <ButtonCheck
+                  key={i}
+                  value={field}
+                  text={field}
+                  onClick={handleClick}
+                  onChange={onChange}
+                ></ButtonCheck>
               </label>
             );
           })}
       </TagCont>
+      <Label>{label}</Label>
     </Li>
   );
 

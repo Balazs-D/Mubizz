@@ -22,6 +22,11 @@ const InputEdit = styled(InputMinimal)`
   }
 `;
 
+const Label = styled.label`
+color: ${props=>props.theme.colors.mainPurple};
+font-size: ${props=>props.theme.fontSizes.small};
+`
+
 const Li = styled.li`
   display: flex;
   flex-direction: column;
@@ -37,7 +42,7 @@ const H4 = styled.h4`
   margin-bottom: 10px;
 `;
 
-const EditSoloLine = ({ value, title, onChange, name }) => {
+const EditSoloLine = ({ value, title, onChange, name, label }) => {
   const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
   const { user } = authCont;
@@ -45,14 +50,9 @@ const EditSoloLine = ({ value, title, onChange, name }) => {
   return (
     <Li>
       <H4>{title}</H4>
-     
-       
-          <InputEdit value={value} name={name} onChange={onChange}  />
-     
-    
-         
-       
-    
+
+      <InputEdit value={value} name={name} onChange={onChange} />
+      <Label>{label}</Label>
     </Li>
   );
 };

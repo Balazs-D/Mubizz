@@ -2,7 +2,8 @@ import {
   TOGGLE_FILTER_BAR,
   GET_USERS,
   EDIT_TOGGLE,
-  TOGGLE_TAG_BAR
+  TOGGLE_TAG_BAR,
+  IS_SUBMITTED
 } from '../types';
 
 export default (state, action) => {
@@ -31,6 +32,12 @@ export default (state, action) => {
         ...state,
         tagBar: !state.tagBar
       };
+
+      case IS_SUBMITTED:
+        return {
+          ...state,
+          isSubmitted: true,
+        }
 
     default:
       return state;

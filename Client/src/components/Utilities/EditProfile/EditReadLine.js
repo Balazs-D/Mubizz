@@ -17,6 +17,8 @@ const Display = styled.p`
   
 `;
 
+
+
 const Li = styled.li`
   display: flex;
   flex-direction: row;
@@ -30,6 +32,7 @@ const Li = styled.li`
 const H4 = styled.h4`
   width: 100%;
   font-size: ${props => props.theme.fontSizes.small};
+  color: ${props => props.theme.colors.mainPurple};
   margin-bottom: 10px;
 `;
 
@@ -43,6 +46,7 @@ const EditReadLine = ({ value, title, onClick }) => {
       <H4>{title}</H4>
 
       <Display>{value}</Display>
+     
 
       {/* <ButtonLight onClick={onClick} text='Edit'></ButtonLight> */}
     </Li>

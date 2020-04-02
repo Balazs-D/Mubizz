@@ -26,12 +26,13 @@ const Login = props => {
 
   const { email, password } = user;
   const { setAlert } = alertCont;
-  const { login, getUserData, error, clearErrors, isAuthenticated } = authCont;
+  const { login, getProfile, error, clearErrors, isAuthenticated } = authCont;
 
   // Re-render  //  Re-direct
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push('/');
+      // getProfile();
     }
     console.log('cp 01');
     if (error === 'Invalid Credentials') {
@@ -60,7 +61,7 @@ const Login = props => {
         email,
         password
       });
-      getUserData()
+      
     }
 
     let res = null;

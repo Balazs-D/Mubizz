@@ -36,7 +36,7 @@ const StyledCheckbox = styled.div`
   padding: 5px;
   height: 25px;
   background: ${props =>
-    props.checked ? props.theme.colors.warning : props.theme.colors.white};
+    props.checked ? props.theme.colors.gradientYellow : props.theme.colors.white};
   border-radius: 3px;
   transition: all 150ms;
   border: 1px solid ${props =>

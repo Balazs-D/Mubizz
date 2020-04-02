@@ -17,3 +17,4 @@ export const TOGGLE_TAG_BAR = 'TOGGLE_TAG_BAR';
 export const UPLOAD_IMG = 'UPLOAD_IMG';
 export const UPDATE = 'UPDATE';
 export const PROFILE_LOADED = 'PROFILE_LOADED';
+export const IS_SUBMITTED = 'IS_SUBMITTED'

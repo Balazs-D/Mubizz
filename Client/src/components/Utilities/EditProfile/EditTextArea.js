@@ -44,14 +44,27 @@ const H4 = styled.h4`
   margin-bottom: 10px;
 `;
 
-const EditSoloLine = ({ value, title, name, onChange, onSubmit }) => {
+const Label = styled.label`
+  color: ${props => props.theme.colors.mainPurple};
+  font-size: ${props => props.theme.fontSizes.small};
+`;
+
+const EditTextArea = ({ value, title, name, onChange, onSubmit, spellCheck, placeholder, label }) => {
   return (
     <Li>
       <H4>{title}</H4>
 
-      <InputEdit value={value} name={name} onChange={onChange} onSubmit={onSubmit} />
+      <InputEdit
+        value={value}
+        name={name}
+        onChange={onChange}
+        onSubmit={onSubmit}
+        spellCheck={spellCheck}
+        placeholder={placeholder}
+      />
+      <Label>{label}</Label>
     </Li>
   );
 };
 
-export default EditSoloLine;
+export default EditTextArea;

@@ -2,16 +2,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// Comp
+
+import Note from '../Notes';
 
 
-const DiagramStep= ({number, text})=> {
+
+const DiagramStep= ({number, text, title})=> {
     return (
-        <DivCont>
-        <StepNr><Nr>{number}</Nr></StepNr>
+      <DivCont>
+        <Row>
+          <Word>{title}</Word>
+        </Row>
         <TextField>{text}</TextField>
-            
-        </DivCont>
-    )
+        <Note />
+      </DivCont>
+    );
 };
 
 export default DiagramStep;
@@ -19,50 +25,53 @@ export default DiagramStep;
 // Styled Comp
 
 const DivCont = styled.div`
-width: 25%;
-height: 150px;
-border: 1px solid ${props=>props.theme.colors.mainPurple};
+width: 35%;
+border-left: 1px solid ${props=>props.theme.colors.mainPurple};
+border-top: 1px solid ${props=>props.theme.colors.mainPurple};
+
+
+border-bottom: 1px solid ${props=>props.theme.colors.mainPurple};
+
 font-family: ${props=>props.theme.fontFamily[4]};
-position: relative;
 display: flex;
-justify-content: center;
+flex-direction: column;
+justify-content: flex-start;
 align-items: flex-start;
-box-shadow: 0px 0px 3px ${props=>props.theme.colors.steelBlue};
 background: ${props=>props.theme.colors.info};
 `;
 
-const StepNr = styled.div`
-  border-left: 1px solid ${props => props.theme.colors.mainPurple};
-    border-right: 1px solid ${props => props.theme.colors.mainPurple};  
-    border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
 
 
-  border-bottom-left-radius: 4px; 
-   border-bottom-right-radius: 4px;
+const Row = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+width: 100%;
+padding: 1px 10px;
+background: ${props=>props.theme.colors.basicYellow};
+border-bottom: 1px solid ${props => props.theme.colors.mainPurple};
 
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute; 
-  top: 0px;
-  left: 30px;
-  transform: translateX(-50%);
-  background: ${props=>props.theme.colors.basicYellow}
-`;
 
-const Nr = styled.p`
-  font-size: ${props => props.theme.fontSizes.medium};
+ 
+
+ 
+`
+
+
+
+const Word = styled.p`
+font-size: ${props=>props.theme.fontSizes.small};
   color: ${props => props.theme.colors.secondaryDecent};
+
 `;
 
 const TextField = styled.p`
   width: 100%;
-  margin-top: 50px;
   padding: 10px;
   text-align: justify;
   font-size: ${props => props.theme.fontSizes.xm};
   color: ${props => props.theme.colors.white};
   background: ${props=>props.theme.colors.info}
 `;
+

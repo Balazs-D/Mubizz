@@ -31,18 +31,15 @@ const AuthState = props => {
   //  Load User
 
   const loadUser = async () => {
-
     if (localStorage.token) {
-
-      console.log(localStorage.token)
+      console.log(localStorage.token);
       setAuthToken(localStorage.token);
     }
 
-
     try {
-      console.log('Load User TRY')
+      console.log('Load User TRY');
 
-      // look fo the user 
+      // look fo the user
 
       const res = await axios.get('http://localhost:5000/api/login');
       dispatch({
@@ -54,19 +51,18 @@ const AuthState = props => {
     }
   };
 
-  const getUserData = async () => {
+  const getProfile = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/profile/me');
 
-    try {const res = await axios.get('http://localhost:5000/api/profile/me');
-
-    dispatch({
-      type: USER_LOADED,
-      payload: res.data
-    });
-      
+      dispatch({
+        type: PROFILE_LOADED,
+        payload: res.data
+      });
     } catch (error) {
-      console.log('getUserData error')
+      console.log('getUserData error');
     }
-  }
+  };
 
   //  Register User
   const register = async formData => {
@@ -88,6 +84,7 @@ const AuthState = props => {
       });
 
       loadUser();
+      getProfile();
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
@@ -116,6 +113,7 @@ const AuthState = props => {
         payload: res.data
       });
       loadUser();
+      getProfile();
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
@@ -134,13 +132,8 @@ const AuthState = props => {
 
   //  Update Profile
   const update = async formData => {
-    
-  
-
     try {
-
-          console.log(formData);
-
+      console.log(formData);
 
       const res = await axios.post(
         'http://localhost:5000/api/profile',
@@ -161,6 +154,7 @@ const AuthState = props => {
         token: state.token,
         isAuthenticated: state.isAuthenticated,
         user: state.user,
+        profile: state.profile,
         loading: state.loading,
         error: state.error,
         register,
@@ -169,7 +163,7 @@ const AuthState = props => {
         loadUser,
         logout,
         update,
-        getUserData
+        getProfile
       }}
     >
       {props.children}

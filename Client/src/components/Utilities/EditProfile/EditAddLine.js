@@ -65,19 +65,6 @@ const SkillLi = styled.div.attrs({
   border: 1px solid ${props =>
     props.checked ? props.theme.colors.mainPurple : props.theme.colors.info};
 
-  
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%; 
-  padding: 5px;
-  height: 25px;
-  background: ${props =>
-    props.checked ? props.theme.colors.warning : props.theme.colors.white};
-  border-radius: 3px;
-  transition: all 150ms;
-  border: 1px solid ${props =>
-    props.checked ? props.theme.colors.mainPurple : props.theme.colors.info};  */
 `;
 
 const H4 = styled.h4`
@@ -102,9 +89,7 @@ const handleButtonClick =(e)=>{
 };
 
 
-const deleteItem =()=>{
 
-}
 
 console.log(todo)
 

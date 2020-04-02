@@ -4,7 +4,7 @@ import UserContext from './userContext';
 import UserReducer from './userReducer';
 import {
   TOGGLE_FILTER_BAR,
-  GET_USERS,
+  IS_SUBMITTED,
   EDIT_TOGGLE,
   TOGGLE_TAG_BAR
 } from '../types';
@@ -16,21 +16,12 @@ const UserState = props => {
     tagBar: false,
     edit: false,
     selectedTags: [],
+    isSubmitted: false,
   };
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
   //  Functions
 
-  // Get all users
-  const getUsers = async e => {
-    const res = await axios.get('http://localhost:5000/users');
-    console.log('get user');
-
-    dispatch({
-      type: GET_USERS,
-      payload: res.data
-    });
-  };
 
   // handle Login view
   const toggleFilterBar = e => {
@@ -43,6 +34,8 @@ const UserState = props => {
     dispatch({ type: EDIT_TOGGLE });
   };
 
+  // toggle isSubmitted 
+  const toggleSubmitted = () => dispatch({type: IS_SUBMITTED})
 
   // toggle filter bar
   const toggleTagBar = e => {
@@ -57,10 +50,11 @@ const UserState = props => {
         tagBar: state.tagBar,
         edit: state.edit,
         selectedTags: state.selectedTags,
+        isSubmitted: state.isSubmitted,
         toggleFilterBar,
-        getUsers,
         editToggle,
-        toggleTagBar
+        toggleTagBar,
+        toggleSubmitted
       }}
     >
       {props.children}

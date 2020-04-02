@@ -14,7 +14,7 @@ const InputField = styled.input`
 
   @media (min-width: 800px) {
     padding: 12px;
-    font-size: ${props => props.theme.fontSizes.small};
+    font-size: ${props => props.theme.fontSizes.medium};
     font-style: normal;
     outline: none;
     border: none;
@@ -22,13 +22,19 @@ const InputField = styled.input`
     margin: 0px;
     color: ${props => props.theme.colors.info};
     background: transparent;
+    transition: all 0.3s ease-in;
   }
 
   &:focus {
     border-bottom: 1px solid ${props => props.theme.colors.warning};
     font-weight: bold;
     font-style: normal;
-    outline: none
+    outline: none;
+  }
+
+  &:hover {
+    background: ${props => props.theme.colors.gradientYellow};
+    color: ${props=>props.theme.colors.secondaryDecent}
   }
 `;
 
