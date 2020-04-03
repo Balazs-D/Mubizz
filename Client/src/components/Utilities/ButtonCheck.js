@@ -5,13 +5,13 @@ import React, { useState, useContext } from 'react';
 import CheckBox from '../Utilities/CheckBox';
 import UserCont from '../../context/user/userContext';
 
-const ButtonCheck = ({text, value, onClick, onChange, ...props }) => {
+const ButtonCheck = ({text, value, onClick, onChange, checked, ...props }) => {
 
   const userCont = useContext(UserCont)
-  const [checkedItem, setCheckedItem ] = useState(false);
+  // const [checkedItem, setCheckedItem ] = useState(false);
   const handleCheckboxChange = e => {
-    setCheckedItem( e.target.checked );
-  
+   
+  // here is the propblem cant push into state array i guess
        if (userCont.selectedTags.includes(e.target.value)) {
          let index = userCont.selectedTags.indexOf(e.target.value);
          userCont.selectedTags.splice(index, 1);
@@ -22,12 +22,11 @@ const ButtonCheck = ({text, value, onClick, onChange, ...props }) => {
   }
 
 
-console.log(checkedItem)
    return (
      <div style={{ fontFamily: 'system-ui' }}>
        <label>
          <CheckBox
-           checked={checkedItem}
+           checked={checked}
            onClick={onClick}
            onChange={handleCheckboxChange}
            text={text}

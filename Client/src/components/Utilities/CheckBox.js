@@ -53,7 +53,7 @@ const StyledCheckbox = styled.div`
 const Checkbox = ({ className, checked, text, onChange, ...props }) => (
   <CheckboxContainer className={className} >
     <HiddenCheckbox checked={checked} onChange={onChange} {...props} />
-    <StyledCheckbox checked={checked} onChange={onChange}>
+    <StyledCheckbox >
       <Icon>{text}</Icon>
     </StyledCheckbox>
   </CheckboxContainer>

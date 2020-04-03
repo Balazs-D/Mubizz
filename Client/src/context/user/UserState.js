@@ -6,7 +6,8 @@ import {
   TOGGLE_FILTER_BAR,
   IS_SUBMITTED,
   EDIT_TOGGLE,
-  TOGGLE_TAG_BAR
+  TOGGLE_TAG_BAR,
+  TAG_TOGGLE,
 } from '../types';
 
 const UserState = props => {
@@ -17,6 +18,21 @@ const UserState = props => {
     edit: false,
     selectedTags: [],
     isSubmitted: false,
+    tagArray: [
+    
+  {name: 'Sound Technician', isChecked: false},
+  {name: 'Sound Engineer', isChecked: false},
+  {name: 'Singer', isChecked: false},
+  {name: 'Musician', isChecked: false},
+  {name: 'Performance', isChecked: false},
+  {name: 'Studio', isChecked: false},
+  {name: 'Live', isChecked: false},
+  {name: 'Broadcasting', isChecked: false},
+  {name: 'Promotion', isChecked: false},
+  {name: 'Management', isChecked: false},
+  {name: 'Volunteer', isChecked: false}
+
+    ],
   };
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
@@ -42,6 +58,12 @@ const UserState = props => {
     console.log('we reach this point')
     dispatch({ type: TOGGLE_TAG_BAR })};
 
+  // Toggle tag
+
+  const tagToggle = (e) => {
+    console.log('TOGGLE CHECKED')
+    dispatch({type: TAG_TOGGLE})
+  }
   return (
     <UserContext.Provider
       value={{
@@ -51,10 +73,12 @@ const UserState = props => {
         edit: state.edit,
         selectedTags: state.selectedTags,
         isSubmitted: state.isSubmitted,
+        tagArray: state.tagArray, 
         toggleFilterBar,
         editToggle,
         toggleTagBar,
-        toggleSubmitted
+        toggleSubmitted,
+        tagToggle
       }}
     >
       {props.children}

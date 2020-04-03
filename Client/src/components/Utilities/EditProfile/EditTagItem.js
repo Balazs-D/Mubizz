@@ -2,10 +2,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-
 // Component
 
-import ButtonCheck from '../../Utilities//ButtonCheck';
+import ButtonTag from '../../Utilities//ButtonTag';
 import UserCont from '../../../context/user/userContext';
 // Styled Comp
 
@@ -28,12 +27,13 @@ const H4 = styled.h4`
 const TagCont = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   flex-wrap: wrap;
   width: 90%;
   padding: 10px;
-  border: 1px solid ${props=>props.theme.colors.info};
+  border: 1px solid ${props => props.theme.colors.info};
   border-radius: 4px;
-  background: ${props=>props.theme.colors.white};
+  background: ${props => props.theme.colors.white};
 `;
 
 const Label = styled.label`
@@ -53,54 +53,54 @@ const ServiceFieldArray = [
   'Promotion',
   'Management',
   'Volunteer'
+
+  
 ];
 
 const EditTagItem = ({ title, onChange, label }) => {
+  const userCont = useContext(UserCont);
+  const [tagArray, setTagArray] = useState([]);
+  const [isChecked, setIsChecked] = useState([]);
 
-const userCont = useContext(UserCont);
+  const toggleClick = e => {
+    e.preventDefault();
+    if (tagArray.includes(e.target.value)) {
+      let index = tagArray.indexOf(e.target.value);
+      tagArray.splice(index, 1);
+      setIsChecked(false)
 
+    } else {
+      tagArray.push(e.target.value);
+            e.setIsChecked(true);
 
-     const handleClick = e => {
-       console.log(e.target.value)
-       
-     };
+    }
+    console.log(tagArray);
+    console.log(e.target.value)
 
-       
+        console.log(e.target.checked);
 
-
-
-    useEffect(() => {
-      // if (isAuthenticated) {
-      //   props.history.push('/');
- console.log(userCont.selectedTags);
-
-      //eslint-disable-next-line
-    }, [userCont.selectedTags]);
+  };
 
   return (
     <Li>
       <H4>{title}</H4>
       <TagCont>
-        {ServiceFieldArray &&
-          ServiceFieldArray.map((field, i) => {
+        {   ServiceFieldArray.map((field, i) => {
             return (
-              <label key={i}>
-                <ButtonCheck
-                  key={i}
-                  value={field}
-                  text={field}
-                  onClick={handleClick}
-                  onChange={onChange}
-                ></ButtonCheck>
-              </label>
+              <ButtonTag
+                key={i}
+                value={field}
+                text={field}
+                onClick={toggleClick}
+                // checked={tagArray.includes(field) ? true : false}
+                checked={isChecked}
+              ></ButtonTag>
             );
           })}
       </TagCont>
       <Label>{label}</Label>
     </Li>
   );
-
-
 };
 
 export default EditTagItem;

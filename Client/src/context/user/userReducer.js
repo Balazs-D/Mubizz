@@ -3,7 +3,8 @@ import {
   GET_USERS,
   EDIT_TOGGLE,
   TOGGLE_TAG_BAR,
-  IS_SUBMITTED
+  IS_SUBMITTED,
+  TAG_TOGGLE
 } from '../types';
 
 export default (state, action) => {
@@ -38,6 +39,13 @@ export default (state, action) => {
           ...state,
           isSubmitted: true,
         }
+    
+    case TAG_TOGGLE:
+      return {
+        ...state,
+        tagArray: { ...state, isChecked: !state.isChecked},
+      }    
+    
 
     default:
       return state;
