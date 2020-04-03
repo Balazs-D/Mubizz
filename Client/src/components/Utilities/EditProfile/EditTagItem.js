@@ -71,15 +71,19 @@ const EditTagItem = ({ title, onChange, label }) => {
 
     } else {
       tagArray.push(e.target.value);
-            e.setIsChecked(true);
+            setIsChecked(true);
 
     }
     console.log(tagArray);
     console.log(e.target.value)
 
         console.log(e.target.checked);
+        userCont.updateTagState(tagArray)
+        console.log(userCont.selectedTags)
 
   };
+
+ 
 
   return (
     <Li>
@@ -92,8 +96,7 @@ const EditTagItem = ({ title, onChange, label }) => {
                 value={field}
                 text={field}
                 onClick={toggleClick}
-                // checked={tagArray.includes(field) ? true : false}
-                checked={isChecked}
+                checked={tagArray.includes(field) ? true : false}
               ></ButtonTag>
             );
           })}

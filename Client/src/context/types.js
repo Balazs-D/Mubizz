@@ -19,3 +19,4 @@ export const UPDATE = 'UPDATE';
 export const PROFILE_LOADED = 'PROFILE_LOADED';
 export const IS_SUBMITTED = 'IS_SUBMITTED';
 export const TAG_TOGGLE = 'TAG_TOGGLE';
+export const UPD_TAG_STATE = 'UPD_TAG_STATE';

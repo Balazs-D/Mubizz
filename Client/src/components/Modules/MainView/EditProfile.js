@@ -104,8 +104,6 @@ const Row = styled.div`
   flex-direction: row;
 `;
 
-
-
 const Notes = styled.div`
   width: 100%;
   height: 100%;
@@ -150,7 +148,7 @@ const EditProfile = props => {
     profileName: `${authCont.profile.profileName}`,
     profileMotto: `${authCont.profile.profileMotto}`,
     description: `${authCont.profile.description}`,
-    services: [`${userCont.selectedTags}`],
+    services: `${authCont.profile.services}`,
     website: `${authCont.profile.website}`,
     location: `${authCont.profile.location}`,
     languages: [`${authCont.profile.languages}`],
@@ -185,14 +183,14 @@ const EditProfile = props => {
     console.log(e.target.value);
   };
 
-  const onTag = e => {
-    setUser({ ...user, [services]: userCont.selectedTags });
-    console.log(e.target.name);
-    console.log('Tag works');
-  };
 
-  console.log(user);
+
   console.log(userCont.selectedTags);
+
+  useEffect(()=>{
+  setUser({ ...user, services: userCont.selectedTags });
+console.log(user.services)
+  }, [userCont.selectedTags]);
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -226,10 +224,10 @@ const EditProfile = props => {
     console.log('on submit get profile ');
     console.log(authCont);
     await authCont.getProfile();
-
   };
 
   console.log(authCont);
+  console.log(user);
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
   return (
@@ -239,7 +237,7 @@ const EditProfile = props => {
       <IntroText text='Update your profile to get access to the features you need!' />
       <Row>
         <DiagramStep title='Basic User Infos' />
-        
+
         <Block>
           {/* <Title>Basic User Infos</Title> */}
           <GradientContRadius>
@@ -264,7 +262,11 @@ const EditProfile = props => {
                   />
                 )}
                 {authCont.user && (
-                  <EditSoloLine title={'Password: '} name='password' label='password' />
+                  <EditSoloLine
+                    title={'Password: '}
+                    name='password'
+                    label='password'
+                  />
                 )}
                 {authCont.user && <PicUpload />}
               </Ul>
@@ -301,16 +303,16 @@ const EditProfile = props => {
                     name='profileMotto'
                     onChange={onChange}
                     label='profile motto'
-                    
+
                     // spellCheck='false'
                   />
                 )}
                 {authCont.profile && (
                   <EditTagItem
                     title={'Service Fields: '}
-                    value={services}
+                    value={[userCont.tagArray]}
                     name='services'
-                    onChange={onTag}
+                    onChange={onChange}
                     label='service fields'
                   />
                 )}

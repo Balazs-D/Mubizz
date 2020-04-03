@@ -4,7 +4,8 @@ import {
   EDIT_TOGGLE,
   TOGGLE_TAG_BAR,
   IS_SUBMITTED,
-  TAG_TOGGLE
+  TAG_TOGGLE,
+  UPD_TAG_STATE
 } from '../types';
 
 export default (state, action) => {
@@ -44,7 +45,13 @@ export default (state, action) => {
       return {
         ...state,
         tagArray: { ...state, isChecked: !state.isChecked},
-      }    
+      }  
+    
+      case UPD_TAG_STATE:
+        return {
+          ...state,
+          selectedTags: action.payload
+        }
     
 
     default:
