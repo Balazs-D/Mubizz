@@ -1,5 +1,5 @@
 // Utilities
-import React, { useContext, useState, useEffect, Fragment } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import UserCont from '../../../context/user/userContext';
 import AuthCont from '../../../context/auth/authContext';
@@ -12,10 +12,8 @@ import EditTagItem from '../../Utilities/EditProfile/EditTagItem';
 import EditReadLine from '../../Utilities/EditProfile/EditReadLine';
 import EditAddLine from '../../Utilities/EditProfile/EditAddLine';
 import PicUpload from '../../Utilities/PicUpload/PicUpload';
-import Note from '../../Utilities/Notes';
 import ProcessDiagram from '../../Utilities/EditProfile/ProcessDiagram';
 import IntroText from '../../Utilities/IntroText';
-import userContext from '../../../context/user/userContext';
 import DiagramStep from '../../Utilities/EditProfile/DiagramStep';
 
 // Styled Comp
@@ -51,18 +49,7 @@ const Block = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.h3`
-  background: white;
-  position: relative;
-  z-index: 10;
-  font-weight: light;
-  padding: 0px 15px 0px 15px;
-  font-family: ${props => props.theme.fontFamily[5]};
-  color: ${props => props.theme.colors.mainPurple};
-  position: absolute;
-  top: -15px;
-  border: 2px solid ${props => props.theme.colors.mainPurple};
-`;
+
 
 const Ul = styled.ul`
   display: flex;
@@ -104,31 +91,7 @@ const Row = styled.div`
   flex-direction: row;
 `;
 
-const Notes = styled.div`
-  width: 100%;
-  height: 100%;
-  color: ${props => props.theme.colors.info};
-  background: ${props => props.theme.colors.white};
-  padding: 10px;
-  text-align: justify;
-  font-size: ${props => props.theme.fontSizes.small};
-  font-family: ${props => props.theme.fontFamily[4]};
-  position: relative;
-`;
 
-const NoteWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  width: 40%;
-  padding: 1px;
-  margin-top: 40px;
-  background-image: linear-gradient(
-    ${props => props.theme.colors.info},
-    ${props => props.theme.colors.secondaryDecent}
-  );
-  box-shadow: 4px 4px 1px 0px ${props => props.theme.colors.info};
-`;
 
 const SiteName = styled.h2`
   color: white;
@@ -187,10 +150,10 @@ const EditProfile = props => {
 
   console.log(userCont.selectedTags);
 
-  useEffect(()=>{
-  setUser({ ...user, services: userCont.selectedTags });
-console.log(user.services)
-  }, [userCont.selectedTags]);
+//   useEffect(()=>{
+//   setUser({ ...user, services: userCont.selectedTags });
+// console.log(user.services)
+//   }, [userCont.selectedTags]);
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -234,9 +197,9 @@ console.log(user.services)
     <Form onSubmit={onSubmit}>
       <SiteName>Edit Profile</SiteName>
 
-      <IntroText text='Update your profile to get access to the features you need!' />
+      <IntroText stepNr={0} />
       <Row>
-        <DiagramStep title='Basic User Infos' />
+        <DiagramStep title='Basic User Infos' nr={1} />
 
         <Block>
           {/* <Title>Basic User Infos</Title> */}
@@ -278,8 +241,7 @@ console.log(user.services)
       <Row>
         <DiagramStep
           title='Profile Infos'
-          text='Profile information are public. You need to fill all fields to
-                be able to interact and create references.'
+          nr={2}
         />
 
         <Block>
@@ -325,7 +287,7 @@ console.log(user.services)
       <Row>
         <DiagramStep
           title='Professional Infos'
-          text='Membership information are public. You need to fill all fields to be able to post offers.'
+          nr={3}
         />
 
         <Block>
@@ -368,8 +330,8 @@ console.log(user.services)
       <Row>
         <DiagramStep
           title='Works'
-          text=' After you created at least one of each item your profile will
-                reach the PRO level.'
+          nr={4}
+         
         />
 
         <Block>

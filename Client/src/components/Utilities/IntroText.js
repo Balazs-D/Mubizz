@@ -1,13 +1,21 @@
 // Utilities
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 
+// Comp
+
+import UserCont from '../../context/user/userContext';
 
 
-const IntroText = ({text}) => {
+const IntroText = ({stepNr}) => {
+
+    const userCont = useContext(UserCont);
+
     return (
         <Notes>
-            <p>{text}</p>
+           {userCont.infoNotesArray[`${stepNr}`].map((item, i)=>{
+               return (<ul>{item}</ul>)
+           })}
         </Notes>
     )
 };
@@ -15,20 +23,22 @@ const IntroText = ({text}) => {
 export default IntroText;
 
 const Notes = styled.div`
-  width: 90%;
-  margin: 30px 0px;
+  width: 87%;
+  margin: 30px 0px 10px 0px;
   height: 100%;
   color: ${props => props.theme.colors.secondaryDecent};
-  background: ${props => props.theme.colors.white};
-  border-radius: 4px;
+  /* background-image:radial-gradient(${props => props.theme.colors.infoLight}, ${props => props.theme.colors.info} ); */
+  border-radius: 0.5px;
   padding: 20px;
   text-align: justify;
-  font-size: ${props => props.theme.fontSizes.small};
+  font-size: ${props => props.theme.fontSizes.half};
   font-family: ${props => props.theme.fontFamily[4]};
   position: relative;
-  box-shadow: 0px 0px 0px ${props => props.theme.colors.white};
+  box-shadow: 0px 0px 2px ${props => props.theme.colors.secondaryDecent};
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
   border: 1px solid ${props => props.theme.colors.mainPurple};
 
 `;

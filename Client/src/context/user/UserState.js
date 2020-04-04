@@ -18,7 +18,32 @@ const UserState = props => {
     tagBar: false,
     edit: false,
     selectedTags: '',
-    isSubmitted: false
+    isSubmitted: false,
+    infoNotesArray: [
+      [ 'Update your profile and get access to the features you need!',
+        'The content will effect the search results.'
+      ],
+      [
+        'Your user name is displayed in your account until you update the profile name.',
+        'Your e-mail is not public.',
+        'A user profile allows you browse on MUBIZZ but no interaction.',
+        'If you want to contact other users or offer a service update your profile and professional info sections.',
+        'Update your photo.'
+      ],
+      [
+        'Profile information are public. You need to fill all fields to be able to interact and create references.',
+        'Use your profile motto to share a message or just simply describe your business shortly.',
+        'Select the service fields your interest.',
+        'Add any language you are able to communicate.'
+      ],
+      [
+        'Membership information are public. You need to fill all fields to be able to post offers.',
+        'Add your location to reach more potential business partners.',
+        'Describe your business.',
+        'Show your skills and the technologies your profession. (Ex.: Big Band Recording, Bass Guitar ...'
+      ],
+      ['After you created at least one of each item your profile will reach the PRO level.']
+    ],
   };
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
@@ -69,6 +94,7 @@ const UserState = props => {
         selectedTags: state.selectedTags,
         isSubmitted: state.isSubmitted,
         tagArray: state.tagArray,
+        infoNotesArray: state.infoNotesArray,
         toggleFilterBar,
         editToggle,
         toggleTagBar,

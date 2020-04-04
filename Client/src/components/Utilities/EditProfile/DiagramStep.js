@@ -8,14 +8,16 @@ import Note from '../Notes';
 
 
 
-const DiagramStep= ({number, text, title})=> {
-    return (
+const DiagramStep= ({ text, title, nr})=> {
+console.log(nr + 'HERE')
+  return (
+
       <DivCont>
         <Row>
           <Word>{title}</Word>
         </Row>
         <TextField>{text}</TextField>
-        <Note />
+        <Note stepNr={nr}/>
       </DivCont>
     );
 };

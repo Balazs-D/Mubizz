@@ -1,16 +1,13 @@
 // Utilities
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 // Components
-import UserCont from '../../context/user/userContext';
-
 
 const Cont = styled.div`
   font-family: system-ui;
   margin-bottom: 10px;
   cursor: pointer;
-
 `;
 
 const Button = styled.input.attrs({ type: 'button' })`
@@ -38,15 +35,14 @@ const Button = styled.input.attrs({ type: 'button' })`
 
 const ButtonTag = ({ text, value, onClick, onChange, checked }) => {
   return (
-    <Cont >
-      <Button 
+    <Cont>
+      <Button
         checked={checked}
         onClick={onClick}
         onChange={onChange}
         text={text}
         value={value}
-      >
-      </Button>
+      ></Button>
     </Cont>
   );
 };

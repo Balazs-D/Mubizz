@@ -39,6 +39,7 @@ const theme = {
     xs: '0.5vw',
     xm: '0.7vw',
     small: '1vw',
+    half: '1.3vw',
     medium: '2vw',
     large: '3vw',
     huge: '5vw'

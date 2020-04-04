@@ -1,7 +1,11 @@
 // Utilities
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 
+
+// Comp
+
+import UserCont from '../../context/user/userContext';
 
 // Styled Comp
 
@@ -11,7 +15,8 @@ const Notes = styled.ul`
   flex-direction: column;
   list-style-type: square;
   width: 80%;
-  margin-top: 50px;
+  margin-top: 40px;
+  justify-content: space-around;
 `;
 
 const NoteItem = styled.li`
@@ -25,8 +30,10 @@ const NoteItem = styled.li`
 const NoteWrap = styled.div`
   display: flex;
   justify-content: center;
+  
   align-content: center;
   width: 100%;
+  height: 70%;
   padding: 1px;
     background: ${props => props.theme.colors.info};
 
@@ -34,15 +41,15 @@ const NoteWrap = styled.div`
 `;
 
 
-const Note =()=>{
+const Note =({stepNr})=>{
+
+  const userCont = useContext(UserCont);
+
     return (
       <NoteWrap>
-        <Notes>
-          <NoteItem>Your user name is displayed your account until you update the profile infos.</NoteItem>
-          <NoteItem>Your e-mail is not public.</NoteItem>
-          <NoteItem>Inof one</NoteItem>
-          <NoteItem>Inof one</NoteItem>
-        </Notes>
+        <Notes>{userCont.infoNotesArray && userCont.infoNotesArray[`${stepNr}`].map((item, i)=>{
+          return (<NoteItem key={i} >{item}</NoteItem>)
+        })}</Notes>
       </NoteWrap>
     );
 }; export default Note;
