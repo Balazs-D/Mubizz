@@ -45,10 +45,18 @@ const SpanButton = styled.div`
   width: 30px;
   height: 30px;
 
-  color: ${props => props.theme.colors.mainPurple};
+  color: ${(props) => props.theme.colors.mainPurple};
 `;
 
-const ButtonCircle = ({ className, text, onClick, type, component, value, icon }) => {
+const ButtonCircle = ({
+  className,
+  text,
+  onClick,
+  type,
+  component,
+  value,
+  icon,
+}) => {
   return (
     <div>
       <Button
@@ -58,7 +66,9 @@ const ButtonCircle = ({ className, text, onClick, type, component, value, icon }
         type={type}
         value={value}
       >
-        <SpanButton><i class='fas fa-plus'></i></SpanButton>
+        <SpanButton>
+          <i className='fas fa-plus'></i>
+        </SpanButton>
       </Button>
     </div>
   );

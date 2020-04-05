@@ -21,7 +21,7 @@ const UserState = props => {
     edit: false,
     selectedTags: '',
     selectedSkills: '',
-    languages: [],
+    languages: '',
     isSubmitted: false,
     infoNotesArray: [
       [ 'Update your profile and get access to the features you need!',

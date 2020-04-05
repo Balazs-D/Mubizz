@@ -81,18 +81,18 @@ const Label = styled.label`
   font-size: ${(props) => props.theme.fontSizes.small};
 `;
 
-const EditLanguage = ({ title, placeholder, label }) => {
+const EditLanguage = ({  placeholder, label }) => {
   const [language, setLanguage] = useState('');
   const userCont = useContext(UserCont);
 
   const handleButtonClick = (e) => {
     e.preventDefault();
-            console.log('onClick state: ' + userCont.languages);
+    console.log('onClick state: ' + userCont.languages);
 
     userCont.updateLanguageState([...userCont.languages, language]);
     // setTodoList([...todoList, todo]);
-    console.log('onClick: ' + language)
-        console.log('onClick state: ' + userCont.languages);
+    console.log('onClick: ' + language);
+    console.log('onClick state: ' + userCont.languages);
 
     setLanguage('');
 
@@ -107,15 +107,9 @@ const EditLanguage = ({ title, placeholder, label }) => {
     console.log(userCont.languages);
   };
 
-  
-
   useEffect(() => {
-    console.log('re render EDIT ADD LINE Comp');
-     console.log(language); 
-     console.log(userCont.languages);
+    console.log('re render Languages Comp');
   }, [userCont.languages]);
-
-  console.log(language);
 
   return (
     <Li>

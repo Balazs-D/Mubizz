@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 import InputMinimal from '../InputMinimal';
 import ButtonCircle from '../ButtonCircle';
-import AddLineComponent from '../EditProfile/AddLineComponent';
 import UserCont from '../../../context/user/userContext';
 
 // Styled Comp
@@ -82,7 +81,7 @@ const Label = styled.label`
   font-size: ${(props) => props.theme.fontSizes.small};
 `;
 
-const EditAddLine = ({ title, placeholder, label }) => {
+const EditAddLine = ({  placeholder, label }) => {
 
   const [todo, setTodo] = useState('');
   const userCont = useContext(UserCont);
@@ -112,7 +111,7 @@ useEffect(() => {
   console.log('re render EDIT ADD LINE Comp')
 }, [userCont.selectedSkills]);
 
-console.log(todo)
+
 
 return (
   <Li>

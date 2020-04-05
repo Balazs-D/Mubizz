@@ -24,8 +24,8 @@ const GradientContRadius = styled.div`
   justify-content: center;
   align-items: center;
   background-image: linear-gradient(
-    ${props => props.theme.colors.mainPurple},
-    ${props => props.theme.colors.mainPurple}
+    ${(props) => props.theme.colors.mainPurple},
+    ${(props) => props.theme.colors.mainPurple}
   );
   padding: 1px;
   /* border-radius: 4px; */
@@ -50,8 +50,6 @@ const Block = styled.div`
   flex-direction: column;
 `;
 
-
-
 const Ul = styled.ul`
   display: flex;
   flex-direction: column;
@@ -61,9 +59,9 @@ const Ul = styled.ul`
   padding: 0px 20px;
   margin-top: 30px;
   font-weight: 200;
-  font-family: ${props => props.theme.fontFamily[5]};
+  font-family: ${(props) => props.theme.fontFamily[5]};
   letter-spacing: 1px;
-  color: ${props => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
 `;
 
 const Col = styled.div`
@@ -76,8 +74,8 @@ const Col = styled.div`
   height: 100%;
   margin-top: 0px;
   background-image: linear-gradient(
-    ${props => props.theme.colors.white},
-    ${props => props.theme.colors.white}
+    ${(props) => props.theme.colors.white},
+    ${(props) => props.theme.colors.white}
   );
   padding: 15px 0px;
 `;
@@ -92,18 +90,16 @@ const Row = styled.div`
   flex-direction: row;
 `;
 
-
-
 const SiteName = styled.h2`
   color: white;
-  background: ${props => props.theme.colors.basicBlue};
-  font-family: ${props => props.theme.fontFamily[5]};
+  background: ${(props) => props.theme.colors.basicBlue};
+  font-family: ${(props) => props.theme.fontFamily[5]};
   padding: 5px 10px;
 
   width: 100%;
 `;
 
-const EditProfile = props => {
+const EditProfile = (props) => {
   const authCont = useContext(AuthCont);
   const userCont = useContext(UserCont);
 
@@ -112,14 +108,14 @@ const EditProfile = props => {
     profileName: `${authCont.profile.profileName}`,
     profileMotto: `${authCont.profile.profileMotto}`,
     description: `${authCont.profile.description}`,
-    services: `${authCont.profile.services}`,
+    services: `${userCont.selectedTags}`,
     website: `${authCont.profile.website}`,
     location: `${authCont.profile.location}`,
-    languages: [`${authCont.profile.languages}`],
-    skills: [{}],
+    languages: `${userCont.languages}`,
+    skills: `${userCont.selectedSkills}`,
     reference: [],
     social: {},
-    offers: {}
+    offers: {},
   });
 
   const {
@@ -134,29 +130,30 @@ const EditProfile = props => {
     skills,
     reference,
     social,
-    offers
+    offers,
   } = user;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+     setUser({ ...user, languages: '' });
+      setUser({ ...user, selectedSkills: '' });
+       setUser({ ...user, selectedTags: '' });
     console.log('USe Effect get profile ');
     authCont.getProfile();
   }, []);
 
-  const onChange = e => {
+ 
+
+
+  const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(e.target.value);
+    console.log(e.target.name);
   };
 
-
-
   console.log(userCont.selectedTags);
+  console.log(userCont.languages);
 
-//   useEffect(()=>{
-//   setUser({ ...user, services: userCont.selectedTags });
-// console.log(user.services)
-//   }, [userCont.selectedTags]);
-
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log('on submit');
     //  if (name === '' || email === '' || password === '') {
@@ -181,7 +178,7 @@ const EditProfile = props => {
       skills,
       reference,
       social,
-      offers
+      offers,
     });
 
     props.history.push('/dashboard/edit-profile');
@@ -191,9 +188,24 @@ const EditProfile = props => {
   };
 
   console.log(authCont);
+  console.log(userCont.selectedSkills);
+  console.log(userCont.selectedTags);
+  console.log(userCont.languages);
   console.log(user);
-    console.log(userCont.selectedSkills);
 
+  useEffect(() => {
+    
+    setUser({ ...user, languages: userCont.languages });
+  }, [userCont.languages]);
+
+  useEffect(() => {
+    setUser({ ...user, skills: userCont.selectedSkills });
+    
+  }, [ userCont.selectedSkills ]);
+  useEffect(() => {
+    setUser({ ...user, services: userCont.selectedTags });
+    
+  }, [userCont.selectedTags]);
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
   return (
@@ -226,10 +238,7 @@ const EditProfile = props => {
                   />
                 )}
                 {authCont.user && (
-                  <EditSoloLine
-                    name='password'
-                    label='password'
-                  />
+                  <EditSoloLine name='password' label='password' />
                 )}
                 {authCont.user && <PicUpload />}
               </Ul>
@@ -239,10 +248,7 @@ const EditProfile = props => {
       </Row>
 
       <Row>
-        <DiagramStep
-          title='Profile Infos'
-          nr={2}
-        />
+        <DiagramStep title='Profile Infos' nr={2} />
 
         <Block>
           <GradientContRadius>
@@ -282,10 +288,7 @@ const EditProfile = props => {
       </Row>
 
       <Row>
-        <DiagramStep
-          title='Professional Infos'
-          nr={3}
-        />
+        <DiagramStep title='Professional Infos' nr={3} />
 
         <Block>
           <GradientContRadius>
@@ -316,7 +319,22 @@ const EditProfile = props => {
                   />
                 )}
 
-                  <EditLanguage label='languages' />
+                {authCont.user && (
+                  <EditLanguage
+                    value={userCont.languages}
+                    name='languages'
+                    label='languages'
+                  />
+                )}
+
+                {authCont.user && (
+                  <EditSoloLine
+                    onChange={onChange}
+                    value={authCont.profile.website}
+                    name='website'
+                    label='web page'
+                  />
+                )}
               </Ul>
             </Col>
           </GradientContRadius>
@@ -324,11 +342,7 @@ const EditProfile = props => {
       </Row>
 
       <Row>
-        <DiagramStep
-          title='Works'
-          nr={4}
-         
-        />
+        <DiagramStep title='Works' nr={4} />
 
         <Block>
           <GradientContRadius>

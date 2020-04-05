@@ -6,6 +6,8 @@ import styled from 'styled-components';
 
 import ButtonTag from '../../Utilities//ButtonTag';
 import UserCont from '../../../context/user/userContext';
+import AuthCont from '../../../context/auth/authContext';
+
 // Styled Comp
 
 const Li = styled.li`
@@ -20,7 +22,7 @@ const Li = styled.li`
 
 const H4 = styled.h4`
   width: 100%;
-  font-size: ${props => props.theme.fontSizes.small};
+  font-size: ${(props) => props.theme.fontSizes.small};
   margin-bottom: 10px;
 `;
 
@@ -31,14 +33,14 @@ const TagCont = styled.div`
   flex-wrap: wrap;
   width: 90%;
   padding: 10px;
-  border: 1px solid ${props => props.theme.colors.info};
+  border: 1px solid ${(props) => props.theme.colors.info};
   border-radius: 4px;
-  background: ${props => props.theme.colors.white};
+  background: ${(props) => props.theme.colors.white};
 `;
 
 const Label = styled.label`
-  color: ${props => props.theme.colors.mainPurple};
-  font-size: ${props => props.theme.fontSizes.small};
+  color: ${(props) => props.theme.colors.mainPurple};
+  font-size: ${(props) => props.theme.fontSizes.small};
 `;
 
 const ServiceFieldArray = [
@@ -52,54 +54,53 @@ const ServiceFieldArray = [
   'Broadcasting',
   'Promotion',
   'Management',
-  'Volunteer'
-
-  
+  'Volunteer',
 ];
 
 const EditTagItem = ({ title, onChange, label }) => {
   const userCont = useContext(UserCont);
+  const authCont = useContext(AuthCont);
+
   const [tagArray, setTagArray] = useState([]);
   const [isChecked, setIsChecked] = useState([]);
 
-  const toggleClick = e => {
+  const toggleClick = (e) => {
     e.preventDefault();
     if (tagArray.includes(e.target.value)) {
       let index = tagArray.indexOf(e.target.value);
       tagArray.splice(index, 1);
-      setIsChecked(false)
-
+      setIsChecked(false);
     } else {
       tagArray.push(e.target.value);
-            setIsChecked(true);
-
+      setIsChecked(true);
     }
     console.log(tagArray);
-    console.log(e.target.value)
+    console.log(e.target.value);
 
-        console.log(e.target.checked);
-        userCont.updateTagState(tagArray)
-        console.log(userCont.selectedTags)
-
+    console.log(e.target.checked);
+    userCont.updateTagState(tagArray);
+    console.log(userCont.selectedTags);
   };
 
- 
+  useEffect(() => {
+    setTagArray(authCont.profile.services);
+  }, [0]);
 
   return (
     <Li>
       <H4>{title}</H4>
       <TagCont>
-        {   ServiceFieldArray.map((field, i) => {
-            return (
-              <ButtonTag
-                key={i}
-                value={field}
-                text={field}
-                onClick={toggleClick}
-                checked={tagArray.includes(field) ? true : false}
-              ></ButtonTag>
-            );
-          })}
+        {ServiceFieldArray.map((field, i) => {
+          return (
+            <ButtonTag
+              key={i}
+              value={field}
+              text={field}
+              onClick={toggleClick}
+              checked={tagArray.includes(field) ? true : false}
+            ></ButtonTag>
+          );
+        })}
       </TagCont>
       <Label>{label}</Label>
     </Li>

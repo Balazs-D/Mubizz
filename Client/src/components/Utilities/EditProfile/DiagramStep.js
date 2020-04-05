@@ -9,7 +9,6 @@ import Note from '../Notes';
 
 
 const DiagramStep= ({ text, title, nr})=> {
-console.log(nr + 'HERE')
   return (
 
       <DivCont>
