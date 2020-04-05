@@ -1,5 +1,5 @@
 // Utilities
-import React, { Fragment, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 
 // Component
@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import InputMinimal from '../InputMinimal';
 import ButtonCircle from '../ButtonCircle';
 import AddLineComponent from '../EditProfile/AddLineComponent';
+import UserCont from '../../../context/user/userContext';
 
 // Styled Comp
 
@@ -14,12 +15,13 @@ const InputEdit = styled(InputMinimal)`
   padding: 1px;
   text-transform: italic;
   font-weight: lighter;
-  width: 80%;
+  width: 85%;
   &:focus {
     background: ${props => props.theme.colors.white};
     text-transform: normal;
     font-weight: bold;
   }
+
 `;
 
 const Li = styled.li`
@@ -36,7 +38,8 @@ const Row = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 0px;
 `;
 
 const Col = styled.div`
@@ -64,6 +67,7 @@ const SkillLi = styled.div.attrs({
   transition: all 150ms;
   border: 1px solid ${props =>
     props.checked ? props.theme.colors.mainPurple : props.theme.colors.info};
+    color: ${props=>props.theme.colors.mainPurple};
 
 `;
 
@@ -73,54 +77,66 @@ const H4 = styled.h4`
   margin-bottom: 10px;
 `;
 
-const EditAddLine = ({ title, placeholder }) => {
+const Label = styled.label`
+  color: ${(props) => props.theme.colors.mainPurple};
+  font-size: ${(props) => props.theme.fontSizes.small};
+`;
 
-  const [todoList, setTodoList] = useState([]);
+const EditAddLine = ({ title, placeholder, label }) => {
+
   const [todo, setTodo] = useState('');
- 
+  const userCont = useContext(UserCont);
 
 
 
 const handleButtonClick =(e)=>{
   e.preventDefault();
-  setTodoList([...todoList, todo]); 
+  userCont.updateSkillState([...userCont.selectedSkills, todo]);
   setTodo('');
+
   return todo
+};
+
+const deleteItem =(e)=>{
+      e.preventDefault();
+     let itemInd = e.target.attributes['index'].value; ;
+     userCont.selectedSkills.splice(itemInd, 1);
+     console.log(e.target.attributes['index'].value)
+     console.log(userCont.selectedSkills)
+    
 };
 
 
 
+useEffect(() => {
+  console.log('re render EDIT ADD LINE Comp')
+}, [userCont.selectedSkills]);
 
 console.log(todo)
 
 return (
   <Li>
-    <H4>{title}</H4>
     <Row>
       <InputEdit
         placeholder={placeholder}
         value={todo}
-        onChange={e => setTodo(e.target.value)}
+        onChange={(e) => setTodo(e.target.value)}
         type='text'
         name='input'
-        
+        placeholderFontSize='1px'
       ></InputEdit>
-
-      <ButtonCircle onClick={handleButtonClick}>
-        <i className='fas fa-plus'></i>
-      </ButtonCircle>
+      <ButtonCircle onClick={handleButtonClick} />
     </Row>
+    <Label>{label}</Label>
+
     <Col>
-      {
-        todoList.map((listItem, i) => 
-    
-        <SkillLi key={i}>
-          <p>{listItem}</p>
-          <i className='far fa-trash-alt'></i>
-        </SkillLi>
-        )
-      
-      }
+      {userCont.selectedSkills &&
+        userCont.selectedSkills.map((listItem, i) => (
+          <SkillLi key={i}>
+            <p>{listItem}</p>
+            <i index={i} className='far fa-trash-alt' onClick={deleteItem}></i>
+          </SkillLi>
+        ))}
     </Col>
   </Li>
 );

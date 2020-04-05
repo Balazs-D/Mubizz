@@ -8,7 +8,9 @@ import {
   EDIT_TOGGLE,
   TOGGLE_TAG_BAR,
   TAG_TOGGLE,
-  UPD_TAG_STATE
+  UPD_TAG_STATE,
+  UPD_SKILL_STATE,
+  UPD_LANG_STATE,
 } from '../types';
 
 const UserState = props => {
@@ -18,6 +20,8 @@ const UserState = props => {
     tagBar: false,
     edit: false,
     selectedTags: '',
+    selectedSkills: '',
+    languages: [],
     isSubmitted: false,
     infoNotesArray: [
       [ 'Update your profile and get access to the features you need!',
@@ -69,6 +73,8 @@ const UserState = props => {
     dispatch({ type: TOGGLE_TAG_BAR });
   };
 
+  // update tag selection
+
   const updateTagState = input => {
     console.log(input)
     
@@ -78,6 +84,26 @@ const UserState = props => {
     });
   };
 
+  // update skill selection
+
+  const updateSkillState = (input) => {
+    console.log(input);
+
+    dispatch({
+      type: UPD_SKILL_STATE,
+      payload: input,
+    });
+  };
+
+  // update languages
+   const updateLanguageState = (input) => {
+     console.log(input);
+
+     dispatch({
+       type: UPD_LANG_STATE,
+       payload: input,
+     });
+   };
   // Toggle tag
 
   const tagToggle = e => {
@@ -95,12 +121,16 @@ const UserState = props => {
         isSubmitted: state.isSubmitted,
         tagArray: state.tagArray,
         infoNotesArray: state.infoNotesArray,
+        selectedSkills: state.selectedSkills,
+        languages: state.languages,
         toggleFilterBar,
         editToggle,
         toggleTagBar,
         toggleSubmitted,
         tagToggle,
-        updateTagState
+        updateTagState,
+        updateSkillState,
+        updateLanguageState,
       }}
     >
       {props.children}

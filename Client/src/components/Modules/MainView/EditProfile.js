@@ -15,6 +15,7 @@ import PicUpload from '../../Utilities/PicUpload/PicUpload';
 import ProcessDiagram from '../../Utilities/EditProfile/ProcessDiagram';
 import IntroText from '../../Utilities/IntroText';
 import DiagramStep from '../../Utilities/EditProfile/DiagramStep';
+import EditLanguage from '../../Utilities/EditProfile/EditLanguage';
 
 // Styled Comp
 
@@ -191,6 +192,8 @@ const EditProfile = props => {
 
   console.log(authCont);
   console.log(user);
+    console.log(userCont.selectedSkills);
+
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
   return (
@@ -208,7 +211,6 @@ const EditProfile = props => {
               <Ul>
                 {authCont.user && (
                   <EditSoloLine
-                    title={'Name: '}
                     onChange={onChange}
                     value={authCont.user.name}
                     name='name'
@@ -217,7 +219,6 @@ const EditProfile = props => {
                 )}
                 {authCont.user && (
                   <EditSoloLine
-                    title={'E-Mail: '}
                     value={email}
                     name='email'
                     value={authCont.user.email}
@@ -226,7 +227,6 @@ const EditProfile = props => {
                 )}
                 {authCont.user && (
                   <EditSoloLine
-                    title={'Password: '}
                     name='password'
                     label='password'
                   />
@@ -250,7 +250,6 @@ const EditProfile = props => {
               <Ul>
                 {authCont.profile && (
                   <EditSoloLine
-                    title={'Profile Name: '}
                     onChange={onChange}
                     value={authCont.profile.profileName}
                     name='profileName'
@@ -259,7 +258,6 @@ const EditProfile = props => {
                 )}
                 {authCont.profile && (
                   <EditTextArea
-                    title={'Message: '}
                     placeholder={authCont.profile.profileMotto}
                     value={profileMotto}
                     name='profileMotto'
@@ -271,7 +269,6 @@ const EditProfile = props => {
                 )}
                 {authCont.profile && (
                   <EditTagItem
-                    title={'Service Fields: '}
                     value={[userCont.tagArray]}
                     name='services'
                     onChange={onChange}
@@ -296,7 +293,6 @@ const EditProfile = props => {
               <Ul>
                 {authCont.user && (
                   <EditSoloLine
-                    title={'Location: '}
                     onChange={onChange}
                     value={authCont.profile.location}
                     name='location'
@@ -305,7 +301,6 @@ const EditProfile = props => {
                 )}
                 {authCont.user && (
                   <EditTextArea
-                    title={'Detailed Description: '}
                     placeholder={authCont.profile.description}
                     value={description}
                     name='description'
@@ -315,12 +310,13 @@ const EditProfile = props => {
                 )}
                 {authCont.user && (
                   <EditAddLine
-                    title={'Skills & Technologies: '}
-                    value={skills}
-                    placeholder='Ex.: Pro Tools / Overdub Recording ... '
+                    value={userCont.selectedSkills}
                     name='skills'
+                    label='skills & technologies'
                   />
                 )}
+
+                  <EditLanguage label='languages' />
               </Ul>
             </Col>
           </GradientContRadius>

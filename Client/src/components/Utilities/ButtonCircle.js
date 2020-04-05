@@ -15,9 +15,9 @@ const Button = styled.button`
   /* font-size: 10px; */
   font-family: sans-serif;
   text-decoration: none;
-  background: transparent;
-  border: 1px solid ${props => props.theme.colors.white};
-  color: ${props => props.theme.colors.mainPurple};
+  background: ${(props) => props.theme.colors.white};
+  border: ${(props) => props.theme.colors.mainPurple};
+  color: ${(props) => props.theme.colors.mainPurple};
   text-align: center;
 
   position: relative;
@@ -26,14 +26,15 @@ const Button = styled.button`
   outline: none;
 
   &:hover {
-    background: ${props => props.theme.colors.warning};
-    color: ${props => props.theme.colors.primaryDark};
+    background: ${(props) => props.theme.colors.warning};
+    border: ${(props) => props.theme.colors.mainPurple};
+
+    color: ${(props) => props.theme.colors.primaryDark};
   }
   &:active {
-    background: ${props => props.theme.colors.info};
-    color: ${props => props.theme.colors.primaryDark};
+    background: ${(props) => props.theme.colors.info};
+    color: ${(props) => props.theme.colors.primaryDark};
   }
-
 `;
 
 const SpanButton = styled.div`
@@ -57,7 +58,7 @@ const ButtonCircle = ({ className, text, onClick, type, component, value, icon }
         type={type}
         value={value}
       >
-        <SpanButton>{icon}</SpanButton>
+        <SpanButton><i class='fas fa-plus'></i></SpanButton>
       </Button>
     </div>
   );
