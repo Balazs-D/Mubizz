@@ -185,6 +185,8 @@ const EditProfile = (props) => {
     console.log('on submit get profile ');
     console.log(authCont);
     await authCont.getProfile();
+        window.scrollTo(0, 0);
+
   };
 
   console.log(authCont);

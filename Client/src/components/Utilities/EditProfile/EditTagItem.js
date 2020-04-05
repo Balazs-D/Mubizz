@@ -64,6 +64,10 @@ const EditTagItem = ({ title, onChange, label }) => {
   const [tagArray, setTagArray] = useState([]);
   const [isChecked, setIsChecked] = useState([]);
 
+  useEffect(() => {
+    setTagArray(authCont.profile.services);
+  }, [0]);
+
   const toggleClick = (e) => {
     e.preventDefault();
     if (tagArray.includes(e.target.value)) {
@@ -76,15 +80,14 @@ const EditTagItem = ({ title, onChange, label }) => {
     }
     console.log(tagArray);
     console.log(e.target.value);
+    const update = tagArray.filter(item => item !== '');
 
+    setTagArray(update);
     console.log(e.target.checked);
     userCont.updateTagState(tagArray);
     console.log(userCont.selectedTags);
+     console.log(update);
   };
-
-  useEffect(() => {
-    setTagArray(authCont.profile.services);
-  }, [0]);
 
   return (
     <Li>

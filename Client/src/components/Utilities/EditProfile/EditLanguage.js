@@ -8,6 +8,7 @@ import InputMinimal from '../InputMinimal';
 import ButtonCircle from '../ButtonCircle';
 import AddLineComponent from '../EditProfile/AddLineComponent';
 import UserCont from '../../../context/user/userContext';
+import AuthCont from '../../../context/auth/authContext';
 
 // Styled Comp
 
@@ -81,15 +82,21 @@ const Label = styled.label`
   font-size: ${(props) => props.theme.fontSizes.small};
 `;
 
-const EditLanguage = ({  placeholder, label }) => {
+const EditLanguage = ({ placeholder, label }) => {
   const [language, setLanguage] = useState('');
+  const [languageArray, setLanguageArray] = useState([]);
   const userCont = useContext(UserCont);
+  const authCont = useContext(AuthCont);
+
+  useEffect(() => {
+    setLanguageArray(authCont.profile.languages);
+  }, [0]);
 
   const handleButtonClick = (e) => {
     e.preventDefault();
     console.log('onClick state: ' + userCont.languages);
-
-    userCont.updateLanguageState([...userCont.languages, language]);
+    setLanguageArray([...languageArray, language]);
+    // userCont.updateLanguageState([...userCont.languages, language]);
     // setTodoList([...todoList, todo]);
     console.log('onClick: ' + language);
     console.log('onClick state: ' + userCont.languages);
@@ -102,14 +109,18 @@ const EditLanguage = ({  placeholder, label }) => {
   const deleteItem = (e) => {
     e.preventDefault();
     let itemInd = e.target.attributes['index'].value;
-    userCont.languages.splice(itemInd, 1);
-    console.log(e.target.languages['index'].value);
-    console.log(userCont.languages);
+    
+    setLanguageArray(languageArray.splice(itemInd, 1));
+    console.log(e.target.attributes['index'].value);
+    console.log(languageArray);
+    
   };
 
   useEffect(() => {
     console.log('re render Languages Comp');
-  }, [userCont.languages]);
+  }, [languageArray]);
+
+  
 
   return (
     <Li>
@@ -127,12 +138,14 @@ const EditLanguage = ({  placeholder, label }) => {
       <Label>{label}</Label>
 
       <Col>
-        {userCont.languages &&
-          userCont.languages.map((listItem, i) => (
+        {
+          languageArray.map((listItem, i) => (
+              listItem !== '' &&
             <SkillLi key={i}>
               <p>{listItem}</p>
               <i
                 index={i}
+                key={i}
                 className='far fa-trash-alt'
                 onClick={deleteItem}
               ></i>
