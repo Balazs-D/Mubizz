@@ -9,6 +9,7 @@ import ButtonCircle from '../ButtonCircle';
 import AddLineComponent from '../EditProfile/AddLineComponent';
 import UserCont from '../../../context/user/userContext';
 import AuthCont from '../../../context/auth/authContext';
+import { SET_ALERT } from '../../../context/types';
 
 // Styled Comp
 
@@ -51,6 +52,8 @@ const Col = styled.div`
   margin-bottom: 10px;
 `;
 
+const Icon = styled.i``;
+
 const SkillLi = styled.div.attrs({
   add: true,
 })`
@@ -69,6 +72,15 @@ const SkillLi = styled.div.attrs({
     ${(props) =>
       props.checked ? props.theme.colors.mainPurple : props.theme.colors.info};
   color: ${(props) => props.theme.colors.mainPurple};
+
+  &:hover {
+    background: ${(props) => props.theme.colors.danger};
+    color: ${(props) => props.theme.colors.white};
+  }
+
+  &:hover ${Icon} {
+    color: ${(props) => props.theme.colors.white};
+  }
 `;
 
 const H4 = styled.h4`
@@ -84,43 +96,54 @@ const Label = styled.label`
 
 const EditLanguage = ({ placeholder, label }) => {
   const [language, setLanguage] = useState('');
-  const [languageArray, setLanguageArray] = useState([]);
+  const [languagesArray, setLanguagesArray] = useState([]);
   const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
 
   useEffect(() => {
-    setLanguageArray(authCont.profile.languages);
-  }, [0]);
+    setLanguagesArray(authCont.profile.languages);
+  }, []);
+
+  useEffect(() => {
+    userCont.updateLanguageState(languagesArray);
+  }, [languagesArray]);
 
   const handleButtonClick = (e) => {
     e.preventDefault();
-    console.log('onClick state: ' + userCont.languages);
-    setLanguageArray([...languageArray, language]);
-    // userCont.updateLanguageState([...userCont.languages, language]);
-    // setTodoList([...todoList, todo]);
-    console.log('onClick: ' + language);
-    console.log('onClick state: ' + userCont.languages);
+    if (language === '') {
+      return null;
+    } else {
+      languagesArray.push(language);
 
-    setLanguage('');
-
-    return language;
+      // setSkillsArray([...skillsArray, skill])
+      userCont.updateLanguageState(languagesArray);
+      setLanguage('');
+    }
   };
+
+  console.log('Lang Local Array: ' + languagesArray);
+  console.log('Lang UserCont Array: ' + userCont.languages);
+  console.log('Lang AuthCont Array: ' + authCont.profile.languages);
 
   const deleteItem = (e) => {
     e.preventDefault();
-    let itemInd = e.target.attributes['index'].value;
-    
-    setLanguageArray(languageArray.splice(itemInd, 1));
-    console.log(e.target.attributes['index'].value);
-    console.log(languageArray);
-    
+    console.log(languagesArray);
+
+    // let itemInd = e.target.attributes['index'].value;
+    // skillsArray.splice(itemInd, 1);
+    let itemInd = languagesArray.indexOf(e.target.attributes['value'].value);
+    languagesArray.splice(itemInd, 1);
+    setLanguagesArray(languagesArray);
+    userCont.updateLanguageState(languagesArray);
+
+    console.log(languagesArray);
+    console.log(e.target.attributes['value'].value);
+    console.log(itemInd);
   };
 
-  useEffect(() => {
-    console.log('re render Languages Comp');
-  }, [languageArray]);
-
-  
+  // useEffect(() => {
+  //   // userCont.updateLanguageState(languagesArray);
+  // }, [languagesArray]);
 
   return (
     <Li>
@@ -138,19 +161,15 @@ const EditLanguage = ({ placeholder, label }) => {
       <Label>{label}</Label>
 
       <Col>
-        {
-          languageArray.map((listItem, i) => (
-              listItem !== '' &&
-            <SkillLi key={i}>
-              <p>{listItem}</p>
-              <i
-                index={i}
-                key={i}
-                className='far fa-trash-alt'
-                onClick={deleteItem}
-              ></i>
-            </SkillLi>
-          ))}
+        {languagesArray.map(
+          (listItem, i) =>
+            
+              <SkillLi value={listItem} key={i} index={i} onClick={deleteItem}>
+                <p>{listItem}</p>
+                <Icon key={i} className='far fa-trash-alt'></Icon>
+              </SkillLi>
+            
+        )}
       </Col>
     </Li>
   );

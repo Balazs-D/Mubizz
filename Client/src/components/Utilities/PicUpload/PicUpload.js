@@ -5,7 +5,10 @@ import axios from 'axios';
 
 // Components
 import AuthCont from '../../../context/auth/authContext';
+import UserCont from '../../../context/user/userContext';
+
 import ButtonMain from '../ButtonMain';
+import { Result } from 'express-validator';
 
 const Cont = styled.div`
   display: flex;
@@ -28,60 +31,61 @@ const ImgWrap = styled.div`
   height: 100%;
   padding: 1px;
   background-image: linear-gradient(
-    ${props => props.theme.colors.basicBlue},
-    ${props => props.theme.colors.steelBlue}
+    ${(props) => props.theme.colors.basicBlue},
+    ${(props) => props.theme.colors.steelBlue}
   );
-  box-shadow: 0px 0px 3px ${props=>props.theme.colors.mainPurple};
+  box-shadow: 0px 0px 3px ${(props) => props.theme.colors.mainPurple};
   margin-top: 30px;
 `;
 
 let Img = styled.img`
-display: flex;
-justify-self: center;
-width: 100%;`
-
-
-
+  display: flex;
+  justify-self: center;
+  width: 200px;
+  height: 200px;
+`;
 
 const PicUpload = () => {
   const authCont = useContext(AuthCont);
-  const { uploadImg, user } = authCont;
-  const avatar = user.avatar;
-  const [selectedFile, setSelectedFile] = useState(avatar);
+  const userCont = useState(UserCont);
 
+  const [image, setImage] = useState('');
+  const [loading, setLoading] = useState(false);
 
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'mubizzAvatar');
+    setLoading(true);
+    const res = await fetch(
+      '	https://api.cloudinary.com/v1_1/mubizz/image/upload',
+      {
+        method: 'POST',
+        body: data,
+      }
+    );
+    const file = await res.json();
 
-   let fileSelectHandler = e => {
-     setSelectedFile({ selectedFile: e.target.files[0] });
-     console.log(selectedFile);
-   };
-   
-   const uploadPic = e => {
-     e.preventDefault();
-     console.log('upload Pic');
-    //  if (name === '' || email === '' || password === '') {
-    //    setAlert('Please enter all fields', 'danger');
-    //    console.log('error 02');
-    //  } else {
-     setSelectedFile({ selectedFile: e.target.files[0] });
-     
-     console.log(authCont);
-   };
-
- 
+    setImage(file.secure_url);
+    setLoading(false);
+  };
 
   return (
-    <Cont>
-      <ButtonCont>
-        <input type='file' onChange={fileSelectHandler}></input>
-        <ButtonMain text='Upload' onClick={uploadPic} />
-      </ButtonCont>
-      {user && (
-        <ImgWrap>
-          <Img src={selectedFile} alt=''></Img>
-        </ImgWrap>
+    <div className='App'>
+      <h1>Upload Image</h1>
+      <input
+        type='file'
+        name='file'
+        placeholder='Upload an image'
+        onChange={uploadImage}
+      />
+      {loading ? (
+        <h3>Loading...</h3>
+      ) : (
+        <img src={image} style={{ width: '300px' }} />
       )}
-    </Cont>
+    </div>
   );
 };
 

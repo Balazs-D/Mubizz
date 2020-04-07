@@ -135,15 +135,12 @@ const EditProfile = (props) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-     setUser({ ...user, languages: '' });
-      setUser({ ...user, selectedSkills: '' });
-       setUser({ ...user, selectedTags: '' });
+    setUser({ ...user, languages: '' });
+    setUser({ ...user, selectedSkills: '' });
+    setUser({ ...user, selectedTags: '' });
     console.log('USe Effect get profile ');
     authCont.getProfile();
   }, []);
-
- 
-
 
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -185,8 +182,7 @@ const EditProfile = (props) => {
     console.log('on submit get profile ');
     console.log(authCont);
     await authCont.getProfile();
-        window.scrollTo(0, 0);
-
+    window.scrollTo(0, 0);
   };
 
   console.log(authCont);
@@ -196,18 +192,20 @@ const EditProfile = (props) => {
   console.log(user);
 
   useEffect(() => {
-    
     setUser({ ...user, languages: userCont.languages });
+    console.log('set user language reachpoint');
   }, [userCont.languages]);
 
   useEffect(() => {
     setUser({ ...user, skills: userCont.selectedSkills });
-    
-  }, [ userCont.selectedSkills ]);
+    console.log('set user skills reachpoint');
+  }, [userCont.selectedSkills]);
+  
   useEffect(() => {
     setUser({ ...user, services: userCont.selectedTags });
-    
+    console.log('set user services reachpoint');
   }, [userCont.selectedTags]);
+
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
   return (
@@ -277,7 +275,7 @@ const EditProfile = (props) => {
                 )}
                 {authCont.profile && (
                   <EditTagItem
-                    value={[userCont.tagArray]}
+                    value={userCont.tagArray}
                     name='services'
                     onChange={onChange}
                     label='service fields'
