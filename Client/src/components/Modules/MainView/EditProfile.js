@@ -106,6 +106,7 @@ const EditProfile = (props) => {
   const [user, setUser] = useState({
     email: `${authCont.user.email}`,
     profileName: `${authCont.profile.profileName}`,
+    avatar: `${authCont.profile.avatar}`,
     profileMotto: `${authCont.profile.profileMotto}`,
     description: `${authCont.profile.description}`,
     services: `${userCont.selectedTags}`,
@@ -121,6 +122,7 @@ const EditProfile = (props) => {
   const {
     email,
     profileName,
+    avatar, 
     profileMotto,
     description,
     services,
@@ -166,6 +168,7 @@ const EditProfile = (props) => {
       // FormData
       email,
       profileName,
+      avatar,
       profileMotto,
       description,
       services,
@@ -193,6 +196,8 @@ const EditProfile = (props) => {
 
   useEffect(() => {
     setUser({ ...user, languages: userCont.languages });
+        setUser({ ...user, avatar: userCont.avatar });
+
     console.log('set user language reachpoint');
   }, [userCont]);
 

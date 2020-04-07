@@ -8,6 +8,7 @@ import {
   UPD_TAG_STATE,
   UPD_SKILL_STATE,
   UPD_LANG_STATE,
+  UPD_IMG_STATE,
 } from '../types';
 
 export default (state, action) => {
@@ -65,6 +66,12 @@ export default (state, action) => {
         ...state,
         languages: action.payload,
       };
+
+    case UPD_IMG_STATE:
+      return {
+        ...state,
+        avatar: action.payload,
+      }
 
     default:
       return state;

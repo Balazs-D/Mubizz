@@ -83,6 +83,7 @@ const StyledActiveLink = {
 
 const DashboardSettings = () => {
   const authCont = useContext(AuthCont);
+  
   const { user, profile } = authCont;
 
   return (
@@ -96,7 +97,7 @@ const DashboardSettings = () => {
 
               <Status>Pro</Status>
             </TitleDiv>
-            <PicCont src={user.avatar}></PicCont>
+            <PicCont src={profile.avatar}></PicCont>
             <List>
               <li>
                 <NavLink

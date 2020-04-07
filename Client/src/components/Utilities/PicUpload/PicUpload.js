@@ -1,5 +1,5 @@
 // Utilities
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -8,7 +8,6 @@ import AuthCont from '../../../context/auth/authContext';
 import UserCont from '../../../context/user/userContext';
 import avatar from '../../../graphics/avatar.png';
 import ButtonMain from '../ButtonMain';
-import { Result } from 'express-validator';
 
 const Cont = styled.div`
   display: flex;
@@ -71,7 +70,7 @@ const ButtonMainAbs = styled(ButtonMain)`
 
 const PicUpload = () => {
   const authCont = useContext(AuthCont);
-  const userCont = useState(UserCont);
+  const userCont = useContext(UserCont);
 
   const [image, setImage] = useState(avatar);
   const [loading, setLoading] = useState(false);
@@ -96,6 +95,11 @@ const PicUpload = () => {
     console.log(file.secure_url);
   };
 
+  useEffect(() => {
+        userCont.updateImageState(image);
+
+  }, [image])
+
   console.log(loading);
 
   return (
@@ -110,7 +114,7 @@ const PicUpload = () => {
         />
         {/* <ButtonMainAbs>Pick file</ButtonMainAbs> */}
 
-        {loading ? <h3>Loading...</h3> : <Img src={image} />}
+        {loading ? <h3>Loading...</h3> : <Img src={userCont.avatar} />}
       </ImgWrap>
     </Cont>
   );
