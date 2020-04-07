@@ -6,7 +6,7 @@ import axios from 'axios';
 // Components
 import AuthCont from '../../../context/auth/authContext';
 import UserCont from '../../../context/user/userContext';
-
+import avatar from '../../../graphics/avatar.png';
 import ButtonMain from '../ButtonMain';
 import { Result } from 'express-validator';
 
@@ -15,6 +15,7 @@ const Cont = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 200px;
 `;
 
 const ButtonCont = styled.li`
@@ -27,15 +28,15 @@ const ButtonCont = styled.li`
 `;
 
 const ImgWrap = styled.div`
-  width: 70%;
-  height: 100%;
-  padding: 1px;
-  background-image: linear-gradient(
+  width: 200px;
+  height: 200px;
+  /* background-image: linear-gradient(
     ${(props) => props.theme.colors.basicBlue},
     ${(props) => props.theme.colors.steelBlue}
-  );
-  box-shadow: 0px 0px 3px ${(props) => props.theme.colors.mainPurple};
-  margin-top: 30px;
+  ); */
+  box-shadow: 0px 0px 1px ${(props) => props.theme.colors.mainPurple};
+    position: relative;
+
 `;
 
 let Img = styled.img`
@@ -43,13 +44,36 @@ let Img = styled.img`
   justify-self: center;
   width: 200px;
   height: 200px;
+  object-fit: cover;
+  border: none;
+  outline: none;
+`;
+
+const Input = styled.input.attrs({ type: 'file' })`
+  
+    position: absolute;
+
+    right: 2px;
+    top: 2px;
+    padding: 0px;
+    /* width: 20%; */
+    margin: 0px;
+    background: ${(props) => props.theme.colors.info};
+    border: 1px solid ${(props) => props.theme.colors.mainPurple};
+    outline: none;
+  
+`;
+
+const ButtonMainAbs = styled(ButtonMain)`
+  position: absolute;
+  margin: 4px;
 `;
 
 const PicUpload = () => {
   const authCont = useContext(AuthCont);
   const userCont = useState(UserCont);
 
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(avatar);
   const [loading, setLoading] = useState(false);
 
   const uploadImage = async (e) => {
@@ -69,23 +93,26 @@ const PicUpload = () => {
 
     setImage(file.secure_url);
     setLoading(false);
+    console.log(file.secure_url);
   };
 
+  console.log(loading);
+
   return (
-    <div className='App'>
-      <h1>Upload Image</h1>
-      <input
-        type='file'
-        name='file'
-        placeholder='Upload an image'
-        onChange={uploadImage}
-      />
-      {loading ? (
-        <h3>Loading...</h3>
-      ) : (
-        <img src={image} style={{ width: '300px' }} />
-      )}
-    </div>
+    <Cont>
+      <ImgWrap>
+        <Input
+          type='file'
+          name='file'
+          text='Edit'
+          onChange={uploadImage}
+          // style={{ display: 'none' }}
+        />
+        {/* <ButtonMainAbs>Pick file</ButtonMainAbs> */}
+
+        {loading ? <h3>Loading...</h3> : <Img src={image} />}
+      </ImgWrap>
+    </Cont>
   );
 };
 

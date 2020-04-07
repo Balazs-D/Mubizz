@@ -67,9 +67,9 @@ const Ul = styled.ul`
 const Col = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  position: relative;
+  /* position: relative; */
   width: 100%;
   height: 100%;
   margin-top: 0px;
@@ -194,7 +194,7 @@ const EditProfile = (props) => {
   useEffect(() => {
     setUser({ ...user, languages: userCont.languages });
     console.log('set user language reachpoint');
-  }, [userCont.languages]);
+  }, [userCont]);
 
   useEffect(() => {
     setUser({ ...user, skills: userCont.selectedSkills });
