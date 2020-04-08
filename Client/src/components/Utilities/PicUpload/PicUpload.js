@@ -16,13 +16,8 @@ const Cont = styled.div`
   width: 90%;
   /* height: 200px; */
   margin: 20px;
-  border: 1px solid ${(props) => props.theme.colors.info};
-  border-radius: 3px;
-  padding: 10px;
-  background-image: radial-gradient(
-    ${(props) => props.theme.colors.secondaryDecent},
-    ${(props) => props.theme.colors.white}
-  );
+  
+ 
 `;
 
 const ButtonCont = styled.li`
@@ -34,6 +29,14 @@ const ButtonCont = styled.li`
   margin: 20px;
 `;
 
+const Label = styled.label`
+  color: ${(props) => props.theme.colors.mainPurple};
+  font-size: ${(props) => props.theme.fontSizes.small};
+  width: 100%;
+  margin-top: 10px;
+`;
+
+
 const ImgWrap = styled.div`
   width: 100%;
   /* height: 200px; */
@@ -41,7 +44,13 @@ const ImgWrap = styled.div`
     ${(props) => props.theme.colors.basicBlue},
     ${(props) => props.theme.colors.steelBlue}
   ); */
-  box-shadow: 0px 0px 1px ${(props) => props.theme.colors.mainPurple};
+  padding: 10px;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  border-radius: 3px;
+   background-image: radial-gradient(
+    ${(props) => props.theme.colors.info},
+    ${(props) => props.theme.colors.white}
+  );
 
     position: relative;
 
@@ -80,7 +89,7 @@ const ButtonMainAbs = styled(ButtonMain)`
   margin: 4px;
 `;
 
-const PicUpload = () => {
+const PicUpload = ({text  }) => {
   const authCont = useContext(AuthCont);
   const userCont = useContext(UserCont);
 
@@ -112,7 +121,6 @@ const PicUpload = () => {
 
   }, [image])
 
-  console.log(loading);
 
   return (
     <Cont>
@@ -134,6 +142,7 @@ const PicUpload = () => {
           // style={{ display: 'none' }}
         />
       </ImgWrap>
+      <Label>{text}</Label>
     </Cont>
   );
 };

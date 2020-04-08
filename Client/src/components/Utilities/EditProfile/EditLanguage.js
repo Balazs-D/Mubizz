@@ -9,7 +9,6 @@ import ButtonCircle from '../ButtonCircle';
 import AddLineComponent from '../EditProfile/AddLineComponent';
 import UserCont from '../../../context/user/userContext';
 import AuthCont from '../../../context/auth/authContext';
-import { SET_ALERT } from '../../../context/types';
 
 // Styled Comp
 
@@ -32,6 +31,9 @@ const Li = styled.li`
   justify-content: space-between;
   width: 95%;
   margin: 20px;
+  border: 1px solid ${props=>props.theme.colors.info};
+  border-radius: 3px;
+  padding: 10px;
 `;
 
 const Row = styled.div`
@@ -94,6 +96,7 @@ const H4 = styled.h4`
 const Label = styled.label`
   color: ${(props) => props.theme.colors.mainPurple};
   font-size: ${(props) => props.theme.fontSizes.small};
+  margin: 10px 0px;
 `;
 
 const EditLanguage = ({ placeholder, label }) => {
@@ -123,13 +126,11 @@ const EditLanguage = ({ placeholder, label }) => {
     }
   };
 
-  console.log('Lang Local Array: ' + languagesArray);
-  console.log('Lang UserCont Array: ' + userCont.languages);
-  console.log('Lang AuthCont Array: ' + authCont.profile.languages);
+  
 
   const deleteItem = (e) => {
     e.preventDefault();
-    console.log(languagesArray);
+    
 
     // let itemInd = e.target.attributes['index'].value;
     // skillsArray.splice(itemInd, 1);
@@ -138,9 +139,7 @@ const EditLanguage = ({ placeholder, label }) => {
     setLanguagesArray(languagesArray);
     userCont.updateLanguageState(languagesArray);
 
-    console.log(languagesArray);
-    console.log(e.target.attributes['value'].value);
-    console.log(itemInd);
+   
   };
 
   // useEffect(() => {

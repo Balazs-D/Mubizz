@@ -62,12 +62,10 @@ const UserState = (props) => {
 
   // handle Login view
   const toggleFilterBar = (e) => {
-    console.log('toggle');
     dispatch({ type: TOGGLE_FILTER_BAR });
   };
   // handle profile-edit edit toggle
   const editToggle = (e) => {
-    console.log('edit f works');
     dispatch({ type: EDIT_TOGGLE });
   };
 
@@ -76,14 +74,12 @@ const UserState = (props) => {
 
   // toggle filter bar
   const toggleTagBar = (e) => {
-    console.log('we reach this point');
     dispatch({ type: TOGGLE_TAG_BAR });
   };
 
   // update tag selection
 
   const updateTagState = (input) => {
-    console.log(input);
 
     dispatch({
       type: UPD_TAG_STATE,
@@ -94,7 +90,6 @@ const UserState = (props) => {
   // update skill selection
 
   const updateSkillState = (input) => {
-    console.log(input);
 
     dispatch({
       type: UPD_SKILL_STATE,
@@ -104,7 +99,6 @@ const UserState = (props) => {
 
   // update languages
   const updateLanguageState = (input) => {
-    console.log(input);
 
     dispatch({
       type: UPD_LANG_STATE,
@@ -114,7 +108,6 @@ const UserState = (props) => {
 
   // update image
   const updateImageState = (input) => {
-    console.log(input);
 
     dispatch({
       type: UPD_IMG_STATE,
@@ -134,7 +127,6 @@ const UserState = (props) => {
   // Toggle tag
 
   const tagToggle = (e) => {
-    console.log('TOGGLE CHECKED');
     dispatch({ type: TAG_TOGGLE });
   };
   return (

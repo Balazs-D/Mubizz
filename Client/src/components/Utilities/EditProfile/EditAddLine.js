@@ -112,25 +112,21 @@ const EditAddLine = ({ placeholder, label }) => {
     userCont.updateSkillState(skillsArray);
   }, [skillsArray]);
 
-  console.log('AuthCont Skills Array: ' + authCont.profile.skills);
-  console.log('UserCont Skills Array: ' + userCont.selectedSkills);
-  console.log('Local Skills Array: ' + skillsArray);
-
   const handleButtonClick = (e) => {
     e.preventDefault();
-    if(skill === ''){
-      return null
-    }else{
-    skillsArray.push(skill);
+    if (skill === '') {
+      return null;
+    } else {
+      skillsArray.push(skill);
 
-    // setSkillsArray([...skillsArray, skill])
-    userCont.updateSkillState(skillsArray);
-    setSkill('');}
+      // setSkillsArray([...skillsArray, skill])
+      userCont.updateSkillState(skillsArray);
+      setSkill('');
+    }
   };
 
   const deleteItem = (e) => {
     e.preventDefault();
-    console.log(skillsArray);
 
     // let itemInd = e.target.attributes['index'].value;
     // skillsArray.splice(itemInd, 1);
@@ -138,15 +134,9 @@ const EditAddLine = ({ placeholder, label }) => {
     skillsArray.splice(itemInd, 1);
     setSkillsArray(skillsArray);
     userCont.updateSkillState(skillsArray);
-
-    console.log(skillsArray);
-    console.log(e.target.attributes['value'].value);
-    console.log(itemInd);
   };
 
-  useEffect(() => {
-
-  }, [skillsArray]);
+  useEffect(() => {}, [skillsArray]);
 
   return (
     <Li>

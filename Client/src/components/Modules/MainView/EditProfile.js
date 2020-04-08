@@ -116,14 +116,21 @@ const EditProfile = (props) => {
     languages: `${userCont.languages}`,
     skills: `${userCont.selectedSkills}`,
     reference: [],
-    social: {},
+    youtube: `${authCont.profile.services[0]}`,
+    twitter: `${authCont.profile.services[1]}`,
+    facebook: `${authCont.profile.services[2]}`,
+    linkedin: `${authCont.profile.services[3]}`,
+    instagram: `${authCont.profile.services[4]}`,
+    discogs: `${authCont.profile.services[5]}`,
+    bandcamp: `${authCont.profile.services[6]}`,
+    soundcloud: `${authCont.profile.services[7]}`,
     offers: {},
   });
 
   const {
     email,
     profileName,
-    avatar, 
+    avatar,
     profileMotto,
     description,
     services,
@@ -211,11 +218,34 @@ const EditProfile = (props) => {
     setUser({ ...user, skills: userCont.selectedSkills });
     console.log('set user skills reachpoint');
   }, [userCont.selectedSkills]);
-  
+
   useEffect(() => {
     setUser({ ...user, services: userCont.selectedTags });
     console.log('set user services reachpoint');
   }, [userCont.selectedTags]);
+
+  
+
+  useEffect(() => {
+
+    
+    userCont &&
+      setUser({
+        ...user,
+       
+          youtube: userCont.social.youtube,
+          twitter: userCont.social.twitter,
+          facebook: userCont.social.facebook,
+          linkedin: userCont.social.linkedin,
+          instagram: userCont.social.instagram,
+          discogs: userCont.social.discogs,
+          bandcamp: userCont.social.bandcamp,
+          soundcloud: userCont.social.soundcloud,
+        
+      });
+    console.log(user);
+    console.log(user.youtube)
+  }, [userCont]);
 
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
@@ -251,7 +281,7 @@ const EditProfile = (props) => {
                 {authCont.user && (
                   <EditSoloLine name='password' label='password' />
                 )}
-                {authCont.user && <PicUpload />}
+                {authCont.user && <PicUpload text='profile image' />}
               </Ul>
             </Col>
           </GradientContRadius>
