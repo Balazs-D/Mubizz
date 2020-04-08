@@ -13,8 +13,16 @@ const Cont = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 200px;
+  width: 90%;
+  /* height: 200px; */
+  margin: 20px;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  border-radius: 3px;
+  padding: 10px;
+  background-image: radial-gradient(
+    ${(props) => props.theme.colors.secondaryDecent},
+    ${(props) => props.theme.colors.white}
+  );
 `;
 
 const ButtonCont = styled.li`
@@ -27,36 +35,40 @@ const ButtonCont = styled.li`
 `;
 
 const ImgWrap = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  /* height: 200px; */
   /* background-image: linear-gradient(
     ${(props) => props.theme.colors.basicBlue},
     ${(props) => props.theme.colors.steelBlue}
   ); */
   box-shadow: 0px 0px 1px ${(props) => props.theme.colors.mainPurple};
+
     position: relative;
+
 
 `;
 
 let Img = styled.img`
   display: flex;
   justify-self: center;
-  width: 200px;
+  width: 100%;
   height: 200px;
   object-fit: cover;
   border: none;
   outline: none;
+  border: 1px solid ${(props) => props.theme.colors.mainPurple};
+  box-shadow: 0px 0px 2px ${(props) => props.theme.colors.steelBlue};
 `;
 
 const Input = styled.input.attrs({ type: 'file' })`
   
-    position: absolute;
+    /* position: absolute;
 
     right: 2px;
-    top: 2px;
+    top: 1px; */
     padding: 0px;
-    /* width: 20%; */
-    margin: 0px;
+    width: 100%;
+    margin-top: 10px;
     background: ${(props) => props.theme.colors.info};
     border: 1px solid ${(props) => props.theme.colors.mainPurple};
     outline: none;
@@ -105,6 +117,15 @@ const PicUpload = () => {
   return (
     <Cont>
       <ImgWrap>
+        {/* <ButtonMainAbs>Pick file</ButtonMainAbs> */}
+
+        {loading ? (
+          <h3>Loading...</h3>
+        ) : (
+          <Img
+            src={authCont.profile.avatar ? authCont.profile.avatar : avatar}
+          />
+        )}
         <Input
           type='file'
           name='file'
@@ -112,9 +133,6 @@ const PicUpload = () => {
           onChange={uploadImage}
           // style={{ display: 'none' }}
         />
-        {/* <ButtonMainAbs>Pick file</ButtonMainAbs> */}
-
-        {loading ? <h3>Loading...</h3> : <Img src={userCont.avatar} />}
       </ImgWrap>
     </Cont>
   );

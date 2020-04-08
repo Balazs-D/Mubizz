@@ -3,9 +3,11 @@ import React, { useContext, Fragment } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import AuthCont from '../../../context/auth/authContext';
+import UserCont from '../../../context/user/userContext';
+
 
 const FrameCont = styled.div`
-  width: 15vw;
+  width: 20vw;
   padding: 1px;
   height: 70vh;
   background: linear-gradient(
@@ -83,7 +85,8 @@ const StyledActiveLink = {
 
 const DashboardSettings = () => {
   const authCont = useContext(AuthCont);
-  
+    const userCont = useContext(UserCont);
+
   const { user, profile } = authCont;
 
   return (
@@ -97,7 +100,7 @@ const DashboardSettings = () => {
 
               <Status>Pro</Status>
             </TitleDiv>
-            <PicCont src={profile.avatar}></PicCont>
+            <PicCont src={profile.avatar ? profile.avatar : userCont.avatar}></PicCont>
             <List>
               <li>
                 <NavLink

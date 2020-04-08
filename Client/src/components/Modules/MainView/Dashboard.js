@@ -14,7 +14,8 @@ const DashCont = styled.div`
   width: 80vw;
   display: flex;
   justify-content: space-around;
-  padding: 30px;
+  margin-left: -15%;
+  padding: 30px 0px;
   background: transparent;
   /* border-top: 2px solid ${props => props.theme.colors.secondaryDecent}; */
 `;

@@ -9,6 +9,7 @@ import {
   UPD_SKILL_STATE,
   UPD_LANG_STATE,
   UPD_IMG_STATE,
+  UPD_SOCIAL,
 } from '../types';
 
 export default (state, action) => {
@@ -71,7 +72,13 @@ export default (state, action) => {
       return {
         ...state,
         avatar: action.payload,
-      }
+      };
+
+    case UPD_SOCIAL:
+      return {
+        ...state,
+        social: action.payload,
+      };
 
     default:
       return state;

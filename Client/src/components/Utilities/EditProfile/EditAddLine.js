@@ -51,8 +51,7 @@ const Col = styled.div`
 `;
 
 const Icon = styled.i`
- 
-
+  transition: all 0.3s ease-in;
 `;
 
 const SkillLi = styled.div.attrs({

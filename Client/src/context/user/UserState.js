@@ -12,6 +12,7 @@ import {
   UPD_SKILL_STATE,
   UPD_LANG_STATE,
   UPD_IMG_STATE,
+  UPD_SOCIAL
 } from '../types';
 
 const UserState = (props) => {
@@ -24,6 +25,7 @@ const UserState = (props) => {
     selectedSkills: '',
     languages: '',
     isSubmitted: false,
+    social: '',
     avatar: '',
     infoNotesArray: [
       [
@@ -119,6 +121,16 @@ const UserState = (props) => {
       payload: input,
     });
   };
+
+  // update social links
+   const updateSocial = (input) => {
+     console.log(input);
+
+     dispatch({
+       type: UPD_SOCIAL,
+       payload: input,
+     });
+   };
   // Toggle tag
 
   const tagToggle = (e) => {
@@ -139,6 +151,7 @@ const UserState = (props) => {
         selectedSkills: state.selectedSkills,
         languages: state.languages,
         avatar: state.avatar,
+        social: state.social,
         toggleFilterBar,
         editToggle,
         toggleTagBar,
@@ -148,6 +161,7 @@ const UserState = (props) => {
         updateSkillState,
         updateLanguageState,
         updateImageState,
+        updateSocial,
       }}
     >
       {props.children}

@@ -16,6 +16,7 @@ import ProcessDiagram from '../../Utilities/EditProfile/ProcessDiagram';
 import IntroText from '../../Utilities/IntroText';
 import DiagramStep from '../../Utilities/EditProfile/DiagramStep';
 import EditLanguage from '../../Utilities/EditProfile/EditLanguage';
+import SocialLinks from '../../Utilities/EditProfile/SocialLinks';
 
 // Styled Comp
 
@@ -196,10 +197,15 @@ const EditProfile = (props) => {
 
   useEffect(() => {
     setUser({ ...user, languages: userCont.languages });
-        setUser({ ...user, avatar: userCont.avatar });
 
-    console.log('set user language reachpoint');
+    console.log('set user avatar language reachpoint');
   }, [userCont]);
+
+  useEffect(() => {
+    setUser({ ...user, avatar: userCont.avatar });
+
+    console.log('set user avatar language reachpoint');
+  }, [userCont.avatar]);
 
   useEffect(() => {
     setUser({ ...user, skills: userCont.selectedSkills });
@@ -338,6 +344,15 @@ const EditProfile = (props) => {
                     value={authCont.profile.website}
                     name='website'
                     label='web page'
+                  />
+                )}
+
+                {authCont.user && (
+                  <SocialLinks
+                    onChange={onChange}
+                    value={authCont.profile.social}
+                    name='social'
+                    label='social media'
                   />
                 )}
               </Ul>

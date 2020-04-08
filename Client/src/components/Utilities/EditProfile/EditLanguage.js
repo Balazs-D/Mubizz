@@ -52,7 +52,9 @@ const Col = styled.div`
   margin-bottom: 10px;
 `;
 
-const Icon = styled.i``;
+const Icon = styled.i`
+  transition: all 0.3s ease-in;
+`;
 
 const SkillLi = styled.div.attrs({
   add: true,
