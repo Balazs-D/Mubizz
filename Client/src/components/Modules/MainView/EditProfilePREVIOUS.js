@@ -216,27 +216,39 @@ const EditProfile = (props) => {
   console.log(userCont.languages);
   console.log(user);
 
-  useEffect(()=>{
-    setUser({...user, skills: authCont.profile.skills})
-  }, [authCont.profile.skills])
+  useEffect(() => {
+    setUser({ ...user, languages: userCont.languages });
+  }, [user.languages]);
 
-  // useEffect(() => {
-  //   userCont &&
-  //     setUser({
-  //       ...user,
+  useEffect(() => {
+    setUser({ ...user, avatar: userCont.avatar });
+  }, [userCont.avatar]);
 
-  //       youtube: userCont.social.youtube,
-  //       twitter: userCont.social.twitter,
-  //       facebook: userCont.social.facebook,
-  //       linkedin: userCont.social.linkedin,
-  //       instagram: userCont.social.instagram,
-  //       discogs: userCont.social.discogs,
-  //       bandcamp: userCont.social.bandcamp,
-  //       soundcloud: userCont.social.soundcloud,
-  //     });
-  //   console.log(user);
-  //   console.log(user.youtube);
-  // }, [userCont.social]);
+  useEffect(() => {
+    setUser({ ...user, services: userCont.selectedTags });
+  }, [userCont.selectedTags]);
+
+  useEffect(() => {
+    userCont &&
+      setUser({
+        ...user,
+
+        youtube: userCont.social.youtube,
+        twitter: userCont.social.twitter,
+        facebook: userCont.social.facebook,
+        linkedin: userCont.social.linkedin,
+        instagram: userCont.social.instagram,
+        discogs: userCont.social.discogs,
+        bandcamp: userCont.social.bandcamp,
+        soundcloud: userCont.social.soundcloud,
+      });
+    console.log(user);
+    console.log(user.youtube);
+  }, [userCont.social]);
+
+  useEffect(() => {
+    setUser({ ...user, skills: userCont.selectedSkills });
+  }, [userCont.skills]);
 
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
@@ -307,7 +319,7 @@ const EditProfile = (props) => {
                 )}
                 {authCont.profile && (
                   <EditTagItem
-                    value={authCont.services}
+                    value={userCont.tagArray}
                     name='services'
                     onChange={onChange}
                     label='service fields'
@@ -345,7 +357,7 @@ const EditProfile = (props) => {
                 )}
                 {authCont.user && (
                   <EditAddLine
-                    value={authCont.profile.skills}
+                    value={userCont.selectedSkills}
                     name='skills'
                     label='skills & technologies'
                   />
@@ -353,7 +365,7 @@ const EditProfile = (props) => {
 
                 {authCont.user && (
                   <EditLanguage
-                    value={authCont.profile.languages}
+                    value={userCont.languages}
                     name='languages'
                     label='languages'
                   />
@@ -371,7 +383,7 @@ const EditProfile = (props) => {
                 {authCont.user && (
                   <SocialLinks
                     onChange={onChange}
-                    value={authCont.profile.social}
+                    value={userCont.social}
                     name='social'
                     label='social media'
                   />

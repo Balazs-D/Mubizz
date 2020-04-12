@@ -8,7 +8,12 @@ import {
   PROFILE_LOADED,
   UPDATE,
   LOGOUT,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  UPD_TAG_STATE,
+  UPD_SKILL_STATE,
+  UPD_LANG_STATE,
+  UPD_IMG_STATE,
+  UPD_SOCIAL,
 } from '../types';
 
 export default (state, action) => {
@@ -18,13 +23,13 @@ export default (state, action) => {
         ...state,
         isAuthenticated: true,
         loading: false,
-        user: action.payload
+        user: action.payload,
       };
 
     case PROFILE_LOADED:
       return {
         ...state,
-        profile: action.payload
+        profile: action.payload,
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
@@ -33,7 +38,7 @@ export default (state, action) => {
         ...state,
         ...action.payload,
         isAuthenticated: true,
-        loading: false
+        loading: false,
       };
 
     case REGISTER_FAIL:
@@ -47,7 +52,7 @@ export default (state, action) => {
         isAuthenticated: false,
         loading: false,
         user: null,
-        error: action.payload
+        error: action.payload,
         // name: null,
         // email: null
       };
@@ -55,7 +60,37 @@ export default (state, action) => {
     case CLEAR_ERRORS:
       return {
         ...state,
-        error: null
+        error: null,
+      };
+
+    case UPD_TAG_STATE:
+      return {
+        ...state,
+        services: action.payload,
+      };
+
+    case UPD_SKILL_STATE:
+      return {
+        ...state,
+        skills: action.payload,
+      };
+
+    case UPD_LANG_STATE:
+      return {
+        ...state,
+        languages: action.payload,
+      };
+
+    case UPD_IMG_STATE:
+      return {
+        ...state,
+        avatar: action.payload,
+      };
+
+    case UPD_SOCIAL:
+      return {
+        ...state,
+        social: action.payload,
       };
 
     // case UPDATE:

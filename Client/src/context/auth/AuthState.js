@@ -14,17 +14,22 @@ import {
   UPDATE,
   CLEAR_ERRORS,
   PROFILE_LOADED,
-  SET_ALERT
+  SET_ALERT,
+  UPD_TAG_STATE,
+  UPD_SKILL_STATE,
+  UPD_LANG_STATE,
+  UPD_IMG_STATE,
+  UPD_SOCIAL
 } from '../types';
 
-const AuthState = props => {
+const AuthState = (props) => {
   const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
     loading: true,
     user: null,
     profile: [],
-    error: null
+    error: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -44,7 +49,7 @@ const AuthState = props => {
       const res = await axios.get('http://localhost:5000/api/login');
       dispatch({
         type: USER_LOADED,
-        payload: res.data
+        payload: res.data,
       });
     } catch (error) {
       dispatch({ type: AUTH_ERROR });
@@ -57,7 +62,7 @@ const AuthState = props => {
 
       dispatch({
         type: PROFILE_LOADED,
-        payload: res.data
+        payload: res.data,
       });
     } catch (error) {
       console.log('getUserData error');
@@ -65,11 +70,11 @@ const AuthState = props => {
   };
 
   //  Register User
-  const register = async formData => {
+  const register = async (formData) => {
     const config = {
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     };
 
     try {
@@ -80,7 +85,7 @@ const AuthState = props => {
       );
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: res.data
+        payload: res.data,
       });
 
       loadUser();
@@ -88,18 +93,18 @@ const AuthState = props => {
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
-        payload: err.response.data.msg
+        payload: err.response.data.msg,
       });
     }
   };
 
   //  Login User
 
-  const login = async formData => {
+  const login = async (formData) => {
     const config = {
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     };
     try {
       const res = await axios.post(
@@ -110,14 +115,14 @@ const AuthState = props => {
       console.log(res.data);
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data
+        payload: res.data,
       });
       loadUser();
       getProfile();
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
-        payload: err.response.data.msg
+        payload: err.response.data.msg,
       });
     }
   };
@@ -131,7 +136,7 @@ const AuthState = props => {
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
   //  Update Profile
-  const update = async formData => {
+  const update = async (formData) => {
     try {
       console.log(formData);
 
@@ -148,6 +153,51 @@ const AuthState = props => {
     }
   };
 
+  // UPDATE COMPONENT STATE IN AUTH
+  // update tag selection
+
+  const updateServices = (input) => {
+    dispatch({
+      type: UPD_TAG_STATE,
+      payload: input,
+    });
+  };
+
+  // update skill selection
+
+  const updateSkills = (input) => {
+    dispatch({
+      type: UPD_SKILL_STATE,
+      payload: input,
+    });
+  };
+
+  // update languages
+  const updateLanguages = (input) => {
+    dispatch({
+      type: UPD_LANG_STATE,
+      payload: input,
+    });
+  };
+
+  // update image
+  const updateAvatar = (input) => {
+    dispatch({
+      type: UPD_IMG_STATE,
+      payload: input,
+    });
+  };
+
+  // update social links
+  const updateSocial = (input) => {
+    console.log(input);
+
+    dispatch({
+      type: UPD_SOCIAL,
+      payload: input,
+    });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -157,13 +207,18 @@ const AuthState = props => {
         profile: state.profile,
         loading: state.loading,
         error: state.error,
+        updateServices,
+        updateSkills,
+        updateAvatar,
+        updateLanguages,
+        updateSocial,
         register,
         clearErrors,
         login,
         loadUser,
         logout,
         update,
-        getProfile
+        getProfile,
       }}
     >
       {props.children}

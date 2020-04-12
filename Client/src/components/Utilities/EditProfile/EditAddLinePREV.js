@@ -101,13 +101,16 @@ const EditAddLine = ({ placeholder, label }) => {
   const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
 
-  
-// ! Child component gets AuthContext (Fetched Database) data:
+  // setSkillsArray(authCont.profile.skills);
+  // console.log(skillsArray)
+
   useEffect(() => {
     setSkillsArray(authCont.profile.skills);
   }, []);
 
-  
+  useEffect(() => {
+    userCont.updateSkillState(skillsArray);
+  }, [skillsArray]);
 
   const handleButtonClick = (e) => {
     e.preventDefault();
@@ -117,7 +120,7 @@ const EditAddLine = ({ placeholder, label }) => {
       skillsArray.push(skill);
 
       // setSkillsArray([...skillsArray, skill])
-      authCont.updateSkills(skillsArray);
+      userCont.updateSkillState(skillsArray);
       setSkill('');
     }
   };
@@ -129,8 +132,8 @@ const EditAddLine = ({ placeholder, label }) => {
     // skillsArray.splice(itemInd, 1);
     let itemInd = skillsArray.indexOf(e.target.attributes['value'].value);
     skillsArray.splice(itemInd, 1);
-    // setSkillsArray(skillsArray);
-    authCont.updateSkills(skillsArray);
+    setSkillsArray(skillsArray);
+    userCont.updateSkillState(skillsArray);
   };
 
   useEffect(() => {}, [skillsArray]);

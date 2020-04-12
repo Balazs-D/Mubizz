@@ -24,3 +24,4 @@ export const UPD_SKILL_STATE = 'UPD_SKILL_STATE';
 export const UPD_LANG_STATE = 'UPD_LANG_STATE';
 export const UPD_IMG_STATE = 'UPD_IMG_STATE';
 export const UPD_SOCIAL = 'UPD_SOCIAL';
+
