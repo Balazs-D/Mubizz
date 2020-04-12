@@ -166,8 +166,6 @@ const Label = styled.label`
 `;
 
 const SocialLinks = ({ placeholder, label }) => {
-
-  const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
   const socialNames = [
     'youtube',
@@ -180,7 +178,8 @@ const SocialLinks = ({ placeholder, label }) => {
     'soundcloud',
   ];
 
-  const [linksArr, setLinksArr] = useState(authCont.profile.services
+  const [linksArr, setLinksArr] = useState(
+    authCont.profile.services
     // {
     //   youtube: '',
     // },
@@ -207,7 +206,6 @@ const SocialLinks = ({ placeholder, label }) => {
     // },
   );
   const [link, setLink] = useState('');
-  
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -216,10 +214,12 @@ const SocialLinks = ({ placeholder, label }) => {
     console.log(linksArr);
     // const social = { [e.target.name]: e.target.value };
 
-    setLinksArr({...linksArr, [ e.target.name]: e.target.value })
-    userCont.updateSocial(linksArr);
+    setLinksArr({ ...linksArr, [e.target.name]: e.target.value });
+    console.log(linksArr);
+    // authCont.updateSocial(linksArr);
     // const tempLinksArr = [...linksArr];
     // tempLinksArr.push(social);
+    setLinksArr(authCont.profile.social);
 
     // // setLinksArr(
     // linksArr.map((el) => {
@@ -233,49 +233,18 @@ const SocialLinks = ({ placeholder, label }) => {
 
     // setLinksArr({tempLinksArr});
     console.log(linksArr);
+    console.log(authCont.profile.social);
   };
 
   useEffect(() => {
     setLinksArr(authCont.profile.social);
   }, []);
-  console.log(linksArr);
-
-  useEffect(() => {
-    userCont.updateSocial(linksArr);
-  }, [linksArr]);
 
   const handleButtonClick = (e) => {
     e.preventDefault();
-    if (link === '') {
-      return null;
-    } else {
-      linksArr.push(link);
 
-      // setSkillsArray([...skillsArray, skill])
-      userCont.updateSocial(linksArr);
-      setLink('');
-    }
+    authCont.updateSocial(linksArr);
   };
-
-  const deleteItem = (e) => {
-    e.preventDefault();
-    console.log(linksArr);
-
-    // let itemInd = e.target.attributes['index'].value;
-    // skillsArray.splice(itemInd, 1);
-    let itemInd = linksArr.indexOf(e.target.attributes['value'].value);
-    linksArr.splice(itemInd, 1);
-    setLinksArr(linksArr);
-    userCont.updateSocial(linksArr);
-
-    console.log(linksArr);
-    console.log(e.target.attributes['value'].value);
-    console.log(itemInd);
-  };
-
-  // useEffect(() => {
-  //   // userCont.updateLanguageState(languagesArray);
-  // }, [languagesArray]);
 
   return (
     <Li>
@@ -286,11 +255,12 @@ const SocialLinks = ({ placeholder, label }) => {
             <InputEdit
               placeholder={placeholder}
               value={item}
-              onChange={(e) => setLink(e.target.value)}
+              // onChange={(e) => setLink(e.target.value)}
               type='text'
               name={item}
               onChange={(e) => handleChange(e)}
             ></InputEdit>
+            <button onClick={handleButtonClick}>Add</button>
           </Row>
         ))}
       </Cont>

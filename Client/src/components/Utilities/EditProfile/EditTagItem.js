@@ -58,7 +58,6 @@ const ServiceFieldArray = [
 ];
 
 const EditTagItem = ({ title, onChange, label }) => {
-  const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
 
   const [tagArray, setTagArray] = useState([]);
@@ -84,9 +83,8 @@ const EditTagItem = ({ title, onChange, label }) => {
 
     setTagArray(update);
     console.log(e.target.checked);
-    userCont.updateTagState(tagArray);
-    console.log(userCont.selectedTags);
-     console.log(update);
+    authCont.updateServices(tagArray);
+    console.log(update);
   };
 
   return (

@@ -100,7 +100,7 @@ const DashboardSettings = () => {
 
               <Status>Pro</Status>
             </TitleDiv>
-            <PicCont src={profile.avatar ? profile.avatar : userCont.avatar}></PicCont>
+            <PicCont src={profile.avatar ? profile.avatar : null}></PicCont>
             <List>
               <li>
                 <NavLink

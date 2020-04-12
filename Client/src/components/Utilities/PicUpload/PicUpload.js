@@ -16,8 +16,6 @@ const Cont = styled.div`
   width: 90%;
   /* height: 200px; */
   margin: 20px;
-  
- 
 `;
 
 const ButtonCont = styled.li`
@@ -35,7 +33,6 @@ const Label = styled.label`
   width: 100%;
   margin-top: 10px;
 `;
-
 
 const ImgWrap = styled.div`
   width: 100%;
@@ -70,18 +67,16 @@ let Img = styled.img`
 `;
 
 const Input = styled.input.attrs({ type: 'file' })`
-  
-    /* position: absolute;
+  /* position: absolute;
 
     right: 2px;
     top: 1px; */
-    padding: 0px;
-    width: 100%;
-    margin-top: 10px;
-    background: ${(props) => props.theme.colors.info};
-    border: 1px solid ${(props) => props.theme.colors.mainPurple};
-    outline: none;
-  
+  padding: 0px;
+  width: 100%;
+  margin-top: 10px;
+  background: ${(props) => props.theme.colors.info};
+  border: 1px solid ${(props) => props.theme.colors.mainPurple};
+  outline: none;
 `;
 
 const ButtonMainAbs = styled(ButtonMain)`
@@ -89,7 +84,7 @@ const ButtonMainAbs = styled(ButtonMain)`
   margin: 4px;
 `;
 
-const PicUpload = ({text  }) => {
+const PicUpload = ({ text }) => {
   const authCont = useContext(AuthCont);
 
   const [image, setImage] = useState(avatar);
@@ -110,16 +105,17 @@ const PicUpload = ({text  }) => {
     );
     const file = await res.json();
 
-    setImage(file.secure_url);
+    await setImage(file.secure_url);
+    await authCont.updateAvatar(image);
+
     setLoading(false);
     console.log(file.secure_url);
   };
 
-  useEffect(() => {
-        authCont.updateAvatar(image);
+  // useEffect(() => {
+  //       authCont.updateAvatar(image);
 
-  }, [image])
-
+  // }, [image])
 
   return (
     <Cont>

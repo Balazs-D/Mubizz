@@ -113,8 +113,8 @@ const EditProfile = (props) => {
     services: `${userCont.selectedTags}`,
     website: `${authCont.profile.website}`,
     location: `${authCont.profile.location}`,
-    languages: `${userCont.languages}`,
-    skills: `${userCont.selectedSkills}`,
+    languages: `${authCont.profile.languages}`,
+    skills: `${authCont.profile.skills}`,
     reference: [],
     youtube: `${userCont.social.youtube}`,
     twitter: `${userCont.social.twitter}`,
@@ -216,27 +216,40 @@ const EditProfile = (props) => {
   console.log(userCont.languages);
   console.log(user);
 
-  useEffect(()=>{
-    setUser({...user, skills: authCont.profile.skills})
-  }, [authCont.profile.skills])
+ 
 
-  // useEffect(() => {
-  //   userCont &&
-  //     setUser({
-  //       ...user,
+  
 
-  //       youtube: userCont.social.youtube,
-  //       twitter: userCont.social.twitter,
-  //       facebook: userCont.social.facebook,
-  //       linkedin: userCont.social.linkedin,
-  //       instagram: userCont.social.instagram,
-  //       discogs: userCont.social.discogs,
-  //       bandcamp: userCont.social.bandcamp,
-  //       soundcloud: userCont.social.soundcloud,
-  //     });
-  //   console.log(user);
-  //   console.log(user.youtube);
-  // }, [userCont.social]);
+  useEffect(() => {
+    setUser({ ...user, skills: authCont.profile.skills });
+  }, [authCont.profile.skills]);
+
+  useEffect(() => {
+    setUser({ ...user, languages: authCont.profile.languages });
+  }, [authCont.profile.languages]);
+
+  useEffect(() => {
+    setUser({ ...user, services: authCont.profile.services });
+  }, [authCont.profile.services]);
+
+  useEffect(() => {
+    setUser({ ...user, avatar: userCont.avatar });
+  }, [authCont.profile.avatar]);
+
+  useEffect(() => {
+      setUser({
+        ...user,
+        youtube: userCont.social.youtube,
+        twitter: userCont.social.twitter,
+        facebook: userCont.social.facebook,
+        linkedin: userCont.social.linkedin,
+        instagram: userCont.social.instagram,
+        discogs: userCont.social.discogs,
+        bandcamp: userCont.social.bandcamp,
+        soundcloud: userCont.social.soundcloud,
+      });
+    
+  }, [authCont.profile.social]);
 
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section

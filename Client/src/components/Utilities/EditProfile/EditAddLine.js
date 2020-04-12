@@ -125,15 +125,13 @@ const EditAddLine = ({ placeholder, label }) => {
   const deleteItem = (e) => {
     e.preventDefault();
 
-    // let itemInd = e.target.attributes['index'].value;
-    // skillsArray.splice(itemInd, 1);
+   
     let itemInd = skillsArray.indexOf(e.target.attributes['value'].value);
     skillsArray.splice(itemInd, 1);
-    // setSkillsArray(skillsArray);
     authCont.updateSkills(skillsArray);
   };
 
-  useEffect(() => {}, [skillsArray]);
+  // useEffect(() => {}, [skillsArray]);
 
   return (
     <Li>

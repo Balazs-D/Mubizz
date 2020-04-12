@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 import InputMinimal from '../InputMinimal';
 import ButtonCircle from '../ButtonCircle';
-import AddLineComponent from '../EditProfile/AddLineComponent';
 import UserCont from '../../../context/user/userContext';
 import AuthCont from '../../../context/auth/authContext';
 
@@ -102,16 +101,13 @@ const Label = styled.label`
 const EditLanguage = ({ placeholder, label }) => {
   const [language, setLanguage] = useState('');
   const [languagesArray, setLanguagesArray] = useState([]);
-  const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
 
   useEffect(() => {
     setLanguagesArray(authCont.profile.languages);
   }, []);
 
-  useEffect(() => {
-    userCont.updateLanguageState(languagesArray);
-  }, [languagesArray]);
+  
 
   const handleButtonClick = (e) => {
     e.preventDefault();
@@ -120,8 +116,7 @@ const EditLanguage = ({ placeholder, label }) => {
     } else {
       languagesArray.push(language);
 
-      // setSkillsArray([...skillsArray, skill])
-      userCont.updateLanguageState(languagesArray);
+      authCont.updateLanguages(languagesArray);
       setLanguage('');
     }
   };
@@ -130,20 +125,16 @@ const EditLanguage = ({ placeholder, label }) => {
 
   const deleteItem = (e) => {
     e.preventDefault();
-    
-
-    // let itemInd = e.target.attributes['index'].value;
-    // skillsArray.splice(itemInd, 1);
     let itemInd = languagesArray.indexOf(e.target.attributes['value'].value);
     languagesArray.splice(itemInd, 1);
     setLanguagesArray(languagesArray);
-    userCont.updateLanguageState(languagesArray);
+    authCont.updateLanguages(languagesArray);
 
    
   };
 
   // useEffect(() => {
-  //   // userCont.updateLanguageState(languagesArray);
+  //   authCont.updateLanguageState(languagesArray);
   // }, [languagesArray]);
 
   return (
