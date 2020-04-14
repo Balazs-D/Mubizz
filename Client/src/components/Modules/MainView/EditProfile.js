@@ -104,52 +104,76 @@ const EditProfile = (props) => {
   const authCont = useContext(AuthCont);
   const userCont = useContext(UserCont);
 
-  const [user, setUser] = useState({
-    email: `${authCont.user.email}`,
-    profileName: `${authCont.profile.profileName}`,
-    avatar: `${userCont.avatar}`,
-    profileMotto: `${authCont.profile.profileMotto}`,
-    description: `${authCont.profile.description}`,
-    services: `${userCont.selectedTags}`,
-    website: `${authCont.profile.website}`,
-    location: `${authCont.profile.location}`,
-    languages: `${authCont.profile.languages}`,
-    skills: `${authCont.profile.skills}`,
-    reference: [],
-    youtube: `${userCont.social.youtube}`,
-    twitter: `${userCont.social.twitter}`,
-    facebook: `${userCont.social.facebook}`,
-    linkedin: `${userCont.social.linkedin}`,
-    instagram: `${userCont.social.instagram}`,
-    discogs: `${userCont.social.discogs}`,
-    bandcamp: `${userCont.social.bandcamp}`,
-    soundcloud: `${userCont.social.soundcloud}`,
-    offers: {},
-  });
+  // const [profile, setProfile] = useState({
+  //   // email: `${authCont.user.email}`,
+  //   profileName: `${authCont.profile.profileName}`,
+  //   avatar: `${authCont.profile.avatar}`,
+  //   profileMotto: `${authCont.profile.profileMotto}`,
+  //   description: `${authCont.profile.description}`,
+  //   services: [`${authCont.profile.services}`],
+  //   website: `${authCont.profile.website}`,
+  //   location: `${authCont.profile.location}`,
+  //   languages: [`${authCont.profile.languages}`],
+  //   skills: [`${authCont.profile.skills}`],
+  //   reference: [],
+  //   youtube: `${userCont.social.youtube}`,
+  //   twitter: `${userCont.social.twitter}`,
+  //   facebook: `${userCont.social.facebook}`,
+  //   linkedin: `${userCont.social.linkedin}`,
+  //   instagram: `${userCont.social.instagram}`,
+  //   discogs: `${userCont.social.discogs}`,
+  //   bandcamp: `${userCont.social.bandcamp}`,
+  //   soundcloud: `${userCont.social.soundcloud}`,
+  //   offers: {},
+  // });
 
-  console.log(user);
-  const {
-    email,
-    profileName,
-    avatar,
-    profileMotto,
-    description,
-    services,
-    website,
-    location,
-    languages,
-    skills,
-    reference,
-    youtube,
-    twitter,
-    facebook,
-    linkedin,
-    instagram,
-    discogs,
-    bandcamp,
-    soundcloud,
-    offers,
-  } = user;
+  const [profileName, setProfileName] = useState(authCont.profile.profileName);
+  const [avatar, setAvatar] = useState(authCont.profile.avatar);
+  const [profileMotto, setProfileMotto] = useState(
+    authCont.profile.profileMotto
+  );
+  const [description, setDescription] = useState(authCont.profile.description);
+  const [services, setServices] = useState(authCont.profile.services);
+  const [website, setWebsite] = useState(authCont.profile.website);
+  const [location, setLocation] = useState(authCont.profile.location);
+  const [languages, setLanguages] = useState([authCont.profile.languages]);
+  const [skills, setSkills] = useState([authCont.profile.skills]);
+  const [reference, setReferenece] = useState([]);
+  const [youtube, setYoutube] = useState();
+  const [twitter, setTwitter] = useState(authCont.profile.social.twitter);
+  const [facebook, setFacebook] = useState(authCont.profile.social.facebook);
+  const [linkedin, setLinkedin] = useState(authCont.profile.social.linkedin);
+  const [instagram, setInstagram] = useState(authCont.profile.social.instagram);
+  const [discogs, setDiscogs] = useState(authCont.profile.social.discogs);
+  const [bandcamp, setBandcamp] = useState(authCont.profile.social.bandcamp);
+  const [soundcloud, setSoundcloud] = useState(
+    authCont.profile.social.soundcloud
+  );
+  const [offers, setOffers] = useState([]);
+
+  // console.log(profile);
+  // const {
+  //   email,
+  //   profileName,
+  //   avatar,
+  //   profileMotto,
+  //   description,
+  //   services,
+  //   website,
+  //   location,
+  //   languages,
+  //   skills,
+  //   reference,
+  //   youtube,
+  //   twitter,
+  //   facebook,
+  //   linkedin,
+  //   instagram,
+  //   discogs,
+  //   bandcamp,
+  //   soundcloud,
+  //   offers,
+  // } = profile;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -159,13 +183,10 @@ const EditProfile = (props) => {
     // authCont.getProfile();
   }, []);
 
-  const onChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(e.target.name);
-  };
-
-  console.log(userCont.selectedTags);
-  console.log(userCont.languages);
+  // const onChange = (e) => {
+  //   setProfile({ ...profile, [e.target.name]: e.target.value });
+  //   console.log(e.target.name);
+  // };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -178,10 +199,9 @@ const EditProfile = (props) => {
     //    setAlert(error);
     //    clearErrors();
     //  } else {
-    console.log('test 01');
+    console.log(FormData);
     await authCont.update({
       // FormData
-      email,
       profileName,
       avatar,
       profileMotto,
@@ -211,45 +231,118 @@ const EditProfile = (props) => {
   };
 
   console.log(authCont);
-  console.log(userCont.selectedSkills);
-  console.log(userCont.selectedTags);
-  console.log(userCont.languages);
-  console.log(user);
 
- 
-
-  
+   console.log(profileName);
+   console.log(avatar);
+   console.log(profileMotto);
+   console.log(description);
+   console.log(services);
+   console.log(website);
+   console.log(location);
+   console.log(languages);
+   console.log(skills);
+   console.log(reference);
+   console.log(youtube);
+   console.log(twitter);
+   console.log(facebook);
+   console.log(linkedin);
+   console.log(instagram);
+   console.log(discogs);
+   console.log(bandcamp);
+   console.log(soundcloud);
+   console.log(offers);
 
   useEffect(() => {
-    setUser({ ...user, skills: authCont.profile.skills });
+    setSkills(authCont.profile.skills);
   }, [authCont.profile.skills]);
 
   useEffect(() => {
-    setUser({ ...user, languages: authCont.profile.languages });
+    setLanguages(authCont.profile.languages );
   }, [authCont.profile.languages]);
 
   useEffect(() => {
-    setUser({ ...user, services: authCont.profile.services });
+    setServices(authCont.profile.services );
   }, [authCont.profile.services]);
 
   useEffect(() => {
-    setUser({ ...user, avatar: userCont.avatar });
+    setAvatar(authCont.profile.avatar);
   }, [authCont.profile.avatar]);
 
   useEffect(() => {
-      setUser({
-        ...user,
-        youtube: userCont.social.youtube,
-        twitter: userCont.social.twitter,
-        facebook: userCont.social.facebook,
-        linkedin: userCont.social.linkedin,
-        instagram: userCont.social.instagram,
-        discogs: userCont.social.discogs,
-        bandcamp: userCont.social.bandcamp,
-        soundcloud: userCont.social.soundcloud,
-      });
-    
-  }, [authCont.profile.social]);
+    setYoutube(authCont.profile.social.youtube);
+  }, [authCont.profile.social.youtube]);
+
+  useEffect(() => {
+    setTwitter(authCont.profile.social.twitter);
+  }, [authCont.profile.social.twitter]);
+
+  useEffect(() => {
+    setFacebook(authCont.profile.social.facebook);
+  }, [authCont.profile.social.facebook]);
+
+  useEffect(() => {
+    setLinkedin(authCont.profile.social.linkedin);
+  }, [authCont.profile.social.linkedin]);
+
+  useEffect(() => {
+    setInstagram(authCont.profile.social.instagram);
+  }, [authCont.profile.social.instagram]);
+
+  useEffect(() => {
+    setDiscogs(authCont.profile.social.discogs);
+  }, [authCont.profile.social.discogs]);
+
+  useEffect(() => {
+    setBandcamp(authCont.profile.social.bandcamp);
+  }, [authCont.profile.social.bandcamp]);
+
+  useEffect(() => {
+    setSoundcloud(authCont.profile.social.soundcloud);
+  }, [authCont.profile.social.soundcloud]);
+
+  // useEffect(() => {
+  //   setSocial({
+  //     ...profile,
+  //     youtube: userCont.social.youtube,
+  //     twitter: userCont.social.twitter,
+  //     facebook: userCont.social.facebook,
+  //     linkedin: userCont.social.linkedin,
+  //     instagram: userCont.social.instagram,
+  //     discogs: userCont.social.discogs,
+  //     bandcamp: userCont.social.bandcamp,
+  //     soundcloud: userCont.social.soundcloud,
+  //   });
+  // }, [authCont.profile.social]);
+
+  // useEffect(() => {
+  //   setProfile({ ...profile, skills: authCont.profile.skills });
+  // }, [authCont.profile]);
+
+  // useEffect(() => {
+  //   setProfile({ ...profile, languages: authCont.profile.languages });
+  // }, [authCont.profile]);
+
+  // useEffect(() => {
+  //   setProfile({ ...profile, services: authCont.profile.services });
+  // }, [authCont.profile]);
+
+  // useEffect(() => {
+  //   setProfile({ ...profile, avatar: userCont.avatar });
+  // }, [authCont.profile.avatar]);
+
+  // useEffect(() => {
+  //   setProfile({
+  //     ...profile,
+  //     youtube: userCont.social.youtube,
+  //     twitter: userCont.social.twitter,
+  //     facebook: userCont.social.facebook,
+  //     linkedin: userCont.social.linkedin,
+  //     instagram: userCont.social.instagram,
+  //     discogs: userCont.social.discogs,
+  //     bandcamp: userCont.social.bandcamp,
+  //     soundcloud: userCont.social.soundcloud,
+  //   });
+  // }, [authCont.profile.social]);
 
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
@@ -268,7 +361,7 @@ const EditProfile = (props) => {
               <Ul>
                 {authCont.user && (
                   <EditSoloLine
-                    onChange={onChange}
+                    // onChange={(e) => setLink(e.target.value)}
                     value={authCont.user.name}
                     name='name'
                     label='name'
@@ -276,7 +369,7 @@ const EditProfile = (props) => {
                 )}
                 {authCont.user && (
                   <EditSoloLine
-                    value={email}
+                    // value={email}
                     name='email'
                     value={authCont.user.email}
                     label='e-mail'
@@ -301,7 +394,7 @@ const EditProfile = (props) => {
               <Ul>
                 {authCont.profile && (
                   <EditSoloLine
-                    onChange={onChange}
+                    onChange={(e) => setProfileName(e.target.value)}
                     value={authCont.profile.profileName}
                     name='profileName'
                     label='profile name'
@@ -312,7 +405,7 @@ const EditProfile = (props) => {
                     placeholder={authCont.profile.profileMotto}
                     value={profileMotto}
                     name='profileMotto'
-                    onChange={onChange}
+                    onChange={(e) => setProfileMotto(e.target.value)}
                     label='profile motto'
 
                     // spellCheck='false'
@@ -322,7 +415,7 @@ const EditProfile = (props) => {
                   <EditTagItem
                     value={authCont.services}
                     name='services'
-                    onChange={onChange}
+                    // onChange={onChange}
                     label='service fields'
                   />
                 )}
@@ -341,7 +434,7 @@ const EditProfile = (props) => {
               <Ul>
                 {authCont.user && (
                   <EditSoloLine
-                    onChange={onChange}
+                    onChange={(e) => setLocation(e.target.value)}
                     value={authCont.profile.location}
                     name='location'
                     label='location'
@@ -352,7 +445,7 @@ const EditProfile = (props) => {
                     placeholder={authCont.profile.description}
                     value={description}
                     name='description'
-                    onChange={onChange}
+                    onChange={(e) => setDescription(e.target.value)}
                     label='detailed description'
                   />
                 )}
@@ -374,7 +467,7 @@ const EditProfile = (props) => {
 
                 {authCont.user && (
                   <EditSoloLine
-                    onChange={onChange}
+                    onChange={(e) => setWebsite(e.target.value)}
                     value={authCont.profile.website}
                     name='website'
                     label='web page'
@@ -383,7 +476,7 @@ const EditProfile = (props) => {
 
                 {authCont.user && (
                   <SocialLinks
-                    onChange={onChange}
+                    // onChange={onChange}
                     value={authCont.profile.social}
                     name='social'
                     label='social media'

@@ -178,48 +178,20 @@ const SocialLinks = ({ placeholder, label }) => {
     'soundcloud',
   ];
 
-  const [linksArr, setLinksArr] = useState(
-    authCont.profile.services
-    // {
-    //   youtube: '',
-    // },
-    // {
-    //   twitter: '',
-    // },
-    // {
-    //   facebook: '',
-    // },
-    // {
-    //   linkedin: '',
-    // },
-    // {
-    //   instagram: '',
-    // },
-    // {
-    //   discogs: '',
-    // },
-    // {
-    //   bandcamp: '',
-    // },
-    // {
-    //   soundcloud: '',
-    // },
-  );
+  const [linksArr, setLinksArr] = useState(authCont.profile.social);
   const [link, setLink] = useState('');
 
   const handleChange = (e) => {
-    e.preventDefault();
+    e.persist();
+
     console.log(e.target.value);
     console.log(e.target.name);
+    console.log(link);
     console.log(linksArr);
-    // const social = { [e.target.name]: e.target.value };
+    setLinksArr({ ...linksArr, [e.target.name]: e.target.value 
+    });
 
-    setLinksArr({ ...linksArr, [e.target.name]: e.target.value });
     console.log(linksArr);
-    // authCont.updateSocial(linksArr);
-    // const tempLinksArr = [...linksArr];
-    // tempLinksArr.push(social);
-    setLinksArr(authCont.profile.social);
 
     // // setLinksArr(
     // linksArr.map((el) => {
@@ -240,8 +212,14 @@ const SocialLinks = ({ placeholder, label }) => {
     setLinksArr(authCont.profile.social);
   }, []);
 
+useEffect(() => {
+  authCont.updateSocial(linksArr);
+
+}, [linksArr])
+
   const handleButtonClick = (e) => {
     e.preventDefault();
+    setLinksArr({ ...linksArr, link });
 
     authCont.updateSocial(linksArr);
   };
@@ -255,7 +233,7 @@ const SocialLinks = ({ placeholder, label }) => {
             <InputEdit
               placeholder={placeholder}
               value={item}
-              // onChange={(e) => setLink(e.target.value)}
+              onChange={(e) => setLink(e.target.value)}
               type='text'
               name={item}
               onChange={(e) => handleChange(e)}

@@ -162,7 +162,7 @@ const AuthState = (props) => {
       payload: input,
     });
   };
-
+console.log(state)
   // update skill selection
 
   const updateSkills = (input) => {
@@ -171,6 +171,8 @@ const AuthState = (props) => {
       payload: input,
     });
   };
+    console.log(state);
+
 
   // update languages
   const updateLanguages = (input) => {
@@ -179,6 +181,8 @@ const AuthState = (props) => {
       payload: input,
     });
   };
+  console.log(state);
+
 
   // update image
   const updateAvatar = (input) => {

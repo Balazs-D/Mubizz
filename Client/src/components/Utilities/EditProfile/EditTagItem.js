@@ -60,30 +60,30 @@ const ServiceFieldArray = [
 const EditTagItem = ({ title, onChange, label }) => {
   const authCont = useContext(AuthCont);
 
-  const [tagArray, setTagArray] = useState([]);
+  const [tagArr, setTagArr] = useState([]);
   const [isChecked, setIsChecked] = useState([]);
 
   useEffect(() => {
-    setTagArray(authCont.profile.services);
+    setTagArr(authCont.profile.services);
   }, [0]);
 
   const toggleClick = (e) => {
     e.preventDefault();
-    if (tagArray.includes(e.target.value)) {
-      let index = tagArray.indexOf(e.target.value);
-      tagArray.splice(index, 1);
+    if (tagArr.includes(e.target.value)) {
+      let index = tagArr.indexOf(e.target.value);
+      tagArr.splice(index, 1);
       setIsChecked(false);
     } else {
-      tagArray.push(e.target.value);
+      tagArr.push(e.target.value);
       setIsChecked(true);
     }
-    console.log(tagArray);
+    console.log(tagArr);
     console.log(e.target.value);
-    const update = tagArray.filter(item => item !== '');
+    const update = tagArr.filter(item => item !== '');
 
-    setTagArray(update);
+    setTagArr(update);
     console.log(e.target.checked);
-    authCont.updateServices(tagArray);
+    authCont.updateServices(tagArr);
     console.log(update);
   };
 
@@ -98,7 +98,7 @@ const EditTagItem = ({ title, onChange, label }) => {
               value={field}
               text={field}
               onClick={toggleClick}
-              checked={tagArray.includes(field) ? true : false}
+              checked={tagArr.includes(field) ? true : false}
             ></ButtonTag>
           );
         })}

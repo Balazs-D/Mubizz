@@ -66,38 +66,34 @@ export default (state, action) => {
     case UPD_TAG_STATE:
       return {
         ...state,
-        services: action.payload,
+        profile: {...state.profile, services: action.payload},
       };
 
     case UPD_SKILL_STATE:
       return {
         ...state,
-        skills: action.payload,
+        profile: {...state.profile, skills: action.payload},
       };
 
     case UPD_LANG_STATE:
       return {
         ...state,
-        languages: action.payload,
+        profile: {...state.profile, languages: action.payload},
       };
 
     case UPD_IMG_STATE:
       return {
         ...state,
-        avatar: action.payload,
+       profile: {...state.profile, avatar: action.payload},
       };
 
     case UPD_SOCIAL:
       return {
         ...state,
-        social: action.payload,
+        profile: {...state.profile, social: action.payload},
       };
 
-    // case UPDATE:
-    //   return {
-    //     ...state,
-    //     user: action.payload,
-    //   }
+   
 
     default:
       return state;

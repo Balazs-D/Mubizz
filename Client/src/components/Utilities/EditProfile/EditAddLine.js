@@ -115,9 +115,10 @@ const EditAddLine = ({ placeholder, label }) => {
       return null;
     } else {
       skillsArray.push(skill);
-
+      console.log(skillsArray)
       // setSkillsArray([...skillsArray, skill])
       authCont.updateSkills(skillsArray);
+      console.log(skillsArray)
       setSkill('');
     }
   };

@@ -1,87 +1,82 @@
 const mongoose = require('mongoose');
 const ProfileSchema = new mongoose.Schema({
-
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'user',
   },
   profileName: {
-    type: String
+    type: String,
+  },
+  avatar: {
+    type: String,
   },
   profileMotto: {
-    type: String
+    type: String,
   },
   description: {
-    type: String
+    type: String,
   },
   services: [String],
   website: {
-    type: String
+    type: String,
   },
   location: {
-    type: String
+    type: String,
   },
-  languages: {
-    type: [String]
-  },
-  skills: [
-    {
-      name: {
-        type: String
-      }
-    }
-  ],
+  languages: [String],
+  skills: [String],
   reference: [
     {
       position: {
         type: String,
-        required: true
+        required: true,
       },
       projectName: {
         type: String,
-        required: true
+        required: true,
       },
       location: {
-        type: String
+        type: String,
       },
       description: {
         type: String,
-        required: true
-      }
-    }
+        required: true,
+      },
+    },
   ],
-  social: {
-    youtube: {
-      type: String
+  social: 
+    {
+      youtube: {
+        type: String,
+      },
+      twitter: {
+        type: String,
+      },
+      facebook: {
+        type: String,
+      },
+      linkedin: {
+        type: String,
+      },
+      instagram: {
+        type: String,
+      },
+      discogs: {
+        type: String,
+      },
+      bandcamp: {
+        type: String,
+      },
+      soundcloud: {
+        type: String,
+      },
     },
-    twitter: {
-      type: String
-    },
-    facebook: {
-      type: String
-    },
-    linkedin: {
-      type: String
-    },
-    instagram: {
-      type: String
-    },
-    discogs: {
-      type: String
-    },
-    bandcamp: {
-      type: String
-    },
-    soundcloud: {
-      type: String
-    }
-  },
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   offers: {
-    type: [{}]
-  }
+    type: [{}],
+  },
 });
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

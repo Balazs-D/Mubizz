@@ -6,20 +6,18 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
 const Profile = require('../../models/Profile');
-//@ route GET api/users
+//@ route POST api/users
 //@des  Test route
 // @access Public
 router.post(
   '/',
   [
-    check('name', 'name is required')
-      .not()
-      .isEmpty(),
+    check('name', 'name is required').not().isEmpty(),
     check('email', 'Please include a valid email').isEmail(),
     check(
       'password',
       'Please enter a password with 6 or more characters'
-    ).isLength({ min: 6 })
+    ).isLength({ min: 6 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -45,16 +43,33 @@ router.post(
         languages: [],
         skills: [],
         reference: [],
-        social: {},
-        offers: {}
+        youtube: '',
+        twitter: '',
+        facebook: '',
+        linkedin: '',
+        instagram: '',
+        discogs: '',
+        bandcamp: '',
+        soundcloud: '',
+        offers: {},
       };
       profile = new Profile(profileFields);
+
+      profile.social = {};
+      profile.social.youtube = '';
+      profile.social.twitter = '';
+      profile.social.facebook = '';
+      profile.social.linkedin = '';
+      profile.social.instagram = '';
+      profile.social.discogs = '';
+      profile.social.bandcamp = '';
+      profile.social.soundcloud = '';
 
       user = new User({
         name,
         email,
         avatar,
-        password
+        password,
       });
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
@@ -63,8 +78,8 @@ router.post(
       await profile.save();
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
       jwt.sign(
         payload,

@@ -7,7 +7,7 @@ const User = require('../../models/User');
 router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
-      user: req.user.id
+      user: req.user.id,
     });
     if (!profile) {
       return res.status(400).json({ msg: 'There is no profile for this user' });
@@ -27,6 +27,7 @@ router.post('/', auth, async (req, res) => {
   const {
     user = userId,
     profileName,
+    avatar,
     profileMotto,
     description,
     services,
@@ -35,17 +36,36 @@ router.post('/', auth, async (req, res) => {
     languages,
     skills,
     reference,
-    social,
-    offers
+    youtube,
+    twitter,
+    facebook,
+    linkedin,
+    instagram,
+    discogs,
+    bandcamp,
+    soundcloud,
+    offers,
   } = req.body;
+  console.log(req.body);
   try {
-    console.log(Profile);
     let profile = await Profile.findOne({ user: req.user.id });
     if (profile) {
+      //Build social object
+      profile.social = {};
+      profile.social.youtube = youtube;
+      profile.social.twitter = twitter;
+      profile.social.facebook = facebook;
+      profile.social.linkedin = linkedin;
+      profile.social.instagram = instagram;
+      profile.social.discogs = discogs;
+      profile.social.bandcamp = bandcamp;
+      profile.social.soundcloud = soundcloud;
+
       // update
       let profileFields = {
-        user: req.user.id,
+        // user: req.user.id,
         profileName,
+        avatar,
         profileMotto,
         description,
         services,
@@ -54,20 +74,31 @@ router.post('/', auth, async (req, res) => {
         languages,
         skills,
         reference,
-        social,
-        offers
+        youtube,
+        twitter,
+        facebook,
+        linkedin,
+        instagram,
+        discogs,
+        bandcamp,
+        soundcloud,
+        offers,
       };
-      profile = await Profile.findOneAndUpdate(
+
+      console.log('89: ' + profile.social);
+      await Profile.findOneAndUpdate(
         { user: req.user.id },
         { $set: profileFields },
         { new: true }
       );
-      return res.json(profile);
+      return res.json(profileFields);
     }
+
     //create
     let profileFields = {
       user: req.user.id,
       profileName,
+      avatar,
       profileMotto,
       description,
       services,
@@ -76,10 +107,30 @@ router.post('/', auth, async (req, res) => {
       languages,
       skills,
       reference,
-      social,
-      offers
+      youtube,
+      twitter,
+      facebook,
+      linkedin,
+      instagram,
+      discogs,
+      bandcamp,
+      soundcloud,
+      offers,
     };
+
     profile = new Profile(profileFields);
+
+    //Build social object
+    profile.social = {};
+    profile.social.youtube = youtube;
+    profile.social.twitter = twitter;
+    profile.social.facebook = facebook;
+    profile.social.linkedin = linkedin;
+    profile.social.instagram = instagram;
+    profile.social.discogs = discogs;
+    profile.social.bandcamp = bandcamp;
+    profile.social.soundcloud = soundcloud;
+
     await profile.save();
     res.json(profile);
   } catch (err) {
@@ -89,7 +140,7 @@ router.post('/', auth, async (req, res) => {
 });
 // Get api/profile
 //  Get all profiles
-router.get('/', async (req, res) => {
+/*router.get('/', async (req, res) => {
   try {
     console.log(Profile);
     let profile = await Profile.findOne({ user: req.user.id });
@@ -140,6 +191,7 @@ router.get('/', async (req, res) => {
     res.status(500).send('server Error');
   }
 });
+*/
 // Get api/profile
 //  Get all profiles
 router.get('/', async (req, res) => {
@@ -151,12 +203,11 @@ router.get('/', async (req, res) => {
     res.status(500).send('server Error');
   }
 });
-// Get api/profile/user/:user_id
-//  Get profile by user ID
+
 router.get('/user/:user_id', async (req, res) => {
   try {
     const profile = await Profile.findOne({
-      user: req.params.user_id
+      user: req.params.user_id,
     });
     if (!profile)
       return res.status(400).json({ msg: 'there is no profile for this user' });
@@ -169,32 +220,25 @@ router.get('/user/:user_id', async (req, res) => {
     res.status(500).send('server Error');
   }
 });
-//  Delete api//profile
-//  Delete profile, user and posts
+
 router.delete('/', auth, async (req, res) => {
   try {
     //remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
     //remove positive
     await User.findOneAndRemove({ _id: req.user.id });
-    res.json({ meg: 'User deleted' });
+    res.json({ msg: 'User deleted' });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('server Error');
   }
 });
+
 //  PUT api/profile/experience
 //  add profile experience
 router.put(
   '/experience',
-  [
-    auth,
-    [
-      check('title', 'Title is required')
-        .not()
-        .isEmpty()
-    ]
-  ],
+  [auth, [check('title', 'Title is required').not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -202,7 +246,7 @@ router.put(
     }
     const { title } = req.body;
     const newExp = {
-      title
+      title,
     };
     try {
       const profile = await Profile.findOne({ user: req.user.id });
@@ -222,7 +266,7 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
     const profile = await Profile.findOne({ user: req.user.id });
     // Get remove index
     const removeIndex = profile.experience
-      .map(item => item.id)
+      .map((item) => item.id)
       .indexOf(req.param.exp_id);
     profile.experience.splice(removeIndex, 1);
     await profile.save();
