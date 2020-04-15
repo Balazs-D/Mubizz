@@ -50,17 +50,6 @@ router.post('/', auth, async (req, res) => {
   try {
     let profile = await Profile.findOne({ user: req.user.id });
     if (profile) {
-      //Build social object
-      profile.social = {};
-      profile.social.youtube = youtube;
-      profile.social.twitter = twitter;
-      profile.social.facebook = facebook;
-      profile.social.linkedin = linkedin;
-      profile.social.instagram = instagram;
-      profile.social.discogs = discogs;
-      profile.social.bandcamp = bandcamp;
-      profile.social.soundcloud = soundcloud;
-
       // update
       let profileFields = {
         // user: req.user.id,
@@ -85,7 +74,6 @@ router.post('/', auth, async (req, res) => {
         offers,
       };
 
-      console.log('89: ' + profile.social);
       await Profile.findOneAndUpdate(
         { user: req.user.id },
         { $set: profileFields },
@@ -119,17 +107,6 @@ router.post('/', auth, async (req, res) => {
     };
 
     profile = new Profile(profileFields);
-
-    //Build social object
-    profile.social = {};
-    profile.social.youtube = youtube;
-    profile.social.twitter = twitter;
-    profile.social.facebook = facebook;
-    profile.social.linkedin = linkedin;
-    profile.social.instagram = instagram;
-    profile.social.discogs = discogs;
-    profile.social.bandcamp = bandcamp;
-    profile.social.soundcloud = soundcloud;
 
     await profile.save();
     res.json(profile);

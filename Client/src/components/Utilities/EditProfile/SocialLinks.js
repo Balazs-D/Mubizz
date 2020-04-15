@@ -165,7 +165,7 @@ const Label = styled.label`
   margin-top: 10px;
 `;
 
-const SocialLinks = ({ placeholder, label }) => {
+const SocialLinks = ({ placeholder, label  }) => {
   const authCont = useContext(AuthCont);
   const socialNames = [
     'youtube',
@@ -178,51 +178,41 @@ const SocialLinks = ({ placeholder, label }) => {
     'soundcloud',
   ];
 
-  const [linksArr, setLinksArr] = useState(authCont.profile.social);
-  const [link, setLink] = useState('');
+    const [youtube, setYoutube] = useState(authCont.profile.youtube);
+    const [twitter, setTwitter] = useState(authCont.profile.twitter);
+    const [facebook, setFacebook] = useState(authCont.profile.facebook);
+    const [link, setLink] = useState('');
+    const [instagram, setInstagram] = useState(authCont.profile.instagram);
+    const [discogs, setDiscogs] = useState(authCont.profile.discogs);
+    const [bandcamp, setBandcamp] = useState(authCont.profile.bandcamp);
+    const [soundcloud, setSoundcloud] = useState(authCont.profile.soundcloud);
+
+    const [social, setSocial] = useState({
+       youtube: `${authCont.profile.youtube}`,  
+       twitter: `${authCont.profile.twitter}`, 
+       facebook: `${authCont.profile.facebook}`, 
+       linkedin: `${authCont.profile.linkedin}`, 
+       instagram: `${authCont.profile.instagram}`, 
+       discogs: `${authCont.profile.discogs}`, 
+       bandcamp: `${authCont.profile.bandcamp}`, 
+       soundcloud: `${authCont.profile.soundcloud}` 
+     } );
+
+    const [localSocial, setLocalSocial] = useState([authCont.social]);
 
   const handleChange = (e) => {
-    e.persist();
-
-    console.log(e.target.value);
-    console.log(e.target.name);
-    console.log(link);
-    console.log(linksArr);
-    setLinksArr({ ...linksArr, [e.target.name]: e.target.value 
-    });
-
-    console.log(linksArr);
-
-    // // setLinksArr(
-    // linksArr.map((el) => {
-    //   setLink({ [e.target.name]: e.target.value });
-    //   console.log(link);
-    //   console.log(Object.keys(el));
-    //   console.log(e.target.name);
-
-    //   return Object.keys(el) === e.target.name ? { ...linksArr, link } : el;
-    // });
-
-    // setLinksArr({tempLinksArr});
-    console.log(linksArr);
-    console.log(authCont.profile.social);
+  
+    setSocial({ ...social, [e.target.name]:  e.target.value });
+   
+    console.log(authCont.social)
+  
   };
 
-  useEffect(() => {
-    setLinksArr(authCont.profile.social);
-  }, []);
+ 
+useEffect(()=>{
+authCont.updateSocial(social)
+}, [social])
 
-useEffect(() => {
-  authCont.updateSocial(linksArr);
-
-}, [linksArr])
-
-  const handleButtonClick = (e) => {
-    e.preventDefault();
-    setLinksArr({ ...linksArr, link });
-
-    authCont.updateSocial(linksArr);
-  };
 
   return (
     <Li>
@@ -233,25 +223,17 @@ useEffect(() => {
             <InputEdit
               placeholder={placeholder}
               value={item}
-              onChange={(e) => setLink(e.target.value)}
+              // onChange={(e) => setLink(e.target.value)}
               type='text'
               name={item}
-              onChange={(e) => handleChange(e)}
+              onChange={(e)=> handleChange(e)}
             ></InputEdit>
-            <button onClick={handleButtonClick}>Add</button>
+           
           </Row>
         ))}
       </Cont>
       <Label>{label}</Label>
-      {/* <Col>
-        {linksArr &&
-          linksArr.map((link, i) => (
-            <SkillLi value={link} key={i} index={i} onClick={deleteItem}>
-              <p>{link.youtube}</p>
-              <Icon key={i} className='far fa-trash-alt'></Icon>
-            </SkillLi>
-          ))}
-      </Col> */}
+     
     </Li>
   );
 };

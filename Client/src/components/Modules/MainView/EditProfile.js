@@ -140,14 +140,14 @@ const EditProfile = (props) => {
   const [skills, setSkills] = useState([authCont.profile.skills]);
   const [reference, setReferenece] = useState([]);
   const [youtube, setYoutube] = useState();
-  const [twitter, setTwitter] = useState(authCont.profile.social.twitter);
-  const [facebook, setFacebook] = useState(authCont.profile.social.facebook);
-  const [linkedin, setLinkedin] = useState(authCont.profile.social.linkedin);
-  const [instagram, setInstagram] = useState(authCont.profile.social.instagram);
-  const [discogs, setDiscogs] = useState(authCont.profile.social.discogs);
-  const [bandcamp, setBandcamp] = useState(authCont.profile.social.bandcamp);
+  const [twitter, setTwitter] = useState(authCont.profile.twitter);
+  const [facebook, setFacebook] = useState(authCont.profile.facebook);
+  const [linkedin, setLinkedin] = useState(authCont.profile.linkedin);
+  const [instagram, setInstagram] = useState(authCont.profile.instagram);
+  const [discogs, setDiscogs] = useState(authCont.profile.discogs);
+  const [bandcamp, setBandcamp] = useState(authCont.profile.bandcamp);
   const [soundcloud, setSoundcloud] = useState(
-    authCont.profile.social.soundcloud
+    authCont.profile.soundcloud
   );
   const [offers, setOffers] = useState([]);
 
@@ -252,6 +252,9 @@ const EditProfile = (props) => {
    console.log(soundcloud);
    console.log(offers);
 
+  console.log(authCont.social);
+   console.log(authCont.social.youtube)
+
   useEffect(() => {
     setSkills(authCont.profile.skills);
   }, [authCont.profile.skills]);
@@ -269,36 +272,36 @@ const EditProfile = (props) => {
   }, [authCont.profile.avatar]);
 
   useEffect(() => {
-    setYoutube(authCont.profile.social.youtube);
-  }, [authCont.profile.social.youtube]);
+    setYoutube(authCont.social.youtube);
+  }, [authCont.social.youtube]);
 
   useEffect(() => {
-    setTwitter(authCont.profile.social.twitter);
-  }, [authCont.profile.social.twitter]);
+    setTwitter(authCont.social.twitter);
+  }, [authCont.social.twitter]);
 
   useEffect(() => {
-    setFacebook(authCont.profile.social.facebook);
-  }, [authCont.profile.social.facebook]);
+    setFacebook(authCont.social.facebook);
+  }, [authCont.social.facebook]);
 
   useEffect(() => {
-    setLinkedin(authCont.profile.social.linkedin);
-  }, [authCont.profile.social.linkedin]);
+    setLinkedin(authCont.social.linkedin);
+  }, [authCont.social.linkedin]);
 
   useEffect(() => {
-    setInstagram(authCont.profile.social.instagram);
-  }, [authCont.profile.social.instagram]);
+    setInstagram(authCont.social.instagram);
+  }, [authCont.social.instagram]);
 
   useEffect(() => {
-    setDiscogs(authCont.profile.social.discogs);
-  }, [authCont.profile.social.discogs]);
+    setDiscogs(authCont.social.discogs);
+  }, [authCont.social.discogs]);
 
   useEffect(() => {
-    setBandcamp(authCont.profile.social.bandcamp);
-  }, [authCont.profile.social.bandcamp]);
+    setBandcamp(authCont.social.bandcamp);
+  }, [authCont.social.bandcamp]);
 
   useEffect(() => {
-    setSoundcloud(authCont.profile.social.soundcloud);
-  }, [authCont.profile.social.soundcloud]);
+    setSoundcloud(authCont.social.soundcloud);
+  }, [authCont.social.soundcloud]);
 
   // useEffect(() => {
   //   setSocial({
@@ -480,6 +483,7 @@ const EditProfile = (props) => {
                     value={authCont.profile.social}
                     name='social'
                     label='social media'
+                    onChange={(e) => ({[e.target.name]: e.target.value})}
                   />
                 )}
               </Ul>

@@ -23,6 +23,9 @@ const DashCont = styled.div`
 const Dashboard = ({ match }) => {
   const authCont = useContext(AuthContext);
 
+    console.log(authCont.social);
+    console.log(authCont);
+
   useEffect(() => {
     authCont.loadUser();
     //eslint-disable-next-line

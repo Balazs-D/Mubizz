@@ -90,7 +90,7 @@ export default (state, action) => {
     case UPD_SOCIAL:
       return {
         ...state,
-        profile: {...state.profile, social: action.payload},
+        social: action.payload,
       };
 
    

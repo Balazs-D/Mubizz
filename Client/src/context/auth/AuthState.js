@@ -19,7 +19,7 @@ import {
   UPD_SKILL_STATE,
   UPD_LANG_STATE,
   UPD_IMG_STATE,
-  UPD_SOCIAL
+  UPD_SOCIAL,
 } from '../types';
 
 const AuthState = (props) => {
@@ -30,6 +30,16 @@ const AuthState = (props) => {
     user: null,
     profile: [],
     error: null,
+    social: {
+      youtube: '',
+      twitter: '',
+      facebook: '',
+      linkedin: '',
+      instagram: '',
+      discogs: '',
+      bandcamp: '',
+      soundcloud: '',
+    },
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -162,7 +172,7 @@ const AuthState = (props) => {
       payload: input,
     });
   };
-console.log(state)
+  console.log(state);
   // update skill selection
 
   const updateSkills = (input) => {
@@ -171,8 +181,7 @@ console.log(state)
       payload: input,
     });
   };
-    console.log(state);
-
+  console.log(state);
 
   // update languages
   const updateLanguages = (input) => {
@@ -182,7 +191,6 @@ console.log(state)
     });
   };
   console.log(state);
-
 
   // update image
   const updateAvatar = (input) => {
@@ -211,6 +219,7 @@ console.log(state)
         profile: state.profile,
         loading: state.loading,
         error: state.error,
+        social: state.social,
         updateServices,
         updateSkills,
         updateAvatar,

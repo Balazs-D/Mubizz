@@ -87,7 +87,7 @@ const ButtonMainAbs = styled(ButtonMain)`
 const PicUpload = ({ text }) => {
   const authCont = useContext(AuthCont);
 
-  const [image, setImage] = useState(avatar);
+  const [image, setImage] = useState(authCont.profile.avatar);
   const [loading, setLoading] = useState(false);
 
   const uploadImage = async (e) => {
@@ -112,10 +112,10 @@ const PicUpload = ({ text }) => {
     console.log(file.secure_url);
   };
 
-  // useEffect(() => {
-  //       authCont.updateAvatar(image);
+  useEffect(() => {
+        authCont.updateAvatar(image);
 
-  // }, [image])
+  }, [image])
 
   return (
     <Cont>
