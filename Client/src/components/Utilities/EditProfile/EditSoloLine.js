@@ -23,17 +23,29 @@ const InputEdit = styled(InputMinimal)`
 `;
 
 const Label = styled.label`
-color: ${props=>props.theme.colors.mainPurple};
-font-size: ${props=>props.theme.fontSizes.small};
-`
+  color: ${(props) => props.theme.colors.mainPurple};
+  font-size: ${(props) => props.theme.fontSizes.small};
+  margin: 10px 0px;
+  position: absolute;
+  left: 4%;
+  top: -28%;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  background: white;
+  padding: 1px 4px;
+  border-radius: 3px;
+`;
 
 const Li = styled.li`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  width: 100%;
+  width: 95%;
   margin: 20px;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  border-radius: 3px;
+  padding: 10px;
+  position: relative;
 `;
 
 const H4 = styled.h4`
@@ -49,10 +61,11 @@ const EditSoloLine = ({ value, title, onChange, name, label }) => {
 
   return (
     <Li>
+      <Label>{label}</Label>
+
       <H4>{title}</H4>
 
       <InputEdit value={value} name={name} onChange={onChange} />
-      <Label>{label}</Label>
     </Li>
   );
 };

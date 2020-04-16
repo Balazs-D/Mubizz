@@ -13,9 +13,11 @@ const Cont = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: 95%;
   /* height: 200px; */
   margin: 20px;
+  position: relative;
+  padding-top: 25px;
 `;
 
 const ButtonCont = styled.li`
@@ -30,8 +32,14 @@ const ButtonCont = styled.li`
 const Label = styled.label`
   color: ${(props) => props.theme.colors.mainPurple};
   font-size: ${(props) => props.theme.fontSizes.small};
-  width: 100%;
-  margin-top: 10px;
+  margin: 10px 0px;
+  position: absolute;
+  left: 4%;
+  top: 2%;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  background: white;
+  padding: 1px 4px;
+  border-radius: 3px;
 `;
 
 const ImgWrap = styled.div`
@@ -62,6 +70,7 @@ let Img = styled.img`
   object-fit: cover;
   border: none;
   outline: none;
+  margin-top: 10px;
   border: 1px solid ${(props) => props.theme.colors.mainPurple};
   box-shadow: 0px 0px 2px ${(props) => props.theme.colors.steelBlue};
 `;

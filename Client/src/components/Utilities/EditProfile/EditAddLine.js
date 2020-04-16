@@ -5,7 +5,8 @@ import styled from 'styled-components';
 // Component
 
 import InputMinimal from '../InputMinimal';
-import ButtonCircle from '../ButtonCircle';
+import ButtonLight from '../ButtonLight';
+
 import UserCont from '../../../context/user/userContext';
 import AuthCont from '../../../context/auth/authContext';
 
@@ -15,7 +16,9 @@ const InputEdit = styled(InputMinimal)`
   padding: 1px;
   text-transform: italic;
   font-weight: lighter;
-  width: 85%;
+  width: 100%;
+  border-bottom: 1px solid ${(props) => props.theme.colors.info};
+
   &:focus {
     background: ${(props) => props.theme.colors.white};
     text-transform: normal;
@@ -30,6 +33,12 @@ const Li = styled.li`
   justify-content: space-between;
   width: 95%;
   margin: 20px;
+    height: 100%;
+
+  border: 1px solid ${(props) => props.theme.colors.info};
+  border-radius: 3px;
+  padding: 10px;
+  position: relative;
 `;
 
 const Row = styled.div`
@@ -38,7 +47,8 @@ const Row = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
+  position: relative;
 `;
 
 const Col = styled.div`
@@ -84,6 +94,20 @@ const SkillLi = styled.div.attrs({
   }
 `;
 
+const AddButton = styled(ButtonLight).attrs({ type: 'button' })`
+  position: absolute;
+  transition: all 0.3s ease-in;
+  bottom: 20%;
+  right: 2%;
+  background: white;
+
+  &:hover {
+    background: ${(props) => props.theme.colors.info};
+    border: 1px solid ${(props) => props.theme.colors.mainPurple};
+  }
+`;
+
+
 const H4 = styled.h4`
   width: 100%;
   font-size: ${(props) => props.theme.fontSizes.small};
@@ -93,6 +117,14 @@ const H4 = styled.h4`
 const Label = styled.label`
   color: ${(props) => props.theme.colors.mainPurple};
   font-size: ${(props) => props.theme.fontSizes.small};
+  margin: 10px 0px;
+  position: absolute;
+  left: 4%;
+  top: -23px;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  background: white;
+  padding: 1px 4px;
+  border-radius: 3px;
 `;
 
 const EditAddLine = ({ placeholder, label }) => {
@@ -136,6 +168,7 @@ const EditAddLine = ({ placeholder, label }) => {
 
   return (
     <Li>
+      <Label>{label}</Label>
       <Row>
         <InputEdit
           placeholder={placeholder}
@@ -145,9 +178,8 @@ const EditAddLine = ({ placeholder, label }) => {
           name='input'
           placeholderFontSize='1px'
         ></InputEdit>
-        <ButtonCircle onClick={handleButtonClick} />
+        <AddButton onClick={handleButtonClick} text='+' />
       </Row>
-      <Label>{label}</Label>
 
       <Col>
         {skillsArray.map((listItem, i) => (

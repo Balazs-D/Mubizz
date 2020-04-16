@@ -18,6 +18,7 @@ const Li = styled.li`
   width: 100%;
   height: 100%;
   margin: 20px;
+  position: relative;
 `;
 
 const H4 = styled.h4`
@@ -31,16 +32,25 @@ const TagCont = styled.div`
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  width: 90%;
-  padding: 10px;
+  width: 95%;
+  padding: 35px 10px 10px 10px;
   border: 1px solid ${(props) => props.theme.colors.info};
   border-radius: 4px;
   background: ${(props) => props.theme.colors.white};
+  position: relative;
 `;
 
 const Label = styled.label`
   color: ${(props) => props.theme.colors.mainPurple};
   font-size: ${(props) => props.theme.fontSizes.small};
+  margin: 10px 0px;
+  position: absolute;
+  left: 4%;
+  top: -10%;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  background: white;
+  padding: 1px 4px;
+  border-radius: 3px;
 `;
 
 const ServiceFieldArray = [
@@ -79,7 +89,7 @@ const EditTagItem = ({ title, onChange, label }) => {
     }
     console.log(tagArr);
     console.log(e.target.value);
-    const update = tagArr.filter(item => item !== '');
+    const update = tagArr.filter((item) => item !== '');
 
     setTagArr(update);
     console.log(e.target.checked);
@@ -89,8 +99,8 @@ const EditTagItem = ({ title, onChange, label }) => {
 
   return (
     <Li>
-      <H4>{title}</H4>
       <TagCont>
+        <Label>{label}</Label>
         {ServiceFieldArray.map((field, i) => {
           return (
             <ButtonTag
@@ -103,7 +113,6 @@ const EditTagItem = ({ title, onChange, label }) => {
           );
         })}
       </TagCont>
-      <Label>{label}</Label>
     </Li>
   );
 };

@@ -192,18 +192,18 @@ const EditProfile = (props) => {
     <Form onSubmit={onSubmit}>
       <SiteName>Offer Manager</SiteName>
 
-      <IntroText stepNr={0} />
+      <IntroText stepNr={5} />
     
 
       <Row>
-        <DiagramStep title='Works' nr={4} />
+        <DiagramStep title='References' nr={6} />
 
         <Block>
           <GradientContRadius>
             <Col>
               <Ul>
-                <EditReadLine title='Offers' value='5'></EditReadLine>
-                <EditReadLine title='References' value='7'></EditReadLine>
+                {/* <EditReadLine title='Offers' value='5'></EditReadLine>
+                <EditReadLine title='References' value='7'></EditReadLine> */}
               </Ul>
             </Col>
           </GradientContRadius>

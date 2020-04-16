@@ -21,6 +21,9 @@ const Login = props => {
     email: ''
   });
 
+  const [ errors, setErrors ] = useState([]);
+
+
   const authCont = useContext(AuthContext);
   const alertCont = useContext(AlertContext);
 
@@ -34,12 +37,15 @@ const Login = props => {
       props.history.push('/');
       // getProfile();
     }
-    console.log('cp 01');
-    if (error === 'Invalid Credentials') {
+    if (error === 'User does not exists.') {
       setAlert(error);
       clearErrors();
     }
-    console.log('cp 02');
+
+    if (error === 'Password and E-Mail does not match.') {
+      setAlert(error);
+      clearErrors();
+    }
 
     //eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
@@ -63,7 +69,7 @@ const Login = props => {
       });
       
     }
-
+console.log(authCont.error)
     let res = null;
 
     // try {

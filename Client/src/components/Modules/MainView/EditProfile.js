@@ -12,7 +12,7 @@ import EditTagItem from '../../Utilities/EditProfile/EditTagItem';
 import EditReadLine from '../../Utilities/EditProfile/EditReadLine';
 import EditAddLine from '../../Utilities/EditProfile/EditAddLine';
 import PicUpload from '../../Utilities/PicUpload/PicUpload';
-import ProcessDiagram from '../../Utilities/EditProfile/ProcessDiagram';
+import ButtonSubmit from '../../Utilities/ButtonSubmit';
 import IntroText from '../../Utilities/IntroText';
 import DiagramStep from '../../Utilities/EditProfile/DiagramStep';
 import EditLanguage from '../../Utilities/EditProfile/EditLanguage';
@@ -36,7 +36,12 @@ const GradientContRadius = styled.div`
 `;
 
 const Form = styled.form`
-  display: contents;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* /* display: contents; */
+  position: relative;
+  z-index: 1;
 `;
 
 const Block = styled.div`
@@ -102,7 +107,7 @@ const SiteName = styled.h2`
 
 const EditProfile = (props) => {
   const authCont = useContext(AuthCont);
-  const userCont = useContext(UserCont);
+  const [edited, setEdited] = useState(false);
 
   // const [profile, setProfile] = useState({
   //   // email: `${authCont.user.email}`,
@@ -146,9 +151,7 @@ const EditProfile = (props) => {
   const [instagram, setInstagram] = useState(authCont.profile.instagram);
   const [discogs, setDiscogs] = useState(authCont.profile.discogs);
   const [bandcamp, setBandcamp] = useState(authCont.profile.bandcamp);
-  const [soundcloud, setSoundcloud] = useState(
-    authCont.profile.soundcloud
-  );
+  const [soundcloud, setSoundcloud] = useState(authCont.profile.soundcloud);
   const [offers, setOffers] = useState([]);
 
   // console.log(profile);
@@ -227,44 +230,46 @@ const EditProfile = (props) => {
     console.log('on submit get profile ');
     console.log(authCont);
     await authCont.getProfile();
+    setEdited(false);
+
     window.scrollTo(0, 0);
   };
 
   console.log(authCont);
 
-   console.log(profileName);
-   console.log(avatar);
-   console.log(profileMotto);
-   console.log(description);
-   console.log(services);
-   console.log(website);
-   console.log(location);
-   console.log(languages);
-   console.log(skills);
-   console.log(reference);
-   console.log(youtube);
-   console.log(twitter);
-   console.log(facebook);
-   console.log(linkedin);
-   console.log(instagram);
-   console.log(discogs);
-   console.log(bandcamp);
-   console.log(soundcloud);
-   console.log(offers);
+  console.log(profileName);
+  console.log(avatar);
+  console.log(profileMotto);
+  console.log(description);
+  console.log(services);
+  console.log(website);
+  console.log(location);
+  console.log(languages);
+  console.log(skills);
+  console.log(reference);
+  console.log(youtube);
+  console.log(twitter);
+  console.log(facebook);
+  console.log(linkedin);
+  console.log(instagram);
+  console.log(discogs);
+  console.log(bandcamp);
+  console.log(soundcloud);
+  console.log(offers);
 
   console.log(authCont.social);
-   console.log(authCont.social.youtube)
+  console.log(authCont.social.youtube);
 
   useEffect(() => {
     setSkills(authCont.profile.skills);
   }, [authCont.profile.skills]);
 
   useEffect(() => {
-    setLanguages(authCont.profile.languages );
+    setLanguages(authCont.profile.languages);
   }, [authCont.profile.languages]);
 
   useEffect(() => {
-    setServices(authCont.profile.services );
+    setServices(authCont.profile.services);
   }, [authCont.profile.services]);
 
   useEffect(() => {
@@ -302,6 +307,8 @@ const EditProfile = (props) => {
   useEffect(() => {
     setSoundcloud(authCont.social.soundcloud);
   }, [authCont.social.soundcloud]);
+
+
 
   // useEffect(() => {
   //   setSocial({
@@ -350,8 +357,11 @@ const EditProfile = (props) => {
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit} onChange={(e) => setEdited(true)}>
       <SiteName>Edit Profile</SiteName>
+      {edited && (
+        <ButtonSubmit type='submit' text='Submit' onClick={onSubmit} />
+      )}
 
       <IntroText stepNr={0} />
       <Row>
@@ -378,9 +388,9 @@ const EditProfile = (props) => {
                     label='e-mail'
                   />
                 )}
-                {authCont.user && (
+                {/* {authCont.user && (
                   <EditSoloLine name='password' label='password' />
-                )}
+                )} */}
                 {authCont.user && <PicUpload text='profile image' />}
               </Ul>
             </Col>
@@ -483,7 +493,7 @@ const EditProfile = (props) => {
                     value={authCont.profile.social}
                     name='social'
                     label='social media'
-                    onChange={(e) => ({[e.target.name]: e.target.value})}
+                    onChange={(e) => ({ [e.target.name]: e.target.value })}
                   />
                 )}
               </Ul>
@@ -506,9 +516,6 @@ const EditProfile = (props) => {
           </GradientContRadius>
         </Block>
       </Row>
-      <button type='submit' onClick={onSubmit}>
-        SUBMIT
-      </button>
     </Form>
   );
 };

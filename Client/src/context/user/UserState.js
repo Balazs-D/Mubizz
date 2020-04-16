@@ -12,7 +12,7 @@ import {
   UPD_SKILL_STATE,
   UPD_LANG_STATE,
   UPD_IMG_STATE,
-  UPD_SOCIAL
+  UPD_SOCIAL,
 } from '../types';
 
 const UserState = (props) => {
@@ -54,6 +54,8 @@ const UserState = (props) => {
       [
         'After you created at least one of each item your profile will reach the PRO level.',
       ],
+      ['Manage your experience and knowledge into reference and offer cards.'],
+      ['Create a new reference card to present a work experience.'],
     ],
   };
   const [state, dispatch] = useReducer(UserReducer, initialState);
@@ -80,7 +82,6 @@ const UserState = (props) => {
   // update tag selection
 
   const updateTagState = (input) => {
-
     dispatch({
       type: UPD_TAG_STATE,
       payload: input,
@@ -90,7 +91,6 @@ const UserState = (props) => {
   // update skill selection
 
   const updateSkillState = (input) => {
-
     dispatch({
       type: UPD_SKILL_STATE,
       payload: input,
@@ -99,7 +99,6 @@ const UserState = (props) => {
 
   // update languages
   const updateLanguageState = (input) => {
-
     dispatch({
       type: UPD_LANG_STATE,
       payload: input,
@@ -108,7 +107,6 @@ const UserState = (props) => {
 
   // update image
   const updateImageState = (input) => {
-
     dispatch({
       type: UPD_IMG_STATE,
       payload: input,
@@ -116,14 +114,14 @@ const UserState = (props) => {
   };
 
   // update social links
-   const updateSocial = (input) => {
-     console.log(input);
+  const updateSocial = (input) => {
+    console.log(input);
 
-     dispatch({
-       type: UPD_SOCIAL,
-       payload: input,
-     });
-   };
+    dispatch({
+      type: UPD_SOCIAL,
+      payload: input,
+    });
+  };
   // Toggle tag
 
   const tagToggle = (e) => {

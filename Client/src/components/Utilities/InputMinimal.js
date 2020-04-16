@@ -18,7 +18,7 @@ const InputField = styled.input`
     font-style: normal;
     outline: none;
     border: none;
-    border-bottom: 1px solid ${props => props.theme.colors.info};
+    /* border-bottom: 1px solid ${props => props.theme.colors.info}; */
     margin: 0px;
     color: ${props => props.theme.colors.info};
     background: transparent;

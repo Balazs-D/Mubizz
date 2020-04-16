@@ -17,9 +17,9 @@ const InputEdit = styled.textarea`
   color: ${props => props.theme.colors.info};
   background: ${props => props.theme.colors.white};
   font-family: ${props => props.theme.fontFamily[5]};
-  padding: 5px;
+  padding: 30px 15px 15px 15px;
 
-  width: 90%;
+  width: 95%;
   &:focus {
     background: ${props => props.theme.colors.white};
     border: 1px solid ${props => props.theme.colors.warning};
@@ -36,6 +36,7 @@ const Li = styled.li`
   width: 100%;
   height: 100%;
   margin: 20px;
+  position: relative;
 `;
 
 const H4 = styled.h4`
@@ -45,14 +46,22 @@ const H4 = styled.h4`
 `;
 
 const Label = styled.label`
-  color: ${props => props.theme.colors.mainPurple};
-  font-size: ${props => props.theme.fontSizes.small};
+  color: ${(props) => props.theme.colors.mainPurple};
+  font-size: ${(props) => props.theme.fontSizes.small};
+  margin: 10px 0px;
+  position: absolute;
+  left: 4%;
+  top: -23%;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  background: white;
+  padding: 1px 4px;
+  border-radius: 3px;
 `;
 
-const EditTextArea = ({ value, title, name, onChange, onSubmit, spellCheck, placeholder, label }) => {
+const EditTextArea = ({ value, name, onChange, onSubmit, spellCheck, placeholder, label }) => {
   return (
     <Li>
-      <H4>{title}</H4>
+      <Label>{label}</Label>
 
       <InputEdit
         value={value}
@@ -62,7 +71,6 @@ const EditTextArea = ({ value, title, name, onChange, onSubmit, spellCheck, plac
         spellCheck={spellCheck}
         placeholder={placeholder}
       />
-      <Label>{label}</Label>
     </Li>
   );
 };

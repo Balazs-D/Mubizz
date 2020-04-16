@@ -15,37 +15,41 @@ import Alerts from '../Alerts';
 import WinTitle from '../../Utilities/WinTitle';
 import WinTitleOff from '../../Utilities/WinTitleOff';
 
-const Register = props => {
+const Register = (props) => {
   const authCont = useContext(AuthContext);
   const alertCont = useContext(AlertContext);
 
   const [user, setUser] = useState({
     name: '',
     password: '',
-    email: ''
+    email: '',
   });
 
   const { name, email, password } = user;
   const { setAlert } = alertCont;
-  const { register, error, getProfile, clearErrors, isAuthenticated } = authCont;
+  const {
+    register,
+    error,
+    getProfile,
+    clearErrors,
+    isAuthenticated,
+  } = authCont;
 
   // Re-render  //  Re-direct
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push('/');
-    }  
-    
-    
+    }
 
     //eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
 
-  const onChange = e => {
+  const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   // Submit
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     console.log('on submit');
     if (name === '' || email === '' || password === '') {
@@ -55,15 +59,19 @@ const Register = props => {
     if (error === 'User already exists') {
       setAlert(error);
       clearErrors();
+
+    } else if (error === 'Please include a valid email') {
+      setAlert(error);
+      clearErrors();
+      
     } else {
       register({
         // FormData
         name,
         email,
-        password
+        password,
       });
-      getProfile()
-
+      getProfile();
     }
     console.log(authCont);
   };
@@ -138,12 +146,12 @@ const LoginCont = styled.form`
     width: 50%;
     display: flex;
 
-    border: 1px solid ${props => props.theme.colors.mainPurple};
+    border: 1px solid ${(props) => props.theme.colors.mainPurple};
     border-radius: 4px;
     background-image: url(${Bg1});
     background-size: cover;
     background-position-y: bottom;
-    box-shadow: 0px 0px 20px ${props => props.theme.colors.steelBlue};
+    box-shadow: 0px 0px 20px ${(props) => props.theme.colors.steelBlue};
   }
 `;
 

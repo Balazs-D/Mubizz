@@ -17,20 +17,25 @@ const Button = styled.input.attrs({ type: 'button' })`
   width: 100%;
   padding: 5px;
   height: 25px;
-  background: ${props =>
+  background: ${(props) =>
     props.checked
       ? props.theme.colors.gradientYellow
       : props.theme.colors.white};
   border-radius: 3px;
   transition: all 150ms;
   border: 1px solid
-    ${props =>
+    ${(props) =>
       props.checked ? props.theme.colors.mainPurple : props.theme.colors.info};
-  color: ${props =>
+  color: ${(props) =>
     props.checked ? props.theme.colors.mainPurple : props.theme.colors.info};
-  font-size: ${props => props.theme.fontSizes.xm};
-  margin: 0px 5px 5px 0px;
+  font-size: ${(props) => props.theme.fontSizes.xm};
+  margin: 0px 6px 6px 0px;
   outline: none;
+
+  &:hover {
+    border: 1px solid ${(props) => props.theme.colors.mainPurple};
+    color: ${(props) => props.theme.colors.mainPurple};
+  }
 `;
 
 const ButtonTag = ({ text, value, onClick, onChange, checked }) => {

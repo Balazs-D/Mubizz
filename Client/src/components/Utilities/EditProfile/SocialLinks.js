@@ -73,15 +73,16 @@ const Cont = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
-  padding: 10px;
   border: 1px solid ${(props) => props.theme.colors.info};
   border-radius: 3px;
+  padding: 30px 10px 10px 10px;
 `;
 
 const Li = styled.li`
   width: 95%;
     padding: 0px;
       margin: 20px;
+      position: relative;
 
 
 
@@ -161,11 +162,17 @@ const H4 = styled.h4`
 const Label = styled.label`
   color: ${(props) => props.theme.colors.mainPurple};
   font-size: ${(props) => props.theme.fontSizes.small};
-  width: 100%;
-  margin-top: 10px;
+  margin: 10px 0px;
+  position: absolute;
+  left: 4%;
+  top: -9%;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  background: white;
+  padding: 1px 4px;
+  border-radius: 3px;
 `;
 
-const SocialLinks = ({ placeholder, label  }) => {
+const SocialLinks = ({ placeholder, label }) => {
   const authCont = useContext(AuthCont);
   const socialNames = [
     'youtube',
@@ -178,62 +185,57 @@ const SocialLinks = ({ placeholder, label  }) => {
     'soundcloud',
   ];
 
-    const [youtube, setYoutube] = useState(authCont.profile.youtube);
-    const [twitter, setTwitter] = useState(authCont.profile.twitter);
-    const [facebook, setFacebook] = useState(authCont.profile.facebook);
-    const [link, setLink] = useState('');
-    const [instagram, setInstagram] = useState(authCont.profile.instagram);
-    const [discogs, setDiscogs] = useState(authCont.profile.discogs);
-    const [bandcamp, setBandcamp] = useState(authCont.profile.bandcamp);
-    const [soundcloud, setSoundcloud] = useState(authCont.profile.soundcloud);
+  const [youtube, setYoutube] = useState(authCont.profile.youtube);
+  const [twitter, setTwitter] = useState(authCont.profile.twitter);
+  const [facebook, setFacebook] = useState(authCont.profile.facebook);
+  const [link, setLink] = useState('');
+  const [instagram, setInstagram] = useState(authCont.profile.instagram);
+  const [discogs, setDiscogs] = useState(authCont.profile.discogs);
+  const [bandcamp, setBandcamp] = useState(authCont.profile.bandcamp);
+  const [soundcloud, setSoundcloud] = useState(authCont.profile.soundcloud);
 
-    const [social, setSocial] = useState({
-       youtube: `${authCont.profile.youtube}`,  
-       twitter: `${authCont.profile.twitter}`, 
-       facebook: `${authCont.profile.facebook}`, 
-       linkedin: `${authCont.profile.linkedin}`, 
-       instagram: `${authCont.profile.instagram}`, 
-       discogs: `${authCont.profile.discogs}`, 
-       bandcamp: `${authCont.profile.bandcamp}`, 
-       soundcloud: `${authCont.profile.soundcloud}` 
-     } );
+  const [social, setSocial] = useState({
+    youtube: `${authCont.profile.youtube}`,
+    twitter: `${authCont.profile.twitter}`,
+    facebook: `${authCont.profile.facebook}`,
+    linkedin: `${authCont.profile.linkedin}`,
+    instagram: `${authCont.profile.instagram}`,
+    discogs: `${authCont.profile.discogs}`,
+    bandcamp: `${authCont.profile.bandcamp}`,
+    soundcloud: `${authCont.profile.soundcloud}`,
+  });
 
-    const [localSocial, setLocalSocial] = useState([authCont.social]);
+  const [localSocial, setLocalSocial] = useState([authCont.social]);
 
   const handleChange = (e) => {
-  
-    setSocial({ ...social, [e.target.name]:  e.target.value });
-   
-    console.log(authCont.social)
-  
+    setSocial({ ...social, [e.target.name]: e.target.value });
+
+    console.log(authCont.social);
   };
 
- 
-useEffect(()=>{
-authCont.updateSocial(social)
-}, [social])
-
+  useEffect(() => {
+    authCont.updateSocial(social);
+  }, [social]);
 
   return (
     <Li>
+      <Label>{label}</Label>
+
       <Cont>
         {socialNames.map((item, i) => (
           <Row key={i}>
             <P>{item}</P>
             <InputEdit
               placeholder={placeholder}
-              value={item}
+              value={authCont.profile[`${item}`]}
               // onChange={(e) => setLink(e.target.value)}
               type='text'
               name={item}
-              onChange={(e)=> handleChange(e)}
+              onChange={(e) => handleChange(e)}
             ></InputEdit>
-           
           </Row>
         ))}
       </Cont>
-      <Label>{label}</Label>
-     
     </Li>
   );
 };
