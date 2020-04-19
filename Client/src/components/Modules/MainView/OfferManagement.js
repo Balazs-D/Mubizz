@@ -8,14 +8,10 @@ import AuthCont from '../../../context/auth/authContext';
 
 import EditSoloLine from '../../Utilities/EditProfile/EditSoloLine';
 import EditTextArea from '../../Utilities/EditProfile/EditTextArea';
-import EditTagItem from '../../Utilities/EditProfile/EditTagItem';
-import EditReadLine from '../../Utilities/EditProfile/EditReadLine';
-import EditAddLine from '../../Utilities/EditProfile/EditAddLine';
-import PicUpload from '../../Utilities/PicUpload/PicUpload';
-import ProcessDiagram from '../../Utilities/EditProfile/ProcessDiagram';
+
 import IntroText from '../../Utilities/IntroText';
 import DiagramStep from '../../Utilities/EditProfile/DiagramStep';
-import EditLanguage from '../../Utilities/EditProfile/EditLanguage';
+import ButtonLight from '../../Utilities/ButtonLight';
 
 // Styled Comp
 
@@ -77,7 +73,7 @@ const Col = styled.div`
     ${(props) => props.theme.colors.white},
     ${(props) => props.theme.colors.white}
   );
-  padding: 15px 0px;
+  padding: 0px 0px;
 `;
 
 const Row = styled.div`
@@ -85,7 +81,7 @@ const Row = styled.div`
   display: flex;
   background: white;
   justify-content: center;
-  padding: 50px 0px;
+  padding: 00px 0px;
 
   flex-direction: row;
 `;
@@ -99,9 +95,102 @@ const SiteName = styled.h2`
   width: 100%;
 `;
 
+const Span = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+  justify-content: space-around;
+`;
+
+
+const SpanFull = styled.div`
+  width: 87%;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+`;
+
+const ButtonNew = styled.input.attrs({ type: 'button' })`
+  width: 25%;
+  height: 70px;
+  padding: 0px;
+  border: 1px solid ${(props) => props.theme.colors.mainPurple};
+  border-radius: 3px;
+  font-family: ${(props) => props.theme.fontFamily[5]};
+  font-size: ${(props) => props.theme.fontSizes.small};
+  background: ${(props) => props.theme.colors.info};
+  color: ${(props) => props.theme.colors.mainPurple};
+  margin: 30px 0px 40px 0px;
+  transition: all 0.35s ease-in;
+  box-shadow: 0px 0px 0px ${(props) => props.theme.colors.white};
+  text-align: center;
+
+  &:hover {
+    font-size: ${(props) => props.theme.fontSizes.small};
+    background: ${(props) => props.theme.colors.gradientPink};
+    color: ${(props) => props.theme.colors.white};
+    cursor: pointer;
+    box-shadow: -1px -1px 3px ${(props) => props.theme.colors.mainPurple},
+      inset -1px -1px 3px ${(props) => props.theme.colors.mainPurple};
+  }
+`;
+
+
+const SubName = styled(SiteName)`
+  width: 87%;
+  background: ${(props) => props.theme.colors.primaryLight};
+  box-shadow: 0px 0px 3px ${(props) => props.theme.colors.primaryDark};
+  font-size: ${(props) => props.theme.fontSizes.half};
+`;
+
+const OnlineRef = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  border-radius: 3px;
+  font-family: ${(props) => props.theme.fontFamily[5]};
+`;
+
+const IntroShortText = styled(IntroText)`
+ width: 47%;
+  margin: 0px 0px 0px 0px;
+  height: 100%;
+  color: ${(props) => props.theme.colors.basicBlue};
+  /* background-image:radial-gradient(${(props) =>
+    props.theme.colors.infoLight}, ${(props) => props.theme.colors.info} ); */
+  border-radius: 3px;
+  padding: 20px;
+  text-align: justify;
+  font-size: ${(props) => props.theme.fontSizes.half};
+  font-family: ${(props) => props.theme.fontFamily[4]};
+  position: relative;
+  /* box-shadow: 0px 0px 2px ${(props) =>
+    props.theme.colors.secondaryDecent}; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  /* border: 1px solid ${(props) => props.theme.colors.mainPurple}; */
+   background: ${(props) => props.theme.colors.primaryLight};
+  box-shadow: 0px 0px 3px ${(props) => props.theme.colors.primaryDark};`;
+
+  const Added = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 87%;
+    height: 100%;
+    margin: 20px;
+  `;
+
 const OfferManagement = (props) => {
   const authCont = useContext(AuthCont);
   const userCont = useContext(UserCont);
+  const [newOff, setNewOff] = useState(false);
 
   const [user, setUser] = useState({
     // email: `${authCont.user.email}`,
@@ -144,6 +233,11 @@ const OfferManagement = (props) => {
     // authCont.getProfile();
   }, []);
 
+  const newItem = async () => {
+    await setNewOff(!newOff);
+    await window.scrollTo(0, 0);
+  };
+
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
     console.log(e.target.name);
@@ -185,44 +279,68 @@ const OfferManagement = (props) => {
   };
 
   return (
-    <Form onSubmit={onSubmit}>
-      <SiteName>Offer Manager</SiteName>
+    <Col>
+      <Form onSubmit={onSubmit}>
+        <SiteName>Offer Manager</SiteName>
 
-      <IntroText stepNr={5} />
+        <SpanFull>
+          <IntroShortText stepNr={5}></IntroShortText>
+          <ButtonNew
+            onClick={newItem}
+            value={newOff ? 'Cancel card' : 'Add a new offer'}
+          ></ButtonNew>
+        </SpanFull>
 
-      <Row>
-        <DiagramStep title='References' nr={6} />
+        {newOff && (
+          <Row>
+            <DiagramStep title='Service Offer' nr={6} />
 
-        <Block>
-          <GradientContRadius>
-            <Col>
-              <Ul>
-                {authCont.user && (
-                  <EditSoloLine
-                    // onChange={(e) => setLink(e.target.value)}
-                    value={''}
-                    name='title'
-                    label='offer name'
-                  />
-                )}
-                {authCont.profile && (
-                  <EditTextArea
-                    placeholder={''}
-                    value={''}
-                    name='description'
-                    // onChange={(e) => setProfileMotto(e.target.value)}
-                    label='offer description'
-                  />
-                )}
-              </Ul>
-            </Col>
-          </GradientContRadius>
-        </Block>
-      </Row>
-      <button type='submit' onClick={onSubmit}>
-        SUBMIT
-      </button>
-    </Form>
+            <Block>
+              <GradientContRadius>
+                <Col>
+                  <Ul>
+                    {authCont.user && (
+                      <EditSoloLine
+                        // onChange={(e) => setLink(e.target.value)}
+                        value={''}
+                        name='title'
+                        label='offer name'
+                      />
+                    )}
+                    {authCont.profile && (
+                      <EditTextArea
+                        placeholder={''}
+                        value={''}
+                        name='description'
+                        // onChange={(e) => setProfileMotto(e.target.value)}
+                        label='offer description'
+                      />
+                    )}
+                  </Ul>
+                </Col>
+              </GradientContRadius>
+            </Block>
+          </Row>
+        )}
+        {newOff && (
+          <button type='submit' onClick={onSubmit}>
+            SUBMIT
+          </button>
+        )}
+      </Form>
+      <SubName>Service Offer Cards</SubName>
+      <Added>
+        <ul>
+          <OnlineRef>
+            <p>Project Name</p>
+            <Span>
+              <ButtonLight text='edit' />
+              <ButtonLight text='delete' />
+            </Span>
+          </OnlineRef>
+        </ul>
+      </Added>
+    </Col>
   );
 };
 

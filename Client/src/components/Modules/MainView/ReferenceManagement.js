@@ -8,14 +8,9 @@ import AuthCont from '../../../context/auth/authContext';
 
 import EditSoloLine from '../../Utilities/EditProfile/EditSoloLine';
 import EditTextArea from '../../Utilities/EditProfile/EditTextArea';
-import EditTagItem from '../../Utilities/EditProfile/EditTagItem';
-import EditReadLine from '../../Utilities/EditProfile/EditReadLine';
-import EditAddLine from '../../Utilities/EditProfile/EditAddLine';
-import PicUpload from '../../Utilities/PicUpload/PicUpload';
-import ProcessDiagram from '../../Utilities/EditProfile/ProcessDiagram';
+
 import IntroText from '../../Utilities/IntroText';
 import DiagramStep from '../../Utilities/EditProfile/DiagramStep';
-import EditLanguage from '../../Utilities/EditProfile/EditLanguage';
 import CardRadius from '../../Utilities/CardRadius';
 import ButtonLight from '../../Utilities/ButtonLight';
 // Styled Comp
@@ -46,9 +41,12 @@ const Added = styled.div`
 `;
 
 const Form = styled.form`
-  display: contents;
+  display: flex;
+  width: 100%;
+
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 0;
 `;
 
@@ -65,7 +63,27 @@ const Block = styled.div`
 `;
 
 const IntroShortText = styled(IntroText)`
-width: 10px`
+ width: 47%;
+  margin: 0px 0px 0px 0px;
+  height: 100%;
+  color: ${(props) => props.theme.colors.basicBlue};
+  /* background-image:radial-gradient(${(props) =>
+    props.theme.colors.infoLight}, ${(props) => props.theme.colors.info} ); */
+  border-radius: 3px;
+  padding: 20px;
+  text-align: justify;
+  font-size: ${(props) => props.theme.fontSizes.half};
+  font-family: ${(props) => props.theme.fontFamily[4]};
+  position: relative;
+  /* box-shadow: 0px 0px 2px ${(props) =>
+    props.theme.colors.secondaryDecent}; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  /* border: 1px solid ${(props) => props.theme.colors.mainPurple}; */
+   background: ${(props) => props.theme.colors.primaryLight};
+  box-shadow: 0px 0px 3px ${(props) => props.theme.colors.primaryDark};`;
 
 const Ul = styled.ul`
   display: flex;
@@ -135,8 +153,8 @@ const SubName = styled(SiteName)`
 `;
 
 const ButtonNew = styled.input.attrs({ type: 'button' })`
-  width: 40%;
-  height: 50px;
+  width: 25%;
+  height: 70px;
   padding: 0px;
   border: 1px solid ${(props) => props.theme.colors.mainPurple};
   border-radius: 3px;
@@ -166,10 +184,11 @@ const Span = styled.div`
   justify-content: space-around
 `;
 
-const SpanFull = styled(Span)`
-  width: 100%;
+const SpanFull = styled.div`
+  width: 87%;
   justify-content: space-between;
-  background: red;
+  display: flex;
+  flex-direction: row;
 `;
 
 const ReferenceManagement = (props) => {
@@ -256,13 +275,13 @@ const ReferenceManagement = (props) => {
       <Form onSubmit={onSubmit}>
         <SiteName>Reference Manager</SiteName>
 
-       
-          <IntroShortText stepNr={5} ></IntroShortText>
+        <SpanFull>
+          <IntroShortText stepNr={5}></IntroShortText>
           <ButtonNew
             onClick={newItem}
-            value={newRef ? 'Cancel card' : 'Add a new reference card'}
+            value={newRef ? 'Cancel card' : 'Add a new reference'}
           ></ButtonNew>
-        
+        </SpanFull> 
 
         {newRef && (
           <Row>

@@ -23,16 +23,16 @@ const IntroText = ({stepNr}) => {
 export default IntroText;
 
 const Notes = styled.div`
-  width: 87%;
+  width: 70%;
   margin: 30px 0px 10px 0px;
-  height: 100%;
+  height: 70px;
   color: ${(props) => props.theme.colors.basicBlue};
   /* background-image:radial-gradient(${(props) =>
     props.theme.colors.infoLight}, ${(props) => props.theme.colors.info} ); */
-  border-radius: 0.5px;
+  border-radius: 3px;
   padding: 20px;
   text-align: justify;
-  font-size: ${(props) => props.theme.fontSizes.half};
+  font-size: ${(props) => props.theme.fontSizes.small};
   font-family: ${(props) => props.theme.fontFamily[4]};
   position: relative;
   /* box-shadow: 0px 0px 2px ${(props) => props.theme.colors.secondaryDecent}; */
