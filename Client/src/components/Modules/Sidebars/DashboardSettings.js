@@ -1,56 +1,44 @@
 // Utilities
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, Fragment, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import AuthCont from '../../../context/auth/authContext';
 import UserCont from '../../../context/user/userContext';
 
+// COmp
+
+import Status from '../../Utilities/StatusDisplay';
+import BlinkInfoField from '../../Utilities/ProfileSection/BlinkInfoField';
+
+// Styled Comp
 
 const FrameCont = styled.div`
-  width: 20vw;
+  width: 23vw;
   padding: 1px;
-  height: 70vh;
+  height: 100vh;
   background: linear-gradient(
-    ${props => props.theme.colors.mainPurple},
-    ${props => props.theme.colors.basicBlue}
+    ${(props) => props.theme.colors.mainPurple},
+    ${(props) => props.theme.colors.basicBlue}
   );
 `;
 
 const DashboardSidebar = styled.div`
   width: 100%;
   height: 100%;
-  background: ${props => props.theme.colors.white};
-  /* border: 1px solid ${props => props.theme.colors.info}; */
+  background: ${(props) => props.theme.colors.white};
+  /* border: 1px solid ${(props) => props.theme.colors.info}; */
   /* border-radius: 4px; */
-  font-family: ${props => props.theme.fontFamily[5]};
+  font-family: ${(props) => props.theme.fontFamily[5]};
   padding: 20px;
-  box-shadow: 0px 0px 7px ${props => props.theme.colors.steelBlue};
+  box-shadow: 0px 0px 7px ${(props) => props.theme.colors.steelBlue};
 `;
 
 const TitleDiv = styled.div`
   display: flex;
   flex-direction: column;
-  border-left: 3px solid ${props=>props.theme.colors.mainPurple};
-padding-left: 10px;
+  border-left: 3px solid ${(props) => props.theme.colors.mainPurple};
+  padding-left: 10px;
   justify-content: flex-start;
-`;
-
-const Status = styled.p`
-  color: ${props => props.theme.colors.gradientYellow};
-  background: ${props => props.theme.colors.mainRed};
-  border-radius: 2px;
-  
-  display: flex;
-  align-self: flex-start;
-  justify-self: center;
-  
-  border: 1px solid ${props => props.theme.colors.mainPurple};
-  font-size: ${props=>props.theme.fontSizes.xm};
-  font-family: ${props => props.theme.fontFamily[4]};
-  font-weight: 100;
-  padding: 0 10px;
-  /* line-height: 2; */
-  /* height: 28px; */
 `;
 
 const List = styled.ul`
@@ -61,33 +49,64 @@ const List = styled.ul`
   align-items: flex-start;
   width: 100%;
   padding: 0;
-  
+`;
+
+const Li = styled(NavLink)`
+  margin: 0px 0px;
+  width: 100%;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  border-radius: 3px;
+  padding: 5px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in;
+  color: ${(props) => props.theme.colors.info};
+
+  &:hover {
+    background: ${(props) => props.theme.colors.primaryLight};
+    color: ${(props) => props.theme.colors.primaryDark};
+  }
+`;
+
+const Row = styled.span`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
 `;
 
 const PicCont = styled.img`
   width: 100%;
-  height: 100px;
+  height: 200px;
   object-fit: cover;
   margin: 1.5vw 0vh 0vw 0vh;
-  border:1px solid  ${props=>props.theme.colors.info};
+  border: 1px solid ${(props) => props.theme.colors.info};
 `;
-
 
 const StyledLink = {
   textDecoration: 'none',
-  color: '#30BF97'
-  
+  // color: '#30BF97',
+  width: '100%',
+  // border: '1px solid #41B883',
+  // borderRadius: '3px',
+  // padding: '5px',
+  // marginBottom: '10px',
 };
 const StyledActiveLink = {
   textDecoration: 'none',
-  color: '#1C377B'
+  // color: '#1C377B',
+  color: '#272B2B',
+  background: '#6D87B9',
 };
 
 const DashboardSettings = () => {
   const authCont = useContext(AuthCont);
-    const userCont = useContext(UserCont);
-
+  const userCont = useContext(UserCont);
   const { user, profile } = authCont;
+
+  // const editRef = useRef();
+  // const offersRef = useRef();
+  // const refRef = useRef();
+  // const messRef = useRef();
 
   return (
     <FrameCont>
@@ -95,14 +114,20 @@ const DashboardSettings = () => {
         {user && (
           <Fragment>
             <TitleDiv>
-             {profile.profileName ? <h2>{profile.profileName}</h2> : <h2>{user.name}</h2> }
-             {/* {profile.profileName ? <h3>{user.name}</h3> : null } */}
-
-              <Status>Pro</Status>
+              {profile.profileName ? (
+                <h2>{profile.profileName}</h2>
+              ) : (
+                <h2>{user.name}</h2>
+              )}
+              {/* {profile.profileName ? <h3>{user.name}</h3> : null } */}
+              <Row>
+                <Status />
+                <BlinkInfoField text='Update your profile to upgrade our status.' />
+              </Row>
             </TitleDiv>
             <PicCont src={profile.avatar ? profile.avatar : null}></PicCont>
             <List>
-              <li>
+              {/* <li>
                 <NavLink
                   to='/dashboard/marked'
                   activeStyle={StyledActiveLink}
@@ -110,8 +135,8 @@ const DashboardSettings = () => {
                 >
                   Marked Posts
                 </NavLink>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <NavLink
                   to='/dashboard/network'
                   activeStyle={StyledActiveLink}
@@ -119,29 +144,49 @@ const DashboardSettings = () => {
                 >
                   Your Network: 4
                 </NavLink>
-              </li>
+              </li> */}
 
-              <li>
-                <NavLink
+              {/* <Li> */}
+                <Li
                   to='/dashboard/edit-profile'
                   activeStyle={StyledActiveLink}
                   style={StyledLink}
                 >
                   Edit Profile
-                </NavLink>
-              </li>
+                </Li>
+              {/* </Li> */}
 
-              <li>
-                <NavLink
+              {/* <Li> */}
+                <Li
+                  to='/dashboard/reference-management'
+                  activeStyle={StyledActiveLink}
+                  style={StyledLink}
+                >
+                  Reference Manager
+                </Li>
+              {/* </Li> */}
+
+              {/* <Li> */}
+                <Li
+                  to='/dashboard/offer-management'
+                  activeStyle={StyledActiveLink}
+                  style={StyledLink}
+                >
+                  Offer Manager
+                </Li>
+              {/* </Li> */}
+
+              {/* <Li> */}
+                <Li
                   to='/dashboard/messages'
                   activeStyle={StyledActiveLink}
                   style={StyledLink}
                 >
                   Messages
-                </NavLink>
-              </li>
+                </Li>
+              {/* </Li> */}
 
-              <li>
+              {/* <li>
                 <NavLink
                   to='/dashboard/settings'
                   activeStyle={StyledActiveLink}
@@ -149,19 +194,9 @@ const DashboardSettings = () => {
                 >
                   Settings
                 </NavLink>
-              </li>
+              </li> */}
 
-              <li>
-                <NavLink
-                  to='/dashboard/offer-management'
-                  activeStyle={StyledActiveLink}
-                  style={StyledLink}
-                >
-                  Offer Manager
-                </NavLink>
-              </li>
-
-              <li>
+              {/* <li>
                 <NavLink
                   to='/dashboard/deals'
                   activeStyle={StyledActiveLink}
@@ -169,7 +204,7 @@ const DashboardSettings = () => {
                 >
                   Actual Deals
                 </NavLink>
-              </li>
+              </li> */}
             </List>
           </Fragment>
         )}

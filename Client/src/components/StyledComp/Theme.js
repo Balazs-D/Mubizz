@@ -25,7 +25,8 @@ const theme = {
     info: '#41B883',
     infoLight: '#7FC3A5',
     danger: '#B8412E',
-    white: '#fff'
+    white: '#fff',
+    vueBlue: '#2d3436'
   },
   fontFamily: [
     'sans-serif',

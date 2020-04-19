@@ -34,7 +34,9 @@ const Login = props => {
   // Re-render  //  Re-direct
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push('/');
+      props.history.push('/dashboard');
+
+      
       // getProfile();
     }
     if (error === 'User does not exists.') {

@@ -109,28 +109,9 @@ const EditProfile = (props) => {
   const authCont = useContext(AuthCont);
   const [edited, setEdited] = useState(false);
 
-  // const [profile, setProfile] = useState({
-  //   // email: `${authCont.user.email}`,
-  //   profileName: `${authCont.profile.profileName}`,
-  //   avatar: `${authCont.profile.avatar}`,
-  //   profileMotto: `${authCont.profile.profileMotto}`,
-  //   description: `${authCont.profile.description}`,
-  //   services: [`${authCont.profile.services}`],
-  //   website: `${authCont.profile.website}`,
-  //   location: `${authCont.profile.location}`,
-  //   languages: [`${authCont.profile.languages}`],
-  //   skills: [`${authCont.profile.skills}`],
-  //   reference: [],
-  //   youtube: `${userCont.social.youtube}`,
-  //   twitter: `${userCont.social.twitter}`,
-  //   facebook: `${userCont.social.facebook}`,
-  //   linkedin: `${userCont.social.linkedin}`,
-  //   instagram: `${userCont.social.instagram}`,
-  //   discogs: `${userCont.social.discogs}`,
-  //   bandcamp: `${userCont.social.bandcamp}`,
-  //   soundcloud: `${userCont.social.soundcloud}`,
-  //   offers: {},
-  // });
+  const [member, setMember] = useState(false);
+  const [creator, setCreator] = useState(false);
+  const [pro, setPro] = useState(false);
 
   const [profileName, setProfileName] = useState(authCont.profile.profileName);
   const [avatar, setAvatar] = useState(authCont.profile.avatar);
@@ -154,30 +135,6 @@ const EditProfile = (props) => {
   const [soundcloud, setSoundcloud] = useState(authCont.profile.soundcloud);
   const [offers, setOffers] = useState([]);
 
-  // console.log(profile);
-  // const {
-  //   email,
-  //   profileName,
-  //   avatar,
-  //   profileMotto,
-  //   description,
-  //   services,
-  //   website,
-  //   location,
-  //   languages,
-  //   skills,
-  //   reference,
-  //   youtube,
-  //   twitter,
-  //   facebook,
-  //   linkedin,
-  //   instagram,
-  //   discogs,
-  //   bandcamp,
-  //   soundcloud,
-  //   offers,
-  // } = profile;
-
   useEffect(() => {
     window.scrollTo(0, 0);
     // setUser({ ...user, languages: '' });
@@ -186,22 +143,10 @@ const EditProfile = (props) => {
     // authCont.getProfile();
   }, []);
 
-  // const onChange = (e) => {
-  //   setProfile({ ...profile, [e.target.name]: e.target.value });
-  //   console.log(e.target.name);
-  // };
-
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log('on submit');
-    //  if (name === '' || email === '' || password === '') {
-    //    setAlert('Please enter all fields');
-    //    console.log('error 02');
-    //  }
-    //  if (error === 'User already exists') {
-    //    setAlert(error);
-    //    clearErrors();
-    //  } else {
+
     console.log(FormData);
     await authCont.update({
       // FormData
@@ -231,6 +176,7 @@ const EditProfile = (props) => {
     console.log(authCont);
     await authCont.getProfile();
     setEdited(false);
+    await authCont.setStatus();
 
     window.scrollTo(0, 0);
   };
@@ -307,52 +253,6 @@ const EditProfile = (props) => {
   useEffect(() => {
     setSoundcloud(authCont.social.soundcloud);
   }, [authCont.social.soundcloud]);
-
-
-
-  // useEffect(() => {
-  //   setSocial({
-  //     ...profile,
-  //     youtube: userCont.social.youtube,
-  //     twitter: userCont.social.twitter,
-  //     facebook: userCont.social.facebook,
-  //     linkedin: userCont.social.linkedin,
-  //     instagram: userCont.social.instagram,
-  //     discogs: userCont.social.discogs,
-  //     bandcamp: userCont.social.bandcamp,
-  //     soundcloud: userCont.social.soundcloud,
-  //   });
-  // }, [authCont.profile.social]);
-
-  // useEffect(() => {
-  //   setProfile({ ...profile, skills: authCont.profile.skills });
-  // }, [authCont.profile]);
-
-  // useEffect(() => {
-  //   setProfile({ ...profile, languages: authCont.profile.languages });
-  // }, [authCont.profile]);
-
-  // useEffect(() => {
-  //   setProfile({ ...profile, services: authCont.profile.services });
-  // }, [authCont.profile]);
-
-  // useEffect(() => {
-  //   setProfile({ ...profile, avatar: userCont.avatar });
-  // }, [authCont.profile.avatar]);
-
-  // useEffect(() => {
-  //   setProfile({
-  //     ...profile,
-  //     youtube: userCont.social.youtube,
-  //     twitter: userCont.social.twitter,
-  //     facebook: userCont.social.facebook,
-  //     linkedin: userCont.social.linkedin,
-  //     instagram: userCont.social.instagram,
-  //     discogs: userCont.social.discogs,
-  //     bandcamp: userCont.social.bandcamp,
-  //     soundcloud: userCont.social.soundcloud,
-  //   });
-  // }, [authCont.profile.social]);
 
   // If schema is done then map through schema use each info section
   // Then map through the info section and insert option to each section

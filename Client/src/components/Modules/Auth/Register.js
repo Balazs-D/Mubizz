@@ -39,7 +39,9 @@ const Register = (props) => {
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push('/');
-    }
+    };
+
+    
 
     //eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);

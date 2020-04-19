@@ -20,6 +20,10 @@ import {
   UPD_LANG_STATE,
   UPD_IMG_STATE,
   UPD_SOCIAL,
+  SET_MEMBER,
+  SET_CREATOR,
+  SET_PRO,
+  SET_STATUS
 } from '../types';
 
 const AuthState = (props) => {
@@ -40,6 +44,9 @@ const AuthState = (props) => {
       bandcamp: '',
       soundcloud: '',
     },
+    member: false,
+    creator: false,
+    pro: false,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -130,6 +137,7 @@ const AuthState = (props) => {
       });
       loadUser();
       getProfile();
+      setStatus();
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
@@ -182,7 +190,7 @@ const AuthState = (props) => {
       payload: input,
     });
   };
-  console.log(state);
+  console.log(state.profile);
 
   // update languages
   const updateLanguages = (input) => {
@@ -211,6 +219,44 @@ const AuthState = (props) => {
     });
   };
 
+  // set status
+
+  const setMember =()=>dispatch({type: SET_MEMBER})
+  const setCreator = () => dispatch({ type: SET_CREATOR });
+  const setPro = () => dispatch({ type: SET_PRO });
+
+  // use staus 
+
+  const setStatus =()=>{
+     if (
+       state.creator === true &&
+       state.profile.location.length > 0 &&
+       state.profile.description.length > 0 &&
+       state.profile.skills.length > 0 &&
+       state.profile.languages.length > 0 &&
+       state.profile.offers.length > 0
+     ) {
+       setPro();
+     } else if (
+       state.profile &&
+       state.member === true &&
+       state.profile.reference.length > 0
+     ) {
+       setCreator();
+     } else if (
+       state.profile.profileName &&
+       state.profile.profileMotto &&
+       state.profile.avatar 
+     ) {
+       setMember();
+       console.log('member')
+     } else {
+              console.log('undefined');
+
+       return undefined;
+     }
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -221,6 +267,9 @@ const AuthState = (props) => {
         loading: state.loading,
         error: state.error,
         social: state.social,
+        member: state.member,
+        creator: state.creator,
+        pro: state.pro,
         updateServices,
         updateSkills,
         updateAvatar,
@@ -233,6 +282,10 @@ const AuthState = (props) => {
         logout,
         update,
         getProfile,
+        setMember,
+        setCreator,
+        setPro, 
+        setStatus
       }}
     >
       {props.children}

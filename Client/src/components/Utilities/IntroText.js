@@ -26,19 +26,22 @@ const Notes = styled.div`
   width: 87%;
   margin: 30px 0px 10px 0px;
   height: 100%;
-  color: ${props => props.theme.colors.secondaryDecent};
-  /* background-image:radial-gradient(${props => props.theme.colors.infoLight}, ${props => props.theme.colors.info} ); */
+  color: ${(props) => props.theme.colors.basicBlue};
+  /* background-image:radial-gradient(${(props) =>
+    props.theme.colors.infoLight}, ${(props) => props.theme.colors.info} ); */
   border-radius: 0.5px;
   padding: 20px;
   text-align: justify;
-  font-size: ${props => props.theme.fontSizes.half};
-  font-family: ${props => props.theme.fontFamily[4]};
+  font-size: ${(props) => props.theme.fontSizes.half};
+  font-family: ${(props) => props.theme.fontFamily[4]};
   position: relative;
-  box-shadow: 0px 0px 2px ${props => props.theme.colors.secondaryDecent};
+  /* box-shadow: 0px 0px 2px ${(props) => props.theme.colors.secondaryDecent}; */
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  border: 1px solid ${props => props.theme.colors.mainPurple};
+  /* border: 1px solid ${(props) => props.theme.colors.mainPurple}; */
+   background: ${(props) => props.theme.colors.primaryLight};
+  box-shadow: 0px 0px 3px ${(props) => props.theme.colors.primaryDark};
 
 `;

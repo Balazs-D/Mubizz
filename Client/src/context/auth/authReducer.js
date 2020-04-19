@@ -14,6 +14,10 @@ import {
   UPD_LANG_STATE,
   UPD_IMG_STATE,
   UPD_SOCIAL,
+  SET_MEMBER,
+  SET_CREATOR,
+  SET_PRO,
+  SET_STATUS
 } from '../types';
 
 export default (state, action) => {
@@ -66,25 +70,25 @@ export default (state, action) => {
     case UPD_TAG_STATE:
       return {
         ...state,
-        profile: {...state.profile, services: action.payload},
+        profile: { ...state.profile, services: action.payload },
       };
 
     case UPD_SKILL_STATE:
       return {
         ...state,
-        profile: {...state.profile, skills: action.payload},
+        profile: { ...state.profile, skills: action.payload },
       };
 
     case UPD_LANG_STATE:
       return {
         ...state,
-        profile: {...state.profile, languages: action.payload},
+        profile: { ...state.profile, languages: action.payload },
       };
 
     case UPD_IMG_STATE:
       return {
         ...state,
-       profile: {...state.profile, avatar: action.payload},
+        profile: { ...state.profile, avatar: action.payload },
       };
 
     case UPD_SOCIAL:
@@ -93,7 +97,30 @@ export default (state, action) => {
         social: action.payload,
       };
 
-   
+    case SET_MEMBER:
+      return {
+        ...state,
+        member: true,
+        pro: false,
+        creator: false
+      };
+    case SET_CREATOR:
+      return {
+        ...state,
+        member: false,
+        creator: true,
+        pro: false,
+      };
+    case SET_PRO:
+      return {
+        ...state,
+        member: false,
+        creator: false,
+        pro: true,
+      };
+
+    
+      
 
     default:
       return state;

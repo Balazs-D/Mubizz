@@ -21,23 +21,25 @@ const HeaderCont = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #2d3436;
-/* background: ${props => props.theme.colors.primaryLight}; */
-  background-image: linear-gradient(to right, ${props =>
-    props.theme.colors.basicBlue} 0%, ${props => props.theme.colors.basicBlue} 100%);
+/* background: ${(props) => props.theme.colors.primaryLight}; */
+  background-image: linear-gradient(to right, ${(props) =>
+    props.theme.colors.basicBlue} 0%, ${(props) =>
+  props.theme.colors.basicBlue} 100%);
   padding: 0.5vw 1vw;
-  /* background: ${props => props.theme.colors.basicBlue}; */
+  /* background: ${(props) => props.theme.colors.basicBlue}; */
   position: relative;
   height: 20vw;
   z-index: 1;
-  border-bottom: 0px;
+  border-bottom: 1px solid ${(props) => props.theme.colors.warning};
  
 
   @media (min-width: 800px) {
-    border-bottom: 0px solid ${props => props.theme.colors.warning};
+  border-bottom: 1px solid ${(props) => props.theme.colors.info};
 
     align-items: flex-start;
     flex-direction: column;
-    /* box-shadow: 0px 0px 70px ${props => props.theme.colors.gradientPink}; */
+    /* box-shadow: 0px 0px 70px ${(props) =>
+      props.theme.colors.gradientPink}; */
     z-index: 10;
     position: sticky;
     top: 0;
@@ -47,7 +49,7 @@ const HeaderCont = styled.div`
     ${({ filterBar }) =>
       filterBar &&
       `
-    height: 30vh;
+    height: 20vh;
   `}
   }
 `;
@@ -120,7 +122,7 @@ const Header = () => {
       <HeaderCont filterBar={userCont.filterBar}>
         <UpperCont>
           <Logo />
-          {userCont.filterBar ? (
+          {/* {userCont.filterBar ? (
             <i
               style={iconStyle}
               onClick={userCont.toggleFilterBar}
@@ -136,7 +138,7 @@ const Header = () => {
             >
               {' '}
             </i>
-          )}
+          )} */}
           <ControlContainer>
             <InputCont>
               <InputSearch placeholder='Search...' />

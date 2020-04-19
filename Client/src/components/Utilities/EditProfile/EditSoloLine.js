@@ -16,7 +16,7 @@ const InputEdit = styled(InputMinimal)`
   padding: 1px;
   
  
-  width: 90%;
+  width: 100%;
   &:focus {
     background: ${props => props.theme.colors.white};
   }

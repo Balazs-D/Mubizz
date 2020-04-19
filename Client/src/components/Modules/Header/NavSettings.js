@@ -6,9 +6,11 @@ import { BrowserRouter as Switch, Nav, Route, Link } from 'react-router-dom';
 // Components
 import ButtonMain from '../../Utilities/ButtonMain';
 import AuthContext from '../../../context/auth/authContext';
+import UserContext from '../../../context/user/userContext';
 
 const NavSettings = () => {
   const authCont = useContext(AuthContext);
+  const userCont = useContext(UserContext)
   const { isAuthenticated, logout, user } = authCont;
   const onLogout = () => {
     authCont.logout();
@@ -17,8 +19,12 @@ const NavSettings = () => {
   const loggedNavbar = (
     <List>
       <li>
-        <Link to='/dashboard/settings' style={StyledLink}>
-          <ButtonMain text='Settings' />
+        <Link>
+          <ButtonMain
+            onClick={userCont.toggleFilterBar}
+            text='Filter'
+            style={StyledLink}
+          />
         </Link>
       </li>
       <li>
@@ -32,11 +38,10 @@ const NavSettings = () => {
           <ButtonMain text='Profile' />
         </Link>
       </li>
-     
-        <Link to='/login' style={StyledLink}>
-          <ButtonMain text='Logout' onClick={onLogout} />
-        </Link>
-     
+
+      <Link to='/login' style={StyledLink}>
+        <ButtonMain text='Logout' onClick={onLogout} />
+      </Link>
     </List>
   );
 

@@ -99,7 +99,7 @@ const SiteName = styled.h2`
   width: 100%;
 `;
 
-const EditProfile = (props) => {
+const OfferManagement = (props) => {
   const authCont = useContext(AuthCont);
   const userCont = useContext(UserCont);
 
@@ -149,8 +149,6 @@ const EditProfile = (props) => {
     console.log(e.target.name);
   };
 
-  
-
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log('on submit');
@@ -186,14 +184,11 @@ const EditProfile = (props) => {
     window.scrollTo(0, 0);
   };
 
- 
-
   return (
     <Form onSubmit={onSubmit}>
       <SiteName>Offer Manager</SiteName>
 
       <IntroText stepNr={5} />
-    
 
       <Row>
         <DiagramStep title='References' nr={6} />
@@ -202,8 +197,23 @@ const EditProfile = (props) => {
           <GradientContRadius>
             <Col>
               <Ul>
-                {/* <EditReadLine title='Offers' value='5'></EditReadLine>
-                <EditReadLine title='References' value='7'></EditReadLine> */}
+                {authCont.user && (
+                  <EditSoloLine
+                    // onChange={(e) => setLink(e.target.value)}
+                    value={''}
+                    name='title'
+                    label='offer name'
+                  />
+                )}
+                {authCont.profile && (
+                  <EditTextArea
+                    placeholder={''}
+                    value={''}
+                    name='description'
+                    // onChange={(e) => setProfileMotto(e.target.value)}
+                    label='offer description'
+                  />
+                )}
               </Ul>
             </Col>
           </GradientContRadius>
@@ -216,4 +226,4 @@ const EditProfile = (props) => {
   );
 };
 
-export default EditProfile;
+export default OfferManagement;

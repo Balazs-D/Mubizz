@@ -54,7 +54,7 @@ const UserState = (props) => {
       [
         'After you created at least one of each item your profile will reach the PRO level.',
       ],
-      ['Manage your experience and knowledge into reference and offer cards.'],
+      ['Manage your experience and knowledge into reference cards.'],
       ['Create a new reference card to present a work experience.'],
     ],
   };

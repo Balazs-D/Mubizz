@@ -32,6 +32,7 @@ const TagBarCont = styled.div`
     align-items: center;
     justify-content: space-between;
     align-items: center;
+    /* border-top: 1px solid ${props=>props.theme.colors.primaryLight}; */
 
     ${({ filterBar }) =>
       filterBar &&

@@ -12,9 +12,9 @@ const ButtonGrow = styled.button`
   font-size: 10px;
   font-family: sans-serif;
   text-decoration: none;
-      font-family: ${props => props.theme.fontFamily[4]};
+      font-family: ${(props) => props.theme.fontFamily[4]};
 
-  color: ${props => props.theme.colors.secondaryDecent};
+  color: ${(props) => props.theme.colors.primaryLight};
   letter-spacing: 2px;
   text-align: center;
   position: relative;
@@ -25,7 +25,7 @@ const ButtonGrow = styled.button`
   border: none;
 
   &:hover {
-    color: ${props => props.theme.colors.secondaryBright};
+    color: ${(props) => props.theme.colors.info};
   }
 /* 
   &:after {
@@ -35,7 +35,7 @@ const ButtonGrow = styled.button`
     left: 0;
     width: 100%;
     height: 10%;
-    background: ${props => props.theme.colors.mainPurple};
+    background: ${(props) => props.theme.colors.mainPurple};
     transition: all 0.35s;
   } */
 
