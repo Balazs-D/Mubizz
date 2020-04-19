@@ -180,7 +180,7 @@ const ButtonNew = styled.input.attrs({ type: 'button' })`
 const Span = styled.div`
   display: flex;
   flex-direction: row;
-  width: 20%;
+  width: 30%;
   justify-content: space-around
 `;
 
@@ -195,6 +195,7 @@ const ReferenceManagement = (props) => {
   const authCont = useContext(AuthCont);
   const userCont = useContext(UserCont);
   const [newRef, setNewRef] = useState(false);
+  const [active, setActive] = useState(true);
 
   const [user, setUser] = useState({
     // email: `${authCont.user.email}`,
@@ -237,6 +238,10 @@ const ReferenceManagement = (props) => {
     await window.scrollTo(0, 0);
   };
 
+  const activeToggle = () => {
+    setActive(!active);
+  };
+  
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
     console.log(e.target.name);
@@ -281,7 +286,7 @@ const ReferenceManagement = (props) => {
             onClick={newItem}
             value={newRef ? 'Cancel card' : 'Add a new reference'}
           ></ButtonNew>
-        </SpanFull> 
+        </SpanFull>
 
         {newRef && (
           <Row>
@@ -343,6 +348,7 @@ const ReferenceManagement = (props) => {
             <p>Project Name</p>
             <Span>
               <ButtonLight text='edit' />
+              <ButtonLight text={active ? 'mute' : 'set'} onClick={activeToggle} />
               <ButtonLight text='delete' />
             </Span>
           </OnlineRef>

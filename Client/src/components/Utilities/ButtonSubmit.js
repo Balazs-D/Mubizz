@@ -65,10 +65,10 @@ const Button = styled.button`
 
     &:hover {
       background-color: ${(props) => props.theme.colors.infoLight};
-      animation: none;
+      /* animation: none; */
       box-shadow: 0px 0px 10px 1px ${(props) => props.theme.colors.warning};
       border: 3px solid ${(props) => props.theme.colors.mainPurple};
-      border-radius: 4px;
+      border-radius: 10px;
     }
 
     &:active {

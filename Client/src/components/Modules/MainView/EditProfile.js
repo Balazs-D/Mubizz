@@ -17,6 +17,7 @@ import IntroText from '../../Utilities/IntroText';
 import DiagramStep from '../../Utilities/EditProfile/DiagramStep';
 import EditLanguage from '../../Utilities/EditProfile/EditLanguage';
 import SocialLinks from '../../Utilities/EditProfile/SocialLinks';
+import Delete from '../../Utilities/EditProfile/Delete';
 
 // Styled Comp
 
@@ -137,10 +138,6 @@ const EditProfile = (props) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    // setUser({ ...user, languages: '' });
-    // setUser({ ...user, selectedSkills: '' });
-    // setUser({ ...user, selectedTags: '' });
-    // authCont.getProfile();
   }, []);
 
   const onSubmit = async (e) => {
@@ -415,6 +412,12 @@ const EditProfile = (props) => {
             </Col>
           </GradientContRadius>
         </Block>
+      </Row>
+
+      <Row>
+        <Ul>
+          <Delete label='Delete Profile' />
+        </Ul>
       </Row>
     </Form>
   );

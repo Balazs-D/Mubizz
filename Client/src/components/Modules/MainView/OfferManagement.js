@@ -98,7 +98,7 @@ const SiteName = styled.h2`
 const Span = styled.div`
   display: flex;
   flex-direction: row;
-  width: 20%;
+  width: 30%;
   justify-content: space-around;
 `;
 
@@ -191,6 +191,7 @@ const OfferManagement = (props) => {
   const authCont = useContext(AuthCont);
   const userCont = useContext(UserCont);
   const [newOff, setNewOff] = useState(false);
+  const [ active, setActive] = useState(true);
 
   const [user, setUser] = useState({
     // email: `${authCont.user.email}`,
@@ -236,6 +237,10 @@ const OfferManagement = (props) => {
   const newItem = async () => {
     await setNewOff(!newOff);
     await window.scrollTo(0, 0);
+  };
+
+  const activeToggle =()=>{
+    setActive(!active)
   };
 
   const onChange = (e) => {
@@ -335,6 +340,7 @@ const OfferManagement = (props) => {
             <p>Project Name</p>
             <Span>
               <ButtonLight text='edit' />
+              <ButtonLight text={active ? 'mute' : 'set'} onClick={activeToggle} />
               <ButtonLight text='delete' />
             </Span>
           </OnlineRef>
