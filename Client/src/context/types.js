@@ -30,3 +30,4 @@ export const SET_PRO = 'SET_PRO';
 export const UPD_EDUCATION_STATE = 'UPD_EDUCATION_STATE';
 export const SET_REF_CREDIT = 'SET_REF_CREDIT';
 export const REFERENCE_LOAD = 'REFERENCE_LOAD';
+export const OFFER_LOAD = 'OFFER_LOAD';

@@ -21,6 +21,7 @@ import {
   UPD_EDUCATION_STATE,
   SET_REF_CREDIT,
   REFERENCE_LOAD,
+  OFFER_LOAD
 } from '../types';
 
 export default (state, action) => {
@@ -39,12 +40,18 @@ export default (state, action) => {
         profile: action.payload,
       };
 
-    case REFERENCE_LOAD: 
-    return {
-      ...state,
-      reference: action.payload
-    };
-      
+    case REFERENCE_LOAD:
+      return {
+        ...state,
+        reference: action.payload,
+      };
+
+    case OFFER_LOAD:
+      return {
+        ...state,
+        offer: action.payload,
+      };
+
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem('token', action.payload.token);
@@ -135,11 +142,11 @@ export default (state, action) => {
         pro: true,
       };
 
-      case SET_REF_CREDIT:
-        return {
-          ...state,
-          credits: action.payload,
-        }
+    case SET_REF_CREDIT:
+      return {
+        ...state,
+        credits: action.payload,
+      };
     default:
       return state;
   }

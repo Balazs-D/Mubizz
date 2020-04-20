@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import UserCont from '../../../context/user/userContext';
 import AuthCont from '../../../context/auth/authContext';
+import axios from 'axios';
 
 // Component
 
@@ -102,7 +103,6 @@ const Span = styled.div`
   justify-content: space-around;
 `;
 
-
 const SpanFull = styled.div`
   width: 87%;
   justify-content: space-between;
@@ -135,7 +135,6 @@ const ButtonNew = styled.input.attrs({ type: 'button' })`
   }
 `;
 
-
 const SubName = styled(SiteName)`
   width: 87%;
   background: ${(props) => props.theme.colors.primaryLight};
@@ -143,16 +142,18 @@ const SubName = styled(SiteName)`
   font-size: ${(props) => props.theme.fontSizes.half};
 `;
 
-const OnlineRef = styled.div`
-  width: 100%;
+const OnlineRef = styled.li`
+   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
+  margin-bottom: 10px;
   border: 1px solid ${(props) => props.theme.colors.info};
   border-radius: 3px;
   font-family: ${(props) => props.theme.fontFamily[5]};
 `;
+
 
 const IntroShortText = styled(IntroText)`
  width: 47%;
@@ -177,61 +178,38 @@ const IntroShortText = styled(IntroText)`
    background: ${(props) => props.theme.colors.primaryLight};
   box-shadow: 0px 0px 3px ${(props) => props.theme.colors.primaryDark};`;
 
-  const Added = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    width: 87%;
-    height: 100%;
-    margin: 20px;
-  `;
+const Added = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 87%;
+  height: 100%;
+  margin: 20px;
+`;
 
 const OfferManagement = (props) => {
   const authCont = useContext(AuthCont);
   const userCont = useContext(UserCont);
   const [newOff, setNewOff] = useState(false);
-  const [ active, setActive] = useState(true);
+  const [active, setActive] = useState(true);
+  const [targetID, setTargetID] = useState();
+  const [offers, setOffers] = useState(authCont.offer);
+console.log(authCont)
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [prices, setPrices] = useState([{ price: 100, quantity: 1 }]);
+  const [links, setLinks] = useState(['www.mixmaster.com', 'www.mix&mix.com']);
+  const [includes, setIncludes] = useState();
 
-  const [user, setUser] = useState({
-    // email: `${authCont.user.email}`,
-    // profileName: `${authCont.profile.profileName}`,
-    // avatar: `${authCont.profile.avatar}`,
-    // profileMotto: `${authCont.profile.profileMotto}`,
-    // description: `${authCont.profile.description}`,
-    // services: `${userCont.selectedTags}`,
-    // website: `${authCont.profile.website}`,
-    // location: `${authCont.profile.location}`,
-    // languages: `${userCont.languages}`,
-    // skills: `${userCont.selectedSkills}`,
-    // reference: [],
-    // social: {},
-    // offers: {},
-  });
-
-  const {
-    // email,
-    // profileName,
-    // avatar,
-    // profileMotto,
-    // description,
-    // services,
-    // website,
-    // location,
-    // languages,
-    // skills,
-    // reference,
-    // social,
-    // offers,
-  } = user;
+  console.log(title);
+  console.log(description);
+  console.log(prices);
+  console.log(links);
+  console.log(includes);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    // setUser({ ...user, languages: '' });
-    // setUser({ ...user, selectedSkills: '' });
-    // setUser({ ...user, selectedTags: '' });
-    // console.log('USe Effect get profile ');
-    // authCont.getProfile();
   }, []);
 
   const newItem = async () => {
@@ -239,49 +217,61 @@ const OfferManagement = (props) => {
     await window.scrollTo(0, 0);
   };
 
-  const activeToggle =()=>{
-    setActive(!active)
+  const activeToggle = () => {
+    setActive(!active);
   };
 
-  const onChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(e.target.name);
-  };
+  // const onChange = (e) => {
+  //   setUser({ ...user, [e.target.name]: e.target.value });
+  //   console.log(e.target.name);
+  // };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log('on submit');
-    //  if (name === '' || email === '' || password === '') {
-    //    setAlert('Please enter all fields');
-    //    console.log('error 02');
-    //  }
-    //  if (error === 'User already exists') {
-    //    setAlert(error);
-    //    clearErrors();
-    //  } else {
+
     console.log('test 01');
-    await authCont.update({
+    console.log(FormData);
+
+    await authCont.addOffer({
       // FormData
-      // email,
-      // profileName,
-      // avatar,
-      // profileMotto,
-      // description,
-      // services,
-      // website,
-      // location,
-      // languages,
-      // skills,
-      // reference,
-      // social,
-      // offers,
+      title,
+      description,
+      prices,
+      links,
+      includes,
     });
 
-    props.history.push('/dashboard');
-    console.log(authCont);
+    props.history.push('/dashboard/offer-management');
+    console.log(authCont.offer);
     await authCont.getProfile();
+    setNewOff(false);
+    await authCont.getOffer();
     window.scrollTo(0, 0);
   };
+
+  const deleteRef = async (e) => {
+    e.persist();
+    try {
+      let itemId = e.target.value;
+      console.log(itemId);
+
+      const res = await axios.delete(
+        `http://localhost:5000/api/offer/${itemId}`
+      );
+
+      // loadUser();
+    } catch (err) {
+      console.log('ERROR DELETE OFFER');
+    }
+
+    setNewOff(false)
+    authCont.getOffer();
+  };
+
+  useEffect(() => {
+    setOffers(authCont.offer);
+  }, [authCont.offer]);
 
   return (
     <Col>
@@ -306,7 +296,7 @@ const OfferManagement = (props) => {
                   <Ul>
                     {authCont.user && (
                       <EditSoloLine
-                        // onChange={(e) => setLink(e.target.value)}
+                        onChange={(e) => setTitle(e.target.value)}
                         value={''}
                         name='title'
                         label='offer name'
@@ -315,9 +305,9 @@ const OfferManagement = (props) => {
                     {authCont.profile && (
                       <EditTextArea
                         placeholder={''}
-                        value={''}
+                        value={description}
                         name='description'
-                        // onChange={(e) => setProfileMotto(e.target.value)}
+                        onChange={(e) => setDescription(e.target.value)}
                         label='offer description'
                       />
                     )}
@@ -333,17 +323,31 @@ const OfferManagement = (props) => {
           </button>
         )}
       </Form>
-      <SubName>Service Offer Cards</SubName>
+      <SubName>Service Cards</SubName>
       <Added>
-        <ul>
-          <OnlineRef>
-            <p>Project Name</p>
-            <Span>
-              <ButtonLight text='edit' />
-              <ButtonLight text={active ? 'mute' : 'set'} onClick={activeToggle} />
-              <ButtonLight text='delete' />
-            </Span>
-          </OnlineRef>
+        <ul style={{ display: 'flex', flexDirection: 'column-reverse' }}>
+          {authCont.offer &&
+            offers.map((off, i) => {
+              return (
+                <OnlineRef key={i}>
+                  <p>{off.title}</p>
+                  
+
+                  {/* <ButtonLight text='edit' />
+                    <ButtonLight
+                      text={active ? 'mute' : 'set'}
+                      onClick={activeToggle}
+                    /> */}
+                  <ButtonLight
+                    text='delete'
+                    value={off._id}
+                    onClick={(e) => {
+                      deleteRef(e);
+                    }}
+                  />
+                </OnlineRef>
+              );
+            })}
         </ul>
       </Added>
     </Col>

@@ -131,6 +131,7 @@ const OnlineRef = styled.li`
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
+  margin-bottom: 10px;
   border: 1px solid ${(props) => props.theme.colors.info};
   border-radius: 3px;
   font-family: ${(props) => props.theme.fontFamily[5]};
@@ -198,7 +199,7 @@ const ReferenceManagement = (props) => {
   const [active, setActive] = useState(true);
   const [targetID, setTargetID] = useState();
   const [references, setReferences] = useState(authCont.reference);
-
+console.log(references)
   const [position, setPosition] = useState('');
   const [projectName, setProjectName] = useState('');
   const [location, setLocation] = useState('');
@@ -255,6 +256,8 @@ const ReferenceManagement = (props) => {
     props.history.push('/dashboard/reference-management');
     console.log(authCont.reference);
     await authCont.getProfile();
+    setNewRef(false);
+    await authCont.getReference();
     window.scrollTo(0, 0);
   };
 
@@ -268,12 +271,12 @@ const ReferenceManagement = (props) => {
         `http://localhost:5000/api/reference/${itemId}`
       );
 
-      
-
       // loadUser();
     } catch (err) {
       console.log('ERROR DELETE REF');
     }
+    setNewRef(false);
+    await authCont.getReference();
   };
 
   useEffect(() => {
@@ -360,13 +363,13 @@ const ReferenceManagement = (props) => {
       </Form>
       <SubName>Reference Cards</SubName>
       <Added>
-        <ul>
+        <ul style={{ display: 'flex', flexDirection: 'column-reverse' }}>
           {authCont.reference &&
             references.map((ref, i) => {
               return (
                 <OnlineRef key={i}>
                   <p>{ref.projectName}</p>
-                  <p>{ref._id}</p>
+                  <p>{ref.position}</p>
 
                   {/* <ButtonLight text='edit' />
                     <ButtonLight

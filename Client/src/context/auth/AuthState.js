@@ -27,6 +27,7 @@ import {
   UPD_EDUCATION_STATE,
   SET_REF_CREDIT,
   REFERENCE_LOAD,
+  OFFER_LOAD
 } from '../types';
 
 const AuthState = (props) => {
@@ -37,6 +38,7 @@ const AuthState = (props) => {
     user: null,
     profile: [],
     reference: [],
+    offer: [],
     error: null,
     social: {
       youtube: '',
@@ -90,20 +92,32 @@ const AuthState = (props) => {
     }
   };
 
-  const getReference = async ()=>{
+  const getReference = async () => {
     try {
-       const res = await axios.get('http://localhost:5000/api/reference/me');
+      const res = await axios.get('http://localhost:5000/api/reference/me');
 
-       dispatch({
-         type: REFERENCE_LOAD,
-         payload: res.data,
-       });
-      
+      dispatch({
+        type: REFERENCE_LOAD,
+        payload: res.data,
+      });
     } catch (error) {
-            console.log('getReference error');
-
+      console.log('getReference error');
     }
-  }
+  };
+
+  const getOffer = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/offer/me');
+
+      dispatch({
+        type: OFFER_LOAD,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log('getOFFER error');
+    }
+  };
+
 
   //  Register User
   const register = async (formData) => {
@@ -157,6 +171,7 @@ const AuthState = (props) => {
       loadUser();
       getProfile();
       getReference();
+      getOffer();
       setStatus();
     } catch (err) {
       dispatch({
@@ -199,6 +214,24 @@ const AuthState = (props) => {
 
       const res = await axios.post(
         'http://localhost:5000/api/reference',
+        formData
+      );
+      console.log('try pre dispatch');
+
+      console.log('pre load user');
+      // loadUser();
+    } catch (err) {
+      console.log('ERROR UPDATE');
+    }
+  };
+
+  //  Update Profile
+  const addOffer = async (formData) => {
+    try {
+      console.log(formData);
+
+      const res = await axios.post(
+        'http://localhost:5000/api/offer',
         formData
       );
       console.log('try pre dispatch');
@@ -326,6 +359,7 @@ const AuthState = (props) => {
         creator: state.creator,
         pro: state.pro,
         reference: state.reference,
+        offer: state.offer,
         updateServices,
         updateSkills,
         updateAvatar,
@@ -346,6 +380,8 @@ const AuthState = (props) => {
         addCredit,
         addReference,
         getReference,
+        addOffer,
+        getOffer,
       }}
     >
       {props.children}
