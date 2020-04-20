@@ -26,6 +26,7 @@ import {
   SET_STATUS,
   UPD_EDUCATION_STATE,
   SET_REF_CREDIT,
+  REFERENCE_LOAD,
 } from '../types';
 
 const AuthState = (props) => {
@@ -89,6 +90,21 @@ const AuthState = (props) => {
     }
   };
 
+  const getReference = async ()=>{
+    try {
+       const res = await axios.get('http://localhost:5000/api/reference/me');
+
+       dispatch({
+         type: REFERENCE_LOAD,
+         payload: res.data,
+       });
+      
+    } catch (error) {
+            console.log('getReference error');
+
+    }
+  }
+
   //  Register User
   const register = async (formData) => {
     const config = {
@@ -140,6 +156,7 @@ const AuthState = (props) => {
       });
       loadUser();
       getProfile();
+      getReference();
       setStatus();
     } catch (err) {
       dispatch({
@@ -327,7 +344,8 @@ const AuthState = (props) => {
         setStatus,
         updateEducation,
         addCredit,
-        addReference
+        addReference,
+        getReference,
       }}
     >
       {props.children}

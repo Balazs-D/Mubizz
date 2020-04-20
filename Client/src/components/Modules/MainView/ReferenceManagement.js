@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect, Fragment } from 'react';
 import styled from 'styled-components';
 import UserCont from '../../../context/user/userContext';
 import AuthCont from '../../../context/auth/authContext';
-
+import axios from 'axios';
 // Component
 
 import EditSoloLine from '../../Utilities/EditProfile/EditSoloLine';
@@ -125,7 +125,7 @@ const Row = styled.div`
   flex-direction: row;
 `;
 
-const OnlineRef = styled.div`
+const OnlineRef = styled.li`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -181,7 +181,7 @@ const Span = styled.div`
   display: flex;
   flex-direction: row;
   width: 30%;
-  justify-content: space-around
+  justify-content: space-around;
 `;
 
 const SpanFull = styled.div`
@@ -196,24 +196,26 @@ const ReferenceManagement = (props) => {
   const userCont = useContext(UserCont);
   const [newRef, setNewRef] = useState(false);
   const [active, setActive] = useState(true);
+  const [targetID, setTargetID] = useState();
+  const [references, setReferences] = useState(authCont.reference);
 
- const [position, setPosition] = useState('');
- const [projectName, setProjectName] = useState('');
- const [location, setLocation] = useState('');
- const [description, setDescription] = useState('');
- const [links, setLinks] = useState([]);
- const [credits, setCredits] = useState([
-   { position: 'Dancer', url: 'www.mubiz.com/madonnassinger' },
- ]);
+  const [position, setPosition] = useState('');
+  const [projectName, setProjectName] = useState('');
+  const [location, setLocation] = useState('');
+  const [description, setDescription] = useState('');
+  const [links, setLinks] = useState([]);
+  const [credits, setCredits] = useState([
+    { position: 'Dancer', url: 'www.mubiz.com/madonnassinger' },
+  ]);
 
- console.log(position)
- console.log(projectName);
- console.log(location);
+  console.log(position);
+  console.log(projectName);
+  console.log(location);
   console.log(description);
 
- console.log(links);
- console.log(credits);
- console.log(FormData)
+  console.log(links);
+  console.log(credits);
+  console.log(FormData);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -227,7 +229,7 @@ const ReferenceManagement = (props) => {
   const activeToggle = () => {
     setActive(!active);
   };
-  
+
   // const onChange = (e) => {
   //   setUser({ ...user, [e.target.name]: e.target.value });
   //   console.log(e.target.name);
@@ -238,7 +240,7 @@ const ReferenceManagement = (props) => {
     console.log('on submit');
 
     console.log('test 01');
-     console.log(FormData);
+    console.log(FormData);
 
     await authCont.addReference({
       // FormData
@@ -248,13 +250,6 @@ const ReferenceManagement = (props) => {
       description,
       links,
       credits,
-      // website,
-      // location,
-      // languages,
-      // skills,
-      // reference,
-      // social,
-      // offers,
     });
 
     props.history.push('/dashboard/reference-management');
@@ -263,7 +258,27 @@ const ReferenceManagement = (props) => {
     window.scrollTo(0, 0);
   };
 
-  
+  const deleteRef = async (e) => {
+    e.persist();
+    try {
+      let itemId = e.target.value;
+      console.log(itemId);
+
+      const res = await axios.delete(
+        `http://localhost:5000/api/reference/${itemId}`
+      );
+
+      
+
+      // loadUser();
+    } catch (err) {
+      console.log('ERROR DELETE REF');
+    }
+  };
+
+  useEffect(() => {
+    setReferences(authCont.reference);
+  }, [authCont.reference]);
 
   return (
     <Col>
@@ -346,17 +361,28 @@ const ReferenceManagement = (props) => {
       <SubName>Reference Cards</SubName>
       <Added>
         <ul>
-          <OnlineRef>
-            <p>Project Name</p>
-            <Span>
-              <ButtonLight text='edit' />
-              <ButtonLight
-                text={active ? 'mute' : 'set'}
-                onClick={activeToggle}
-              />
-              <ButtonLight text='delete' />
-            </Span>
-          </OnlineRef>
+          {authCont.reference &&
+            references.map((ref, i) => {
+              return (
+                <OnlineRef key={i}>
+                  <p>{ref.projectName}</p>
+                  <p>{ref._id}</p>
+
+                  {/* <ButtonLight text='edit' />
+                    <ButtonLight
+                      text={active ? 'mute' : 'set'}
+                      onClick={activeToggle}
+                    /> */}
+                  <ButtonLight
+                    text='delete'
+                    value={ref._id}
+                    onClick={(e) => {
+                      deleteRef(e);
+                    }}
+                  />
+                </OnlineRef>
+              );
+            })}
         </ul>
       </Added>
     </Col>

@@ -53,8 +53,8 @@ const ButtonLight = ({ className, text, onClick, type, component, value }) => {
         onClick={onClick}
         type={type}
         value={value}
-      >
-        <SpanButton>{text}</SpanButton>
+      >{text}
+        {/* <SpanButton>{text}</SpanButton> */}
       </Button>
     </div>
   );

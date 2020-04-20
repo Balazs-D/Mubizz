@@ -20,6 +20,7 @@ import {
   SET_STATUS,
   UPD_EDUCATION_STATE,
   SET_REF_CREDIT,
+  REFERENCE_LOAD,
 } from '../types';
 
 export default (state, action) => {
@@ -37,6 +38,13 @@ export default (state, action) => {
         ...state,
         profile: action.payload,
       };
+
+    case REFERENCE_LOAD: 
+    return {
+      ...state,
+      reference: action.payload
+    };
+      
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem('token', action.payload.token);
