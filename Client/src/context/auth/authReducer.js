@@ -17,7 +17,8 @@ import {
   SET_MEMBER,
   SET_CREATOR,
   SET_PRO,
-  SET_STATUS
+  SET_STATUS,
+  UPD_EDUCATION_STATE,
 } from '../types';
 
 export default (state, action) => {
@@ -85,6 +86,12 @@ export default (state, action) => {
         profile: { ...state.profile, languages: action.payload },
       };
 
+    case UPD_EDUCATION_STATE:
+      return {
+        ...state,
+        profile: { ...state.profile, education: action.payload },
+      };
+
     case UPD_IMG_STATE:
       return {
         ...state,
@@ -102,7 +109,7 @@ export default (state, action) => {
         ...state,
         member: true,
         pro: false,
-        creator: false
+        creator: false,
       };
     case SET_CREATOR:
       return {
@@ -118,9 +125,6 @@ export default (state, action) => {
         creator: false,
         pro: true,
       };
-
-    
-      
 
     default:
       return state;

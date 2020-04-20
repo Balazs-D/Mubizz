@@ -13,7 +13,7 @@ import AuthCont from '../../../context/auth/authContext';
 // Styled Comp
 
 const InputEdit = styled(InputMinimal)`
-  padding: 1px;
+  padding: 5px;
   text-transform: italic;
   font-weight: lighter;
   width: 100%;
@@ -33,7 +33,7 @@ const Li = styled.li`
   justify-content: space-between;
   width: 95%;
   margin: 20px;
-    height: 100%;
+  height: 100%;
 
   border: 1px solid ${(props) => props.theme.colors.info};
   border-radius: 3px;
@@ -107,7 +107,6 @@ const AddButton = styled(ButtonLight).attrs({ type: 'button' })`
   }
 `;
 
-
 const H4 = styled.h4`
   width: 100%;
   font-size: ${(props) => props.theme.fontSizes.small};
@@ -133,13 +132,10 @@ const EditAddLine = ({ placeholder, label }) => {
   const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
 
-  
-// ! Child component gets AuthContext (Fetched Database) data:
+  // ! Child component gets AuthContext (Fetched Database) data:
   useEffect(() => {
     setSkillsArray(authCont.profile.skills);
   }, []);
-
-  
 
   const handleButtonClick = (e) => {
     e.preventDefault();
@@ -147,10 +143,10 @@ const EditAddLine = ({ placeholder, label }) => {
       return null;
     } else {
       skillsArray.push(skill);
-      console.log(skillsArray)
+      console.log(skillsArray);
       // setSkillsArray([...skillsArray, skill])
       authCont.updateSkills(skillsArray);
-      console.log(skillsArray)
+      console.log(skillsArray);
       setSkill('');
     }
   };
@@ -158,7 +154,6 @@ const EditAddLine = ({ placeholder, label }) => {
   const deleteItem = (e) => {
     e.preventDefault();
 
-   
     let itemInd = skillsArray.indexOf(e.target.attributes['value'].value);
     skillsArray.splice(itemInd, 1);
     authCont.updateSkills(skillsArray);

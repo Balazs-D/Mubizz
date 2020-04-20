@@ -26,5 +26,5 @@ export const UPD_IMG_STATE = 'UPD_IMG_STATE';
 export const UPD_SOCIAL = 'UPD_SOCIAL';
 export const SET_MEMBER = 'SET_MEMBER';
 export const SET_CREATOR = 'SET_CREATOR';
-export const SET_PRO = 'SET_PRO'
-
+export const SET_PRO = 'SET_PRO';
+export const UPD_EDUCATION_STATE = 'UPD_EDUCATION_STATE';

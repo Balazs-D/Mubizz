@@ -8,6 +8,7 @@ import AuthCont from '../../../context/auth/authContext';
 
 import EditSoloLine from '../../Utilities/EditProfile/EditSoloLine';
 import EditTextArea from '../../Utilities/EditProfile/EditTextArea';
+import EditEducation from '../../Utilities/EditProfile/EditEducation';
 import EditTagItem from '../../Utilities/EditProfile/EditTagItem';
 import EditReadLine from '../../Utilities/EditProfile/EditReadLine';
 import EditAddLine from '../../Utilities/EditProfile/EditAddLine';
@@ -124,6 +125,7 @@ const EditProfile = (props) => {
   const [website, setWebsite] = useState(authCont.profile.website);
   const [location, setLocation] = useState(authCont.profile.location);
   const [languages, setLanguages] = useState([authCont.profile.languages]);
+  const [education, setEducation] = useState([authCont.profile.languages]);
   const [skills, setSkills] = useState([authCont.profile.skills]);
   const [reference, setReferenece] = useState([]);
   const [youtube, setYoutube] = useState();
@@ -155,6 +157,7 @@ const EditProfile = (props) => {
       website,
       location,
       languages,
+      education,
       skills,
       reference,
       youtube,
@@ -188,6 +191,7 @@ const EditProfile = (props) => {
   console.log(website);
   console.log(location);
   console.log(languages);
+  console.log(education);
   console.log(skills);
   console.log(reference);
   console.log(youtube);
@@ -210,6 +214,10 @@ const EditProfile = (props) => {
   useEffect(() => {
     setLanguages(authCont.profile.languages);
   }, [authCont.profile.languages]);
+
+   useEffect(() => {
+     setLanguages(authCont.profile.education);
+   }, [authCont.profile.education]);
 
   useEffect(() => {
     setServices(authCont.profile.services);
@@ -368,7 +376,15 @@ const EditProfile = (props) => {
                 )}
 
                 {authCont.user && (
-                  <EditLanguage
+                  <EditEducation
+                    value={authCont.profile.education}
+                    name='education'
+                    label='education & certificates'
+                  />
+                )}
+
+                {authCont.user && (
+                  <EditAddLine
                     value={authCont.profile.languages}
                     name='languages'
                     label='languages'

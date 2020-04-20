@@ -63,7 +63,7 @@ const Icon = styled.i`
   transition: all 0.3s ease-in;
 `;
 
-const AddButton = styled(ButtonLight).attrs({ type: 'button'})`
+const AddButton = styled(ButtonLight).attrs({ type: 'button' })`
   position: absolute;
   transition: all 0.3s ease-in;
   bottom: 20%;
@@ -84,7 +84,7 @@ const SkillLi = styled.div.attrs({
   justify-content: space-between;
   margin-bottom: 2px;
   font-size: ${(props) => props.theme.fontSizes.xm};
-  width: 49%;
+  width: 100%;
   background: ${(props) => props.theme.colors.white};
   padding: 3px 6px;
   align-items: center;
@@ -124,43 +124,37 @@ const Label = styled.label`
   border-radius: 3px;
 `;
 
-const EditLanguage = ({ placeholder, label }) => {
-  const [language, setLanguage] = useState('');
-  const [languagesArray, setLanguagesArray] = useState([]);
+const EditEducation = ({ placeholder, label }) => {
+  const [eduItem, setEduItem] = useState('');
+  const [educationArray, setEducationArray] = useState([]);
   const authCont = useContext(AuthCont);
 
   useEffect(() => {
-    setLanguagesArray(authCont.profile.languages);
+    setEducationArray(authCont.profile.education);
   }, []);
-
-  
 
   const handleButtonClick = (e) => {
     e.preventDefault();
-    if (language === '') {
+    if (eduItem === '') {
       return null;
     } else {
-      languagesArray.push(language);
+      educationArray.push(eduItem);
 
-      authCont.updateLanguages(languagesArray);
-      setLanguage('');
+      authCont.updateEducation(educationArray);
+      setEduItem('');
     }
   };
 
-  
-
   const deleteItem = (e) => {
     e.preventDefault();
-    let itemInd = languagesArray.indexOf(e.target.attributes['value'].value);
-    languagesArray.splice(itemInd, 1);
-    setLanguagesArray(languagesArray);
-    authCont.updateLanguages(languagesArray);
-
-   
+    let itemInd = educationArray.indexOf(e.target.attributes['value'].value);
+    educationArray.splice(itemInd, 1);
+    setEducationArray(educationArray);
+    authCont.updateEducation(educationArray);
   };
 
   // useEffect(() => {
-  //   authCont.updateLanguageState(languagesArray);
+  //   authCont.updateLanguage(languagesArray);
   // }, [languagesArray]);
 
   return (
@@ -170,17 +164,17 @@ const EditLanguage = ({ placeholder, label }) => {
       <Row>
         <InputEdit
           placeholder={placeholder}
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
+          value={eduItem}
+          onChange={(e) => setEduItem(e.target.value)}
           type='text'
           name='input'
           placeholderFontSize='1px'
         ></InputEdit>
-        <AddButton onClick={handleButtonClick} text="+" />
+        <AddButton onClick={handleButtonClick} text='+' />
       </Row>
 
       <Col>
-        {languagesArray.map((listItem, i) => (
+        {educationArray.map((listItem, i) => (
           <SkillLi value={listItem} key={i} index={i} onClick={deleteItem}>
             <p>{listItem}</p>
             <Icon key={i} className='far fa-trash-alt'></Icon>
@@ -191,4 +185,4 @@ const EditLanguage = ({ placeholder, label }) => {
   );
 };
 
-export default EditLanguage;
+export default EditEducation;

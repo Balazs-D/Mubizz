@@ -14,12 +14,12 @@ const InputField = styled.input`
 
   @media (min-width: 800px) {
     padding: 12px;
-    font-size: ${props => props.theme.fontSizes.medium};
+    font-size: ${props => props.theme.fontSizes.half};
     font-style: normal;
     outline: none;
     border: none;
     /* border-bottom: 1px solid ${props => props.theme.colors.info}; */
-    margin: 0px;
+    margin: 5px;
     color: ${props => props.theme.colors.info};
     background: transparent;
     transition: all 0.3s ease-in;
