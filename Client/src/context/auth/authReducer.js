@@ -19,6 +19,7 @@ import {
   SET_PRO,
   SET_STATUS,
   UPD_EDUCATION_STATE,
+  SET_REF_CREDIT,
 } from '../types';
 
 export default (state, action) => {
@@ -126,6 +127,11 @@ export default (state, action) => {
         pro: true,
       };
 
+      case SET_REF_CREDIT:
+        return {
+          ...state,
+          credits: action.payload,
+        }
     default:
       return state;
   }

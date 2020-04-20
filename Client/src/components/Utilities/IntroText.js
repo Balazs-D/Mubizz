@@ -14,7 +14,7 @@ const IntroText = ({stepNr}) => {
     return (
         <Notes>
            {userCont.infoNotesArray[`${stepNr}`].map((item, i)=>{
-               return (<ul>{item}</ul>)
+               return (<ul key={i}>{item}</ul>)
            })}
         </Notes>
     )

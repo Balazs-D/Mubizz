@@ -24,6 +24,7 @@ const NavSettings = () => {
             onClick={userCont.toggleFilterBar}
             text='Filter'
             style={StyledLink}
+            to=''
           />
         </Link>
       </li>

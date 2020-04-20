@@ -25,6 +25,7 @@ import {
   SET_PRO,
   SET_STATUS,
   UPD_EDUCATION_STATE,
+  SET_REF_CREDIT,
 } from '../types';
 
 const AuthState = (props) => {
@@ -34,6 +35,7 @@ const AuthState = (props) => {
     loading: true,
     user: null,
     profile: [],
+    reference: [],
     error: null,
     social: {
       youtube: '',
@@ -173,6 +175,24 @@ const AuthState = (props) => {
     }
   };
 
+  //  Update Profile
+  const addReference = async (formData) => {
+    try {
+      console.log(formData);
+
+      const res = await axios.post(
+        'http://localhost:5000/api/reference',
+        formData
+      );
+      console.log('try pre dispatch');
+
+      console.log('pre load user');
+      // loadUser();
+    } catch (err) {
+      console.log('ERROR UPDATE');
+    }
+  };
+
   // UPDATE COMPONENT STATE IN AUTH
   // update tag selection
 
@@ -208,7 +228,6 @@ const AuthState = (props) => {
       payload: input,
     });
   };
-  
 
   // update image
   const updateAvatar = (input) => {
@@ -224,6 +243,15 @@ const AuthState = (props) => {
 
     dispatch({
       type: UPD_SOCIAL,
+      payload: input,
+    });
+  };
+
+  // set ref credits
+
+  const addCredit = (input) => {
+    dispatch({
+      type: SET_REF_CREDIT,
       payload: input,
     });
   };
@@ -280,6 +308,7 @@ const AuthState = (props) => {
         member: state.member,
         creator: state.creator,
         pro: state.pro,
+        reference: state.reference,
         updateServices,
         updateSkills,
         updateAvatar,
@@ -297,6 +326,8 @@ const AuthState = (props) => {
         setPro,
         setStatus,
         updateEducation,
+        addCredit,
+        addReference
       }}
     >
       {props.children}
