@@ -33,7 +33,7 @@ const TagCont = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   width: 95%;
-  padding: 35px 10px 10px 10px;
+  padding: 35px 16px 10px 16px;
   border: 1px solid ${(props) => props.theme.colors.info};
   border-radius: 4px;
   background: ${(props) => props.theme.colors.white};

@@ -147,7 +147,7 @@ const ProfileDelete = ({ label, props }) => {
     }
 
     authCont.logout();
-    props.history.push('/');
+    // props.history.push('/');
   };
 
   // useEffect(() => {}, [skillsArray]);

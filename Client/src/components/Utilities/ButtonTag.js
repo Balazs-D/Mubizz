@@ -8,6 +8,7 @@ const Cont = styled.div`
   font-family: system-ui;
   margin-bottom: 10px;
   cursor: pointer;
+  margin: 0px 5px;
 `;
 
 const Button = styled.input.attrs({ type: 'button' })`

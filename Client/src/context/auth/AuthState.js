@@ -19,6 +19,7 @@ import {
   UPD_SKILL_STATE,
   UPD_LANG_STATE,
   UPD_IMG_STATE,
+  UPD_LOCATION_STATE,
   UPD_SOCIAL,
   SET_MEMBER,
   SET_CREATOR,
@@ -271,6 +272,14 @@ const AuthState = (props) => {
     });
   };
 
+  // update location
+  const updateLocation = (input) => {
+    dispatch({
+      type: UPD_LOCATION_STATE,
+      payload: input,
+    });
+  };
+
   // update education
   const updateEducation = (input) => {
     dispatch({
@@ -364,6 +373,7 @@ const AuthState = (props) => {
         updateSkills,
         updateAvatar,
         updateLanguages,
+        updateLocation,
         updateSocial,
         register,
         clearErrors,

@@ -12,6 +12,8 @@ import EditEducation from '../../Utilities/EditProfile/EditEducation';
 import EditTagItem from '../../Utilities/EditProfile/EditTagItem';
 import EditReadLine from '../../Utilities/EditProfile/EditReadLine';
 import EditAddLine from '../../Utilities/EditProfile/EditAddLine';
+import EditLocation from '../../Utilities/EditProfile/Location';
+
 import PicUpload from '../../Utilities/PicUpload/PicUpload';
 import ButtonSubmit from '../../Utilities/ButtonSubmit';
 import IntroText from '../../Utilities/IntroText';
@@ -216,8 +218,12 @@ const EditProfile = (props) => {
   }, [authCont.profile.languages]);
 
    useEffect(() => {
-     setLanguages(authCont.profile.education);
+     setEducation(authCont.profile.education);
    }, [authCont.profile.education]);
+
+    useEffect(() => {
+      setLocation(authCont.profile.location);
+    }, [authCont.profile.location]);
 
   useEffect(() => {
     setServices(authCont.profile.services);
@@ -350,14 +356,19 @@ const EditProfile = (props) => {
           <GradientContRadius>
             <Col>
               <Ul>
-                {authCont.user && (
-                  <EditSoloLine
-                    onChange={(e) => setLocation(e.target.value)}
-                    value={authCont.profile.location}
-                    name='location'
-                    label='location'
-                  />
-                )}
+                {
+                  authCont.user && (
+                    <EditLocation
+                      value={authCont.profile.location}
+                      name='location'
+                      label='location'
+                    />
+                  )
+                  //  <EditSoloLine
+                  //   onChange={(e) => setLocation(e.target.value)}
+
+                  // />
+                }
                 {authCont.user && (
                   <EditTextArea
                     placeholder={authCont.profile.description}
@@ -422,8 +433,14 @@ const EditProfile = (props) => {
           <GradientContRadius>
             <Col>
               <Ul>
-                <EditReadLine title='Offers' value={authCont.offer.length}></EditReadLine>
-                <EditReadLine title='References' value={authCont.reference.length}></EditReadLine>
+                <EditReadLine
+                  title='Offers'
+                  value={authCont.offer.length}
+                ></EditReadLine>
+                <EditReadLine
+                  title='References'
+                  value={authCont.reference.length}
+                ></EditReadLine>
               </Ul>
             </Col>
           </GradientContRadius>

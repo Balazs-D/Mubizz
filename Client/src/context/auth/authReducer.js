@@ -21,7 +21,8 @@ import {
   UPD_EDUCATION_STATE,
   SET_REF_CREDIT,
   REFERENCE_LOAD,
-  OFFER_LOAD
+  OFFER_LOAD,
+  UPD_LOCATION_STATE,
 } from '../types';
 
 export default (state, action) => {
@@ -100,6 +101,12 @@ export default (state, action) => {
       return {
         ...state,
         profile: { ...state.profile, languages: action.payload },
+      };
+
+    case UPD_LOCATION_STATE:
+      return {
+        ...state,
+        profile: { ...state.profile, location: action.payload },
       };
 
     case UPD_EDUCATION_STATE:
