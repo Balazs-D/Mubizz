@@ -180,8 +180,6 @@ const ButtonNew = styled.input.attrs({ type: 'button' })`
   }
 `;
 
-
-
 const SpanFull = styled.div`
   width: 87%;
   justify-content: space-between;
@@ -196,7 +194,7 @@ const ReferenceManagement = (props) => {
   const [active, setActive] = useState(true);
   const [targetID, setTargetID] = useState();
   const [references, setReferences] = useState(authCont.reference);
-console.log(references)
+  console.log(references);
   const [position, setPosition] = useState('');
   const [projectName, setProjectName] = useState('');
   const [location, setLocation] = useState('');
@@ -234,28 +232,37 @@ console.log(references)
   // };
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-    console.log('on submit');
+    if (
+      position !== '' &&
+      projectName !== '' &&
+      location !== '' &&
+      description !== ''
+    ) {
+      e.preventDefault();
+      console.log('on submit');
 
-    console.log('test 01');
-    console.log(FormData);
+      console.log('test 01');
+      console.log(FormData);
 
-    await authCont.addReference({
-      // FormData
-      position,
-      projectName,
-      location,
-      description,
-      links,
-      credits,
-    });
+      await authCont.addReference({
+        // FormData
+        position,
+        projectName,
+        location,
+        description,
+        links,
+        credits,
+      });
 
-    props.history.push('/dashboard/reference-management');
-    console.log(authCont.reference);
-    await authCont.getProfile();
-    setNewRef(false);
-    await authCont.getReference();
-    window.scrollTo(0, 0);
+      props.history.push('/dashboard/reference-management');
+      console.log(authCont.reference);
+      await authCont.getProfile();
+      setNewRef(false);
+      await authCont.getReference();
+      window.scrollTo(0, 0);
+    } else {
+      return null;
+    }
   };
 
   const deleteRef = async (e) => {
@@ -294,58 +301,58 @@ console.log(references)
         </SpanFull>
 
         {newRef && (
-            <Row>
-              <DiagramStep title='References' nr={6} />
+          <Row>
+            <DiagramStep title='References' nr={6} />
 
-              <Block>
-                <GradientContRadius>
-                  <Col>
-                    <Ul>
-                      {authCont.user && (
-                        <EditSoloLine
-                          onChange={(e) => setPosition(e.target.value)}
-                          value={position}
-                          name='position'
-                          label='position / title'
-                        />
-                      )}
-                      {authCont.user && (
-                        <EditSoloLine
-                          onChange={(e) => setProjectName(e.target.value)}
-                          value={projectName}
-                          name='projectName'
-                          label='project name'
-                        />
-                      )}
-                      {authCont.user && (
-                        <EditSoloLine
-                          onChange={(e) => setLocation(e.target.value)}
-                          value={location}
-                          name='location'
-                          label='location'
-                        />
-                      )}
-                      {authCont.profile && (
-                        <EditTextArea
-                          placeholder={''}
-                          value={description}
-                          name='description'
-                          onChange={(e) => setDescription(e.target.value)}
-                          label='description'
-                        />
-                      )}
+            <Block>
+              <GradientContRadius>
+                <Col>
+                  <Ul>
+                    {authCont.user && (
+                      <EditSoloLine
+                        onChange={(e) => setPosition(e.target.value)}
+                        value={position}
+                        name='position'
+                        label='position / title'
+                      />
+                    )}
+                    {authCont.user && (
+                      <EditSoloLine
+                        onChange={(e) => setProjectName(e.target.value)}
+                        value={projectName}
+                        name='projectName'
+                        label='project name'
+                      />
+                    )}
+                    {authCont.user && (
+                      <EditSoloLine
+                        onChange={(e) => setLocation(e.target.value)}
+                        value={location}
+                        name='location'
+                        label='location'
+                      />
+                    )}
+                    {authCont.profile && (
+                      <EditTextArea
+                        placeholder={''}
+                        value={description}
+                        name='description'
+                        onChange={(e) => setDescription(e.target.value)}
+                        label='description'
+                      />
+                    )}
 
-                      {authCont.profile && (
-                        <AddLink
-                          placeholder={''}
-                          value={links}
-                          name='links'
-                          // onChange={(e) => setDescription(e.target.value)}
-                          label='links'
-                        />
-                      )}
+                    {authCont.profile && (
+                      <AddLink
+                        placeholder={''}
+                        value={links}
+                        name='links'
+                        // onChange={(e) => setDescription(e.target.value)}
+                        label='links'
+                      />
+                    )}
 
-                      {/* {authCont.profile && (
+                    {/* {authCont.profile && (
                       <ReferenceCredits
                         placeholder={''}
                         value={credits}
@@ -354,11 +361,11 @@ console.log(references)
                         label='partners'
                       />
                     )} */}
-                    </Ul>
-                  </Col>
-                </GradientContRadius>
-              </Block>
-            </Row>
+                  </Ul>
+                </Col>
+              </GradientContRadius>
+            </Block>
+          </Row>
         )}
         {newRef && (
           <button type='submit' onClick={onSubmit}>

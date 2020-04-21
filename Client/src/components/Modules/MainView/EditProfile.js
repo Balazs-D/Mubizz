@@ -125,7 +125,7 @@ const EditProfile = (props) => {
   const [website, setWebsite] = useState(authCont.profile.website);
   const [location, setLocation] = useState(authCont.profile.location);
   const [languages, setLanguages] = useState([authCont.profile.languages]);
-  const [education, setEducation] = useState([authCont.profile.languages]);
+  const [education, setEducation] = useState(authCont.profile.languages);
   const [skills, setSkills] = useState([authCont.profile.skills]);
   const [reference, setReferenece] = useState([]);
   const [youtube, setYoutube] = useState();
@@ -422,8 +422,8 @@ const EditProfile = (props) => {
           <GradientContRadius>
             <Col>
               <Ul>
-                <EditReadLine title='Offers' value='5'></EditReadLine>
-                <EditReadLine title='References' value='7'></EditReadLine>
+                <EditReadLine title='Offers' value={authCont.offer.length}></EditReadLine>
+                <EditReadLine title='References' value={authCont.reference.length}></EditReadLine>
               </Ul>
             </Col>
           </GradientContRadius>

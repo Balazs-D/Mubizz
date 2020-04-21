@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Content
-import LogoVect from '../../../graphics/SVG/Mubizz.svg';
+import LogoVect from '../../../graphics/logo.svg';
 
 // Styled Components
 
 const Image = styled.img`
-  width: 15vw;
+  width: 13vw;
   height: auto;
 `;
 
