@@ -178,7 +178,6 @@ const EditProfile = (props) => {
     console.log(authCont);
     await authCont.getProfile();
     setEdited(false);
-    await authCont.setStatus();
 
     window.scrollTo(0, 0);
   };
@@ -426,7 +425,7 @@ const EditProfile = (props) => {
         </Block>
       </Row>
 
-      <Row>
+      {/* <Row>
         <DiagramStep title='Works' nr={4} />
 
         <Block>
@@ -445,7 +444,7 @@ const EditProfile = (props) => {
             </Col>
           </GradientContRadius>
         </Block>
-      </Row>
+      </Row> */}
 
       <Row>
         <Ul>

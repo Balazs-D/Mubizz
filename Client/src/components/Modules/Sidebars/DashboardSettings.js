@@ -60,6 +60,8 @@ const Li = styled(NavLink)`
   margin-bottom: 10px;
   transition: all 0.3s ease-in;
   color: ${(props) => props.theme.colors.info};
+  display: flex; 
+  justify-content: space-between;
 
   &:hover {
     background: ${(props) => props.theme.colors.primaryLight};
@@ -73,6 +75,12 @@ const Row = styled.span`
   justify-content: space-between;
   align-items: flex-end;
 `;
+
+const Box = styled.p`
+padding: 0px 2px;
+border: 1px solid ${props=>props.theme.colors.info};
+border-radius: 3px;
+background: white;`
 
 const PicCont = styled.img`
   width: 100%;
@@ -122,7 +130,7 @@ const DashboardSettings = () => {
               {/* {profile.profileName ? <h3>{user.name}</h3> : null } */}
               <Row>
                 <Status />
-                <BlinkInfoField text='Update your profile to upgrade our status.' />
+                {!authCont.pro && <BlinkInfoField text='Update your profile to upgrade our status.' />}
               </Row>
             </TitleDiv>
             <PicCont src={profile.avatar ? profile.avatar : null}></PicCont>
@@ -147,43 +155,46 @@ const DashboardSettings = () => {
               </li> */}
 
               {/* <Li> */}
-                <Li
-                  to='/dashboard/edit-profile'
-                  activeStyle={StyledActiveLink}
-                  style={StyledLink}
-                >
-                  Edit Profile
-                </Li>
+              <Li
+                to='/dashboard/edit-profile'
+                activeStyle={StyledActiveLink}
+                style={StyledLink}
+              >
+                Edit Profile
+              </Li>
               {/* </Li> */}
 
               {/* <Li> */}
-                <Li
-                  to='/dashboard/reference-management'
-                  activeStyle={StyledActiveLink}
-                  style={StyledLink}
-                >
-                  Reference Manager
-                </Li>
+              <Li
+                to='/dashboard/reference-management'
+                activeStyle={StyledActiveLink}
+                style={StyledLink}
+              >
+                <p>Reference Manager</p>
+                <Box>{authCont.reference.length}</Box>
+              </Li>
               {/* </Li> */}
 
               {/* <Li> */}
-                <Li
-                  to='/dashboard/offer-management'
-                  activeStyle={StyledActiveLink}
-                  style={StyledLink}
-                >
-                  Offer Manager
-                </Li>
+              <Li
+                to='/dashboard/offer-management'
+                activeStyle={StyledActiveLink}
+                style={StyledLink}
+              >
+                <p>Offer Manager</p>
+                <Box>{authCont.offer.length}</Box>
+              </Li>
               {/* </Li> */}
 
               {/* <Li> */}
-                <Li
-                  to='/dashboard/messages'
-                  activeStyle={StyledActiveLink}
-                  style={StyledLink}
-                >
-                  Messages
-                </Li>
+              <Li
+                to='/dashboard/messages'
+                activeStyle={StyledActiveLink}
+                style={StyledLink}
+              >
+                <p>Messages</p>
+                <Box>0</Box>
+              </Li>
               {/* </Li> */}
 
               {/* <li>

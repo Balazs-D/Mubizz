@@ -373,7 +373,7 @@ const ReferenceManagement = (props) => {
           </button>
         )}
       </Form>
-      <SubName>Reference Cards</SubName>
+      <SubName>Your Reference Cards:</SubName>
       <Added>
         <ul style={{ display: 'flex', flexDirection: 'column-reverse' }}>
           {authCont.reference &&

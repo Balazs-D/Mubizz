@@ -10,6 +10,7 @@ const StatusDisplay = ({ color, text }) => {
     console.log(authCont.member);
     console.log(authCont.creator);
     console.log(authCont.pro);
+    
 
     if (authCont.member === true) {
       setStatusLevel('Member');
@@ -22,18 +23,18 @@ const StatusDisplay = ({ color, text }) => {
     }
   }, [authCont.member, authCont.pro, authCont.creator]);
 
-  return <Status color={statusLevel}>{statusLevel}</Status>;
+  return <Status color={statusLevel} >{statusLevel}</Status>;
 };
 
 export default StatusDisplay;
 
 const handleColorType = (color) => {
   switch (color) {
-    case 'member':
+    case 'Member':
       return '#6D87B9';
-    case 'creator':
+    case 'Creator':
       return '#3EC43B';
-    case 'pro':
+    case 'Pro':
       return '#fa709a';
     default:
       return '#B3A878';

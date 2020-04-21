@@ -343,7 +343,7 @@ console.log(authCont)
           </button>
         )}
       </Form>
-      <SubName>Service Cards</SubName>
+      <SubName>Your Service Cards:</SubName>
       <Added>
         <ul style={{ display: 'flex', flexDirection: 'column-reverse' }}>
           {authCont.offer &&

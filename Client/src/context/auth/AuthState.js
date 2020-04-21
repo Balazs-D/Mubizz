@@ -24,7 +24,6 @@ import {
   SET_MEMBER,
   SET_CREATOR,
   SET_PRO,
-  SET_STATUS,
   UPD_EDUCATION_STATE,
   SET_REF_CREDIT,
   REFERENCE_LOAD,
@@ -173,7 +172,6 @@ const AuthState = (props) => {
       getProfile();
       getReference();
       getOffer();
-      setStatus();
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
@@ -321,38 +319,7 @@ const AuthState = (props) => {
   const setCreator = () => dispatch({ type: SET_CREATOR });
   const setPro = () => dispatch({ type: SET_PRO });
 
-  // use staus
-
-  const setStatus = () => {
-    if (
-      state.creator === true &&
-      state.profile.location.length > 0 &&
-      state.profile.description.length > 0 &&
-      state.profile.skills.length > 0 &&
-      state.profile.languages.length > 0 &&
-      state.profile.offers.length > 0
-    ) {
-      setPro();
-    } else if (
-      state.profile &&
-      state.member === true &&
-      state.education.length > 0 &&
-      state.profile.reference.length > 0
-    ) {
-      setCreator();
-    } else if (
-      state.profile.profileName &&
-      state.profile.profileMotto &&
-      state.profile.avatar
-    ) {
-      setMember();
-      console.log('member');
-    } else {
-      console.log('undefined');
-
-      return undefined;
-    }
-  };
+  
 
   return (
     <AuthContext.Provider
@@ -385,7 +352,6 @@ const AuthState = (props) => {
         setMember,
         setCreator,
         setPro,
-        setStatus,
         updateEducation,
         addCredit,
         addReference,
