@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import styled from 'styled-components';
-import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
+import Bg1 from '../../../graphics/processed/bg01.jpg';
 import UserContext from '../../../context/user/userContext';
 import AuthContext from '../../../context/auth/authContext';
 import AlertContext from '../../../context/alert/alertContext';

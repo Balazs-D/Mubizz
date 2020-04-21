@@ -2,11 +2,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import Bg1 from '/home/dci/DCI/lord-of-the-script/react/mubizz/Client/src/graphics/processed/bg01.jpg';
+import Bg1 from '../../../graphics/processed/bg01.jpg';
 import AlertContext from '../../../context/alert/alertContext';
 import AuthContext from '../../../context/auth/authContext';
 
-import axios from 'axios';
 
 // Components
 import Input from '../../Utilities/Input';
@@ -21,7 +20,7 @@ const Login = props => {
     email: ''
   });
 
-  const [ errors, setErrors ] = useState([]);
+  // const [ errors, setErrors ] = useState([]);
 
 
   const authCont = useContext(AuthContext);
