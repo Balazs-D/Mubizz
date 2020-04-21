@@ -2,26 +2,31 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const Offer = require('../../models/Offer');
-const User = require('../../models/User');
+
+// Get references rom logged in user
 router.get('/me', auth, async (req, res) => {
   try {
-    const offer = await Offer.findOne({
-      User: req.User.id,
+    const offer = await Offer.find({
+      user: req.user.id,
     });
     if (!offer) {
-      return res.status(400).json({ msg: 'There is no offer for this user' });
+      return res.status(400).json({
+        msg: 'There are no offers for this user',
+      });
     }
     res.json(offer);
   } catch (err) {
     console.log(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send(' Server Error');
   }
 });
-// route post api/offer
-// create or update current offer user offer
+
+// route post api/reference
+// create or update current reference user
 router.post('/', auth, async (req, res) => {
   const userId = req.user.id;
-  const { user = userId, title, description, includes, price, link } = req.body;
+  const { title, description, includes, prices, links } = req.body;
+  console.log(req.body)
   try {
     // create
     let offerFields = {
@@ -29,31 +34,20 @@ router.post('/', auth, async (req, res) => {
       title,
       description,
       includes,
-      price,
-      link,
+      prices,
+      links,
     };
     offer = new Offer(offerFields);
-    console.log(offer);
     await offer.save();
-    res.json(offer);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('server Error');
-  }
-});
-// Get api/offer
-// Get all offers
-router.get('/', async (req, res) => {
-  try {
-    const offer = await Offer.find();
     res.json(offer);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
 });
+
 //Get api/offer/user/:user_id
-// Get offer by user ID
+// Get offer by user Id
 router.get('/user/:user_id', async (req, res) => {
   try {
     const offer = await Offer.findOne({
@@ -72,10 +66,10 @@ router.get('/user/:user_id', async (req, res) => {
 });
 // Delete api/offer
 // Delete offer
-router.delete('/', auth, async (req, res) => {
+router.delete('/:offerId', async (req, res) => {
   try {
     // remove offer
-    await Offer.findByIdAndRemove({ user: req.user.id });
+    await Offer.findByIdAndRemove(req.params.offerId);
     res.json({ msg: 'User deleted offer' });
   } catch (err) {
     console.error(err.message);

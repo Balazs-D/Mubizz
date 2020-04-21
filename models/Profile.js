@@ -24,26 +24,8 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
   },
   languages: [String],
+  education: [String],
   skills: [String],
-  reference: [
-    {
-      position: {
-        type: String,
-        required: true,
-      },
-      projectName: {
-        type: String,
-        required: true,
-      },
-      location: {
-        type: String,
-      },
-      description: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
   youtube: {
     type: String,
   },
@@ -71,9 +53,6 @@ const ProfileSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now,
-  },
-  offers: {
-    type: [{}],
   },
 });
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

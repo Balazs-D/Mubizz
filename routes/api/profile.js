@@ -4,6 +4,7 @@ const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+
 router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
@@ -34,8 +35,8 @@ router.post('/', auth, async (req, res) => {
     website,
     location,
     languages,
+    education,
     skills,
-    reference,
     youtube,
     twitter,
     facebook,
@@ -44,7 +45,6 @@ router.post('/', auth, async (req, res) => {
     discogs,
     bandcamp,
     soundcloud,
-    offers,
   } = req.body;
   console.log(req.body);
   try {
@@ -61,8 +61,8 @@ router.post('/', auth, async (req, res) => {
         website,
         location,
         languages,
+        education,
         skills,
-        reference,
         youtube,
         twitter,
         facebook,
@@ -71,7 +71,6 @@ router.post('/', auth, async (req, res) => {
         discogs,
         bandcamp,
         soundcloud,
-        offers,
       };
 
       await Profile.findOneAndUpdate(
@@ -93,8 +92,8 @@ router.post('/', auth, async (req, res) => {
       website,
       location,
       languages,
+      education,
       skills,
-      reference,
       youtube,
       twitter,
       facebook,
@@ -103,7 +102,6 @@ router.post('/', auth, async (req, res) => {
       discogs,
       bandcamp,
       soundcloud,
-      offers,
     };
 
     profile = new Profile(profileFields);
@@ -115,60 +113,7 @@ router.post('/', auth, async (req, res) => {
     res.status(500).send('server Error');
   }
 });
-// Get api/profile
-//  Get all profiles
-/*router.get('/', async (req, res) => {
-  try {
-    console.log(Profile);
-    let profile = await Profile.findOne({ user: req.user.id });
-    if (profile) {
-      // update
-      let profileFields = {
-        user: req.user.id,
-        profileName,
-        profileMotto,
-        description,
-        services,
-        website,
-        location,
-        languages,
-        skills,
-        reference,
-        social,
-        offers
-      };
-      profile = await Profile.findOneAndUpdate(
-        { user: req.user.id },
-        { $set: profileFields },
-        { new: true }
-      );
-      return res.json(profile);
-    }
-    //create
-    let profileFields = {
-      user: req.user.id,
-      profileName,
-      profileMotto,
-      description,
-      services,
-      website,
-      location,
-      languages,
-      skills,
-      reference,
-      social,
-      offers
-    };
-    profile = new Profile(profileFields);
-    console.log(profile);
-    await profile.save();
-    res.json(profile);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('server Error');
-  }
-});
-*/
+
 // Get api/profile
 //  Get all profiles
 router.get('/', async (req, res) => {
@@ -211,46 +156,4 @@ router.delete('/', auth, async (req, res) => {
   }
 });
 
-//  PUT api/profile/experience
-//  add profile experience
-router.put(
-  '/experience',
-  [auth, [check('title', 'Title is required').not().isEmpty()]],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    const { title } = req.body;
-    const newExp = {
-      title,
-    };
-    try {
-      const profile = await Profile.findOne({ user: req.user.id });
-      profile.experience.unshift(newExp);
-      await profile.save();
-      res.json(profile);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Errors');
-    }
-  }
-);
-// Delete api/profile/experience/:exp_id
-// Delete experience from profile
-router.delete('/experience/:exp_id', auth, async (req, res) => {
-  try {
-    const profile = await Profile.findOne({ user: req.user.id });
-    // Get remove index
-    const removeIndex = profile.experience
-      .map((item) => item.id)
-      .indexOf(req.param.exp_id);
-    profile.experience.splice(removeIndex, 1);
-    await profile.save();
-    res.json(profile);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('server Errors');
-  }
-});
 module.exports = router;

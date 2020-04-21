@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Content
-import LogoVect from '../../../graphics/logo.svg';
+import LogoVect from '../../../graphics/SVG/Mubizz.svg';
 
 // Styled Components
 

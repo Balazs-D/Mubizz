@@ -2,15 +2,16 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const Reference = require('../../models/Reference');
-const User = require('../../models/User');
+
+// Get references rom logged in user
 router.get('/me', auth, async (req, res) => {
   try {
-    const reference = await Reference.findOne({
-      User: req.User.id,
+    const reference = await Reference.find({
+      user: req.user.id,
     });
     if (!reference) {
       return res.status(400).json({
-        msg: 'There is no reference for this user',
+        msg: 'There are no references for this user',
       });
     }
     res.json(reference);
@@ -19,13 +20,12 @@ router.get('/me', auth, async (req, res) => {
     res.status(500).send(' Server Error');
   }
 });
+
 // route post api/reference
 // create or update current reference user
 router.post('/', auth, async (req, res) => {
-  console.log(res.user);
   const userId = req.user.id;
   const {
-    user = userId,
     position,
     projectName,
     location,
@@ -33,6 +33,8 @@ router.post('/', auth, async (req, res) => {
     credits,
     links,
   } = req.body;
+    console.log(req.body);
+
   try {
     // create
     let referenceFields = {
@@ -52,6 +54,7 @@ router.post('/', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
 //Get api/reference/user/:user_id
 // Get reference by user Id
 router.get('/user/:user_id', async (req, res) => {
@@ -74,11 +77,12 @@ router.get('/user/:user_id', async (req, res) => {
 });
 // Delete api/reference
 // Delete reference
-router.delete('/', auth, async (req, res) => {
+router.delete('/:referenceId', async (req, res) => {
   try {
     // remove reference
-    await Reference.findByIdAndRemove({ user: req.user.id });
+    await Reference.findByIdAndRemove(req.params.referenceId);
     res.json({ msg: 'User deleted reference' });
+    
   } catch (err) {
     console.error(err.message);
     res.status(500).send('server Error');

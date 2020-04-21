@@ -40,13 +40,13 @@ router.post(
         console.log(' !USER ');
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }] });
+          .json({ errors: [{ msg: 'User does not exists.' }] });
       }
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }] });
+          .json({ errors: [{ msg: 'Password and E-Mail does not match.' }] });
       }
       console.log(user);
       const payload = {
