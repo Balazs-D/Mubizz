@@ -13,6 +13,8 @@ import IntroText from '../../Utilities/IntroText';
 import DiagramStep from '../../Utilities/EditProfile/DiagramStep';
 import CardRadius from '../../Utilities/CardRadius';
 import ButtonLight from '../../Utilities/ButtonLight';
+import AddLink from '../../Utilities/Offer/AddLink';
+
 // Styled Comp
 
 const GradientContRadius = styled.div`
@@ -40,7 +42,7 @@ const Added = styled.div`
   margin: 20px;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   display: flex;
   width: 100%;
 
@@ -178,12 +180,7 @@ const ButtonNew = styled.input.attrs({ type: 'button' })`
   }
 `;
 
-const Span = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 30%;
-  justify-content: space-around;
-`;
+
 
 const SpanFull = styled.div`
   width: 87%;
@@ -285,7 +282,7 @@ console.log(references)
 
   return (
     <Col>
-      <Form>
+      <Form onSubmit={onSubmit}>
         <SiteName>Reference Manager</SiteName>
 
         <SpanFull>
@@ -297,7 +294,6 @@ console.log(references)
         </SpanFull>
 
         {newRef && (
-          <form onSubmit={onSubmit}>
             <Row>
               <DiagramStep title='References' nr={6} />
 
@@ -339,6 +335,16 @@ console.log(references)
                         />
                       )}
 
+                      {authCont.profile && (
+                        <AddLink
+                          placeholder={''}
+                          value={links}
+                          name='links'
+                          // onChange={(e) => setDescription(e.target.value)}
+                          label='links'
+                        />
+                      )}
+
                       {/* {authCont.profile && (
                       <ReferenceCredits
                         placeholder={''}
@@ -353,7 +359,6 @@ console.log(references)
                 </GradientContRadius>
               </Block>
             </Row>
-          </form>
         )}
         {newRef && (
           <button type='submit' onClick={onSubmit}>

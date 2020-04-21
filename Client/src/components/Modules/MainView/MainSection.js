@@ -27,7 +27,7 @@ import IntroText from '../../Utilities/IntroText';
 const GradientCont = styled.div`
   display: flex;
 
-  /* margin-top: 17.5vw; */
+  margin-right: -10vw;
   justify-content: center;
   align-items: flex-start;
   background: ${props => props.theme.colors.basicBlue};
@@ -40,7 +40,7 @@ flex-wrap: wrap;
 justify-content: center;
 align-items: center;
 padding: 0px;
-width: 55vw;
+width: 60vw;
 margin-right: 0%;
 position: relative;
 

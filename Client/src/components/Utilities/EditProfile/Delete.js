@@ -1,6 +1,8 @@
 // Utilities
 import React, { useEffect, useState, useContext } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 
 // Component
 
@@ -127,11 +129,26 @@ const Label = styled.label`
   border-radius: 3px;
 `;
 
-const Delete = ({ placeholder, label }) => {
-  const userCont = useContext(UserCont);
+const ProfileDelete = ({ label, props }) => {
   const authCont = useContext(AuthCont);
 
-  const deleteProfile = (e) => {};
+  const eraseProfile = async (e) => {
+    e.persist();
+    try {
+      let profileId = authCont.user._id;
+      console.log(authCont.profile._id);
+      console.log(authCont.user._id);
+
+      const res = await axios.delete(`http://localhost:5000/api/profile`);
+
+      // loadUser();
+    } catch (err) {
+      console.log('ERROR DELETE REF');
+    }
+
+    authCont.logout();
+    props.history.push('/');
+  };
 
   // useEffect(() => {}, [skillsArray]);
 
@@ -143,11 +160,14 @@ const Delete = ({ placeholder, label }) => {
           <P>Are you sure to delete your MUBIZZ profile?</P>
         </Box>
         <BoxTwo>
-          <AddButton onClick={deleteProfile} value='Delete Profile'></AddButton>
+          <AddButton
+            value='Delete Profile'
+            onClick={(e) => eraseProfile(e)}
+          ></AddButton>
         </BoxTwo>
       </Row>
     </Li>
   );
 };
 
-export default Delete;
+export default withRouter(ProfileDelete);

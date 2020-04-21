@@ -9,7 +9,7 @@ import axios from 'axios';
 
 import EditSoloLine from '../../Utilities/EditProfile/EditSoloLine';
 import EditTextArea from '../../Utilities/EditProfile/EditTextArea';
-
+import AddLink from '../../Utilities/Offer/AddLink';
 import IntroText from '../../Utilities/IntroText';
 import DiagramStep from '../../Utilities/EditProfile/DiagramStep';
 import ButtonLight from '../../Utilities/ButtonLight';
@@ -311,6 +311,26 @@ console.log(authCont)
                         label='offer description'
                       />
                     )}
+
+                    {authCont.profile && (
+                      <AddLink
+                        placeholder={''}
+                        value={links}
+                        name='links'
+                        // onChange={(e) => setDescription(e.target.value)}
+                        label='links'
+                      />
+                    )}
+
+                    {authCont.profile && (
+                      <AddLink
+                        placeholder={''}
+                        value={includes}
+                        name='includes'
+                        // onChange={(e) => setDescription(e.target.value)}
+                        label='offer includes'
+                      />
+                    )}
                   </Ul>
                 </Col>
               </GradientContRadius>
@@ -331,7 +351,6 @@ console.log(authCont)
               return (
                 <OnlineRef key={i}>
                   <p>{off.title}</p>
-                  
 
                   {/* <ButtonLight text='edit' />
                     <ButtonLight
