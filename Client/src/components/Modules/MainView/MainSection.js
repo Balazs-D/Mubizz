@@ -21,6 +21,7 @@ import EditProfile from './EditProfile';
 import Messages from './Messages';
 import Dashboard from './Dashboard';
 import IntroText from '../../Utilities/IntroText';
+import YourProfile from '../../ProfileView/YourProfile';
 
 // Styled Comp
 
@@ -30,7 +31,7 @@ const GradientCont = styled.div`
   margin-right: -10vw;
   justify-content: center;
   align-items: flex-start;
-  background: ${props => props.theme.colors.basicBlue};
+  background: ${(props) => props.theme.colors.basicBlue};
   padding: 1px;
 `;
 
@@ -50,9 +51,6 @@ background: ${(props) => props.theme.colors.white};
 /* border: 1px solid ${(props) => props.theme.colors.mainPurple}; */
 `;
 
-
-
-
 const MainSection = () => {
   return (
     <GradientCont>
@@ -65,6 +63,7 @@ const MainSection = () => {
           <Route path='/dashboard/edit-profile' component={EditProfile} />
           <Route path='/dashboard/messages' component={Messages} />
           <Route path='/dashboard/settings' component={Settings} />
+          <Route path='/dashboard/your-profile' component={YourProfile} />
           <Route
             path='/dashboard/offer-management'
             component={OfferManagement}

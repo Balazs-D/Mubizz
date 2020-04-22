@@ -10,6 +10,8 @@ import axios from 'axios';
 import EditSoloLine from '../../Utilities/EditProfile/EditSoloLine';
 import EditTextArea from '../../Utilities/EditProfile/EditTextArea';
 import AddLink from '../../Utilities/Offer/AddLink';
+import AddIncludes from '../../Utilities/Offer/AddIncludes';
+
 import IntroText from '../../Utilities/IntroText';
 import DiagramStep from '../../Utilities/EditProfile/DiagramStep';
 import ButtonLight from '../../Utilities/ButtonLight';
@@ -140,10 +142,11 @@ const SubName = styled(SiteName)`
   background: ${(props) => props.theme.colors.primaryLight};
   box-shadow: 0px 0px 3px ${(props) => props.theme.colors.primaryDark};
   font-size: ${(props) => props.theme.fontSizes.half};
+  color: ${(props) => props.theme.colors.mainPurple};
 `;
 
 const OnlineRef = styled.li`
-   width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -153,7 +156,6 @@ const OnlineRef = styled.li`
   border-radius: 3px;
   font-family: ${(props) => props.theme.fontFamily[5]};
 `;
-
 
 const IntroShortText = styled(IntroText)`
  width: 47%;
@@ -187,6 +189,13 @@ const Added = styled.div`
   height: 100%;
   margin: 20px;
 `;
+const ColFront = styled.div`
+display: flex; 
+flex-direction: column;
+align-items: flex-start;`
+
+const Desc = styled.p`
+font-size:${props=>props.theme.fontSizes.small};`
 
 const OfferManagement = (props) => {
   const authCont = useContext(AuthCont);
@@ -195,18 +204,19 @@ const OfferManagement = (props) => {
   const [active, setActive] = useState(true);
   const [targetID, setTargetID] = useState();
   const [offers, setOffers] = useState(authCont.offer);
-console.log(authCont)
+  console.log(authCont);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [prices, setPrices] = useState([{ price: 100, quantity: 1 }]);
-  const [links, setLinks] = useState(['www.mixmaster.com', 'www.mix&mix.com']);
-  const [includes, setIncludes] = useState();
+  const [links, setLinks] = useState([]);
+  const [includes, setIncludes] = useState([]);
 
   console.log(title);
   console.log(description);
   console.log(prices);
   console.log(links);
   console.log(includes);
+  console.log(offers);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -265,13 +275,17 @@ console.log(authCont)
       console.log('ERROR DELETE OFFER');
     }
 
-    setNewOff(false)
+    setNewOff(false);
     authCont.getOffer();
   };
 
   useEffect(() => {
     setOffers(authCont.offer);
   }, [authCont.offer]);
+
+  useEffect(() => {
+    setIncludes(authCont.includes);
+  }, [authCont.includes]);
 
   return (
     <Col>
@@ -323,11 +337,10 @@ console.log(authCont)
                     )}
 
                     {authCont.profile && (
-                      <AddLink
+                      <AddIncludes
                         placeholder={''}
                         value={includes}
                         name='includes'
-                        // onChange={(e) => setDescription(e.target.value)}
                         label='offer includes'
                       />
                     )}
@@ -346,20 +359,25 @@ console.log(authCont)
       <SubName>Your Service Cards:</SubName>
       <Added>
         <ul style={{ display: 'flex', flexDirection: 'column-reverse' }}>
-          {authCont.offer &&
-            offers.map((off, i) => {
+          {offers &&
+            Object.keys(offers).map((off, i) => {
               return (
                 <OnlineRef key={i}>
-                  <p>{off.title}</p>
-
+                  <ColFront>
+                    <p>{offers[off].title}</p>
+                    <Desc>{offers[off].description}</Desc>
+                    <Desc>{offers[off].includes}</Desc>
+                    <Desc>{offers[off].price}</Desc>
+                  </ColFront>
                   {/* <ButtonLight text='edit' />
                     <ButtonLight
                       text={active ? 'mute' : 'set'}
                       onClick={activeToggle}
                     /> */}
                   <ButtonLight
+                    style={{ height: '100%' }}
                     text='delete'
-                    value={off._id}
+                    value={offers[off]._id}
                     onClick={(e) => {
                       deleteRef(e);
                     }}

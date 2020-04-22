@@ -153,6 +153,7 @@ const SubName = styled(SiteName)`
   background: ${(props) => props.theme.colors.primaryLight};
   box-shadow: 0px 0px 3px ${(props) => props.theme.colors.primaryDark};
   font-size: ${(props) => props.theme.fontSizes.half};
+  color: ${(props) => props.theme.colors.mainPurple};
 `;
 
 const ButtonNew = styled.input.attrs({ type: 'button' })`

@@ -21,13 +21,14 @@ import {
   UPD_IMG_STATE,
   UPD_LOCATION_STATE,
   UPD_SOCIAL,
+  UPD_INCLUDES_STATE,
   SET_MEMBER,
   SET_CREATOR,
   SET_PRO,
   UPD_EDUCATION_STATE,
   SET_REF_CREDIT,
   REFERENCE_LOAD,
-  OFFER_LOAD
+  OFFER_LOAD,
 } from '../types';
 
 const AuthState = (props) => {
@@ -38,7 +39,7 @@ const AuthState = (props) => {
     user: null,
     profile: [],
     reference: [],
-    offer: [],
+    offer: {},
     error: null,
     social: {
       youtube: '',
@@ -50,6 +51,7 @@ const AuthState = (props) => {
       bandcamp: '',
       soundcloud: '',
     },
+    includes: {},
     member: false,
     creator: false,
     pro: false,
@@ -117,7 +119,6 @@ const AuthState = (props) => {
       console.log('getOFFER error');
     }
   };
-
 
   //  Register User
   const register = async (formData) => {
@@ -229,10 +230,7 @@ const AuthState = (props) => {
     try {
       console.log(formData);
 
-      const res = await axios.post(
-        'http://localhost:5000/api/offer',
-        formData
-      );
+      const res = await axios.post('http://localhost:5000/api/offer', formData);
       console.log('try pre dispatch');
 
       console.log('pre load user');
@@ -266,6 +264,14 @@ const AuthState = (props) => {
   const updateLanguages = (input) => {
     dispatch({
       type: UPD_LANG_STATE,
+      payload: input,
+    });
+  };
+
+  // update includes
+  const updateIncludes = (input) => {
+    dispatch({
+      type: UPD_INCLUDES_STATE,
       payload: input,
     });
   };
@@ -319,8 +325,6 @@ const AuthState = (props) => {
   const setCreator = () => dispatch({ type: SET_CREATOR });
   const setPro = () => dispatch({ type: SET_PRO });
 
-  
-
   return (
     <AuthContext.Provider
       value={{
@@ -336,6 +340,7 @@ const AuthState = (props) => {
         pro: state.pro,
         reference: state.reference,
         offer: state.offer,
+        includes: state.includes,
         updateServices,
         updateSkills,
         updateAvatar,
@@ -358,6 +363,7 @@ const AuthState = (props) => {
         getReference,
         addOffer,
         getOffer,
+        updateIncludes,
       }}
     >
       {props.children}

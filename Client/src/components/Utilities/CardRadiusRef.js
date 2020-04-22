@@ -21,9 +21,6 @@ const CardCont = styled.div`
   /* padding: 3%; */
 `;
 
-const Li = styled.li`
-display: flex;`;
-
 const Text = styled.div`
   display: flex;
   flex-direction: column;
@@ -89,7 +86,7 @@ const DropdownCont = styled.div`
   }
 `;
 
-const DropdownContent = styled.ul`
+const DropdownContent = styled.div`
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -101,7 +98,7 @@ const DropdownContent = styled.ul`
 
 const Title = styled.h3`
   color: ${(props) => props.theme.colors.mainPurple};
-  background: ${(props) => props.theme.colors.gradientPink};
+  background: ${(props) => props.theme.colors.gradientYellow};
   /* border-top-left-radius: 3px;
   border-top-right-radius: 3px; */
   width: 100%;
@@ -110,7 +107,7 @@ const Title = styled.h3`
   box-shadow: 0px 0px 0px 1px ${(props) => props.theme.colors.white};
   border-radius: 3px;
   letter-spacing: 1px;
-  margin: -35px 0vw 10px 0vw;
+  margin: -55px 0vw 10px 0vw;
   transition: all 0.35s ease-in;
   transition-delay: 0.2s;
   position: relative;
@@ -133,7 +130,8 @@ const SubTit = styled.h3`
   position: relative;
   z-index: 1000;
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
+  font-weight: 200;
+  
 
   /* margin: -20px 0vw 10px 0vw; */
 `;
@@ -142,15 +140,14 @@ const About = styled.p`
   height: 60px;
   font-size: ${(props) => props.theme.fontSizes.small};
   padding-left: 5px;
-  border-left: 2px solid ${(props) => props.theme.colors.mainPurple};
+  border-left: 2px solid ${props=>props.theme.colors.mainPurple};
 
-  margin: 10px 0px 25px 0px;
+  margin: 30px 0px 0px 0px;
 `;
 
 const Pa = styled.p`
   font-size: ${(props) => props.theme.fontSizes.small};
-  margin-left: 0px;
-  font-weight: 100;
+  margin-left: 10px;
 `;
 
 const InfoSpan = styled.span``;
@@ -212,7 +209,7 @@ const CardWrapper = styled.div`
     opacity: 1;
   }
 
-
+  
 
   &:hover ${SubTit} {
         box-shadow: 0vw 0vw 0.2vw ${(props) => props.theme.colors.darkOne};
@@ -220,17 +217,26 @@ const CardWrapper = styled.div`
 
   &:hover ${Label} {
 
-      border: 1px solid ${(props) => props.theme.colors.gradientPink};
+      border: 1px solid ${props=>props.theme.colors.gradientPink};
   }
 `;
+
+
+
+// const SpanTitle = styled.div`
+//   border: 1px solid ${(props) => props.theme.colors.info};
+//   border-radius: 3px;
+//   width: 100%;
+// `;
+
 const Card = ({
-  src,
-  name,
-  offerText,
-  includesOne,
-  includesTwo,
   title,
+  projectName,
   notes,
+  src,
+  offerText,
+  location,
+  name
 }) => {
   const authCont = useContext(authContext);
 
@@ -238,18 +244,20 @@ const Card = ({
     <div>
       <CardWrapper>
         <CardCont>
-          <Label>Service Offer</Label>
+          <Label>Reference Work</Label>
           <PicStyle src={src} alt=''></PicStyle>
 
           <Text>
+            {/* <SpanTitle> */}
             <Title>{title}</Title>
+            <SubTit>
+              @ {projectName}, {location}
+            </SubTit>
+            {/* </SpanTitle> */}
             <About>{notes}</About>
             <Pa>{offerText}</Pa>
-            <SubTit>
-              Offer includes:
-              <Pa>Hard Code</Pa>
-              <Pa>{includesTwo}</Pa>
-            </SubTit>
+
+            
           </Text>
           <InfoField>
             <InfoSpan>
@@ -264,9 +272,7 @@ const Card = ({
                   <i class='fas fa-external-link-alt'></i>
                 </ICont>
                 <DropdownContent className='DropContent'>
-                  <Li>Link 1</Li>
-                  <Li>Link 2</Li>
-                  <Li>Link 3</Li>
+                  TEXT (Later map() through corresponding array)
                 </DropdownContent>
               </DropdownCont>
               {/* <DropdownCont>

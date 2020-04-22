@@ -38,7 +38,7 @@ const Register = (props) => {
   // Re-render  //  Re-direct
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push('/');
+      props.history.push('/dashboard/intro');
     };
 
     

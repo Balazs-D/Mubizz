@@ -130,7 +130,9 @@ const DashboardSettings = () => {
               {/* {profile.profileName ? <h3>{user.name}</h3> : null } */}
               <Row>
                 <Status />
-                {!authCont.pro && <BlinkInfoField text='Update your profile to upgrade our status.' />}
+                {!authCont.pro && (
+                  <BlinkInfoField text='Update your profile to upgrade our status.' />
+                )}
               </Row>
             </TitleDiv>
             <PicCont src={profile.avatar ? profile.avatar : null}></PicCont>
@@ -155,6 +157,15 @@ const DashboardSettings = () => {
               </li> */}
 
               {/* <Li> */}
+
+              <Li
+                to='/dashboard/your-profile'
+                activeStyle={StyledActiveLink}
+                style={StyledLink}
+              >
+                Your Profile
+              </Li>
+
               <Li
                 to='/dashboard/edit-profile'
                 activeStyle={StyledActiveLink}

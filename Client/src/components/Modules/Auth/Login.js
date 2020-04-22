@@ -33,7 +33,7 @@ const Login = props => {
   // Re-render  //  Re-direct
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push('/dashboard');
+      props.history.push('/dashboard/intro');
 
       
       // getProfile();
