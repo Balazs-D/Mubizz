@@ -14,7 +14,9 @@
     "react-gsap": "^1.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "file-loader": "^6.0.0",
+    "customize-cra": "^0.9.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,8 +39,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "customize-cra": "^0.9.1",
-    "file-loader": "^6.0.0"
-  }
+  "devDependencies": {}
 }
