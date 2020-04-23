@@ -30,6 +30,7 @@ import {
   REFERENCE_LOAD,
   OFFER_LOAD,
 } from '../types';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const AuthState = (props) => {
   const initialState = {
@@ -71,7 +72,7 @@ const AuthState = (props) => {
 
       // look fo the user
 
-      const res = await axios.get('http://localhost:5000/api/login');
+      const res = await axios.get('/api/login');
       dispatch({
         type: USER_LOADED,
         payload: res.data,
@@ -83,7 +84,7 @@ const AuthState = (props) => {
 
   const getProfile = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/profile/me');
+      const res = await axios.get('/api/profile/me');
 
       dispatch({
         type: PROFILE_LOADED,
@@ -96,7 +97,7 @@ const AuthState = (props) => {
 
   const getReference = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/reference/me');
+      const res = await axios.get('/api/reference/me');
 
       dispatch({
         type: REFERENCE_LOAD,
@@ -109,7 +110,7 @@ const AuthState = (props) => {
 
   const getOffer = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/offer/me');
+      const res = await axios.get('/api/offer/me');
 
       dispatch({
         type: OFFER_LOAD,
@@ -130,7 +131,7 @@ const AuthState = (props) => {
 
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/register',
+        '/api/register',
         formData,
         config
       );
@@ -160,7 +161,7 @@ const AuthState = (props) => {
     };
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/login',
+        '/api/login',
         formData,
         config
       );
@@ -195,7 +196,7 @@ const AuthState = (props) => {
       console.log(formData);
 
       const res = await axios.post(
-        'http://localhost:5000/api/profile',
+        '/api/profile',
         formData
       );
       console.log('try pre dispatch');
@@ -213,7 +214,7 @@ const AuthState = (props) => {
       console.log(formData);
 
       const res = await axios.post(
-        'http://localhost:5000/api/reference',
+        '/api/reference',
         formData
       );
       console.log('try pre dispatch');
@@ -230,7 +231,7 @@ const AuthState = (props) => {
     try {
       console.log(formData);
 
-      const res = await axios.post('http://localhost:5000/api/offer', formData);
+      const res = await axios.post('/api/offer', formData);
       console.log('try pre dispatch');
 
       console.log('pre load user');

@@ -19,6 +19,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.static(__dirname + '/Client/build'));
+
 
 // Define Routes
 app.use('/api/register', require('./routes/api/register'));

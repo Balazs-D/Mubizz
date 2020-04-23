@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Content
-import LogoVect from '../../../graphics/logo.svg';
+import LogoVect from '../../../graphics/SVG/new7.svg';
 
 // Styled Components
 
 const Image = styled.img`
-  width: 13vw;
+  width: 15vw;
   height: auto;
+  margin-top: 5px;
 `;
 
 const LogoCont = styled.div`
@@ -40,6 +41,7 @@ const LogoTextMobile = styled.h3`
     color: ${props => props.theme.colors.mainPurple};
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: ${props => props.theme.fontSizes.huge};
   }
 `;

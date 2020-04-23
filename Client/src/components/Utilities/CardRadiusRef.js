@@ -98,16 +98,16 @@ const DropdownContent = styled.div`
 
 const Title = styled.h3`
   color: ${(props) => props.theme.colors.mainPurple};
-  background: ${(props) => props.theme.colors.gradientYellow};
+  background: ${(props) => props.theme.colors.primaryLight};
   /* border-top-left-radius: 3px;
   border-top-right-radius: 3px; */
   width: 100%;
   padding-left: 5px;
   border: 1px solid ${(props) => props.theme.colors.mainPurple};
-  box-shadow: 0px 0px 0px 1px ${(props) => props.theme.colors.white};
+  box-shadow: 0px 0px 0px 2px ${(props) => props.theme.colors.white};
   border-radius: 3px;
   letter-spacing: 1px;
-  margin: -55px 0vw 10px 0vw;
+  margin: -40px 0vw 10px 0vw;
   transition: all 0.35s ease-in;
   transition-delay: 0.2s;
   position: relative;
@@ -131,7 +131,7 @@ const SubTit = styled.h3`
   z-index: 1000;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 200;
-  
+  box-shadow: 0px 0px 0px 1px ${(props) => props.theme.colors.white};
 
   /* margin: -20px 0vw 10px 0vw; */
 `;
@@ -169,12 +169,12 @@ const Label = styled.label`
   /* transform: translateX(-50%); */
   top: -20px;
   border: 1px solid ${(props) => props.theme.colors.info};
-  background: white;
+  background: ${(props) => props.theme.colors.gradientYellow};
   padding: 1px 15px;
   border-radius: 3px;
   opacity: 1;
   z-index: 1000;
-  transition: box-shadow 0.35s ease-in;
+  transition: all 0.35s ease-in;
 `;
 
 const CardWrapper = styled.div`

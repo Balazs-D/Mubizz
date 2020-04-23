@@ -42,14 +42,14 @@ const HeaderCont = styled.div`
       props.theme.colors.gradientPink}; */
     z-index: 10;
     position: sticky;
-    top: 0;
+    top: 0px;
 
     height: 15vh;
 
     ${({ filterBar }) =>
       filterBar &&
       `
-    height: 20vh;
+    height: 55vh;
   `}
   }
 `;

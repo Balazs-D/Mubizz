@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import '../assets/css/style.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import UserState from '../context/user/UserState';
 import AuthState from '../context/auth/AuthState';
 import AlertState from '../context/alert/AlertState';
@@ -41,7 +41,9 @@ const MainContainer = styled.div`
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
-}
+};
+
+console.log('API URL: ' + process.env.REACT_APP_API_URL);
 
 export default function App() {
   const userCont = useContext(userContext);

@@ -101,13 +101,13 @@ const DropdownContent = styled.ul`
 
 const Title = styled.h3`
   color: ${(props) => props.theme.colors.mainPurple};
-  background: ${(props) => props.theme.colors.gradientPink};
+  background: ${(props) => props.theme.colors.primaryLight};
   /* border-top-left-radius: 3px;
   border-top-right-radius: 3px; */
   width: 100%;
   padding-left: 5px;
   border: 1px solid ${(props) => props.theme.colors.mainPurple};
-  box-shadow: 0px 0px 0px 1px ${(props) => props.theme.colors.white};
+  box-shadow: 0px 0px 0px 2px ${(props) => props.theme.colors.white};
   border-radius: 3px;
   letter-spacing: 1px;
   margin: -35px 0vw 10px 0vw;
@@ -172,12 +172,12 @@ const Label = styled.label`
   /* transform: translateX(-50%); */
   top: -20px;
   border: 1px solid ${(props) => props.theme.colors.info};
-  background: white;
+  background: ${(props) => props.theme.colors.gradientPink};
   padding: 1px 15px;
   border-radius: 3px;
   opacity: 1;
   z-index: 1000;
-  transition: box-shadow 0.35s ease-in;
+  transition: all 0.35s ease-in;
 `;
 
 const CardWrapper = styled.div`
@@ -185,7 +185,7 @@ const CardWrapper = styled.div`
   display: grid;
   place-items: center;
   width: 20vw;
-  height: 45vh;
+  height: 50vh;
   background: linear-gradient(
     ${(props) => props.theme.colors.info},
     ${(props) => props.theme.colors.secondaryDecent}
@@ -199,8 +199,8 @@ const CardWrapper = styled.div`
 
   &:hover {
     background: linear-gradient(
-      ${(props) => props.theme.colors.gradientPink},
-      ${(props) => props.theme.colors.gradientYellow}
+      ${(props) => props.theme.colors.gradientYellow},
+      ${(props) => props.theme.colors.gradientPink}
     );
     box-shadow: 0vw 0vw 0.4vw ${(props) => props.theme.colors.darkOne};
   }
@@ -220,7 +220,7 @@ const CardWrapper = styled.div`
 
   &:hover ${Label} {
 
-      border: 1px solid ${(props) => props.theme.colors.gradientPink};
+      border: 1px solid ${(props) => props.theme.colors.gradientYellow};
   }
 `;
 const Card = ({
@@ -248,7 +248,7 @@ const Card = ({
             <SubTit>
               Offer includes:
               <Pa>Hard Code</Pa>
-              <Pa>{includesTwo}</Pa>
+              <Pa>Hard Code Two</Pa>
             </SubTit>
           </Text>
           <InfoField>
