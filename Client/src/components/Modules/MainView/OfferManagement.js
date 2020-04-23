@@ -323,6 +323,7 @@ const OfferManagement = (props) => {
                         name='description'
                         onChange={(e) => setDescription(e.target.value)}
                         label='offer description'
+                        maxlength='160'
                       />
                     )}
 
@@ -356,7 +357,7 @@ const OfferManagement = (props) => {
           </button>
         )}
       </Form>
-      <SubName>Your Service Cards:</SubName>
+      <SubName>Your Offers:</SubName>
       <Added>
         <ul style={{ display: 'flex', flexDirection: 'column-reverse' }}>
           {offers &&

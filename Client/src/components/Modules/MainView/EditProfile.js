@@ -182,8 +182,9 @@ const EditProfile = (props) => {
     window.scrollTo(0, 0);
   };
 
-  console.log(authCont);
+  
 
+  console.log(authCont);
   console.log(profileName);
   console.log(avatar);
   console.log(profileMotto);
@@ -330,6 +331,7 @@ const EditProfile = (props) => {
                     name='profileMotto'
                     onChange={(e) => setProfileMotto(e.target.value)}
                     label='profile motto'
+                    maxlength='160'
 
                     // spellCheck='false'
                   />
@@ -375,6 +377,7 @@ const EditProfile = (props) => {
                     name='description'
                     onChange={(e) => setDescription(e.target.value)}
                     label='detailed description'
+                    maxLength='1000'
                   />
                 )}
                 {authCont.user && (

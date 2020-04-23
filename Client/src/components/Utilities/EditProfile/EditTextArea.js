@@ -58,7 +58,16 @@ const Label = styled.label`
   border-radius: 3px;
 `;
 
-const EditTextArea = ({ value, name, onChange, onSubmit, spellCheck, placeholder, label }) => {
+const EditTextArea = ({
+  value,
+  name,
+  onChange,
+  onSubmit,
+  spellCheck,
+  placeholder,
+  label,
+  maxLength,
+}) => {
   return (
     <Li>
       <Label>{label}</Label>
@@ -70,6 +79,7 @@ const EditTextArea = ({ value, name, onChange, onSubmit, spellCheck, placeholder
         onSubmit={onSubmit}
         spellCheck={spellCheck}
         placeholder={placeholder}
+        maxLength={maxLength}
       />
     </Li>
   );

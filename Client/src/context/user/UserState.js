@@ -34,25 +34,22 @@ const UserState = (props) => {
       ],
       [
         'Your user name is displayed in your account until you update the profile name.',
-        'Your e-mail is not public.',
-        'A user profile allows you browse on MUBIZZ but no interaction.',
-        'If you want to contact other users or offer a service update your profile and professional info sections.',
-        'Update your photo.',
+        'Your e-mail is not public.'
       ],
       [
-        'Profile information are public. You need to fill all fields to be able to interact and create references.',
+        'Profile information are public.',
         'Use your profile motto to share a message or just simply describe your business shortly.',
         'Select the service fields your interest.',
-        'Add any language you are able to communicate.',
+        'Add spoken languages.'
       ],
       [
-        'Membership information are public. You need to fill all fields to be able to post offers.',
-        'Add your location to reach more potential business partners.',
-        'Describe your business.',
-        'Show your skills and the technologies your profession. (Ex.: Big Band Recording, Bass Guitar ...',
+        'Membership information are public.',
+        'Select your location to reach more potential business partners.',
+        'Describe your business. (max.: 1000 character)',
+        'List your skills and the technologies your profession. (Ex.: Big Band Recording, Bass Guitar, Operating specific devices etc.',
       ],
       [
-        'After you created at least one of each item your profile will reach the PRO level.',
+        'Visit the Offer Manager page if you are offering services to book.',
       ],
       ['Manage your experience and knowledge into reference cards.'],
       ['Create a new reference card to present a work experience.'],

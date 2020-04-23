@@ -340,6 +340,7 @@ const ReferenceManagement = (props) => {
                         name='description'
                         onChange={(e) => setDescription(e.target.value)}
                         label='description'
+                        maxlength='160'
                       />
                     )}
 
@@ -374,7 +375,7 @@ const ReferenceManagement = (props) => {
           </button>
         )}
       </Form>
-      <SubName>Your Reference Cards:</SubName>
+      <SubName>Your References:</SubName>
       <Added>
         <ul style={{ display: 'flex', flexDirection: 'column-reverse' }}>
           {authCont.reference &&
