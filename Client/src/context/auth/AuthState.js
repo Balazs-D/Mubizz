@@ -22,6 +22,7 @@ import {
   UPD_LOCATION_STATE,
   UPD_SOCIAL,
   UPD_INCLUDES_STATE,
+  UPD_REFLINKS_STATE,
   SET_MEMBER,
   SET_CREATOR,
   SET_PRO,
@@ -52,7 +53,8 @@ const AuthState = (props) => {
       bandcamp: '',
       soundcloud: '',
     },
-    includes: {},
+    refLinks: [],
+    includes: [],
     member: false,
     creator: false,
     pro: false,
@@ -250,6 +252,13 @@ const AuthState = (props) => {
       payload: input,
     });
   };
+
+  const updateRefLinks = (input) => {
+    dispatch({
+      type: UPD_REFLINKS_STATE,
+      payload: input,
+    });
+  };
   console.log(state);
   // update skill selection
 
@@ -341,6 +350,7 @@ const AuthState = (props) => {
         pro: state.pro,
         reference: state.reference,
         offer: state.offer,
+        refLinks: state.refLinks,
         includes: state.includes,
         updateServices,
         updateSkills,
@@ -365,6 +375,7 @@ const AuthState = (props) => {
         addOffer,
         getOffer,
         updateIncludes,
+        updateRefLinks,
       }}
     >
       {props.children}

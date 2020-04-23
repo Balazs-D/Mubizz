@@ -236,7 +236,8 @@ const Card = ({
   src,
   offerText,
   location,
-  name
+  name,
+  link
 }) => {
   const authCont = useContext(authContext);
 
@@ -272,7 +273,7 @@ const Card = ({
                   <i class='fas fa-external-link-alt'></i>
                 </ICont>
                 <DropdownContent className='DropContent'>
-                  TEXT (Later map() through corresponding array)
+                  {link}
                 </DropdownContent>
               </DropdownCont>
               {/* <DropdownCont>

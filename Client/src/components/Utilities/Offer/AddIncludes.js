@@ -130,29 +130,41 @@ const EditAddLine = ({ placeholder, label }) => {
   const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
   const [includes, setIncludes] = useState();
-  const [linksArray, setLinksArray] = useState({});
+  const [includesArray, setIncludesArray] = useState([]);
 
-  const handleButtonClick = (e) => {
-    e.preventDefault();
-    if (includes === '') {
-      return null;
-    } else {
-      setLinksArray({ ...linksArray, includes });
-      // setSkillsArray([...skillsArray, skill])
+  // const handleButtonClick = (e) => {
+  //   e.preventDefault();
+  //   if (includes === '') {
+  //     return null;
+  //   } else {
+  //     setLinksArray({ ...linksArray, includes });
+  //     // setSkillsArray([...skillsArray, skill])
 
-      authCont.updateIncludes(linksArray);
-      console.log(linksArray);
-      setIncludes('');
-    }
-  };
+  //     authCont.updateIncludes(linksArray);
+  //     console.log(linksArray);
+  //     setIncludes('');
+  //   }
+  // };
+
+    const handleButtonClick = (e) => {
+      e.preventDefault();
+      if (includes === '') {
+        return null;
+      } else {
+        includesArray.push(includes);
+
+        authCont.updateIncludes(includesArray);
+        setIncludes('');
+      }
+    };
 
   const deleteItem = (e) => {
     e.preventDefault();
 console.log(e.target)
-    let itemInd = linksArray.indexOf(e.target.attributes['value'].value);
-    linksArray.splice(itemInd, 1);
+    let itemInd = includesArray.indexOf(e.target.attributes['value'].value);
+    includesArray.splice(itemInd, 1);
     console.log(itemInd);
-        console.log(linksArray);
+        console.log(includesArray);
 
 
   };
@@ -177,12 +189,29 @@ console.log(e.target)
       </Row>
 
       <Col>
-        {Object.keys(linksArray).map((listItem, i) => (
-          <SkillLi value={linksArray[listItem]._id} key={i} index={i} onClick={deleteItem}>
-            <p>{linksArray[listItem].includes}</p>
+       
+        {includesArray.map((listItem, i) => (
+          <SkillLi
+            value={listItem._id}
+            key={i}
+            index={i}
+            onClick={deleteItem}
+          >
+            <p>{listItem}</p>
             <Icon className='far fa-trash-alt'></Icon>
           </SkillLi>
         ))}
+        {/* {Object.keys(includesArray).map((listItem, i) => (
+          <SkillLi
+            value={includesArray[listItem]._id}
+            key={i}
+            index={i}
+            onClick={deleteItem}
+          >
+            <p>{includesArray[listItem].includes}</p>
+            <Icon className='far fa-trash-alt'></Icon>
+          </SkillLi>
+        ))} */}
       </Col>
     </Li>
   );

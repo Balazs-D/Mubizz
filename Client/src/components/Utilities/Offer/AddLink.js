@@ -127,30 +127,44 @@ const Label = styled.label`
 `;
 
 const EditAddLine = ({ placeholder, label }) => {
-  const [link, setLink] = useState('');
-  const [linksArray, setLinksArray] = useState([]);
   const userCont = useContext(UserCont);
   const authCont = useContext(AuthCont);
+  const [includes, setIncludes] = useState();
+  const [includesArray, setIncludesArray] = useState([]);
 
-  
+  // const handleButtonClick = (e) => {
+  //   e.preventDefault();
+  //   if (includes === '') {
+  //     return null;
+  //   } else {
+  //     setLinksArray({ ...linksArray, includes });
+  //     // setSkillsArray([...skillsArray, skill])
+
+  //     authCont.updateIncludes(linksArray);
+  //     console.log(linksArray);
+  //     setIncludes('');
+  //   }
+  // };
 
   const handleButtonClick = (e) => {
     e.preventDefault();
-    if (link === '') {
+    if (includes === '') {
       return null;
     } else {
-      linksArray.push(link);
-      // setSkillsArray([...skillsArray, skill])
-      console.log(linksArray);
-      setLink('');
+      includesArray.push(includes);
+
+      authCont.updateRefLinks(includesArray);
+      setIncludes('');
     }
   };
 
   const deleteItem = (e) => {
     e.preventDefault();
-
-    let itemInd = linksArray.indexOf(e.target.attributes['value'].value);
-    linksArray.splice(itemInd, 1);
+    console.log(e.target);
+    let itemInd = includesArray.indexOf(e.target.attributes['value'].value);
+    includesArray.splice(itemInd, 1);
+    console.log(itemInd);
+    console.log(includesArray);
   };
 
   // useEffect(() => {}, [skillsArray]);
@@ -161,8 +175,8 @@ const EditAddLine = ({ placeholder, label }) => {
       <Row>
         <InputEdit
           placeholder={placeholder}
-          value={link}
-          onChange={(e) => setLink(e.target.value)}
+          value={includes}
+          onChange={(e) => setIncludes(e.target.value)}
           type='text'
           name='input'
           placeholderFontSize='1px'
@@ -171,12 +185,23 @@ const EditAddLine = ({ placeholder, label }) => {
       </Row>
 
       <Col>
-        {linksArray.map((listItem, i) => (
-          <SkillLi value={listItem} key={i} index={i} onClick={deleteItem}>
+        {includesArray.map((listItem, i) => (
+          <SkillLi value={listItem._id} key={i} index={i} onClick={deleteItem}>
             <p>{listItem}</p>
             <Icon className='far fa-trash-alt'></Icon>
           </SkillLi>
         ))}
+        {/* {Object.keys(includesArray).map((listItem, i) => (
+          <SkillLi
+            value={includesArray[listItem]._id}
+            key={i}
+            index={i}
+            onClick={deleteItem}
+          >
+            <p>{includesArray[listItem].includes}</p>
+            <Icon className='far fa-trash-alt'></Icon>
+          </SkillLi>
+        ))} */}
       </Col>
     </Li>
   );

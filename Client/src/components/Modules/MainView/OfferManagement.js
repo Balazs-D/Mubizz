@@ -287,6 +287,10 @@ const OfferManagement = (props) => {
     setIncludes(authCont.includes);
   }, [authCont.includes]);
 
+  useEffect(() => {
+    setLinks(authCont.refLinks);
+  }, [authCont.refLinks]);
+
   return (
     <Col>
       <Form onSubmit={onSubmit}>
@@ -365,9 +369,11 @@ const OfferManagement = (props) => {
               return (
                 <OnlineRef key={i}>
                   <ColFront>
-                    <p>{offers[off].title}</p>
+                    <p style={{ fontWeight: 'bold' }}>{offers[off].title}</p>
                     <Desc>{offers[off].description}</Desc>
-                    <Desc>{offers[off].includes}</Desc>
+                    <Desc>
+                      {offers[off].includes[0]} / {offers[off].includes[1]}
+                    </Desc>
                     <Desc>{offers[off].price}</Desc>
                   </ColFront>
                   {/* <ButtonLight text='edit' />

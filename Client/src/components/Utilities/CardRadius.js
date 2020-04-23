@@ -22,7 +22,11 @@ const CardCont = styled.div`
 `;
 
 const Li = styled.li`
-display: flex;`;
+  display: flex;
+  font-family: ${(props) => props.theme.fontFamily[4]};
+  color: ${(props) => props.theme.colors.basicBlue};
+  font-size: ${props=>props.theme.fontSizes.small};
+`;
 
 const Text = styled.div`
   display: flex;
@@ -97,6 +101,8 @@ const DropdownContent = styled.ul`
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
+  border: 1px solid ${props=>props.theme.colors.basicBlue};
+  border-radius: 3px;
 `;
 
 const Title = styled.h3`
@@ -227,10 +233,11 @@ const Card = ({
   src,
   name,
   offerText,
-  includesOne,
-  includesTwo,
+  incOne,
+  incTwo,
   title,
   notes,
+  link
 }) => {
   const authCont = useContext(authContext);
 
@@ -247,8 +254,8 @@ const Card = ({
             <Pa>{offerText}</Pa>
             <SubTit>
               Offer includes:
-              <Pa>Hard Code</Pa>
-              <Pa>Hard Code Two</Pa>
+              <Pa>{incOne}</Pa>
+              <Pa>{incTwo}</Pa>
             </SubTit>
           </Text>
           <InfoField>
@@ -264,9 +271,8 @@ const Card = ({
                   <i class='fas fa-external-link-alt'></i>
                 </ICont>
                 <DropdownContent className='DropContent'>
-                  <Li>Link 1</Li>
-                  <Li>Link 2</Li>
-                  <Li>Link 3</Li>
+                  <Li><a href={link}>{link}</a></Li>
+                 
                 </DropdownContent>
               </DropdownCont>
               {/* <DropdownCont>

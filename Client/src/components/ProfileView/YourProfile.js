@@ -93,7 +93,9 @@ const OfferManagement = (props) => {
                 src={authCont.profile.avatar}
                 name={authCont.profile.profileName}
                 notes={item.description}
-                includesOne={item.includes[0]}
+                incOne={item.includes[0]}
+                incTwo={item.includes[1]}
+                link={item.links[0]}
               />
             );
           })}
@@ -111,6 +113,7 @@ const OfferManagement = (props) => {
                 name={authCont.profile.profileName}
                 notes={item.description}
                 location={item.location}
+                link={item.links[0]}
               />
             );
           })}

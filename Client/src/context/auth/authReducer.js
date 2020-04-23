@@ -15,6 +15,7 @@ import {
   UPD_IMG_STATE,
   UPD_SOCIAL,
   UPD_INCLUDES_STATE,
+  UPD_REFLINKS_STATE,
   SET_MEMBER,
   SET_CREATOR,
   SET_PRO,
@@ -119,6 +120,12 @@ export default (state, action) => {
       return {
         ...state,
         profile: { ...state.profile, avatar: action.payload },
+      };
+
+    case UPD_REFLINKS_STATE:
+      return {
+        ...state,
+        refLinks: action.payload,
       };
 
     case UPD_INCLUDES_STATE:
