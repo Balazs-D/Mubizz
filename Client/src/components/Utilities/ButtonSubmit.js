@@ -42,9 +42,9 @@ const Button = styled.button`
   height: 60px;
   width: 100px;
   /* top: 50px;  */
-  right: 170px;
+  right: 100px;
   top: 200px;
-  z-index: 0;
+  z-index: 1001;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
   transition: all 0.35s ease-in;
   transform: scale(1);

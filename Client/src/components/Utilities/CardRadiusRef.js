@@ -150,12 +150,16 @@ const Pa = styled.p`
   margin-left: 10px;
 `;
 
-const InfoSpan = styled.span``;
+const InfoSpan = styled.span`
+height: 30px;
+display: flex;
+justify-content: center`;
 
 const InfoName = styled.a`
   color: ${(props) => props.theme.colors.mainPurple};
   text-decoration: none;
   margin-left: 10px;
+  padding-top: 3px;
   font-family: ${(props) => props.theme.fontFamily[4]};
 `;
 
@@ -268,14 +272,14 @@ const Card = ({
               {/* <ICont>
                 <i class='fas fa-marker'></i>
               </ICont> */}
-              <DropdownCont>
+              {/* <DropdownCont>
                 <ICont>
                   <i class='fas fa-external-link-alt'></i>
                 </ICont>
                 <DropdownContent className='DropContent'>
                   {link}
                 </DropdownContent>
-              </DropdownCont>
+              </DropdownCont> */}
               {/* <DropdownCont>
                 <ICont>
                   {' '}

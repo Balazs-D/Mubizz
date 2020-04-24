@@ -166,13 +166,6 @@ const DashboardSettings = () => {
                 Your Profile
               </Li>
 
-              <Li
-                to='/dashboard/edit-profile'
-                activeStyle={StyledActiveLink}
-                style={StyledLink}
-              >
-                Edit Profile
-              </Li>
               {/* </Li> */}
 
               {/* <Li> */}
@@ -205,6 +198,14 @@ const DashboardSettings = () => {
               >
                 <p>Messages</p>
                 <Box>0</Box>
+              </Li>
+
+              <Li
+                to='/dashboard/edit-profile'
+                activeStyle={StyledActiveLink}
+                style={StyledLink}
+              >
+                Edit Profile
               </Li>
               {/* </Li> */}
 

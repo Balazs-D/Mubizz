@@ -146,32 +146,37 @@ const EditAddLine = ({ placeholder, label }) => {
   //   }
   // };
 
-    const handleButtonClick = (e) => {
-      e.preventDefault();
-      if (includes === '') {
-        return null;
-      } else {
-        includesArray.push(includes);
+  const handleButtonClick = (e) => {
+    console.log(includesArray);
+    e.preventDefault();
+    if (includes === '') {
+      return null;
+    } else {
+      includesArray.push(includes);
 
-        authCont.updateIncludes(includesArray);
-        setIncludes('');
-      }
-    };
+      authCont.updateIncludes(includesArray);
+      setIncludes('');
+    }
+  };
 
   const deleteItem = (e) => {
     e.preventDefault();
-console.log(e.target)
+    console.log(e.target);
     let itemInd = includesArray.indexOf(e.target.attributes['value'].value);
     includesArray.splice(itemInd, 1);
+    
     console.log(itemInd);
-        console.log(includesArray);
+    authCont.updateIncludes(includesArray);
 
+    console.log(includesArray);
+    console.log(authCont.includes);
 
   };
 
-   
-
-  // useEffect(() => {}, [skillsArray]);
+  useEffect(()=>{
+    setIncludesArray(authCont.includes)
+  },
+  [authCont.includes])
 
   return (
     <Li>
@@ -189,14 +194,8 @@ console.log(e.target)
       </Row>
 
       <Col>
-       
         {includesArray.map((listItem, i) => (
-          <SkillLi
-            value={listItem._id}
-            key={i}
-            index={i}
-            onClick={deleteItem}
-          >
+          <SkillLi value={listItem} key={i} index={i} onClick={deleteItem}>
             <p>{listItem}</p>
             <Icon className='far fa-trash-alt'></Icon>
           </SkillLi>

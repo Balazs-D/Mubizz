@@ -31,8 +31,8 @@ const TagBarCont = styled.div`
 
   @media (min-width: 800px) {
     width: 100%;
-    height: 45vh;
-    background: ${(props) => props.theme.colors.basicBlue};
+    height: 50vh;
+    background: ${(props) => props.theme.colors.vueBlue};
     position: sticky;
     top: 30vh;
     z-index: 1;
@@ -41,7 +41,7 @@ const TagBarCont = styled.div`
     justify-content: space-around;
 
     align-items: center;
-    border: 1px solid ${(props) => props.theme.colors.gradientYellow};
+    border: 1px solid ${(props) => props.theme.colors.info};
     /* box-shadow: 0px 0px 2px 1px ${(props) =>
       props.theme.colors.primaryLight}; */
     border-radius: 3px;
@@ -59,7 +59,7 @@ const TagBarCont = styled.div`
 `;
 
 const LocationField = styled(CountryDropdown)`
-  padding: 5px;
+  padding: 7px;
   font-size: ${(props) => props.theme.fontSizes.small};
   /* font-style: italic; */
   border-radius: 4px;
@@ -67,11 +67,11 @@ const LocationField = styled(CountryDropdown)`
   outline: none;
   border: 1px solid ${(props) => props.theme.colors.mainBlue};
   margin: 10px;
-  background: ${(props) => props.theme.colors.infoLight};
+  background: ${(props) => props.theme.colors.white};
   &:focus {
     box-shadow: 0px 0px 3px ${(props) => props.theme.colors.white};
     border: 1px solid ${(props) => props.theme.colors.mainPurple};
-    background: ${(props) => props.theme.colors.gradientPink};
+    background: ${(props) => props.theme.colors.infoLight};
     font-weight: bold;
     font-style: normal;
   }
@@ -86,13 +86,18 @@ const InputEdit = styled(InputMinimal)`
   width: 100%;
   border-bottom: 1px solid ${(props) => props.theme.colors.info};
   background: white;
+  border-radius: 3px;
   &:focus {
     background: ${(props) => props.theme.colors.white};
     text-transform: normal;
     font-weight: bold;
   }
   &:hover {
-    background: ${(props) => props.theme.colors.gradientPink};
+    background: ${(props) => props.theme.colors.infoLight};
+  }
+
+  &:active {
+    background: ${(props) => props.theme.colors.gradientYellow};
   }
 `;
 
@@ -134,7 +139,7 @@ const ButtonSearch = styled.button`
 `;
 
 const Label = styled.label`
-  color: ${(props) => props.theme.colors.mainPurple};
+  color: ${(props) => props.theme.colors.infoLight};
   font-size: ${(props) => props.theme.fontSizes.small};
   font-family: ${(props) => props.theme.fontFamily[4]};
   /* margin: 10px 0px; */
@@ -142,11 +147,11 @@ const Label = styled.label`
   left: 7.3%;
   transform: translateX(-50%);
   top: 0px;
-  border-left: 1px solid ${(props) => props.theme.colors.gradientYellow};
-  border-right: 1px solid ${(props) => props.theme.colors.gradientYellow};
-  border-bottom: 1px solid ${(props) => props.theme.colors.gradientYellow};
+  border-left: 1px solid ${(props) => props.theme.colors.info};
+  border-right: 1px solid ${(props) => props.theme.colors.info};
+  border-bottom: 1px solid ${(props) => props.theme.colors.info};
 
-  background: ${(props) => props.theme.colors.gradientPink};
+  background: ${(props) => props.theme.colors.basicBlue};
   padding: 10px 25px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
@@ -165,7 +170,7 @@ const SpanButton = styled.div`
 `;
 
 const SpanFields = styled.div`
-  border: 1px solid ${(props) => props.theme.colors.gradientYellow};
+  border: 1px solid ${(props) => props.theme.colors.info};
   border-radius: 3px;
   display: flex;
   justify-content: space-around;
@@ -214,9 +219,10 @@ const Button = styled.input.attrs({ type: 'button' })`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
+  width: 85px;
   padding: 5px;
   height: 25px;
+  transition: all 0.3s ease-in;
   background: ${(props) =>
     props.checked ? props.theme.colors.gradientPink : props.theme.colors.white};
   border-radius: 3px;
@@ -225,7 +231,7 @@ const Button = styled.input.attrs({ type: 'button' })`
     ${(props) =>
       props.checked
         ? props.theme.colors.gradientYellow
-        : props.theme.colors.info};
+        : props.theme.colors.white};
   color: ${(props) =>
     props.checked ? props.theme.colors.mainPurple : props.theme.colors.darkOne};
   font-size: ${(props) => props.theme.fontSizes.xm};
@@ -233,8 +239,18 @@ const Button = styled.input.attrs({ type: 'button' })`
   outline: none;
 
   &:hover {
-    border: 1px solid ${(props) => props.theme.colors.warning};
-    color: ${(props) => props.theme.colors.warning};
+    border: 1px solid ${(props) => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.mainPurple};
+    background: ${(props) =>
+      props.checked
+        ? props.theme.colors.lightGrey
+        : props.theme.colors.info};
+  }
+
+  &:active {
+    border: 1px solid ${(props) => props.theme.colors.gradientPink};
+    color: ${(props) => props.theme.colors.mainPurple};
+    background: ${(props) => props.theme.colors.infoLight};
   }
 `;
 

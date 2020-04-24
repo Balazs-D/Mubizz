@@ -33,6 +33,7 @@ const GradientCont = styled.div`
   align-items: flex-start;
   background: ${(props) => props.theme.colors.basicBlue};
   padding: 1px;
+  height: 100%;
 `;
 
 const Main = styled.div`

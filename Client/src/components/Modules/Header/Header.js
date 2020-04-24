@@ -49,7 +49,7 @@ const HeaderCont = styled.div`
     ${({ filterBar }) =>
       filterBar &&
       `
-    height: 70vh;
+    height: 75vh;
   `}
   }
 `;

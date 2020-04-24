@@ -188,6 +188,12 @@ const SpanFull = styled.div`
   flex-direction: row;
 `;
 
+const ColFront = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
 const ReferenceManagement = (props) => {
   const authCont = useContext(AuthCont);
   const userCont = useContext(UserCont);
@@ -382,9 +388,10 @@ const ReferenceManagement = (props) => {
             references.map((ref, i) => {
               return (
                 <OnlineRef key={i}>
-                  <p>{ref.projectName}</p>
-                  <p>{ref.position}</p>
-
+                  <ColFront>
+                    <p style={{ fontWeight: 'bold' }}>{ref.projectName}</p>
+                    <p>{ref.position}</p>
+                  </ColFront>
                   {/* <ButtonLight text='edit' />
                     <ButtonLight
                       text={active ? 'mute' : 'set'}

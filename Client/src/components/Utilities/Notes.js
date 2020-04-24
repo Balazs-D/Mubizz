@@ -15,14 +15,14 @@ const Notes = styled.ul`
   flex-direction: column;
   list-style-type: square;
   width: 80%;
-  margin-top: 40px;
-  justify-content: space-around;
+  margin-top: 10px;
+  justify-content: flex-start;
 `;
 
 const NoteItem = styled.li`
   font-size: ${props=>props.theme.fontSizes.small};
   color: white;
-  margin-bottom:30px;
+  margin-bottom: 5px;
 `;
 
 

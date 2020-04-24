@@ -34,23 +34,22 @@ const UserState = (props) => {
       ],
       [
         'Your user name is displayed in your account until you update the profile name.',
-        'Your e-mail is not public.'
+        'Your e-mail is not public.',
       ],
       [
         'Profile information are public.',
         'Use your profile motto to share a message or just simply describe your business shortly.',
         'Select the service fields your interest.',
-        'Add spoken languages.'
       ],
       [
         'Membership information are public.',
         'Select your location to reach more potential business partners.',
         'Describe your business. (max.: 1000 character)',
         'List your skills and the technologies your profession. (Ex.: Big Band Recording, Bass Guitar, Operating specific devices etc.',
+        'Add any education or training you finished.',
+        'Add spoken languages.',
       ],
-      [
-        'Visit the Offer Manager page if you are offering services to book.',
-      ],
+      ['Visit the Offer Manager page if you are offering services to book.'],
       ['Manage your experience and knowledge into reference cards.'],
       ['Create a new reference card to present a work experience.'],
     ],

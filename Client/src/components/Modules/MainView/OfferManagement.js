@@ -258,6 +258,7 @@ const OfferManagement = (props) => {
     setNewOff(false);
     await authCont.getOffer();
     window.scrollTo(0, 0);
+      authCont.updateIncludes([]);
   };
 
   const deleteRef = async (e) => {

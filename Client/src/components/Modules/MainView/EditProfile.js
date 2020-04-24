@@ -397,7 +397,7 @@ const EditProfile = (props) => {
                 )}
 
                 {authCont.user && (
-                  <EditAddLine
+                  <EditLanguage
                     value={authCont.profile.languages}
                     name='languages'
                     label='languages'
