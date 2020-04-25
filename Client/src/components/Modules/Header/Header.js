@@ -1,6 +1,7 @@
 // Libraries
 import React, { useContext, Fragment } from 'react';
 import styled, { css } from 'styled-components';
+import { Link, withRouter } from 'react-router-dom';
 
 // Components
 import Logo from './Logo';
@@ -13,7 +14,6 @@ import AuthContext from '../../../context/auth/authContext';
 import ButtonMain from '../../Utilities/ButtonMain';
 import FilterBar from '../../Modules/Header/FilterBar';
 import TagBar from '../TagBar';
-
 
 // Styled Components
 
@@ -87,11 +87,11 @@ const SpanIcon = styled.div`
   top: 11px;
   right: 15px;
   &:hover {
-    color: ${props => props.theme.colors.mainPurple};
+    color: ${(props) => props.theme.colors.mainPurple};
   }
 
   &:active {
-    text-shadow: 0px 0px 5px ${props => props.theme.colors.gradientPink};
+    text-shadow: 0px 0px 5px ${(props) => props.theme.colors.gradientPink};
   }
 `;
 
@@ -110,13 +110,27 @@ const iconStyle = {
 
   display: 'flex',
   cursor: 'default',
-  color: '#6047A8'
+  color: '#6047A8',
 };
 
-const Header = () => {
+const Header = (props) => {
   const userCont = useContext(userContext);
   const authCont = useContext(AuthContext);
 
+  const handleSearch = async () => {
+    await authCont.getFetchedProfiles();
+
+    authCont.fetchedProfiles.map((item, i)=>{
+        let id = item._id;
+        let user = item.user;
+        console.log(id)
+         authCont.getFetchedOffers(user, id);
+
+    })
+    await authCont.getFetchedReferences();
+
+    await props.history.push('/dashboard/search');
+  };
   const loggedHeader = (
     <Fragment>
       <HeaderCont filterBar={userCont.filterBar}>
@@ -144,7 +158,7 @@ const Header = () => {
               <InputSearch placeholder='Search...' />
 
               <SpanIcon>
-                <i className='fas fa-search'></i>
+                <i onClick={handleSearch} className='fas fa-search'></i>
               </SpanIcon>
               {/* <Button text='Go' /> */}
             </InputCont>
@@ -176,4 +190,4 @@ const Header = () => {
   return authCont.isAuthenticated ? loggedHeader : logoutHeader;
 };
 
-export default Header;
+export default withRouter(Header);

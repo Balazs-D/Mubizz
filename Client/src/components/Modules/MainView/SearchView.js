@@ -1,49 +1,86 @@
 // Utilities
-import React, {useContext} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import bg1 from '../../../graphics/processed/bg2.jpg';
-import bg2 from '../../../graphics/processed/bg3.jpg';
-import bg3 from '../../../graphics/processed/bg4.jpg';
-import bg4 from '../../../graphics/processed/bg01.jpg';
-import userContext from '../../../context/user/userContext';
+import UserCont from '../../../context/user/userContext';
+import AuthCont from '../../../context/auth/authContext';
+import axios from 'axios';
 
 // Component
-import Card from '../../Utilities/CardRadius';
+
+import UserCard from '../../Utilities/UserCard';
 
 // Styled Comp
 
-const Main = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: flex-start;
-padding: 5px;
-width: 100%;
-margin-right: 5%;
-position: relative;
-z-index: 0;
-
-/* border: 1px solid ${props => props.theme.colors.mainPurple}; */
+const GradientContRadius = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    ${(props) => props.theme.colors.mainPurple},
+    ${(props) => props.theme.colors.mainPurple}
+  );
+  padding: 1px;
+  /* border-radius: 4px; */
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0px;
 `;
 
-const SearchView = () => {
-  const userCont = useContext(userContext);
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+`;
+
+const Col = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* position: relative; */
+  width: 100%;
+  height: 100%;
+  margin-top: 0px;
+  background-image: linear-gradient(
+    ${(props) => props.theme.colors.white},
+    ${(props) => props.theme.colors.white}
+  );
+  padding: 0px 0px;
+`;
+
+
+
+const SiteName = styled.h2`
+  color: white;
+  background: ${(props) => props.theme.colors.basicBlue};
+  font-family: ${(props) => props.theme.fontFamily[5]};
+  padding: 5px 10px;
+
+  width: 100%;
+`;
+
+const SearchView = (props) => {
+  const authCont = useContext(AuthCont);
+  const userCont = useContext(UserCont);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <Main>
-
-   {/* {userCont.userArray && userCont.userArray.map((user, i) => {
-
-     return ( <Card key={i}>{user.firstName}</Card>)
-   })} */}
-
-      <Card src={bg1} />
-      <Card src={bg2} />
-      <Card src={bg3} />
-      <Card src={bg4} />
-      <Card />
-      <Card />
-    </Main>
+    <GradientContRadius>
+      <Col>
+        <Form>
+          <SiteName>Offer Manager</SiteName>
+          {authCont.fetchedProfiles &&
+            authCont.fetchedProfiles.map((item, i) => {
+              return <UserCard key={i} label='Profile' src={item.avatar} offer={item.offer} reference={item.reference} />;
+            })}
+        </Form>
+      </Col>
+    </GradientContRadius>
   );
 };
 

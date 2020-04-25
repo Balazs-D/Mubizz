@@ -24,6 +24,9 @@ import {
   REFERENCE_LOAD,
   OFFER_LOAD,
   UPD_LOCATION_STATE,
+  FETCH_PROFILES,
+  FETCH_REFERENCES,
+  FETCH_OFFERS,
 } from '../types';
 
 export default (state, action) => {
@@ -62,6 +65,24 @@ export default (state, action) => {
         ...action.payload,
         isAuthenticated: true,
         loading: false,
+      };
+
+    case FETCH_PROFILES:
+      return {
+        ...state,
+        fetchedProfiles: action.payload,
+      };
+
+    case FETCH_OFFERS:
+      return {
+        ...state,
+        fetchedOffers: {...state.fetchedOffers, fetchedOffers: action.payload},
+      };
+
+    case FETCH_REFERENCES:
+      return {
+        ...state,
+        fetchedReferences: action.payload,
       };
 
     case REGISTER_FAIL:

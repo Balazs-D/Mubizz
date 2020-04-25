@@ -30,6 +30,9 @@ import {
   SET_REF_CREDIT,
   REFERENCE_LOAD,
   OFFER_LOAD,
+  FETCH_PROFILES,
+  FETCH_OFFERS,
+  FETCH_REFERENCES,
 } from '../types';
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
@@ -43,6 +46,9 @@ const AuthState = (props) => {
     reference: [],
     offer: {},
     error: null,
+    fetchedProfiles: [],
+    fetchedOffers: [],
+    fetchedReferences: [],
     social: {
       youtube: '',
       twitter: '',
@@ -96,6 +102,43 @@ const AuthState = (props) => {
       console.log('getUserData error');
     }
   };
+
+  const getFetchedProfiles = async ()=>{
+    try {
+      const res = await axios.get('/api/profile');
+      dispatch({
+        type: FETCH_PROFILES,
+        payload: res.data
+      });
+    } catch (error) {
+      console.log('get fetched profiles error')
+      
+    }
+  };
+
+    const getFetchedOffers = async (user, id) => {
+      try {
+        const res = await axios.get(`/api/${user}/offer/${id}`);
+        dispatch({
+          type: FETCH_OFFERS,
+          payload: res.data,
+        });
+      } catch (error) {
+        console.log('get fetched offers error');
+      }
+    };
+
+  const getFetchedReferences = async () => {
+    try {
+      const res = await axios.get('/api/reference');
+      dispatch({
+        type: FETCH_REFERENCES,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log('get fetched references error');
+    }
+  };  
 
   const getReference = async () => {
     try {
@@ -352,6 +395,9 @@ const AuthState = (props) => {
         offer: state.offer,
         refLinks: state.refLinks,
         includes: state.includes,
+        fetchedProfiles: state.fetchedProfiles,
+        fetchedOffers: state.fetchedOffers,
+        fetchedReferences: state.fetchedReferences,
         updateServices,
         updateSkills,
         updateAvatar,
@@ -376,6 +422,9 @@ const AuthState = (props) => {
         getOffer,
         updateIncludes,
         updateRefLinks,
+        getFetchedProfiles,
+        getFetchedOffers,
+        getFetchedReferences
       }}
     >
       {props.children}
