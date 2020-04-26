@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Content
-import LogoVect from '../../../graphics/SVG/new7.svg';
+import LogoVect from '../../../graphics/SVG/logoFinal.png';
 
 // Styled Components
 
 const Image = styled.img`
   width: 15vw;
   height: auto;
-  margin-top: 5px;
+  margin-top: -2px;
 `;
 
 const LogoCont = styled.div`

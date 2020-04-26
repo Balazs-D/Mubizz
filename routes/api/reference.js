@@ -33,7 +33,7 @@ router.post('/', auth, async (req, res) => {
     credits,
     links,
   } = req.body;
-    console.log(req.body);
+  console.log(req.body);
 
   try {
     // create
@@ -75,6 +75,24 @@ router.get('/user/:user_id', async (req, res) => {
     res.status(500).send('server Error');
   }
 });
+
+//Get api/reference/user/:user_id
+// Get all references
+router.get('/user', async (req, res) => {
+  try {
+    const references = await Reference.find({});
+    if (!references)
+      return res.status(400).json({ msg: 'there are no references.' });
+    res.json(references);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == 'ObjectId') {
+      return res.status(400).json({ msg: 'Reference not found' });
+    }
+    res.status(500).send('server Error');
+  }
+});
+
 // Delete api/reference
 // Delete reference
 router.delete('/:referenceId', async (req, res) => {
@@ -82,7 +100,6 @@ router.delete('/:referenceId', async (req, res) => {
     // remove reference
     await Reference.findByIdAndRemove(req.params.referenceId);
     res.json({ msg: 'User deleted reference' });
-    
   } catch (err) {
     console.error(err.message);
     res.status(500).send('server Error');

@@ -64,6 +64,26 @@ router.get('/user/:user_id', async (req, res) => {
     res.status(500).send('server Error');
   }
 });
+
+
+//Get api/offer/user/:user_id
+// Get all offers
+router.get('/user', async (req, res) => {
+  try {
+    const offers = await Offer.find({});
+    if (!offers)
+      return res.status(400).json({ msg: 'there are no offers.' });
+    res.json(offers);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == 'ObjectId') {
+      return res.status(400).json({ msg: 'Offer not found' });
+    }
+    res.status(500).send('server Error');
+  }
+});
+
+
 // Delete api/offer
 // Delete offer
 router.delete('/:offerId', async (req, res) => {

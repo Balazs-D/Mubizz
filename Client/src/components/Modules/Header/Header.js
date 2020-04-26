@@ -120,13 +120,8 @@ const Header = (props) => {
   const handleSearch = async () => {
     await authCont.getFetchedProfiles();
 
-    authCont.fetchedProfiles.map((item, i)=>{
-        let id = item._id;
-        let user = item.user;
-        console.log(id)
-         authCont.getFetchedOffers(user, id);
+    await authCont.getFetchedOffers();
 
-    })
     await authCont.getFetchedReferences();
 
     await props.history.push('/dashboard/search');

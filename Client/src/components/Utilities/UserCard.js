@@ -1,5 +1,5 @@
 // Utilities
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import authContext from '../../context/auth/authContext';
 
@@ -8,8 +8,11 @@ import authContext from '../../context/auth/authContext';
 const CardCont = styled.div`
   width: 100%;
   height: 100%;
-  /* background-image: linear-gradient(lightgrey, white); */
-  background: ${(props) => props.theme.colors.white};
+  background-image: linear-gradient(
+    ${(props) => props.theme.colors.white},
+    ${(props) => props.theme.colors.white}
+  );
+  /* background: ${(props) => props.theme.colors.white}; */
   border-radius: 3px;
   display: flex;
   flex-direction: row;
@@ -28,55 +31,11 @@ const Li = styled.li`
   font-size: ${(props) => props.theme.fontSizes.small};
 `;
 
-const Text = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  color: ${(props) => props.theme.colors.basicBlue};
-  font-family: ${(props) => props.theme.fontFamily[4]};
-  margin-top: 0px;
-  /* padding: 0px 0px 0px 10px; */
-
-  width: 90%;
-`;
-
-const InfoField = styled.div`
-  width: 100%;
-  background-image: linear-gradient(
-    to right,
-    ${(props) => props.theme.colors.basicGrey},
-    ${(props) => props.theme.colors.basicGrey}
-  );
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  border-radius: 3px;
-`;
-
-const IconSpan = styled.div`
-  padding-right: 10px;
-  color: ${(props) => props.theme.colors.lightGrey};
-  transition: all 0.35s;
-  display: flex;
-`;
-
-const ICont = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 7px;
-
-  &:hover {
-    color: ${(props) => props.theme.colors.darkGrey};
-  }
-`;
-
 const PicCont = styled.div`
   width: 30%;
   height: 100%;
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
   overflow: hidden;
 `;
 
@@ -114,24 +73,6 @@ const DropdownContent = styled.ul`
   border-radius: 3px;
 `;
 
-const Title = styled.h3`
-  color: ${(props) => props.theme.colors.mainPurple};
-  background: ${(props) => props.theme.colors.primaryLight};
-  /* border-top-left-radius: 3px;
-  border-top-right-radius: 3px; */
-  width: 100%;
-  padding-left: 5px;
-  border: 1px solid ${(props) => props.theme.colors.mainPurple};
-  box-shadow: 0px 0px 0px 2px ${(props) => props.theme.colors.white};
-  border-radius: 3px;
-  letter-spacing: 1px;
-  margin: -35px 0vw 10px 0vw;
-  transition: all 0.35s ease-in;
-  transition-delay: 0.2s;
-  position: relative;
-  z-index: 1000;
-`;
-
 const SubTit = styled.h3`
   color: ${(props) => props.theme.colors.mainPurple};
   background: ${(props) => props.theme.colors.white};
@@ -153,42 +94,23 @@ const SubTit = styled.h3`
   /* margin: -20px 0vw 10px 0vw; */
 `;
 
-const About = styled.p`
-  height: 60px;
-  font-size: ${(props) => props.theme.fontSizes.small};
-  padding-left: 5px;
-  border-left: 2px solid ${(props) => props.theme.colors.mainPurple};
-
-  margin: 10px 0px 25px 0px;
-`;
-
-const Pa = styled.p`
-  font-size: ${(props) => props.theme.fontSizes.small};
-  margin-left: 0px;
-  font-weight: 100;
-`;
-
-const InfoSpan = styled.span``;
-
-const InfoName = styled.a`
-  color: ${(props) => props.theme.colors.mainPurple};
-  text-decoration: none;
-  margin-left: 10px;
-  font-family: ${(props) => props.theme.fontFamily[4]};
-`;
-
 const TextCont = styled.div`
-width: 70%`;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 5px;
+
+  padding-left: 5px;
+`;
 
 const Label = styled.label`
   color: ${(props) => props.theme.colors.mainPurple};
   font-size: ${(props) => props.theme.fontSizes.small};
   font-family: ${(props) => props.theme.fontFamily[4]};
-  /* margin: 10px 0px; */
-  position: absolute;
-  left: 50px;
-  transform: translateX(-50%);
-  top: -10px;
+  margin-bottom: 5px;
   border: 1px solid ${(props) => props.theme.colors.info};
   background: ${(props) => props.theme.colors.gradientPink};
   box-shadow: 0px 0px 1px 2px ${(props) => props.theme.colors.white};
@@ -199,13 +121,97 @@ const Label = styled.label`
   transition: all 0.35s ease-in;
 `;
 
+const Name = styled.h2`
+  width: 100%;
+  padding: 5px;
+  /* background: ${(props) => props.theme.colors.info}; */
+  color: ${(props) => props.theme.colors.mainPurple};
+`;
+
+const Motto = styled.p`
+  width: 70%;
+  color: ${(props) => props.theme.colors.mainPurple};
+  background: ${(props) => props.theme.colors.primaryLight};
+  margin: 2px;
+  padding: 5px;
+  margin: 3px 0px;
+
+  font-size: ${(props) => props.theme.fontSizes.small};
+`;
+
+const Location = styled.div`
+  background: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.basicBlue};
+  display: flex;
+  justify-content: flex-end;
+  font-size: ${(props) => props.theme.fontSizes.xm};
+  border: 1px solid ${(props) => props.theme.colors.info};
+  border-radius: 3px;
+  padding: 2px;
+`;
+
+const CardsCont = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const CardSpan = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: ${(props) => props.theme.fontSizes.xm};
+  margin-right: 5px;
+`;
+
+const Num = styled.p`
+  padding: 2px;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  border-radius: 3px;
+`;
+
+const NumText = styled.p`
+  padding: 2px 5px;
+  border-top: 1px solid ${(props) => props.theme.colors.info};
+  border-bottom: 1px solid ${(props) => props.theme.colors.info};
+  border-right: 1px solid ${(props) => props.theme.colors.info};
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+`;
+const TagText = styled.p`
+  padding: 2px 5px;
+
+  border: 1px solid ${(props) => props.theme.colors.info};
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+`;
+
+const Tag = styled(Num)`
+  font-size: ${(props) => props.theme.fontSizes.xm};
+  margin-right: 0px;
+  margin-right: 3px;
+`;
+
+const ServiceDisplay = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  font-size: ${(props) => props.theme.fontSizes.xm};
+`;
+
 const CardWrapper = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 
-    width: 40vw;
+    width: 35vw;
   height: 20vh;
   background: linear-gradient(
     ${(props) => props.theme.colors.info},
@@ -213,17 +219,19 @@ const CardWrapper = styled.div`
   );
   padding: 1px;
   border-radius: 3px;
-  /* box-shadow: 0vw 0vw 0.4vw ${(props) => props.theme.colors.darkTwo}; */
+    box-shadow: 0vw 0vw 0.4vw ${(props) => props.theme.colors.white};
   margin: 20px 0px;
   transition: background 0.35s ease-in .15s;
   transition: box-shadow 0.35s ease-in;
-
+transition: transform 0.35s ease-in;
   &:hover {
     background: linear-gradient(
       ${(props) => props.theme.colors.gradientYellow},
       ${(props) => props.theme.colors.gradientPink}
     );
     box-shadow: 0vw 0vw 0.4vw ${(props) => props.theme.colors.darkOne};
+        transform: scale(1.1);
+
   }
 
   /* &:hover ${CardCont} {
@@ -247,47 +255,56 @@ const CardWrapper = styled.div`
       border: 1px solid ${(props) => props.theme.colors.mainPurple};
   }
 `;
-const Card = ({ src, name, offerText, offer, reference, title, notes, link, label }) => {
+const Card = ({
+  label,
+  src,
+  name,
+  motto,
+  services,
+  reference,
+  offer,
+  location,
+}) => {
   const authCont = useContext(authContext);
+  console.log(Object.keys(services));
+  console.log(services);
+  const [actualArray, setActualArray] = useState(
+    Object.keys(services).map((serv, i) => services[serv])
+  );
+  console.log(actualArray);
+  console.log(Object.keys(services).map((serv, i) => services[serv]));
 
   return (
     <div>
       <CardWrapper>
         <CardCont>
-          <Label>{label}</Label>
+          <TextCont>
+            {/* <Name>{name}</Name> */}
+            <Label>{name}</Label>
+            <Row>
+              <ServiceDisplay>
+                {Object.keys(services).map((serv, i) => (
+                  <Tag>{services[serv]}</Tag>
+                ))}
+              </ServiceDisplay>
+            </Row>
+
+            <Motto>{motto}</Motto>
+            <CardsCont>
+              <CardSpan>
+                <TagText>{offer}</TagText>
+                <NumText>offers</NumText>
+              </CardSpan>
+              <CardSpan>
+                <TagText>{reference}</TagText>
+                <NumText>references</NumText>
+              </CardSpan>
+              <Location>{location}</Location>
+            </CardsCont>
+          </TextCont>
           <PicCont>
             <PicStyle src={src} alt=''></PicStyle>
           </PicCont>
-          <TextCont>
-            <Text>
-            <Title>{title}</Title>
-            <About>{notes}</About>
-            <Pa>{offerText}</Pa>
-            <SubTit>
-              <Pa>{offer}</Pa>
-              <Pa>{reference}</Pa>
-            </SubTit>
-          </Text>
-          <InfoField>
-            <InfoSpan>
-              <InfoName>{name}</InfoName>
-            </InfoSpan>
-            <IconSpan>
-             
-              <DropdownCont>
-                <ICont>
-                  <i className='fas fa-external-link-alt'></i>
-                </ICont>
-                <DropdownContent className='DropContent'>
-                  <Li>
-                    <a href={link}>{link}</a>
-                  </Li>
-                </DropdownContent>
-              </DropdownCont>
-             
-            </IconSpan>
-          </InfoField>
-          </TextCont>
         </CardCont>
       </CardWrapper>
     </div>

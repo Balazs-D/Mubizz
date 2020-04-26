@@ -76,7 +76,7 @@ export default (state, action) => {
     case FETCH_OFFERS:
       return {
         ...state,
-        fetchedOffers: {...state.fetchedOffers, fetchedOffers: action.payload},
+        fetchedOffers:  action.payload,
       };
 
     case FETCH_REFERENCES:

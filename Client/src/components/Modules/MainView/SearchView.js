@@ -50,8 +50,6 @@ const Col = styled.div`
   padding: 0px 0px;
 `;
 
-
-
 const SiteName = styled.h2`
   color: white;
   background: ${(props) => props.theme.colors.basicBlue};
@@ -76,7 +74,38 @@ const SearchView = (props) => {
           <SiteName>Offer Manager</SiteName>
           {authCont.fetchedProfiles &&
             authCont.fetchedProfiles.map((item, i) => {
-              return <UserCard key={i} label='Profile' src={item.avatar} offer={item.offer} reference={item.reference} />;
+              let offerMatch = authCont.fetchedOffers.filter(
+                (offer, i) => offer.user === item.user
+              );
+              let referenceMatch = authCont.fetchedReferences.filter(
+                (reference, i) => reference.user === item.user
+              );
+
+              console.log(
+                item.profileName,
+                offerMatch.length,
+                referenceMatch.length
+              );
+
+              console.log(item.services)
+
+              return (
+                <UserCard
+                  key={i}
+                  label='Profile'
+                  src={item.avatar}
+                  offers={offerMatch.length}
+                  references={referenceMatch.length}
+                  name={item.profileName ? item.profileName : 'User'}
+                  motto={item.profileMotto}
+                  services={item.services}
+                  location={item.location}
+                  reference={referenceMatch.length}
+                  offer={offerMatch.length}
+
+                  
+                />
+              );
             })}
         </Form>
       </Col>

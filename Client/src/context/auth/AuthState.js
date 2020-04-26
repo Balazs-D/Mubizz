@@ -116,9 +116,10 @@ const AuthState = (props) => {
     }
   };
 
-    const getFetchedOffers = async (user, id) => {
+    const getFetchedOffers = async () => {
       try {
-        const res = await axios.get(`/api/${user}/offer/${id}`);
+        const res = await axios.get(`/api/offer/user`);
+        console.log('FETCHED OFFERS: ', res.data);
         dispatch({
           type: FETCH_OFFERS,
           payload: res.data,
@@ -130,7 +131,7 @@ const AuthState = (props) => {
 
   const getFetchedReferences = async () => {
     try {
-      const res = await axios.get('/api/reference');
+      const res = await axios.get('/api/reference/user');
       dispatch({
         type: FETCH_REFERENCES,
         payload: res.data,
