@@ -230,7 +230,7 @@ transition: transform 0.35s ease-in;
       ${(props) => props.theme.colors.gradientPink}
     );
     box-shadow: 0vw 0vw 0.4vw ${(props) => props.theme.colors.darkOne};
-        transform: scale(1.1);
+        transform: scale(1.05);
 
   }
 
@@ -264,6 +264,8 @@ const Card = ({
   reference,
   offer,
   location,
+  onClick,
+  value
 }) => {
   const authCont = useContext(authContext);
   console.log(Object.keys(services));
@@ -276,7 +278,7 @@ const Card = ({
 
   return (
     <div>
-      <CardWrapper>
+      <CardWrapper onClick={onClick} value={value}>
         <CardCont>
           <TextCont>
             {/* <Name>{name}</Name> */}

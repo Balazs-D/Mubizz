@@ -27,6 +27,7 @@ import {
   FETCH_PROFILES,
   FETCH_REFERENCES,
   FETCH_OFFERS,
+  FETCH_PROFILE,
 } from '../types';
 
 export default (state, action) => {
@@ -85,6 +86,12 @@ export default (state, action) => {
         fetchedReferences: action.payload,
       };
 
+    case FETCH_PROFILE: 
+    return {
+      ...state,
+      currentProfile: action.payload,
+    }
+
     case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGIN_FAIL:
@@ -124,6 +131,8 @@ export default (state, action) => {
         ...state,
         profile: { ...state.profile, languages: action.payload },
       };
+
+    
 
     case UPD_LOCATION_STATE:
       return {

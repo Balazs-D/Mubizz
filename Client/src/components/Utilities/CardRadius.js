@@ -131,6 +131,7 @@ const SubTit = styled.h3`
   font-size: ${(props) => props.theme.fontSizes.small};
   margin-top: -5px;
   width: 100%;
+  height: 60px;
   padding: 5px 5px;
   border: 1px solid ${(props) => props.theme.colors.mainPurple};
   border-radius: 3px;
@@ -268,7 +269,7 @@ const Card = ({
               </ICont> */}
               <DropdownCont>
                 <ICont>
-                  <i class='fas fa-external-link-alt'></i>
+                  <i className='fas fa-external-link-alt'></i>
                 </ICont>
                 <DropdownContent className='DropContent'>
                   <Li><a href={link}>{link}</a></Li>

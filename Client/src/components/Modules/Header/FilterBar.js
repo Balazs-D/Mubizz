@@ -1,7 +1,10 @@
 // Utilities
 import React, { useContext, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import UserCont from '../../../context/user/userContext';
+import AuthCont from '../../../context/auth/authContext';
+
 import {
   CountryDropdown,
   RegionDropdown,
@@ -242,9 +245,7 @@ const Button = styled.input.attrs({ type: 'button' })`
     border: 1px solid ${(props) => props.theme.colors.white};
     color: ${(props) => props.theme.colors.mainPurple};
     background: ${(props) =>
-      props.checked
-        ? props.theme.colors.lightGrey
-        : props.theme.colors.info};
+      props.checked ? props.theme.colors.lightGrey : props.theme.colors.info};
   }
 
   &:active {
@@ -260,8 +261,10 @@ const SpanSubmit = styled.div`
   justify-content: flex-end;
   width: 95%;
 `;
-const FilterBar = () => {
+const FilterBar = (props) => {
   const userCont = useContext(UserCont);
+  const authCont = useContext(AuthCont);
+
   const { toggleTagBar } = userCont;
   const [tagArr, setTagArr] = useState([]);
   const ServiceFieldArray = [
@@ -306,6 +309,13 @@ const FilterBar = () => {
     console.log(country);
   };
 
+  const handleSearch = async () => {
+    await authCont.getFetchedOffers();
+    await authCont.getFetchedProfiles();
+    await userCont.toggleFilterBar();
+    await props.history.push('/dashboard/filter');
+  };
+
   return (
     <TagBarCont filterBar={userCont.filterBar}>
       <Label>Search Filter</Label>
@@ -339,10 +349,10 @@ const FilterBar = () => {
         </SpanInput>
       </SpanFields>
       <SpanSubmit>
-        <ButtonSearch>Search</ButtonSearch>
+        <ButtonSearch onClick={(e) => handleSearch(e)}>Search</ButtonSearch>
       </SpanSubmit>
     </TagBarCont>
   );
 };
 
-export default FilterBar;
+export default withRouter(FilterBar);

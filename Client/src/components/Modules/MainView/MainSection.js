@@ -16,7 +16,7 @@ import OfferManagement from './OfferManagement';
 import ReferenceManagement from './ReferenceManagement';
 import Intro from './Intro';
 import Marked from './Marked';
-import UserNetwork from './UserNetwork';
+import Filter from './FilterView';
 import EditProfile from './EditProfile';
 import Messages from './Messages';
 import Dashboard from './Dashboard';
@@ -60,7 +60,7 @@ const MainSection = () => {
           <Route path='/dashboard/search' component={SearchView} />
           <Route path='/dashboard/journal' component={JournalView} />
           <Route path='/dashboard/marked' component={Marked} />
-          <Route path='/dashboard/network' component={UserNetwork} />
+          <Route path='/dashboard/filter' component={Filter} />
           <Route path='/dashboard/edit-profile' component={EditProfile} />
           <Route path='/dashboard/messages' component={Messages} />
           <Route path='/dashboard/settings' component={Settings} />

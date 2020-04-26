@@ -7,7 +7,7 @@ import axios from 'axios';
 
 // Component
 
-import UserCard from '../../Utilities/UserCard';
+import Card from '../../Utilities/CardRadius';
 
 // Styled Comp
 
@@ -28,9 +28,10 @@ const GradientContRadius = styled.div`
 
 const Form = styled.form`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-
+  justify-content: center;
   width: 100%;
 `;
 
@@ -67,47 +68,35 @@ const SearchView = (props) => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleClick =(e, input)=>{
+  const handleClick = (e, input) => {
     e.preventDefault();
     let id = input;
-    
-authCont.getSelectedProfile(id);
-  }
+
+    authCont.getSelectedProfile(id);
+  };
 
   return (
     <GradientContRadius>
       <Col>
         <Form>
-          <SiteName>Keyword search result</SiteName>
-          {authCont.fetchedProfiles &&
-            authCont.fetchedProfiles.map((item, i) => {
-              let offerMatch = authCont.fetchedOffers.filter(
+          <SiteName>Filtered search result</SiteName>
+          {authCont.fetchedOffers &&
+            authCont.fetchedOffers.map((item, i) => {
+              let userMatch = authCont.fetchedProfiles.filter(
                 (offer, i) => offer.user === item.user
               );
-              let referenceMatch = authCont.fetchedReferences.filter(
-                (reference, i) => reference.user === item.user
-              );
 
-              console.log(item);
-
-
+              console.log(userMatch);
               return (
-                <UserCard
+                <Card
                   key={i}
-                  label='Profile'
-                  src={item.avatar}
-                  offers={offerMatch.length}
-                  references={referenceMatch.length}
-                  name={item.profileName ? item.profileName : 'User'}
-                  motto={item.profileMotto}
-                  services={item.services}
-                  location={item.location}
-                  reference={referenceMatch.length}
-                  offer={offerMatch.length}
-                  onClick={(e) => handleClick(e, item._id)}
-                  // value={item._id}
-
-                  
+                  title={item.title}
+                  src={userMatch[0].avatar}
+                  name={userMatch[0].profileName}
+                  notes={item.description}
+                  incOne={item.includes[0]}
+                  incTwo={item.includes[1]}
+                  link={item.links[0]}
                 />
               );
             })}

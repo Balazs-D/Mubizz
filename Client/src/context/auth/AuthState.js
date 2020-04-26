@@ -33,6 +33,7 @@ import {
   FETCH_PROFILES,
   FETCH_OFFERS,
   FETCH_REFERENCES,
+  FETCH_PROFILE,
 } from '../types';
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
@@ -49,6 +50,7 @@ const AuthState = (props) => {
     fetchedProfiles: [],
     fetchedOffers: [],
     fetchedReferences: [],
+    currentProfile: [],
     social: {
       youtube: '',
       twitter: '',
@@ -100,6 +102,18 @@ const AuthState = (props) => {
       });
     } catch (error) {
       console.log('getUserData error');
+    }
+  };
+
+  const getSelectedProfile = async (id) => {
+    try {
+      const res = await axios.get(`/api/profile/user/${id}`);
+      dispatch({
+        type: FETCH_PROFILE,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log('get fetched profile error');
     }
   };
 
@@ -425,7 +439,8 @@ const AuthState = (props) => {
         updateRefLinks,
         getFetchedProfiles,
         getFetchedOffers,
-        getFetchedReferences
+        getFetchedReferences,
+        getSelectedProfile,
       }}
     >
       {props.children}
