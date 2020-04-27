@@ -3,12 +3,12 @@ import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import UserCont from '../../context/user/userContext';
 import AuthCont from '../../context/auth/authContext';
+import Avatar from '../../graphics/avatar.png';
 
 // Component
 
 import Card from '../Utilities/CardRadius';
 import CardRef from '../Utilities/CardRadiusRef';
-
 
 // Styled Comp
 
@@ -31,21 +31,18 @@ const Cont = styled.div`
 `;
 
 const CardCont = styled.div`
-width: 100%;
-/* display: flex;
+  width: 100%;
+  /* display: flex;
 flex-direction: row;
 flex-wrap: wrap;
 justify-content: center; */
-padding: 0px 5%;
-display: grid;
-place-items: center;
-grid-template-columns: 50% 50%;
-grid-gap: 0%;
-background: white;
-
-`
-
-
+  padding: 0px 5%;
+  display: grid;
+  place-items: center;
+  grid-template-columns: 50% 50%;
+  grid-gap: 0%;
+  background: white;
+`;
 
 const SiteName = styled.h2`
   color: white;
@@ -62,7 +59,7 @@ const SubName = styled(SiteName)`
   background: ${(props) => props.theme.colors.primaryLight};
   box-shadow: 0px 0px 3px ${(props) => props.theme.colors.primaryDark};
   font-size: ${(props) => props.theme.fontSizes.half};
-  color: ${props=>props.theme.colors.mainPurple};
+  color: ${(props) => props.theme.colors.mainPurple};
   margin: 20px 0px;
 `;
 
@@ -108,10 +105,9 @@ const SpanForList = styled.div`
   flex-direction: row;
   border: 1px solid ${(props) => props.theme.colors.info};
   border-radius: 3px;
-  flex-wrap: wrap;
-
   background: ${(props) => props.theme.colors.white};
   padding: 5px;
+  flex-wrap: wrap;
 `;
 
 const Item = styled.p`
@@ -120,7 +116,7 @@ const Item = styled.p`
   padding: 3px;
   font-size: ${(props) => props.theme.fontSizes.xm};
   color: ${(props) => props.theme.colors.mainPurple};
-  margin-right: 10px;
+  margin: 0px 10px 0px 0px;
 `;
 
 const ItemDesc = styled(Item)`
@@ -149,35 +145,33 @@ const Anc = styled.a`
   color: ${(props) => props.theme.colors.mainPurple};
 `;
 
-const OfferManagement = (props) => {
+const ProfileView = (props) => {
   const authCont = useContext(AuthCont);
   const userCont = useContext(UserCont);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    // setUser({ ...user, languages: '' });
-    // setUser({ ...user, selectedSkills: '' });
-    // setUser({ ...user, selectedTags: '' });
-    // console.log('USe Effect get profile ');
-    // authCont.getProfile();
   }, []);
+
+  console.log('avatar: ', authCont.currentProfile.avatar);
 
   return (
     <Cont>
-      <SiteName>Your Profile</SiteName>
-      <SubName>Your Service Offers</SubName>
+      <SiteName>{authCont.currentProfile.profileName}</SiteName>
 
       <ContProf>
         <BoxLeft>
           <Span>
-            <Span>
-              <Label>your motto / message</Label>
-              <ItemDesc>{authCont.profile.profileMotto}</ItemDesc>
-            </Span>
+            <PicCont
+              src={
+                authCont.currentProfile.avatar
+                  ? authCont.currentProfile.avatar
+                  : Avatar
+              }
+            ></PicCont>
           </Span>
           <Span>
-            <Label>your profile description</Label>
-            <ItemDesc>{authCont.profile.description}</ItemDesc>
+            <ItemDesc>{authCont.currentProfile.description}</ItemDesc>
           </Span>
         </BoxLeft>
 
@@ -185,13 +179,13 @@ const OfferManagement = (props) => {
           <Span>
             <Label>based in</Label>
             <SpanForList>
-              <Item>{authCont.profile.location}</Item>
+              <Item>{authCont.currentProfile.location}</Item>
             </SpanForList>
           </Span>
           <Span>
-            <Label>service fields</Label>
+            <Label>service fileds</Label>
             <SpanForList>
-              {authCont.profile.services.map((item, i) => {
+              {authCont.currentProfile.services.map((item, i) => {
                 return <Item key={i}>{item}</Item>;
               })}
             </SpanForList>
@@ -199,7 +193,7 @@ const OfferManagement = (props) => {
           <Span>
             <Label>skills</Label>
             <SpanForList>
-              {authCont.profile.skills.map((item, i) => {
+              {authCont.currentProfile.skills.map((item, i) => {
                 return <Item key={i}>{item}</Item>;
               })}
             </SpanForList>
@@ -207,7 +201,7 @@ const OfferManagement = (props) => {
           <Span>
             <Label>education & certificates</Label>
             <SpanForList>
-              {authCont.profile.education.map((item, i) => {
+              {authCont.currentProfile.education.map((item, i) => {
                 return <Item key={i}>{item}</Item>;
               })}
             </SpanForList>
@@ -215,7 +209,7 @@ const OfferManagement = (props) => {
           <Span>
             <Label>languages</Label>
             <SpanForList>
-              {authCont.profile.languages.map((item, i) => {
+              {authCont.currentProfile.languages.map((item, i) => {
                 return <Item key={i}>{item}</Item>;
               })}
             </SpanForList>
@@ -223,9 +217,9 @@ const OfferManagement = (props) => {
           <Span>
             <Label>web site</Label>
             <SpanForList>
-              {authCont.profile.website && (
+              {authCont.currentProfile.website && (
                 <Item>
-                  <Anc href={authCont.profile.website}>Instagram</Anc>
+                  <Anc href={authCont.currentProfile.website}>Instagram</Anc>
                 </Item>
               )}
             </SpanForList>
@@ -233,89 +227,98 @@ const OfferManagement = (props) => {
           <Span>
             <Label>social media</Label>
             <SpanForList>
-              {authCont.profile.youtube && (
+              {authCont.currentProfile.youtube && (
                 <Item>
-                  <Anc href={authCont.profile.youtube}>Youtube</Anc>
+                  <Anc href={authCont.currentProfile.youtube}>Youtube</Anc>
                 </Item>
               )}
-              {authCont.profile.twitter && (
+              {authCont.currentProfile.twitter && (
                 <Item>
-                  <Anc href={authCont.profile.twitter}>Twitter</Anc>
-                </Item>
-              )}
-
-              {authCont.profile.facebook && (
-                <Item>
-                  <Anc href={authCont.profile.facebook}>Facebook</Anc>
-                </Item>
-              )}
-              {authCont.profile.linkedin && (
-                <Item>
-                  <Anc href={authCont.profile.linkedin}>Linkedin</Anc>
+                  <Anc href={authCont.currentProfile.twitter}>Twitter</Anc>
                 </Item>
               )}
 
-              {authCont.profile.instagram && (
+              {authCont.currentProfile.facebook && (
                 <Item>
-                  <Anc href={authCont.profile.instagram}>Instagram</Anc>
+                  <Anc href={authCont.currentProfile.facebook}>Facebook</Anc>
                 </Item>
               )}
-              {authCont.profile.discogs && (
+              {authCont.currentProfile.linkedin && (
                 <Item>
-                  <Anc href={authCont.profile.discogs}>Discogs</Anc>
+                  <Anc href={authCont.currentProfile.linkedin}>Linkedin</Anc>
                 </Item>
               )}
-              {authCont.profile.bandcamp && (
+
+              {authCont.currentProfile.instagram && (
                 <Item>
-                  <Anc href={authCont.profile.bandcamp}>Bandcamp</Anc>
+                  <Anc href={authCont.currentProfile.instagram}>Instagram</Anc>
                 </Item>
               )}
-              {authCont.profile.soundcloud && (
+              {authCont.currentProfile.discogs && (
                 <Item>
-                  <Anc href={authCont.profile.soundcloud}>Soundcloud</Anc>
+                  <Anc href={authCont.currentProfile.discogs}>Discogs</Anc>
+                </Item>
+              )}
+              {authCont.currentProfile.bandcamp && (
+                <Item>
+                  <Anc href={authCont.currentProfile.bandcamp}>Bandcamp</Anc>
+                </Item>
+              )}
+              {authCont.currentProfile.soundcloud && (
+                <Item>
+                  <Anc href={authCont.currentProfile.soundcloud}>
+                    Soundcloud
+                  </Anc>
                 </Item>
               )}
             </SpanForList>
           </Span>
         </BoxRight>
       </ContProf>
+
+      <SubName>Service Offers</SubName>
       <CardCont>
         {!authCont.offer && <p>You dont have any offers yet.</p>}
-        {authCont.offer &&
-          authCont.offer.map((item, i) => {
-            return (
-              <Card
-                title={item.title}
-                src={authCont.profile.avatar}
-                name={authCont.profile.profileName}
-                notes={item.description}
-                incOne={item.includes[0]}
-                incTwo={item.includes[1]}
-                link={item.links[0]}
-              />
-            );
+        {authCont.fetchedOffers &&
+          authCont.fetchedOffers.map((item, i) => {
+            if (item.user === authCont.currentProfile.user) {
+              return (
+                <Card
+                  key={i}
+                  title={item.title}
+                  src={authCont.currentProfile.avatar}
+                  name={authCont.currentProfile.profileName}
+                  notes={item.description}
+                  incOne={item.includes[0]}
+                  incTwo={item.includes[1]}
+                  link={item.links && item.links[0]}
+                />
+              );
+            }
           })}
       </CardCont>
-      <SubName>Your References</SubName>
+      <SubName>References</SubName>
       <CardCont>
         {!authCont.offer && <p>You dont have any offers yet.</p>}
-        {authCont.reference &&
-          authCont.reference.map((item, i) => {
-            return (
-              <CardRef
-                title={item.position}
-                projectName={item.projectName}
-                src={authCont.profile.avatar}
-                name={authCont.profile.profileName}
-                notes={item.description}
-                location={item.location}
-                link={item.links[0]}
-              />
-            );
+        {authCont.fetchedReferences &&
+          authCont.fetchedReferences.map((item, i) => {
+            if (item.user === authCont.currentProfile.user) {
+              return (
+                <CardRef
+                  title={item.position}
+                  projectName={item.projectName}
+                  src={authCont.currentProfile.avatar}
+                  name={authCont.currentProfile.profileName}
+                  notes={item.description}
+                  location={item.location}
+                  link={item.links[0]}
+                />
+              );
+            }
           })}
       </CardCont>
     </Cont>
   );
 };
 
-export default OfferManagement;
+export default ProfileView;

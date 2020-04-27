@@ -2,6 +2,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import authContext from '../../context/auth/authContext';
+import Avatar from '../../graphics/avatar.png';
+
 
 // Styled Components
 
@@ -77,8 +79,9 @@ const PicStyle = styled.img`
   height: 15vh;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-
   object-fit: cover;
+  object-position: center top;
+
   margin: 0;
   opacity: 0.8;
   transition: all 0.35s ease-in;
@@ -203,6 +206,7 @@ const CardWrapper = styled.div`
   margin: 20px 40px;
   transition: background 0.35s ease-in .15s;
   transition: box-shadow 0.35s ease-in;
+  transition: transform 0.35s ease-in;
 
   &:hover {
     background: linear-gradient(
@@ -210,6 +214,7 @@ const CardWrapper = styled.div`
       ${(props) => props.theme.colors.gradientPink}
     );
     box-shadow: 0vw 0vw 0.4vw ${(props) => props.theme.colors.darkOne};
+    transform: scale(1.05);
   }
 
   /* &:hover ${CardCont} {
@@ -247,7 +252,7 @@ const Card = ({
       <CardWrapper>
         <CardCont>
           <Label>Service Offer</Label>
-          <PicStyle src={src} alt=''></PicStyle>
+          <PicStyle src={src ? src : Avatar} alt=''></PicStyle>
 
           <Text>
             <Title>{title}</Title>

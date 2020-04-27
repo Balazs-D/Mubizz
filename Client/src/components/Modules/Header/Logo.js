@@ -12,16 +12,17 @@ const Image = styled.img`
   width: 15vw;
   height: auto;
   margin-top: -2px;
+  
 `;
 
 const LogoCont = styled.div`
   padding-top: -5px;
-  /* background: ${props => props.theme.colors.mainLightBlue}; */
+  /* background: ${(props) => props.theme.colors.mainLightBlue}; */
   padding: 4px;
   margin: 5px;
-  @media (min-width: 800px) {
+  @media (max-width: 800px) {
    
-    display: flex;
+    display: none;
     
   }
 `;

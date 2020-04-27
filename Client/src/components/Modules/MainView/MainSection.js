@@ -15,7 +15,7 @@ import Settings from './Settings';
 import OfferManagement from './OfferManagement';
 import ReferenceManagement from './ReferenceManagement';
 import Intro from './Intro';
-import Marked from './Marked';
+import ProfileView from '../../../components/ProfileView/ProfileView';
 import Filter from './FilterView';
 import EditProfile from './EditProfile';
 import Messages from './Messages';
@@ -59,7 +59,7 @@ const MainSection = () => {
         <Switch>
           <Route path='/dashboard/search' component={SearchView} />
           <Route path='/dashboard/journal' component={JournalView} />
-          <Route path='/dashboard/marked' component={Marked} />
+          <Route path='/dashboard/profile-view' component={ProfileView} />
           <Route path='/dashboard/filter' component={Filter} />
           <Route path='/dashboard/edit-profile' component={EditProfile} />
           <Route path='/dashboard/messages' component={Messages} />

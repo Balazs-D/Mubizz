@@ -14,6 +14,7 @@ import ButtonMain from '../../Utilities/ButtonMain';
 import Alerts from '../Alerts';
 import WinTitle from '../../Utilities/WinTitle';
 import WinTitleOff from '../../Utilities/WinTitleOff';
+import Avatar from '../../../graphics/avatar.png'
 
 const Register = (props) => {
   const authCont = useContext(AuthContext);
@@ -74,58 +75,72 @@ const Register = (props) => {
         password,
       });
       getProfile();
+      authCont.updateAvatar(Avatar)
     }
     console.log(authCont);
   };
 
   return (
-    <LoginCont onSubmit={onSubmit}>
-      <WinTitle text='registration'></WinTitle>
+    <MainCont>
+      <LoginCont onSubmit={onSubmit}>
+        <WinTitle text='registration'></WinTitle>
 
-      <Link to='/login'>
-        <WinTitleOff text='to login' component={Link} to='/login'>
-          To Login
-        </WinTitleOff>
-      </Link>
-      <Alerts />
-      <FormDiv>
-        <ColLeft>
-          <InputStyleForm
-            placeholder='Your first name...'
-            name='name'
-            value={name}
-            onChange={onChange}
-            label='NAME'
-            autoFocus
-          />
-          <InputStyleForm
-            placeholder='Your e-mail...'
-            name='email'
-            value={email}
-            onChange={onChange}
-            label='E-MAIL'
-          />
-          <InputStyleForm
-            type='password'
-            placeholder='Select a password...'
-            name='password'
-            value={password}
-            onChange={onChange}
-            label='PASSWORD'
-          />
+        <Link to='/login'>
+          <WinTitleOff text='to login' component={Link} to='/login'>
+            To Login
+          </WinTitleOff>
+        </Link>
+        <Alerts />
+        <FormDiv>
+          <ColLeft>
+            <InputStyleForm
+              placeholder='Your first name...'
+              name='name'
+              value={name}
+              onChange={onChange}
+              label='NAME'
+              autoFocus
+            />
+            <InputStyleForm
+              placeholder='Your e-mail...'
+              name='email'
+              value={email}
+              onChange={onChange}
+              label='E-MAIL'
+            />
+            <InputStyleForm
+              type='password'
+              placeholder='Select a password...'
+              name='password'
+              value={password}
+              onChange={onChange}
+              label='PASSWORD'
+            />
 
-          <ButtonDiv>
-            <ButtonMain text='Signin' value='Register' onClick={onSubmit} />
-          </ButtonDiv>
-        </ColLeft>
-      </FormDiv>
-    </LoginCont>
+            <ButtonDiv>
+              <ButtonMain text='Signin' value='Register' onClick={onSubmit} />
+            </ButtonDiv>
+          </ColLeft>
+        </FormDiv>
+      </LoginCont>
+    </MainCont>
   );
 };
 
 export default withRouter(Register);
 
 // Styled Components
+
+const MainCont = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const LoginCont = styled.form`
   display: flex;
@@ -143,7 +158,7 @@ const LoginCont = styled.form`
   background-position-x: center;
 
   @media (min-width: 800px) {
-    margin: 80px;
+    margin: 80px 80px 160px 80px;
     padding: 50px;
     width: 50%;
     display: flex;

@@ -9,6 +9,7 @@ import AlertState from '../context/alert/AlertState';
 import userContext from '../context/user/userContext';
 import AuthContext from '../context/auth/authContext';
 import PrivateRoute from '../components/routing/PrivateRoute';
+import LogoVect from '../graphics/SVG/logoFinal.png';
 
 // Components
 import Header from './Modules/Header/Header';
@@ -35,13 +36,56 @@ const MainContainer = styled.div`
   overflow-x: hidden;
   display: flex;
   justify-content: center;
-  background-image: linear-gradient(${props=>props.theme.colors.info}, ${props=>props.theme.colors.infoLight});
+  background-image: linear-gradient(
+    ${(props) => props.theme.colors.info},
+    ${(props) => props.theme.colors.infoLight}
+  );
+  @media (max-width: 800px) {
+    display: hidden;
+    height: 100%;
+  }
 `;
+
+const MobileAlert = styled.div`
+  @media (max-width: 800px) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: ${(props) => props.theme.colors.basicBlue};
+    z-index: 1005;
+    display: flex;
+    flex-direction: column;
+    font-family: ${(props) => props.theme.fontFamily[5]};
+    color: ${(props) => props.theme.colors.info};
+    justify-content: center;
+    align-items: center;
+  }
+  @media (min-width: 800px) {
+    display: none;
+  }
+`;
+
+const Pa = styled.p`
+  padding: 10px;
+  border: 1px solid ${(props) => props.theme.colors.info};
+  border-radius: 3px;
+  width: 49%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  text-align: justify;
+`;
+
+const Img = styled.img`
+  width: 50%;
+  margin-top: -50%;
+`;
+
 // =========================================================== //
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
-};
+}
 
 console.log('API URL: ' + process.env.REACT_APP_API_URL);
 
@@ -58,13 +102,20 @@ export default function App() {
               <Header />
 
               <MainContainer>
+                <MobileAlert>
+                  <Img src={LogoVect} alt='' />
+                  <Pa>Is only operating on desktop version actually.</Pa>
+                </MobileAlert>
                 <Switch>
                   <PrivateRoute
                     exact
                     path='/'
                     component={Dashboard}
                   ></PrivateRoute>
-                  <PrivateRoute path='/dashboard' component={Dashboard}></PrivateRoute>
+                  <PrivateRoute
+                    path='/dashboard'
+                    component={Dashboard}
+                  ></PrivateRoute>
 
                   <Route path='/login' component={Login}></Route>
 

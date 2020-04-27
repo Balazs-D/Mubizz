@@ -413,6 +413,7 @@ const AuthState = (props) => {
         fetchedProfiles: state.fetchedProfiles,
         fetchedOffers: state.fetchedOffers,
         fetchedReferences: state.fetchedReferences,
+        currentProfile: state.currentProfile,
         updateServices,
         updateSkills,
         updateAvatar,

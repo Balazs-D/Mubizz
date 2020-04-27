@@ -2,6 +2,9 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import authContext from '../../context/auth/authContext';
+import Avatar from '../../graphics/avatar.png';
+
+
 
 // Styled Components
 
@@ -305,7 +308,7 @@ const Card = ({
             </CardsCont>
           </TextCont>
           <PicCont>
-            <PicStyle src={src} alt=''></PicStyle>
+            <PicStyle src={src ? src : Avatar} alt=''></PicStyle>
           </PicCont>
         </CardCont>
       </CardWrapper>

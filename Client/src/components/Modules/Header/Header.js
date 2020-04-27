@@ -31,6 +31,11 @@ const HeaderCont = styled.div`
   height: 20vw;
   z-index: 1;
   border-bottom: 1px solid ${(props) => props.theme.colors.warning};
+  @media (max-width: 800px) {
+   
+    display: none;
+    
+  }
  
 
   @media (min-width: 800px) {
@@ -65,6 +70,9 @@ const ControlContainer = styled.div`
   align-items: flex-end;
   padding: 0.4vw;
   width: 100%;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const InputCont = styled.div`

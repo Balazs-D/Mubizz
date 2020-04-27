@@ -2,6 +2,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import authContext from '../../context/auth/authContext';
+import Avatar from '../../graphics/avatar.png';
+
 
 // Styled Components
 
@@ -197,6 +199,7 @@ const CardWrapper = styled.div`
   margin: 20px 40px;
   transition: background 0.35s ease-in .15s;
   transition: box-shadow 0.35s ease-in;
+  transition: transform 0.35s ease-in;
 
   &:hover {
     background: linear-gradient(
@@ -204,6 +207,7 @@ const CardWrapper = styled.div`
       ${(props) => props.theme.colors.gradientYellow}
     );
     box-shadow: 0vw 0vw 0.4vw ${(props) => props.theme.colors.darkOne};
+    transform: scale(1.05);
   }
 
   /* &:hover ${CardCont} {
@@ -250,7 +254,7 @@ const Card = ({
       <CardWrapper>
         <CardCont>
           <Label>Reference Work</Label>
-          <PicStyle src={src} alt=''></PicStyle>
+          <PicStyle src={src ? src : Avatar} alt=''></PicStyle>
 
           <Text>
             {/* <SpanTitle> */}
@@ -261,8 +265,6 @@ const Card = ({
             {/* </SpanTitle> */}
             <About>{notes}</About>
             <Pa>{offerText}</Pa>
-
-            
           </Text>
           <InfoField>
             <InfoSpan>

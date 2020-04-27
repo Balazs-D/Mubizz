@@ -87,45 +87,58 @@ console.log(authCont.error)
   console.log('Re-rendering', { email, password });
 
   return (
-    <LoginCont onSubmit={onSubmit}>
-      <WinTitle text='Login'>Login</WinTitle>
-<Alert />
-      <Link to='/register'>
-        <WinTitleOff text='to registration' component={Link} to='/register'>
-          To Registration
-        </WinTitleOff>
-      </Link>
+    <MainCont>
+      <LoginCont onSubmit={onSubmit}>
+        <WinTitle text='Login'>Login</WinTitle>
+        <Alert />
+        <Link to='/register'>
+          <WinTitleOff text='to registration' component={Link} to='/register'>
+            To Registration
+          </WinTitleOff>
+        </Link>
 
-      <FormDiv>
-        <ColLeft>
-          <Input
-            placeholder='Your e-mail...'
-            name='email'
-            value={email}
-            onChange={onChange}
-            label='E-Mail'
-          />
+        <FormDiv>
+          <ColLeft>
+            <Input
+              placeholder='Your e-mail...'
+              name='email'
+              value={email}
+              onChange={onChange}
+              label='E-Mail'
+            />
 
-          <Input
-            placeholder='Your password...'
-            name='password'
-            value={password}
-            onChange={onChange}
-            label='Password'
-          />
+            <Input
+              placeholder='Your password...'
+              name='password'
+              value={password}
+              onChange={onChange}
+              label='Password'
+            />
 
-          <ButtonDiv>
-            <ButtonMain text='Login' onClick={onSubmit} />
-          </ButtonDiv>
-        </ColLeft>
-      </FormDiv>
-    </LoginCont>
+            <ButtonDiv>
+              <ButtonMain text='Login' onClick={onSubmit} />
+            </ButtonDiv>
+          </ColLeft>
+        </FormDiv>
+      </LoginCont>
+    </MainCont>
   );
 };
 
 export default withRouter(Login);
 
 // Styled Components
+
+const MainCont = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const LoginCont = styled.form`
   display: flex;
@@ -143,7 +156,7 @@ const LoginCont = styled.form`
   background-position-x: center;
 
   @media (min-width: 800px) {
-    margin: 80px;
+    margin: 80px 80px 160px 80px;
     padding: 50px;
     width: 50%;
     display: flex;

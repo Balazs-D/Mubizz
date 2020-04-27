@@ -16,10 +16,10 @@ const GradientContRadius = styled.div`
   justify-content: center;
   align-items: center;
   background-image: linear-gradient(
-    ${(props) => props.theme.colors.mainPurple},
-    ${(props) => props.theme.colors.mainPurple}
+    ${(props) => props.theme.colors.basicBlue},
+    ${(props) => props.theme.colors.basicBlue}
   );
-  padding: 1px;
+  padding: 0px;
   /* border-radius: 4px; */
   width: 100%;
   height: 100%;
@@ -56,7 +56,7 @@ const SiteName = styled.h2`
   background: ${(props) => props.theme.colors.basicBlue};
   font-family: ${(props) => props.theme.fontFamily[5]};
   padding: 5px 10px;
-
+  margin-bottom: 30px;
   width: 100%;
 `;
 

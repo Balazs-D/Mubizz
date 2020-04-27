@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import AuthCont from '../../../context/auth/authContext';
 import UserCont from '../../../context/user/userContext';
+import Avatar from '../../../graphics/avatar.png'
 
 // COmp
 
@@ -135,7 +136,7 @@ const DashboardSettings = () => {
                 )}
               </Row>
             </TitleDiv>
-            <PicCont src={profile.avatar ? profile.avatar : null}></PicCont>
+            <PicCont src={profile.avatar ? profile.avatar : Avatar}></PicCont>
             <List>
               {/* <li>
                 <NavLink

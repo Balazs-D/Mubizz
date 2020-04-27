@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import UserCont from '../../../context/user/userContext';
 import AuthCont from '../../../context/auth/authContext';
 import axios from 'axios';
+import { Link, withRouter } from 'react-router-dom';
+
 
 // Component
 
@@ -19,7 +21,7 @@ const GradientContRadius = styled.div`
     ${(props) => props.theme.colors.mainPurple},
     ${(props) => props.theme.colors.mainPurple}
   );
-  padding: 1px;
+  padding: 0px;
   /* border-radius: 4px; */
   width: 100%;
   height: 100%;
@@ -67,12 +69,13 @@ const SearchView = (props) => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleClick =(e, input)=>{
+  const handleClick = async (e, input) => {
     e.preventDefault();
     let id = input;
-    
-authCont.getSelectedProfile(id);
-  }
+
+    await authCont.getSelectedProfile(id);
+    await props.history.push('/dashboard/profile-view');
+  };
 
   return (
     <GradientContRadius>
@@ -90,7 +93,6 @@ authCont.getSelectedProfile(id);
 
               console.log(item);
 
-
               return (
                 <UserCard
                   key={i}
@@ -104,10 +106,8 @@ authCont.getSelectedProfile(id);
                   location={item.location}
                   reference={referenceMatch.length}
                   offer={offerMatch.length}
-                  onClick={(e) => handleClick(e, item._id)}
+                  onClick={(e) => handleClick(e, item.user)}
                   // value={item._id}
-
-                  
                 />
               );
             })}
@@ -117,4 +117,4 @@ authCont.getSelectedProfile(id);
   );
 };
 
-export default SearchView;
+export default withRouter(SearchView);

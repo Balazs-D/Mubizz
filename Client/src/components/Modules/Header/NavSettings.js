@@ -35,7 +35,7 @@ const NavSettings = () => {
       </li>
 
       <li>
-        <Link to='/dashboard/edit-profile' style={StyledLink}>
+        <Link to='/dashboard/your-profile' style={StyledLink}>
           <ButtonMain text='Profile' />
         </Link>
       </li>
@@ -81,6 +81,9 @@ const List = styled.ul`
     `
     width: 50%;
   `}
+  @media (max-width: 800px) {
+    display: none;  
+  }
 `;
 
 const StyledLink = {
