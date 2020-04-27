@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import authContext from '../../context/auth/authContext';
 import Avatar from '../../graphics/avatar.png';
 
-
-
 // Styled Components
 
 const CardCont = styled.div`
@@ -268,7 +266,7 @@ const Card = ({
   offer,
   location,
   onClick,
-  value
+  value,
 }) => {
   const authCont = useContext(authContext);
   console.log(Object.keys(services));
@@ -289,7 +287,7 @@ const Card = ({
             <Row>
               <ServiceDisplay>
                 {Object.keys(services).map((serv, i) => (
-                  <Tag>{services[serv]}</Tag>
+                  <Tag key={i}>{services[serv]}</Tag>
                 ))}
               </ServiceDisplay>
             </Row>

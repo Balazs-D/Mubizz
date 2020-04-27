@@ -6,7 +6,6 @@ import AuthCont from '../../../context/auth/authContext';
 import axios from 'axios';
 import { Link, withRouter } from 'react-router-dom';
 
-
 // Component
 
 import UserCard from '../../Utilities/UserCard';
@@ -91,25 +90,36 @@ const SearchView = (props) => {
                 (reference, i) => reference.user === item.user
               );
 
-              console.log(item);
-
-              return (
-                <UserCard
-                  key={i}
-                  label='Profile'
-                  src={item.avatar}
-                  offers={offerMatch.length}
-                  references={referenceMatch.length}
-                  name={item.profileName ? item.profileName : 'User'}
-                  motto={item.profileMotto}
-                  services={item.services}
-                  location={item.location}
-                  reference={referenceMatch.length}
-                  offer={offerMatch.length}
-                  onClick={(e) => handleClick(e, item.user)}
-                  // value={item._id}
-                />
-              );
+              console.log('ITEM . PROFILE NAME: ', item.profileName);
+              if (
+                item.profileName
+                  .toLowerCase()
+                  .includes(authCont.searchKeyword.toLowerCase()) ||
+                item.description
+                  .toLowerCase()
+                  .includes(authCont.searchKeyword.toLowerCase()) ||
+                item.profileMotto
+                  .toLowerCase()
+                  .includes(authCont.searchKeyword.toLowerCase())
+              ) {
+                return (
+                  <UserCard
+                    key={i}
+                    label='Profile'
+                    src={item.avatar}
+                    offers={offerMatch.length}
+                    references={referenceMatch.length}
+                    name={item.profileName ? item.profileName : 'User'}
+                    motto={item.profileMotto}
+                    services={item.services}
+                    location={item.location}
+                    reference={referenceMatch.length}
+                    offer={offerMatch.length}
+                    onClick={(e) => handleClick(e, item.user)}
+                    // value={item._id}
+                  />
+                );
+              }
             })}
         </Form>
       </Col>

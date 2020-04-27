@@ -34,6 +34,8 @@ import {
   FETCH_OFFERS,
   FETCH_REFERENCES,
   FETCH_PROFILE,
+  FILTER_OBJECT,
+  SEARCH_KEYWORD,
 } from '../types';
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
@@ -51,6 +53,8 @@ const AuthState = (props) => {
     fetchedOffers: [],
     fetchedReferences: [],
     currentProfile: [],
+    filterObject: [],
+    searchKeyword: '',
     social: {
       youtube: '',
       twitter: '',
@@ -301,6 +305,22 @@ const AuthState = (props) => {
     }
   };
 
+  const setFilterObject =(input)=>{
+    dispatch({
+      type: FILTER_OBJECT,
+      payload: input
+    })
+  };
+
+    const setSearchKeyword =(input)=>{
+    dispatch({
+      type: SEARCH_KEYWORD,
+      payload: input
+    })
+  };
+
+
+
   // UPDATE COMPONENT STATE IN AUTH
   // update tag selection
 
@@ -414,6 +434,8 @@ const AuthState = (props) => {
         fetchedOffers: state.fetchedOffers,
         fetchedReferences: state.fetchedReferences,
         currentProfile: state.currentProfile,
+        filterObject: state.filterObject,
+        searchKeyword: state.searchKeyword,
         updateServices,
         updateSkills,
         updateAvatar,
@@ -442,6 +464,8 @@ const AuthState = (props) => {
         getFetchedOffers,
         getFetchedReferences,
         getSelectedProfile,
+        setFilterObject,
+        setSearchKeyword,
       }}
     >
       {props.children}

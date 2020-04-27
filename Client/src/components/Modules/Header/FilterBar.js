@@ -286,6 +286,15 @@ const FilterBar = (props) => {
   const [keyword, setKeyword] = useState('');
   const [searchTags, setSearchTags] = useState('');
 
+   const [filterObj, setFilterObj] = useState([
+     { services: [], language: '', location: '', keyword: '' },
+   ]);
+   console.log('FILTER OBJECT : ', filterObj);
+
+   const handleReset = (e) => {
+     setFilterObj([{ services: [], language: '', location: '', keyword: '' }]);
+   };
+
   const toggleClick = (e) => {
     e.preventDefault();
     if (tagArr.includes(e.target.value)) {
@@ -349,6 +358,7 @@ const FilterBar = (props) => {
         </SpanInput>
       </SpanFields>
       <SpanSubmit>
+        <ButtonSearch onClick={(e) => handleReset(e)}>Reset</ButtonSearch>
         <ButtonSearch onClick={(e) => handleSearch(e)}>Search</ButtonSearch>
       </SpanSubmit>
     </TagBarCont>

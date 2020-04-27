@@ -1,5 +1,5 @@
 // Libraries
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, Fragment, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -125,15 +125,27 @@ const Header = (props) => {
   const userCont = useContext(userContext);
   const authCont = useContext(AuthContext);
 
+  const [inputValue, setInputValue] = useState('');
+  const [fetchedFilteredProfiles, setFetchedFilteredProfiles] = useState([]);
+
+ 
+
   const handleSearch = async () => {
+
     await authCont.getFetchedProfiles();
-
     await authCont.getFetchedOffers();
-
     await authCont.getFetchedReferences();
+
+   await authCont.setSearchKeyword(inputValue);
+    // setFetchedFilteredProfiles(currentSearch)
+    // console.log(currentSearch);
+    console.log('FETCHED FILTERED PROFILES: ', fetchedFilteredProfiles);
 
     await props.history.push('/dashboard/search');
   };
+
+  console.log(inputValue);
+
   const loggedHeader = (
     <Fragment>
       <HeaderCont filterBar={userCont.filterBar}>
@@ -158,7 +170,10 @@ const Header = (props) => {
           )} */}
           <ControlContainer>
             <InputCont>
-              <InputSearch placeholder='Search...' />
+              <InputSearch
+                placeholder='Search...'
+                onChange={(e) => setInputValue(e.target.value)}
+              />
 
               <SpanIcon>
                 <i onClick={handleSearch} className='fas fa-search'></i>

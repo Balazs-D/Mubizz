@@ -28,6 +28,8 @@ import {
   FETCH_REFERENCES,
   FETCH_OFFERS,
   FETCH_PROFILE,
+  FILTER_OBJECT,
+  SEARCH_KEYWORD
 } from '../types';
 
 export default (state, action) => {
@@ -77,7 +79,7 @@ export default (state, action) => {
     case FETCH_OFFERS:
       return {
         ...state,
-        fetchedOffers:  action.payload,
+        fetchedOffers: action.payload,
       };
 
     case FETCH_REFERENCES:
@@ -86,11 +88,11 @@ export default (state, action) => {
         fetchedReferences: action.payload,
       };
 
-    case FETCH_PROFILE: 
-    return {
-      ...state,
-      currentProfile: action.payload,
-    }
+    case FETCH_PROFILE:
+      return {
+        ...state,
+        currentProfile: action.payload,
+      };
 
     case REGISTER_FAIL:
     case AUTH_ERROR:
@@ -131,8 +133,6 @@ export default (state, action) => {
         ...state,
         profile: { ...state.profile, languages: action.payload },
       };
-
-    
 
     case UPD_LOCATION_STATE:
       return {
@@ -197,6 +197,19 @@ export default (state, action) => {
         ...state,
         credits: action.payload,
       };
+
+    case FILTER_OBJECT:
+      return {
+        ...state,
+        filterObject: action.payload,
+      };
+
+    case SEARCH_KEYWORD:
+      return {
+        ...state,
+        searchKeyword: action.payload,
+      };
+
     default:
       return state;
   }
