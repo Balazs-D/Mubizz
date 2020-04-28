@@ -116,7 +116,7 @@ const Item = styled.p`
   padding: 3px;
   font-size: ${(props) => props.theme.fontSizes.xm};
   color: ${(props) => props.theme.colors.mainPurple};
-  margin: 0px 10px 0px 0px;
+  margin: 0px 10px 10px 0px;
 `;
 
 const ItemDesc = styled(Item)`
@@ -130,7 +130,7 @@ const Label = styled.p`
   color: ${(props) => props.theme.colors.info};
 `;
 
-const PicCont = styled.div`
+const PicCont = styled.img`
   width: 100%;
   height: 20vh;
   border-bottom-right-radius: 3px;

@@ -13,6 +13,7 @@ const NavSettings = () => {
   const userCont = useContext(UserContext)
   const { isAuthenticated, logout, user } = authCont;
   const onLogout = () => {
+    
     authCont.logout();
   };
 

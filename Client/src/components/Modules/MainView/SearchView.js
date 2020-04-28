@@ -76,6 +76,8 @@ const SearchView = (props) => {
     await props.history.push('/dashboard/profile-view');
   };
 
+ 
+
   return (
     <GradientContRadius>
       <Col>

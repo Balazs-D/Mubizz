@@ -130,7 +130,7 @@ const Name = styled.h2`
 `;
 
 const Motto = styled.p`
-  width: 70%;
+  width: 100%;
   color: ${(props) => props.theme.colors.mainPurple};
   background: ${(props) => props.theme.colors.primaryLight};
   margin: 2px;
@@ -212,7 +212,7 @@ const CardWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-    width: 35vw;
+    width: 30vw;
   height: 20vh;
   background: linear-gradient(
     ${(props) => props.theme.colors.info},

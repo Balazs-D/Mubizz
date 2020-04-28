@@ -165,7 +165,6 @@ const OfferManagement = (props) => {
   return (
     <Cont>
       <SiteName>Your Profile</SiteName>
-      <SubName>Your Service Offers</SubName>
 
       <ContProf>
         <BoxLeft>
@@ -279,6 +278,8 @@ const OfferManagement = (props) => {
           </Span>
         </BoxRight>
       </ContProf>
+      <SubName>Your Service Offers</SubName>
+
       <CardCont>
         {!authCont.offer && <p>You dont have any offers yet.</p>}
         {authCont.offer &&

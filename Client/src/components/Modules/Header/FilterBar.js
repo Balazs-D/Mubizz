@@ -1,5 +1,5 @@
 // Utilities
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import UserCont from '../../../context/user/userContext';
@@ -286,14 +286,15 @@ const FilterBar = (props) => {
   const [keyword, setKeyword] = useState('');
   const [searchTags, setSearchTags] = useState('');
 
-   const [filterObj, setFilterObj] = useState([
-     { services: [], language: '', location: '', keyword: '' },
-   ]);
-   console.log('FILTER OBJECT : ', filterObj);
+  const [filterObj, setFilterObj] = useState(
+    { services: [], language: '', location: '', keyword: '' },
+  );
 
-   const handleReset = (e) => {
-     setFilterObj([{ services: [], language: '', location: '', keyword: '' }]);
-   };
+  console.log('FILTER OBJECT : ', filterObj);
+
+  const handleReset = (e) => {
+    setFilterObj({ services: [], language: '', location: '', keyword: '' });
+  };
 
   const toggleClick = (e) => {
     e.preventDefault();
@@ -314,8 +315,17 @@ const FilterBar = (props) => {
 
   const onChange = (e) => {
     setCountry(e);
-
+    const newObj = { ...filterObj, location: country };
+    console.log(newObj);
+    setFilterObj(newObj);
+    console.log(filterObj);
     console.log(country);
+  };
+
+  const handleTextChange = (e) => {
+    e.preventDefault();
+    setFilterObj({ ...filterObj, [e.target.name]: e.target.value });
+    console.log(filterObj);
   };
 
   const handleSearch = async () => {
@@ -324,6 +334,11 @@ const FilterBar = (props) => {
     await userCont.toggleFilterBar();
     await props.history.push('/dashboard/filter');
   };
+
+  useEffect(() => {
+    const newObj = { ...filterObj, location: country };
+    setFilterObj(newObj);
+  }, [country]);
 
   return (
     <TagBarCont filterBar={userCont.filterBar}>
@@ -337,6 +352,7 @@ const FilterBar = (props) => {
               text={field}
               onClick={toggleClick}
               checked={tagArr.includes(field) ? true : false}
+              onChange={null}
             ></Button>
           );
         })}
@@ -344,17 +360,21 @@ const FilterBar = (props) => {
       <SpanFields>
         <SpanInput>
           <LabelInput>location</LabelInput>
-          <LocationField value={country} onChange={(e) => onChange(e)} />
+          <LocationField
+            name='location'
+            value={country}
+            onChange={(e) => onChange(e)}
+          />
         </SpanInput>
 
         <SpanInput>
           <LabelInput>language</LabelInput>
-          <InputEdit />
+          <InputEdit name='language' onChange={(e) => handleTextChange(e)} />
         </SpanInput>
 
         <SpanInput>
           <LabelInput>keyword</LabelInput>
-          <InputEdit />
+          <InputEdit name='keyword' onChange={(e) => handleTextChange(e)} />
         </SpanInput>
       </SpanFields>
       <SpanSubmit>
