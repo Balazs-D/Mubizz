@@ -68,11 +68,14 @@ const SearchView = (props) => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleClick = (e, input) => {
+  const handleClick = async (e, input) => {
     e.preventDefault();
     let id = input;
+    console.log(input);
+    await authCont.getSelectedProfile(id);
+    await authCont.getFetchedReferences();
+    await props.history.push('/dashboard/profile-view');
 
-    authCont.getSelectedProfile(id);
   };
 
   return (
@@ -97,6 +100,7 @@ const SearchView = (props) => {
                   incOne={item.includes[0]}
                   incTwo={item.includes[1]}
                   link={item.links[0]}
+                  onClick={(e)=>handleClick(e, item.user)}
                 />
               );
             })}

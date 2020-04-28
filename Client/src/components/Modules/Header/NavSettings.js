@@ -23,7 +23,7 @@ const NavSettings = () => {
         <Link>
           <ButtonMain
             onClick={userCont.toggleFilterBar}
-            text='Filter'
+            text='Offers'
             style={StyledLink}
             to=''
           />

@@ -80,7 +80,7 @@ const PicStyle = styled.img`
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
 
   margin: 0;
   opacity: 0.8;
@@ -243,13 +243,14 @@ const Card = ({
   incTwo,
   title,
   notes,
-  link
+  link,
+  onClick,
 }) => {
   const authCont = useContext(authContext);
 
   return (
     <div>
-      <CardWrapper>
+      <CardWrapper onClick={onClick}>
         <CardCont>
           <Label>Service Offer</Label>
           <PicStyle src={src ? src : Avatar} alt=''></PicStyle>
@@ -277,8 +278,9 @@ const Card = ({
                   <i className='fas fa-external-link-alt'></i>
                 </ICont>
                 <DropdownContent className='DropContent'>
-                  <Li><a href={link}>{link}</a></Li>
-                 
+                  <Li>
+                    <a href={link}>{link}</a>
+                  </Li>
                 </DropdownContent>
               </DropdownCont>
               {/* <DropdownCont>

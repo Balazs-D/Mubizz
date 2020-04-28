@@ -106,7 +106,7 @@ const SpanForList = styled.div`
   border: 1px solid ${(props) => props.theme.colors.info};
   border-radius: 3px;
   background: ${(props) => props.theme.colors.white};
-  padding: 5px;
+  padding: 0px 5px;
   flex-wrap: wrap;
 `;
 
@@ -116,7 +116,7 @@ const Item = styled.p`
   padding: 3px;
   font-size: ${(props) => props.theme.fontSizes.xm};
   color: ${(props) => props.theme.colors.mainPurple};
-  margin: 0px 10px 10px 0px;
+  margin: 5px 10px 5px 0px;
 `;
 
 const ItemDesc = styled(Item)`
@@ -132,7 +132,8 @@ const Label = styled.p`
 
 const PicCont = styled.img`
   width: 100%;
-  height: 20vh;
+  height: 40vh;
+  object-fit: cover;
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
   overflow: hidden;
@@ -278,7 +279,7 @@ const ProfileView = (props) => {
 
       <SubName>Service Offers</SubName>
       <CardCont>
-        {!authCont.offer && <p>You dont have any offers yet.</p>}
+        {!authCont.fetchedOffers&& <p>You dont have any offers yet.</p>}
         {authCont.fetchedOffers &&
           authCont.fetchedOffers.map((item, i) => {
             if (item.user === authCont.currentProfile.user) {
@@ -299,7 +300,7 @@ const ProfileView = (props) => {
       </CardCont>
       <SubName>References</SubName>
       <CardCont>
-        {!authCont.offer && <p>You dont have any offers yet.</p>}
+        {!authCont.fetchedReferences && <p>You dont have any references yet.</p>}
         {authCont.fetchedReferences &&
           authCont.fetchedReferences.map((item, i) => {
             if (item.user === authCont.currentProfile.user) {
