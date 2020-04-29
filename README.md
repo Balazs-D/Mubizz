@@ -39,9 +39,9 @@
 - NODE.js
 - Express.js
 - MongoDB + Atlas
-- WORKING WITH GIT & GITHUB
-- REST API (DIVERSE ROUTES)
-- JSON WEB TOKEN
+- Git & Github
+- RESTful API (diverse routes))
+- JSON Web Token
 - Hashing and Salting
 - Postman for testing
 - Reference document connection
@@ -54,15 +54,15 @@
 - Global state management
 - Styled Components
 - CRUD implementation
-- WORKING WITH GIT & GITHUB
+- Git & Github
 - Pastel color palette
 - Clear user interface
 
 ## Team working tools
 
-- Goole Drive
+- Google Drive
 - Figma
-- Agile workwise and Scrum methodologies
+- Agile work wise and Scrum methodologies
 - Zoom
 - Github
 - Slack
