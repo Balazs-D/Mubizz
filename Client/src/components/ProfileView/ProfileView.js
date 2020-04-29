@@ -184,7 +184,7 @@ const ProfileView = (props) => {
             </SpanForList>
           </Span>
           <Span>
-            <Label>service fileds</Label>
+            <Label>service fields</Label>
             <SpanForList>
               {authCont.currentProfile.services.map((item, i) => {
                 return <Item key={i}>{item}</Item>;

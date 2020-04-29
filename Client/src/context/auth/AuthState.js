@@ -36,6 +36,7 @@ import {
   FETCH_PROFILE,
   FILTER_OBJECT,
   SEARCH_KEYWORD,
+  FILTERED_OFFERS,
 } from '../types';
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
@@ -55,6 +56,7 @@ const AuthState = (props) => {
     currentProfile: [],
     filterObject: [],
     searchKeyword: '',
+    filteredOffers: [],
     social: {
       youtube: '',
       twitter: '',
@@ -108,6 +110,19 @@ const AuthState = (props) => {
       console.log('getUserData error');
     }
   };
+
+  const filterOffers =(input)=>{
+    try {
+      
+      dispatch({
+        type: FILTERED_OFFERS,
+        payload:  input
+      })
+    } catch (error) {
+            console.log('filter offers error');
+
+    }
+  }
 
   const getSelectedProfile = async (id) => {
     try {
@@ -436,6 +451,7 @@ const AuthState = (props) => {
         currentProfile: state.currentProfile,
         filterObject: state.filterObject,
         searchKeyword: state.searchKeyword,
+        filteredOffers: state.filteredOffers,
         updateServices,
         updateSkills,
         updateAvatar,
@@ -466,6 +482,7 @@ const AuthState = (props) => {
         getSelectedProfile,
         setFilterObject,
         setSearchKeyword,
+        filterOffers,
       }}
     >
       {props.children}

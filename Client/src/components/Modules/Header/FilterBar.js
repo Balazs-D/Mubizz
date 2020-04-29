@@ -121,13 +121,13 @@ const ButtonSearch = styled.button`
   color: ${(props) => props.theme.colors.mainPurple};
   font-size: ${(props) => props.theme.fontSizes.small};
   font-family: ${(props) => props.theme.fontFamily[4]};
-
+margin-left: 10px;
   letter-spacing: 2px;
   text-align: center;
   padding: 0px 10px;
   position: relative;
   transition: all 0.35s;
-  margin: 0vh;
+  /* margin: 0vh; */
   z-index: 0;
   outline: none;
 
@@ -267,6 +267,7 @@ const FilterBar = (props) => {
 
   const { toggleTagBar } = userCont;
   const [tagArr, setTagArr] = useState([]);
+  const [ filteredProfiles, setFilteredProfiles] =useState([]);
   const ServiceFieldArray = [
     'Sound Technician',
     'Sound Engineer',
@@ -285,10 +286,15 @@ const FilterBar = (props) => {
   const [location, setLocation] = useState('');
   const [keyword, setKeyword] = useState('');
   const [searchTags, setSearchTags] = useState('');
+  // const [tagArr, setTagArr] = useState([]);
+  const [tag, setTag] = useState('');
 
-  const [filterObj, setFilterObj] = useState(
-    { services: [], language: '', location: '', keyword: '' },
-  );
+  const [filterObj, setFilterObj] = useState({
+    services: [],
+    language: '',
+    location: '',
+    keyword: '',
+  });
 
   console.log('FILTER OBJECT : ', filterObj);
 
@@ -328,9 +334,38 @@ const FilterBar = (props) => {
     console.log(filterObj);
   };
 
-  const handleSearch = async () => {
-    await authCont.getFetchedOffers();
-    await authCont.getFetchedProfiles();
+  const matchLocation = (item) => {
+    console.log(item);
+    if (item.location === filterObj.location) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+const [newFilter, setNewFilter] = useState();
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    
+    console.log('FILTER OBJECT (LANG): ', filterObj.language);
+    console.log(
+      authCont.fetchedProfiles.map((item, i) => {
+       return item.location
+      })
+    );
+    setFilteredProfiles(
+      authCont.fetchedProfiles
+        .filter((item, i) => item.location === filterObj.location)
+        .filter((item, i) =>
+          item.languages.map((item) => item === filterObj.language)
+        )
+    );
+    console.log(filteredProfiles);
+
+    await authCont.filterOffers(newFilter);
+    console.log(newFilter)
+    await authCont.setFilterObject(filterObj)
     await userCont.toggleFilterBar();
     await props.history.push('/dashboard/filter');
   };
@@ -339,6 +374,10 @@ const FilterBar = (props) => {
     const newObj = { ...filterObj, location: country };
     setFilterObj(newObj);
   }, [country]);
+
+  useEffect(() => {
+    setFilterObj({ ...filterObj, services: tagArr });
+  }, [tagArr]);
 
   return (
     <TagBarCont filterBar={userCont.filterBar}>
@@ -350,7 +389,7 @@ const FilterBar = (props) => {
               key={i}
               value={field}
               text={field}
-              onClick={toggleClick}
+              onClick={(e) => toggleClick(e)}
               checked={tagArr.includes(field) ? true : false}
               onChange={null}
             ></Button>

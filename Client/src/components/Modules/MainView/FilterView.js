@@ -8,6 +8,7 @@ import axios from 'axios';
 // Component
 
 import Card from '../../Utilities/CardRadius';
+import { FILTER_OBJECT } from '../../../context/types';
 
 // Styled Comp
 
@@ -75,8 +76,13 @@ const SearchView = (props) => {
     await authCont.getSelectedProfile(id);
     await authCont.getFetchedReferences();
     await props.history.push('/dashboard/profile-view');
-
   };
+
+  console.log(
+    Object.values(authCont.fetchedProfiles).map((item, i) => {
+      return item.location;
+    })
+  );
 
   return (
     <GradientContRadius>
@@ -89,7 +95,14 @@ const SearchView = (props) => {
                 (offer, i) => offer.user === item.user
               );
 
-              console.log(userMatch);
+              {/* if (userMatch.location === authCont.filterObject.location)
+
+                if (
+                  authCont.filterObject.location === '' &&
+                  authCont.filterObject.language === [] &&
+                  authCont.filterObject.keyword === '' &&
+                  authCont.filterObject.services === []
+                ); */}
               return (
                 <Card
                   key={i}
@@ -97,10 +110,10 @@ const SearchView = (props) => {
                   src={userMatch[0].avatar}
                   name={userMatch[0].profileName}
                   notes={item.description}
-                  incOne={item.includes[0]}
-                  incTwo={item.includes[1]}
+                  incOne={item.includes[0] && item.includes[0]}
+                  incTwo={item.includes[1] && item.includes[1]}
                   link={item.links[0]}
-                  onClick={(e)=>handleClick(e, item.user)}
+                  onClick={(e) => handleClick(e, item.user)}
                 />
               );
             })}
@@ -111,3 +124,10 @@ const SearchView = (props) => {
 };
 
 export default SearchView;
+
+// console.log(
+//                   Object.values(authCont.filterObject).map((key, i) => {
+//                     return authCont.filterObject[key];
+//                   })
+
+/* userMatch.map(card => card.language === Object.values(authCont.filterObject).map((key, i) => { return authCont.filterObject[key]})) */

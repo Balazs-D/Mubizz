@@ -109,6 +109,7 @@ console.log(authCont.error)
 
             <Input
               placeholder='Your password...'
+              type='password'
               name='password'
               value={password}
               onChange={onChange}

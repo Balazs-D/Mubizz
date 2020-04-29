@@ -29,7 +29,8 @@ import {
   FETCH_OFFERS,
   FETCH_PROFILE,
   FILTER_OBJECT,
-  SEARCH_KEYWORD
+  SEARCH_KEYWORD,
+  FILTERED_OFFERS,
 } from '../types';
 
 export default (state, action) => {
@@ -208,6 +209,12 @@ export default (state, action) => {
       return {
         ...state,
         searchKeyword: action.payload,
+      };
+
+    case FILTERED_OFFERS:
+      return {
+        ...state,
+        filteredOffers: action.payload,
       };
 
     default:

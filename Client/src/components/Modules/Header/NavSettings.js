@@ -10,11 +10,16 @@ import UserContext from '../../../context/user/userContext';
 
 const NavSettings = () => {
   const authCont = useContext(AuthContext);
-  const userCont = useContext(UserContext)
+  const userCont = useContext(UserContext);
   const { isAuthenticated, logout, user } = authCont;
   const onLogout = () => {
-    
     authCont.logout();
+  };
+
+  const handleClick = () => {
+    userCont.toggleFilterBar();
+    authCont.getFetchedOffers();
+    authCont.getFetchedProfiles();
   };
 
   const loggedNavbar = (
@@ -22,7 +27,7 @@ const NavSettings = () => {
       <li>
         <Link>
           <ButtonMain
-            onClick={userCont.toggleFilterBar}
+            onClick={handleClick}
             text='Offers'
             style={StyledLink}
             to=''
@@ -54,11 +59,10 @@ const NavSettings = () => {
           <ButtonMain text='Login' />
         </Link>
       </li>
-      
-        <Link to='/register' style={StyledLink}>
-          <ButtonMain text='Register' />
-        </Link>
-      
+
+      <Link to='/register' style={StyledLink}>
+        <ButtonMain text='Register' />
+      </Link>
     </List>
   );
 
@@ -83,10 +87,10 @@ const List = styled.ul`
     width: 50%;
   `}
   @media (max-width: 800px) {
-    display: none;  
+    display: none;
   }
 `;
 
 const StyledLink = {
-  textDecoration: 'none'
+  textDecoration: 'none',
 };
