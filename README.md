@@ -1,5 +1,6 @@
-# MUBIZZ - A platform to offer and find services in the music industry.
-
+# MUBIZZ 
+## A platform to offer and find services in the music industry.
+#
 #### This project was created as final project for our education.
 
 #
